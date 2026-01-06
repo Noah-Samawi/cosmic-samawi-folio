@@ -1,0 +1,251 @@
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
+type Language = 'en' | 'de';
+type Direction = 'ltr' | 'rtl';
+
+interface LanguageContextType {
+  language: Language;
+  direction: Direction;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const translations: Record<Language, Record<string, string>> = {
+  en: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.about': 'About',
+    'nav.services': 'Services',
+    'nav.experience': 'Experience',
+    'nav.projects': 'Projects',
+    'nav.skills': 'Skills',
+    'nav.education': 'Education',
+    'nav.contact': 'Contact',
+    
+    // Hero
+    'hero.greeting': 'Hello, I\'m',
+    'hero.name': 'Noah Al-Samawi',
+    'hero.title': 'Full-Stack Developer & IT Engineer',
+    'hero.subtitle': 'Building robust web solutions with enterprise expertise',
+    'hero.description': 'Bridging the gap between IT infrastructure and modern web development with 6+ years of enterprise experience and a passion for building elegant full-stack solutions.',
+    'hero.cta.contact': 'Get in Touch',
+    'hero.cta.projects': 'View Projects',
+    'hero.location': 'Frankfurt, Germany',
+    
+    // About
+    'about.title': 'About Me',
+    'about.subtitle': 'Get to know me better',
+    'about.years': 'years',
+    'about.description1': 'I\'m a Software Developer and IT Systems Engineer based in Frankfurt, Germany, with a unique blend of enterprise IT experience and modern full-stack development skills.',
+    'about.description2': 'With 6+ years at CBRE supporting DXC/Dell, I\'ve mastered enterprise systems including Active Directory, Windows Server, and ServiceNow. I\'ve transitioned this deep technical foundation into building modern web applications using React, Django, and cloud technologies.',
+    'about.highlight1': '6+ years enterprise IT experience at Fortune 500 companies',
+    'about.highlight2': 'Full-Stack development with React, Django & TypeScript',
+    'about.highlight3': 'Code Institute Diploma in Full-Stack Web Development (2024)',
+    
+    // Services
+    'services.title': 'Services',
+    'services.subtitle': 'How I can help bring your ideas to life',
+    'services.webdev.title': 'Web Development',
+    'services.webdev.desc': 'Building responsive, modern web applications with cutting-edge technologies.',
+    'services.webdev.f1': 'React & TypeScript frontends',
+    'services.webdev.f2': 'Django & REST API backends',
+    'services.webdev.f3': 'Database design & optimization',
+    'services.security.title': 'Cybersecurity',
+    'services.security.desc': 'Protecting your digital assets with enterprise-grade security practices.',
+    'services.security.f1': 'Security audits & assessments',
+    'services.security.f2': 'Network security configuration',
+    'services.security.f3': 'Active Directory management',
+    'services.support.title': 'Tech Support',
+    'services.support.desc': 'Professional IT support with enterprise-level troubleshooting expertise.',
+    'services.support.f1': 'Windows Server administration',
+    'services.support.f2': 'IT infrastructure management',
+    'services.support.f3': 'ServiceNow ticketing & escalation',
+    
+    // Experience
+    'experience.title': 'Experience',
+    'experience.subtitle': 'Professional Journey',
+    'experience.cbre.title': 'IT Support Specialist - 2nd Level',
+    'experience.cbre.company': 'CBRE for DXC/Dell',
+    'experience.cbre.period': '2017 - 2023',
+    'experience.cbre.description': 'Provided enterprise-level technical support managing Active Directory, ServiceNow ticketing, and complex Windows environments across global infrastructure.',
+    'experience.cbre.task1': 'Active Directory user & group management',
+    'experience.cbre.task2': 'ServiceNow incident resolution & escalation',
+    'experience.cbre.task3': '2nd Level technical support & troubleshooting',
+    'experience.cbre.task4': 'Windows Server administration',
+    'experience.cbre.task5': 'Network configuration & VPN management',
+    
+    // Projects
+    'projects.title': 'Projects',
+    'projects.subtitle': 'Full-Stack Applications',
+    'projects.viewLive': 'View Live',
+    'projects.viewCode': 'View Code',
+    
+    // Skills
+    'skills.title': 'Technical Stack',
+    'skills.subtitle': 'Technologies I Work With',
+    'skills.languages': 'Languages',
+    'skills.frameworks': 'Frameworks',
+    'skills.systems': 'Systems & Tools',
+    
+    // Education
+    'education.title': 'Education',
+    'education.subtitle': 'Academic Background',
+    'education.bsc.degree': 'B.Sc. Computer Science',
+    'education.bsc.school': 'Sanaa University',
+    'education.diploma.degree': 'Full-Stack Web Development Diploma',
+    'education.diploma.school': 'Code Institute, Dublin',
+    'education.diploma.year': '2024',
+    
+    // Chat
+    'chat.title': 'AI Assistant',
+    'chat.placeholder': 'Ask me anything about Noah...',
+    'chat.welcome': 'Hello! I\'m Noah\'s AI assistant. I know his CV inside and out. Ask me about his experience, skills, or projects!',
+    'chat.send': 'Send',
+    
+    // Footer
+    'footer.rights': 'All rights reserved.',
+    
+    // Common
+    'common.loading': 'Loading...',
+    'common.error': 'An error occurred',
+  },
+  de: {
+    // Navigation
+    'nav.home': 'Startseite',
+    'nav.about': 'Über mich',
+    'nav.services': 'Leistungen',
+    'nav.experience': 'Erfahrung',
+    'nav.projects': 'Projekte',
+    'nav.skills': 'Fähigkeiten',
+    'nav.education': 'Ausbildung',
+    'nav.contact': 'Kontakt',
+    
+    // Hero
+    'hero.greeting': 'Hallo, ich bin',
+    'hero.name': 'Noah Al-Samawi',
+    'hero.title': 'Full-Stack Entwickler & IT-Ingenieur',
+    'hero.subtitle': 'Robuste Weblösungen mit Enterprise-Expertise',
+    'hero.description': 'Ich verbinde IT-Infrastruktur mit moderner Webentwicklung – mit über 6 Jahren Erfahrung in Großunternehmen und der Leidenschaft für elegante Full-Stack-Lösungen.',
+    'hero.cta.contact': 'Kontakt aufnehmen',
+    'hero.cta.projects': 'Projekte ansehen',
+    'hero.location': 'Frankfurt, Deutschland',
+    
+    // About
+    'about.title': 'Über mich',
+    'about.subtitle': 'Lernen Sie mich kennen',
+    'about.years': 'Jahre',
+    'about.description1': 'Ich bin Softwareentwickler und IT-Systemingenieur in Frankfurt mit einer einzigartigen Kombination aus Enterprise-IT-Erfahrung und modernen Full-Stack-Entwicklungsfähigkeiten.',
+    'about.description2': 'Mit über 6 Jahren bei CBRE für DXC/Dell habe ich Enterprise-Systeme wie Active Directory, Windows Server und ServiceNow gemeistert. Diese Expertise nutze ich heute für moderne Webanwendungen mit React, Django und Cloud-Technologien.',
+    'about.highlight1': '6+ Jahre Enterprise-IT bei Fortune-500-Unternehmen',
+    'about.highlight2': 'Full-Stack-Entwicklung mit React, Django & TypeScript',
+    'about.highlight3': 'Code Institute Diplom in Full-Stack Webentwicklung (2024)',
+    
+    // Services
+    'services.title': 'Leistungen',
+    'services.subtitle': 'Wie ich Ihnen helfen kann',
+    'services.webdev.title': 'Webentwicklung',
+    'services.webdev.desc': 'Moderne, responsive Webanwendungen mit aktuellen Technologien.',
+    'services.webdev.f1': 'React & TypeScript Frontends',
+    'services.webdev.f2': 'Django & REST API Backends',
+    'services.webdev.f3': 'Datenbankdesign & Optimierung',
+    'services.security.title': 'Cybersicherheit',
+    'services.security.desc': 'Schutz digitaler Assets mit Enterprise-Sicherheitspraktiken.',
+    'services.security.f1': 'Sicherheitsaudits & Bewertungen',
+    'services.security.f2': 'Netzwerksicherheitskonfiguration',
+    'services.security.f3': 'Active Directory Management',
+    'services.support.title': 'Tech-Support',
+    'services.support.desc': 'Professioneller IT-Support mit Enterprise-Level-Fehlerbehebung.',
+    'services.support.f1': 'Windows Server Administration',
+    'services.support.f2': 'IT-Infrastruktur-Management',
+    'services.support.f3': 'ServiceNow Ticketing & Eskalation',
+    
+    // Experience
+    'experience.title': 'Erfahrung',
+    'experience.subtitle': 'Beruflicher Werdegang',
+    'experience.cbre.title': 'IT Support Spezialist - 2nd Level',
+    'experience.cbre.company': 'CBRE für DXC/Dell',
+    'experience.cbre.period': '2017 - 2023',
+    'experience.cbre.description': 'Enterprise-Level technischer Support mit Active Directory, ServiceNow und komplexen Windows-Umgebungen in globaler Infrastruktur.',
+    'experience.cbre.task1': 'Active Directory Benutzer- & Gruppenverwaltung',
+    'experience.cbre.task2': 'ServiceNow Incident-Auflösung & Eskalation',
+    'experience.cbre.task3': '2nd Level technischer Support & Fehlerbehebung',
+    'experience.cbre.task4': 'Windows Server Administration',
+    'experience.cbre.task5': 'Netzwerkkonfiguration & VPN-Management',
+    
+    // Projects
+    'projects.title': 'Projekte',
+    'projects.subtitle': 'Full-Stack Anwendungen',
+    'projects.viewLive': 'Live ansehen',
+    'projects.viewCode': 'Code ansehen',
+    
+    // Skills
+    'skills.title': 'Technologien',
+    'skills.subtitle': 'Womit ich arbeite',
+    'skills.languages': 'Sprachen',
+    'skills.frameworks': 'Frameworks',
+    'skills.systems': 'Systeme & Tools',
+    
+    // Education
+    'education.title': 'Ausbildung',
+    'education.subtitle': 'Akademischer Hintergrund',
+    'education.bsc.degree': 'B.Sc. Informatik',
+    'education.bsc.school': 'Universität Sanaa',
+    'education.diploma.degree': 'Full-Stack Webentwicklung Diplom',
+    'education.diploma.school': 'Code Institute, Dublin',
+    'education.diploma.year': '2024',
+    
+    // Chat
+    'chat.title': 'KI-Assistent',
+    'chat.placeholder': 'Fragen Sie mich über Noah...',
+    'chat.welcome': 'Hallo! Ich bin Noahs KI-Assistent. Fragen Sie mich zu seiner Erfahrung, Fähigkeiten oder Projekten!',
+    'chat.send': 'Senden',
+    
+    // Footer
+    'footer.rights': 'Alle Rechte vorbehalten.',
+    
+    // Common
+    'common.loading': 'Lädt...',
+    'common.error': 'Ein Fehler ist aufgetreten',
+  },
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguageState] = useState<Language>('en');
+  const direction: Direction = 'ltr'; // Both English and German are LTR
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('portfolio-language', lang);
+  };
+
+  const t = (key: string): string => {
+    return translations[language][key] || key;
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem('portfolio-language') as Language | null;
+    if (saved && (saved === 'en' || saved === 'de')) {
+      setLanguageState(saved);
+    }
+  }, []);
+
+  return (
+    <LanguageContext.Provider value={{ language, direction, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};

@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@fontsource/sora/400.css";
+@import "@fontsource/sora/500.css";
+@import "@fontsource/sora/600.css";
+@import "@fontsource/sora/700.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+
+@layer base {
+  :root {
+    /* Light Theme - Clean & Professional */
+    --background: 210 20% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 200 80% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 220 15% 25%;
+
+    --muted: 210 15% 90%;
+    --muted-foreground: 215 15% 45%;
+
+    --accent: 190 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 85%;
+    --input: 210 15% 90%;
+    --ring: 200 80% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens - Light Mode */
+    --space-blue: 210 20% 98%;
+    --electric-blue: 200 80% 45%;
+    --neon-purple: 190 70% 40%;
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 200 30% 70% / 0.3;
+    
+    /* Gradients - Light Mode */
+    --gradient-primary: linear-gradient(135deg, hsl(200, 80%, 45%), hsl(190, 70%, 40%));
+    --gradient-glow: radial-gradient(ellipse at center, hsl(200 80% 45% / 0.08), transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(210 15% 98% / 0.7));
+    --gradient-border: linear-gradient(135deg, hsl(200 80% 45% / 0.2), hsl(190 70% 40% / 0.2));
+    
+    /* Shadows - Light Mode */
+    --shadow-glow: 0 0 40px hsl(200 80% 45% / 0.1);
+    --shadow-card: 0 4px 24px hsl(220 20% 10% / 0.08);
+    --shadow-neon: 0 0 15px hsl(190 70% 40% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 10%;
+    --sidebar-primary: 200 80% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 190 70% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 15% 85%;
+    --sidebar-ring: 200 80% 45%;
+  }
+
+  .dark {
+    /* Professional Dark Theme - Refined & Elegant */
+    --background: 220 20% 7%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 200 80% 55%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 190 70% 50%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 15%;
+    --ring: 200 80% 55%;
+
+    /* Custom Design Tokens - Dark Mode */
+    --space-blue: 220 20% 7%;
+    --electric-blue: 200 80% 55%;
+    --neon-purple: 190 70% 50%;
+    --glass-bg: 220 18% 12% / 0.7;
+    --glass-border: 200 30% 30% / 0.2;
+    
+    /* Gradients - Dark Mode */
+    --gradient-primary: linear-gradient(135deg, hsl(200, 80%, 55%), hsl(190, 70%, 50%));
+    --gradient-glow: radial-gradient(ellipse at center, hsl(200 80% 55% / 0.08), transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(220 18% 12% / 0.9), hsl(220 18% 10% / 0.7));
+    --gradient-border: linear-gradient(135deg, hsl(200 80% 55% / 0.3), hsl(190 70% 50% / 0.3));
+    
+    /* Shadows - Dark Mode */
+    --shadow-glow: 0 0 40px hsl(200 80% 55% / 0.15);
+    --shadow-card: 0 4px 24px hsl(220 20% 4% / 0.5);
+    --shadow-neon: 0 0 15px hsl(190 70% 50% / 0.2);
+
+    /* Sidebar */
+    --sidebar-background: 220 20% 7%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 200 80% 55%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 190 70% 50%;
+    --sidebar-accent-foreground: 220 20% 7%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 200 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "DM Sans", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Sora", system-ui, sans-serif;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    font-family: "Sora", "DM Sans", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card - Professional */
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(135deg, hsl(220 18% 12% / 0.9), hsl(220 18% 10% / 0.7));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(200 30% 25% / 0.2);
+    box-shadow: 0 4px 24px hsl(220 20% 4% / 0.5);
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(200 80% 55% / 0.15), hsl(190 70% 50% / 0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Gradient Text - Professional */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(200, 80%, 60%), hsl(190, 70%, 55%));
+  }
+
+  /* Glow Effect - Subtle */
+  .glow {
+    box-shadow: 0 0 40px hsl(200 80% 55% / 0.2), 0 0 60px hsl(190 70% 50% / 0.1);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 15px hsl(200 80% 55% / 0.4), 0 0 30px hsl(190 70% 50% / 0.2);
+  }
+
+  /* Animated Grid Background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(hsl(200 30% 20% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(200 30% 20% / 0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    background-position: center center;
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* Pulse Glow - Subtle */
+  .pulse-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 15px hsl(200 80% 55% / 0.2), 0 0 30px hsl(190 70% 50% / 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 25px hsl(200 80% 55% / 0.3), 0 0 50px hsl(190 70% 50% / 0.15);
+    }
+  }
+
+  /* Accent Border */
+  .neon-border {
+    position: relative;
+  }
+
+  .neon-border::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(200, 80%, 55%), hsl(190, 70%, 50%));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .neon-border:hover::after {
+    opacity: 0.8;
+  }
+
+  /* Scroll Progress */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-0.5 z-50;
+    background: linear-gradient(90deg, hsl(200, 80%, 55%), hsl(190, 70%, 50%));
+    transform-origin: left;
+  }
+
+  /* Chat Widget */
+  .chat-widget {
+    @apply fixed bottom-6 right-6 z-50;
+  }
+
+  [dir="rtl"] .chat-widget {
+    @apply right-auto left-6;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: hsl(220 18% 10%);
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: hsl(200, 80%, 45%);
+    border-radius: 3px;
+  }
+}
