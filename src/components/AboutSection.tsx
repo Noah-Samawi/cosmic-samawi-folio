@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Code, Server, Award, Shield, Globe } from 'lucide-react';
+import { Code, Server, Award, Shield, Globe, Zap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import noahProfile from '@/assets/noah-profile.jpg';
 
 const AboutSection: React.FC = () => {
   const { t } = useLanguage();
@@ -10,12 +11,14 @@ const AboutSection: React.FC = () => {
     { icon: Server, key: 'about.highlight1' },
     { icon: Code, key: 'about.highlight2' },
     { icon: Award, key: 'about.highlight3' },
+    { icon: Zap, key: 'about.highlight4' },
+    { icon: Users, key: 'about.highlight5' },
   ];
 
   const stats = [
-    { value: '6+', label: 'Years IT Experience' },
-    { value: '10+', label: 'Projects Built' },
-    { value: '3', label: 'Languages Spoken' },
+    { value: '6+', labelKey: 'about.stat1' },
+    { value: '5+', labelKey: 'about.stat2' },
+    { value: '10+', labelKey: 'about.stat3' },
   ];
 
   return (
@@ -52,9 +55,13 @@ const AboutSection: React.FC = () => {
           >
             <div className="relative">
               {/* Main avatar card */}
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl glass-card overflow-hidden flex items-center justify-center relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-                <User className="w-28 h-28 text-primary/60 group-hover:text-primary/80 transition-colors" />
+              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl glass-card overflow-hidden relative group">
+                <img 
+                  src={noahProfile} 
+                  alt="Noah Al-Samawi" 
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 
                 {/* Security badge overlay */}
                 <div className="absolute top-4 right-4 p-2 rounded-xl bg-primary/20 backdrop-blur-sm">
@@ -98,7 +105,7 @@ const AboutSection: React.FC = () => {
             {/* Unique value proposition */}
             <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
               <p className="text-foreground text-lg leading-relaxed font-medium">
-                A <span className="text-primary">Software Developer</span> with <span className="text-primary">6+ years</span> of enterprise IT experience at <span className="text-primary">CBRE</span>, bridging the gap between <span className="text-accent">secure infrastructure</span> and <span className="text-accent">modern web development</span>.
+                {t('about.valueProposition')}
               </p>
             </div>
 
@@ -110,7 +117,7 @@ const AboutSection: React.FC = () => {
             <div className="grid grid-cols-3 gap-4 py-4">
               {stats.map((stat, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={stat.labelKey}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -118,7 +125,7 @@ const AboutSection: React.FC = () => {
                   className="text-center p-4 rounded-xl bg-muted/30"
                 >
                   <span className="block text-2xl font-bold gradient-text">{stat.value}</span>
-                  <span className="text-xs text-muted-foreground">{stat.label}</span>
+                  <span className="text-xs text-muted-foreground">{t(stat.labelKey)}</span>
                 </motion.div>
               ))}
             </div>

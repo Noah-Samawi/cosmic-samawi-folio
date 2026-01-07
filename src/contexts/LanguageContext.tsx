@@ -35,12 +35,18 @@ const translations: Record<Language, Record<string, string>> = {
     // About
     'about.title': 'About Me',
     'about.subtitle': 'Get to know me better',
-    'about.years': 'years',
+    'about.years': 'Years Experience',
+    'about.valueProposition': 'A versatile developer blending 6+ years of enterprise IT stability with the creative agility of a freelance developer and hackathon enthusiast.',
     'about.description1': 'I\'m a Software Developer and IT Systems Engineer based in Frankfurt, Germany, with a unique blend of enterprise IT experience and modern full-stack development skills.',
-    'about.description2': 'With 6+ years at CBRE supporting DXC/Dell, I\'ve mastered enterprise systems including Active Directory, Windows Server, and ServiceNow. I\'ve transitioned this deep technical foundation into building modern web applications using React, Django, and cloud technologies.',
+    'about.description2': 'Beyond my corporate experience at CBRE, I have a strong track record delivering custom tailored solutions for individual clients. My active participation in hackathons has honed my rapid prototyping & agile development skills—building complex solutions in high-pressure, fast-paced team environments.',
     'about.highlight1': '6+ years enterprise IT experience at Fortune 500 companies',
     'about.highlight2': 'Full-Stack development with React, Django & TypeScript',
     'about.highlight3': 'Code Institute Diploma in Full-Stack Web Development (2024)',
+    'about.highlight4': 'Rapid Prototyping & Innovation through multiple Hackathons',
+    'about.highlight5': 'Custom Tailored Solutions for freelance clients',
+    'about.stat1': 'Years IT Experience',
+    'about.stat2': 'Hackathons Joined',
+    'about.stat3': 'Projects Delivered',
     
     // Services
     'services.title': 'Services',
@@ -133,12 +139,18 @@ const translations: Record<Language, Record<string, string>> = {
     // About
     'about.title': 'Über mich',
     'about.subtitle': 'Lernen Sie mich kennen',
-    'about.years': 'Jahre',
+    'about.years': 'Jahre Erfahrung',
+    'about.valueProposition': 'Ein vielseitiger Entwickler, der 6+ Jahre Enterprise-IT-Stabilität mit der kreativen Agilität eines Freelancers und Hackathon-Enthusiasten verbindet.',
     'about.description1': 'Ich bin Softwareentwickler und IT-Systemingenieur in Frankfurt mit einer einzigartigen Kombination aus Enterprise-IT-Erfahrung und modernen Full-Stack-Entwicklungsfähigkeiten.',
-    'about.description2': 'Mit über 6 Jahren bei CBRE für DXC/Dell habe ich Enterprise-Systeme wie Active Directory, Windows Server und ServiceNow gemeistert. Diese Expertise nutze ich heute für moderne Webanwendungen mit React, Django und Cloud-Technologien.',
+    'about.description2': 'Neben meiner Unternehmenserfahrung bei CBRE habe ich maßgeschneiderte Lösungen für Privatkunden entwickelt. Meine aktive Teilnahme an Hackathons hat meine Fähigkeiten in Rapid Prototyping & agiler Entwicklung geschärft – komplexe Lösungen unter Zeitdruck im Team.',
     'about.highlight1': '6+ Jahre Enterprise-IT bei Fortune-500-Unternehmen',
     'about.highlight2': 'Full-Stack-Entwicklung mit React, Django & TypeScript',
     'about.highlight3': 'Code Institute Diplom in Full-Stack Webentwicklung (2024)',
+    'about.highlight4': 'Rapid Prototyping & Innovation durch mehrere Hackathons',
+    'about.highlight5': 'Maßgeschneiderte Lösungen für Freelance-Kunden',
+    'about.stat1': 'Jahre IT-Erfahrung',
+    'about.stat2': 'Hackathons absolviert',
+    'about.stat3': 'Projekte geliefert',
     
     // Services
     'services.title': 'Leistungen',
