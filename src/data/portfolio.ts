@@ -2,12 +2,13 @@ export const portfolioData = {
   personal: {
     name: 'Noah Al-Samawi',
     nameAr: 'نوح السماوي',
-    title: 'Technical Content & Learning Developer',
+    title: 'Full-Stack Developer & Security Specialist',
     subtitle: 'Software Developer & IT Systems Engineer',
     location: 'Frankfurt, Germany',
-    email: 'contact@noahalsamawi.dev',
-    linkedin: 'https://linkedin.com/in/noahalsamawi',
-    github: 'https://github.com/noahalsamawi',
+    email: 'noah.al-samawi@gmx.de',
+    linkedin: 'https://www.linkedin.com/in/noah-al-samawi-058583197/',
+    github: 'https://github.com/Noah-Samawi',
+    xing: 'https://www.xing.com/profile/Noah_AlSamawi',
   },
   
   experience: [
@@ -31,31 +32,65 @@ export const portfolioData = {
   
   projects: [
     {
-      id: 'project-1',
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React frontend and Django REST API backend. Features include user authentication, product catalog, shopping cart, and payment integration.',
+      id: 'visste-sphere',
+      title: 'VistaSphere',
+      description: 'A modern full-stack web application showcasing advanced React patterns and responsive UI design with elegant user experiences.',
       image: '/placeholder.svg',
-      technologies: ['React', 'TypeScript', 'Django', 'PostgreSQL', 'Stripe'],
-      liveUrl: '#',
-      codeUrl: '#',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+      liveUrl: 'https://github.com/Noah-Samawi/visste-sphere',
+      codeUrl: 'https://github.com/Noah-Samawi/visste-sphere',
+      featured: true,
     },
     {
-      id: 'project-2',
-      title: 'Task Management System',
-      description: 'Collaborative project management application with real-time updates, team workspaces, and Kanban boards built with modern web technologies.',
+      id: 'pp4-security',
+      title: 'Web Application Security',
+      description: 'Comprehensive security-focused web application demonstrating OWASP best practices, secure authentication, and vulnerability prevention techniques.',
       image: '/placeholder.svg',
-      technologies: ['React', 'Django REST', 'Redis', 'WebSockets'],
-      liveUrl: '#',
-      codeUrl: '#',
+      technologies: ['Django', 'Python', 'Security', 'OWASP', 'PostgreSQL'],
+      liveUrl: 'https://github.com/Noah-Samawi/pp4-Web-Application-Security',
+      codeUrl: 'https://github.com/Noah-Samawi/pp4-Web-Application-Security',
+      featured: true,
+      isSecurityProject: true,
     },
     {
-      id: 'project-3',
-      title: 'Learning Management Portal',
-      description: 'Educational platform for course creation and student management with video hosting, progress tracking, and certification system.',
+      id: 'chain-breaker',
+      title: 'Chain Breaker',
+      description: 'An innovative web application designed to help users break negative patterns and build positive habits through interactive tracking.',
       image: '/placeholder.svg',
-      technologies: ['React', 'TypeScript', 'Django', 'AWS S3'],
-      liveUrl: '#',
-      codeUrl: '#',
+      technologies: ['React', 'JavaScript', 'CSS', 'Node.js'],
+      liveUrl: 'https://github.com/Noah-Samawi/chain-breaker1',
+      codeUrl: 'https://github.com/Noah-Samawi/chain-breaker1',
+      featured: true,
+    },
+    {
+      id: 'techforher',
+      title: 'TechForHer',
+      description: 'A platform empowering women in technology through resources, community, and mentorship opportunities in the tech industry.',
+      image: '/placeholder.svg',
+      technologies: ['React', 'TypeScript', 'Django', 'PostgreSQL'],
+      liveUrl: 'https://github.com/Noah-Samawi/techforher',
+      codeUrl: 'https://github.com/Noah-Samawi/techforher',
+      featured: true,
+    },
+    {
+      id: 'how-to-christmas',
+      title: 'How To Christmas',
+      description: 'A festive web application providing creative holiday planning resources, recipes, and gift ideas for the perfect Christmas celebration.',
+      image: '/placeholder.svg',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      liveUrl: 'https://github.com/Noah-Samawi/How-To-Christmas',
+      codeUrl: 'https://github.com/Noah-Samawi/How-To-Christmas',
+      featured: false,
+    },
+    {
+      id: 'august-hackathon',
+      title: 'August Hackathon Team Project',
+      description: 'Collaborative hackathon project built with a team, demonstrating agile development practices and team collaboration skills.',
+      image: '/placeholder.svg',
+      technologies: ['Python', 'Django', 'JavaScript', 'Agile'],
+      liveUrl: 'https://github.com/Noah-Samawi/august-hackathon-team1',
+      codeUrl: 'https://github.com/Noah-Samawi/august-hackathon-team1',
+      featured: false,
     },
   ],
   
@@ -114,28 +149,38 @@ export const portfolioData = {
     - 6 years at CBRE working for DXC/Dell (2017-2023) as IT Support Specialist - 2nd Level
     - Expertise in Active Directory, ServiceNow, Windows Server, PowerShell, and enterprise networking
     - Transitioned to full-stack development while maintaining strong IT infrastructure knowledge
+    - Passionate about Cybersecurity and secure coding practices
     
     Technical Skills:
     - Languages: Python, JavaScript, TypeScript, SQL, HTML/CSS, PowerShell
     - Frameworks: React, Django, Django REST Framework, Tailwind CSS, Bootstrap
     - Systems: Linux, Windows Server, Active Directory, Git, Docker, AWS, Networking
+    - Security: OWASP best practices, secure authentication, vulnerability assessment
     
     Education:
     - B.Sc. in Computer Science from Sanaa University
     - Full-Stack Web Development Diploma from Code Institute, Dublin (2024)
     
     Projects:
-    - Built full-stack applications using React and Django
-    - E-commerce platforms, task management systems, and learning portals
+    - VistaSphere: Modern React application with advanced UI patterns
+    - Web Application Security: Security-focused Django project with OWASP practices
+    - Chain Breaker: Habit-tracking application for personal development
+    - TechForHer: Platform empowering women in technology
+    - How To Christmas: Festive planning web application
+    - August Hackathon: Team collaboration project
     
     Unique Value:
     - Hybrid expertise bridging IT infrastructure and modern web development
     - Strong understanding of enterprise systems from years of technical support
+    - Passion for cybersecurity and secure software development
     - Clean code practices and modern development workflows
-    - Bilingual: English and Arabic
+    - Multilingual: English, German, and Arabic
     
     Contact:
+    - Email: noah.al-samawi@gmx.de
+    - LinkedIn: https://www.linkedin.com/in/noah-al-samawi-058583197/
+    - GitHub: https://github.com/Noah-Samawi
+    - XING: https://www.xing.com/profile/Noah_AlSamawi
     - Location: Frankfurt, Germany
-    - Available for full-stack development and technical roles
   `,
 };
