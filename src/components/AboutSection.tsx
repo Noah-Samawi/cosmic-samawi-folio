@@ -55,11 +55,12 @@ const AboutSection: React.FC = () => {
           >
             <div className="relative">
               {/* Main avatar card */}
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl glass-card overflow-hidden relative group">
+              <div className="w-64 h-64 md:w-72 md:h-72 rounded-full ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25 overflow-hidden relative group">
                 <img 
                   src={noahProfile} 
                   alt="Noah Al-Samawi" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 10%', transform: 'scale(0.85)' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 
