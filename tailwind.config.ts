@@ -54,6 +54,7 @@ export default {
         "space-blue": "hsl(var(--space-blue))",
         "electric-blue": "hsl(var(--electric-blue))",
         "neon-purple": "hsl(var(--neon-purple))",
+        avatar: "hsl(var(--avatar-bg))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

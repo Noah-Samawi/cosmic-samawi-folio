@@ -41,6 +41,9 @@
     --input: 210 15% 90%;
     --ring: 200 80% 45%;
 
+    /* Avatar fill (matches photo backdrop) */
+    --avatar-bg: 220 6% 19%;
+
     --radius: 0.75rem;
 
     /* Custom Design Tokens - Light Mode */
@@ -101,6 +104,9 @@
     --border: 220 15% 20%;
     --input: 220 15% 16%;
     --ring: 200 80% 55%;
+
+    /* Avatar fill (matches photo backdrop) */
+    --avatar-bg: 220 6% 18%;
 
     /* Custom Design Tokens - Dark Mode */
     --space-blue: 222 20% 8%;
