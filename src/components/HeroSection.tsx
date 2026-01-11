@@ -23,11 +23,12 @@ const HeroSection: React.FC = () => {
             className="mb-8 flex justify-center"
           >
             <div className="relative">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-2xl shadow-primary/20">
+              <div className="w-36 h-48 md:w-44 md:h-56 rounded-3xl overflow-hidden ring-4 ring-primary/30 shadow-2xl shadow-primary/20">
                 <img 
                   src={noahProfile} 
                   alt="Noah Al-Samawi" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 15%' }}
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
