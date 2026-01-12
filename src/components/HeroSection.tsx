@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
                 <img
                   src={noahProfile}
                   alt="Noah Al-Samawi"
-                  className="w-full h-full object-cover scale-110"
+                  className="w-full h-full object-cover scale-105"
                   style={{ objectPosition: 'center 15%' }}
                 />
               </div>
