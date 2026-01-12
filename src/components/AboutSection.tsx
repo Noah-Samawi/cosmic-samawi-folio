@@ -1,8 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Code, Server, Award, Shield, Globe, Zap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import noahProfile from '@/assets/noah-profile.jpg';
+import { useRef } from 'react';
 
 const AboutSection: React.FC = () => {
   const { t } = useLanguage();
@@ -21,8 +22,17 @@ const AboutSection: React.FC = () => {
     { value: '10+', labelKey: 'about.stat3' },
   ];
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.02, 0.98]);
+
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       {/* Background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -54,10 +64,11 @@ const AboutSection: React.FC = () => {
             className="flex justify-center"
           >
             <div className="relative">
-              {/* Main avatar card - rectangular with hover/tilt effect */}
+              {/* Main avatar card - rectangular with hover/tilt + parallax effect */}
               <motion.div 
                 className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative group cursor-pointer"
-                whileHover={{ scale: 1.02, rotateY: 5, rotateX: -5 }}
+                style={{ y: imageY, scale: imageScale }}
+                whileHover={{ rotateY: 5, rotateX: -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <img 

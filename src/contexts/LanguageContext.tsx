@@ -30,6 +30,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.description': 'Bridging the gap between IT infrastructure and modern web development with 6+ years of enterprise experience and a passion for building elegant full-stack solutions.',
     'hero.cta.contact': 'Get in Touch',
     'hero.cta.projects': 'View Projects',
+    'hero.cta.download': 'Download CV',
     'hero.location': 'Frankfurt, Germany',
     
     // About
@@ -134,6 +135,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.description': 'Ich verbinde IT-Infrastruktur mit moderner Webentwicklung – mit über 6 Jahren Erfahrung in Großunternehmen und der Leidenschaft für elegante Full-Stack-Lösungen.',
     'hero.cta.contact': 'Kontakt aufnehmen',
     'hero.cta.projects': 'Projekte ansehen',
+    'hero.cta.download': 'Lebenslauf herunterladen',
     'hero.location': 'Frankfurt, Deutschland',
     
     // About

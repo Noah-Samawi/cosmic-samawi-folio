@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { MapPin, ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AnimatedGridBackground from './AnimatedGridBackground';
@@ -23,15 +23,12 @@ const HeroSection: React.FC = () => {
             className="mb-8 flex justify-center"
           >
             <div className="relative">
-              <div 
-                className="w-44 h-44 md:w-60 md:h-60 rounded-full overflow-hidden ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25"
-                style={{ backgroundColor: '#2C2C2E' }}
-              >
+              <div className="w-44 h-44 md:w-60 md:h-60 rounded-full overflow-hidden ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25">
                 <img
                   src={noahProfile}
                   alt="Noah Al-Samawi"
-                  className="w-full h-full object-cover scale-90"
-                  style={{ objectPosition: 'center center' }}
+                  className="w-full h-full object-cover scale-125"
+                  style={{ objectPosition: 'center 20%' }}
                 />
               </div>
               <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
@@ -113,6 +110,12 @@ const HeroSection: React.FC = () => {
             </Button>
             <Button variant="glass" size="xl" asChild>
               <a href="#projects">{t('hero.cta.projects')}</a>
+            </Button>
+            <Button variant="outline" size="xl" asChild className="gap-2">
+              <a href="/noah-alsamawi-cv.pdf" download>
+                <Download className="h-5 w-5" />
+                {t('hero.cta.download')}
+              </a>
             </Button>
           </motion.div>
 
