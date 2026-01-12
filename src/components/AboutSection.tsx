@@ -54,13 +54,16 @@ const AboutSection: React.FC = () => {
             className="flex justify-center"
           >
             <div className="relative">
-              {/* Main avatar card */}
-              <div className="w-56 h-56 md:w-72 md:h-72 rounded-full ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25 overflow-hidden bg-avatar relative group">
+              {/* Main avatar card - rectangular with hover/tilt effect */}
+              <motion.div 
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative group cursor-pointer"
+                whileHover={{ scale: 1.02, rotateY: 5, rotateX: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
                 <img 
                   src={noahProfile} 
                   alt="Noah Al-Samawi" 
-                  className="w-full h-full object-cover scale-[0.88] origin-top"
-                  style={{ objectPosition: 'center 5%' }}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 
@@ -68,7 +71,7 @@ const AboutSection: React.FC = () => {
                 <div className="absolute top-4 right-4 p-2 rounded-xl bg-primary/20 backdrop-blur-sm">
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
-              </div>
+              </motion.div>
               
               {/* Experience badge */}
               <motion.div 
