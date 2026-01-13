@@ -23,12 +23,12 @@ const HeroSection: React.FC = () => {
             className="mb-8 flex justify-center"
           >
             <div className="relative">
-              <div className="w-44 h-44 md:w-60 md:h-60 rounded-full overflow-hidden ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25">
+              <div className="w-44 h-44 md:w-60 md:h-60 rounded-full overflow-hidden ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25 bg-[#0a0a0a]">
                 <img
                   src={noahProfile}
                   alt="Noah Al-Samawi"
                   loading="eager"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-[0.9]"
                 />
               </div>
               <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
@@ -112,7 +112,7 @@ const HeroSection: React.FC = () => {
               <a href="#projects">{t('hero.cta.projects')}</a>
             </Button>
             <Button variant="outline" size="xl" asChild className="gap-2">
-              <a href="/noah-alsamawi-cv.pdf" download>
+              <a href="/noah-alsamawi-cv.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 {t('hero.cta.download')}
               </a>
