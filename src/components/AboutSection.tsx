@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Code, Server, Award, Shield, Globe, Zap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import noahProfile from '@/assets/noah-profile.jpg';
+import noahProfile from '@/assets/noah-profile.png';
 import { useRef } from 'react';
 
 const AboutSection: React.FC = () => {
@@ -66,26 +66,18 @@ const AboutSection: React.FC = () => {
             <div className="relative">
               {/* Main avatar card - rectangular with hover/tilt + parallax effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden bg-avatar relative group cursor-pointer"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative group cursor-pointer"
                 style={{ y: imageY, scale: imageScale }}
                 whileHover={{ rotateY: 5, rotateX: -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <img 
-                  src={noahProfile}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-70"
-                  style={{ objectPosition: 'center 20%' }}
-                />
-                <img 
                   src={noahProfile} 
                   alt="Noah Al-Samawi" 
                   loading="lazy"
-                  className="relative z-10 w-full h-full object-cover scale-[0.92] transition-transform duration-500 group-hover:scale-[0.95]"
-                  style={{ objectPosition: 'center 20%' }}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 
                 {/* Security badge overlay */}
                 <div className="absolute top-4 right-4 p-2 rounded-xl bg-primary/20 backdrop-blur-sm">
