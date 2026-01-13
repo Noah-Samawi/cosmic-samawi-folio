@@ -8,6 +8,7 @@ import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import EducationSection from '@/components/EducationSection';
+import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 
@@ -24,6 +25,7 @@ const Index: React.FC = () => {
             <ProjectsSection />
             <SkillsSection />
             <EducationSection />
+            <ContactSection />
           </main>
           <Footer />
           <ChatWidget />
