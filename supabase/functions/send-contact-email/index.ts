@@ -56,9 +56,10 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Send notification email to you (Resend Free Tier compatible)
+    // Note: Free tier only allows sending to your verified Resend account email
     const notificationEmail = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["noah.al-samawi@gmx.de"],
+      to: ["noah.alsamawi@gmail.com"],
       reply_to: email,
       subject: `New Contact: ${subject || "No Subject"}`,
       html: `
