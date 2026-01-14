@@ -67,6 +67,13 @@ const translations: Record<Language, Record<string, string>> = {
     'services.support.f1': 'Windows Server administration',
     'services.support.f2': 'IT infrastructure management',
     'services.support.f3': 'ServiceNow ticketing & escalation',
+    'services.learnMore': 'Learn more',
+    'services.webdev.details': 'I build complete web applications from concept to deployment. Using React and TypeScript for dynamic frontends paired with Django REST backends, I create scalable, maintainable solutions. Whether you need a single-page app, e-commerce platform, or custom dashboard, I deliver clean code that performs.',
+    'services.security.details': 'Leveraging 6+ years of enterprise IT experience, I help secure your digital infrastructure. From Active Directory hardening to network security configuration, I implement industry best practices to protect your assets against modern threats.',
+    'services.support.details': 'Professional IT support with enterprise-level expertise. I troubleshoot complex Windows environments, manage cloud services, and ensure your infrastructure runs smoothly. ITIL-certified approach to incident management and problem resolution.',
+    'services.modal.techStack': 'Technology Stack',
+    'services.modal.keyFeatures': 'Key Features',
+    'services.modal.cta': 'Discuss Your Project',
     
     // Experience
     'experience.title': 'Experience',
@@ -188,6 +195,13 @@ const translations: Record<Language, Record<string, string>> = {
     'services.support.f1': 'Windows Server Administration',
     'services.support.f2': 'IT-Infrastruktur-Management',
     'services.support.f3': 'ServiceNow Ticketing & Eskalation',
+    'services.learnMore': 'Mehr erfahren',
+    'services.webdev.details': 'Ich entwickle komplette Webanwendungen vom Konzept bis zum Deployment. Mit React und TypeScript für dynamische Frontends und Django REST Backends erstelle ich skalierbare, wartbare Lösungen. Ob Single-Page-App, E-Commerce-Plattform oder Custom Dashboard – ich liefere sauberen, performanten Code.',
+    'services.security.details': 'Mit 6+ Jahren Enterprise-IT-Erfahrung helfe ich, Ihre digitale Infrastruktur zu sichern. Von Active Directory-Härtung bis zur Netzwerksicherheitskonfiguration implementiere ich Best Practices zum Schutz gegen moderne Bedrohungen.',
+    'services.support.details': 'Professioneller IT-Support mit Enterprise-Level-Expertise. Ich behebe Probleme in komplexen Windows-Umgebungen, verwalte Cloud-Dienste und sorge für reibungslosen Infrastrukturbetrieb. ITIL-zertifizierter Ansatz für Incident Management.',
+    'services.modal.techStack': 'Technologie-Stack',
+    'services.modal.keyFeatures': 'Hauptfunktionen',
+    'services.modal.cta': 'Projekt besprechen',
     
     // Experience
     'experience.title': 'Erfahrung',

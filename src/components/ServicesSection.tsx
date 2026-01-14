@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Shield, Headphones, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ServiceDetailModal from './ServiceDetailModal';
+
+interface ServiceData {
+  icon: React.ElementType;
+  titleKey: string;
+  descKey: string;
+  detailsKey: string;
+  techStack: string[];
+  features: string[];
+}
 
 const ServicesSection: React.FC = () => {
   const { t } = useLanguage();
+  const [selectedService, setSelectedService] = useState<ServiceData | null>(null);
 
-  const services = [
+  const services: ServiceData[] = [
     {
       icon: Code,
       titleKey: 'services.webdev.title',
       descKey: 'services.webdev.desc',
+      detailsKey: 'services.webdev.details',
+      techStack: ['React', 'TypeScript', 'Django', 'REST API', 'PostgreSQL', 'Tailwind CSS'],
       features: ['services.webdev.f1', 'services.webdev.f2', 'services.webdev.f3'],
     },
     {
       icon: Shield,
       titleKey: 'services.security.title',
       descKey: 'services.security.desc',
+      detailsKey: 'services.security.details',
+      techStack: ['Active Directory', 'Firewalls', 'VPN', 'SIEM', 'Network Security'],
       features: ['services.security.f1', 'services.security.f2', 'services.security.f3'],
     },
     {
       icon: Headphones,
       titleKey: 'services.support.title',
       descKey: 'services.support.desc',
+      detailsKey: 'services.support.details',
+      techStack: ['Windows Server', 'ServiceNow', 'Azure AD', 'Office 365', 'ITIL'],
       features: ['services.support.f1', 'services.support.f2', 'services.support.f3'],
     },
   ];
@@ -71,11 +88,14 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true }}
           className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
-          {services.map(({ icon: Icon, titleKey, descKey, features }) => (
+          {services.map((service) => {
+            const Icon = service.icon;
+            return (
             <motion.div
-              key={titleKey}
+              key={service.titleKey}
               variants={itemVariants}
-              className="group"
+              className="group cursor-pointer"
+              onClick={() => setSelectedService(service)}
             >
               <motion.div
                 whileHover={{ y: -8 }}
@@ -88,27 +108,40 @@ const ServicesSection: React.FC = () => {
 
                 {/* Title */}
                 <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {t(titleKey)}
+                  {t(service.titleKey)}
                 </h3>
 
                 {/* Description */}
                 <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-                  {t(descKey)}
+                  {t(service.descKey)}
                 </p>
 
                 {/* Features */}
                 <ul className="space-y-3 flex-1">
-                  {features.map((featureKey) => (
+                  {service.features.map((featureKey) => (
                     <li key={featureKey} className="flex items-center gap-2 text-sm text-foreground/80">
                       <ArrowRight className="w-4 h-4 text-primary shrink-0" />
                       {t(featureKey)}
                     </li>
                   ))}
                 </ul>
+
+                {/* Learn more hint */}
+                <div className="mt-4 pt-4 border-t border-border/30 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                  {t('services.learnMore')} <ArrowRight className="w-3 h-3" />
+                </div>
               </motion.div>
             </motion.div>
-          ))}
+          );
+          })}
         </motion.div>
+
+        {/* Service Detail Modal */}
+        <ServiceDetailModal
+          isOpen={!!selectedService}
+          onClose={() => setSelectedService(null)}
+          service={selectedService}
+        />
       </div>
     </section>
   );

@@ -87,7 +87,7 @@ const AboutSection: React.FC = () => {
             <div className="relative" style={{ perspective: '1000px' }}>
               {/* Main avatar card - 3D Perspective Tilt effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer bg-[#0a0a0a]"
                 style={{ 
                   y: imageY, 
                   scale: imageScale,
@@ -105,7 +105,7 @@ const AboutSection: React.FC = () => {
                   alt="Noah Al-Samawi" 
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500"
-                  style={{ transform: isHovering ? 'scale(1.05)' : 'scale(1)' }}
+                  style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
                 
