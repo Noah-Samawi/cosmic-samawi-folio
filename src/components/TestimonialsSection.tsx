@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Autoplay from 'embla-carousel-autoplay';
 import {
   Carousel,
   CarouselContent,
@@ -87,6 +88,12 @@ const TestimonialsSection: React.FC = () => {
               align: 'center',
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 4500,
+                stopOnInteraction: true,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
