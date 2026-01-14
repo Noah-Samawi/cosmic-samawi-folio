@@ -109,6 +109,22 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.welcome': 'Hello! I\'m Noah\'s AI assistant. I know his CV inside and out. Ask me about his experience, skills, or projects!',
     'chat.send': 'Send',
     
+    // Testimonials
+    'testimonials.title': 'Testimonials',
+    'testimonials.subtitle': 'What clients and colleagues say about working with me',
+    'testimonials.1.name': 'Michael Schmidt',
+    'testimonials.1.role': 'IT Manager',
+    'testimonials.1.company': 'TechCorp GmbH',
+    'testimonials.1.quote': 'Noah\'s Full-Stack expertise and deep understanding of IT infrastructure made him invaluable. He delivered a robust web application while seamlessly integrating with our enterprise systems.',
+    'testimonials.2.name': 'Sarah Weber',
+    'testimonials.2.role': 'Lead Developer',
+    'testimonials.2.company': 'Digital Solutions AG',
+    'testimonials.2.quote': 'Exceptional problem-solving skills and reliable delivery. Noah consistently exceeded expectations, tackling complex challenges with both creativity and technical precision.',
+    'testimonials.3.name': 'Thomas Müller',
+    'testimonials.3.role': 'CTO',
+    'testimonials.3.company': 'StartupHub Berlin',
+    'testimonials.3.quote': 'His hackathon mentality combined with enterprise experience is rare. Noah built our MVP in record time without sacrificing code quality or security best practices.',
+
     // Footer
     'footer.rights': 'All rights reserved.',
     
@@ -214,6 +230,22 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.welcome': 'Hallo! Ich bin Noahs KI-Assistent. Fragen Sie mich zu seiner Erfahrung, Fähigkeiten oder Projekten!',
     'chat.send': 'Senden',
     
+    // Testimonials
+    'testimonials.title': 'Referenzen',
+    'testimonials.subtitle': 'Was Kunden und Kollegen über die Zusammenarbeit mit mir sagen',
+    'testimonials.1.name': 'Michael Schmidt',
+    'testimonials.1.role': 'IT-Manager',
+    'testimonials.1.company': 'TechCorp GmbH',
+    'testimonials.1.quote': 'Noahs Full-Stack-Expertise und sein tiefes Verständnis der IT-Infrastruktur machten ihn unverzichtbar. Er lieferte eine robuste Webanwendung und integrierte sie nahtlos in unsere Unternehmenssysteme.',
+    'testimonials.2.name': 'Sarah Weber',
+    'testimonials.2.role': 'Lead Developer',
+    'testimonials.2.company': 'Digital Solutions AG',
+    'testimonials.2.quote': 'Außergewöhnliche Problemlösungsfähigkeiten und zuverlässige Lieferung. Noah übertraf konstant die Erwartungen und meisterte komplexe Herausforderungen mit Kreativität und technischer Präzision.',
+    'testimonials.3.name': 'Thomas Müller',
+    'testimonials.3.role': 'CTO',
+    'testimonials.3.company': 'StartupHub Berlin',
+    'testimonials.3.quote': 'Seine Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Noah baute unser MVP in Rekordzeit ohne Kompromisse bei Codequalität oder Sicherheits-Best-Practices.',
+
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
     
