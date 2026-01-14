@@ -55,10 +55,11 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Database error:", dbError);
     }
 
-    // Send notification email to you
+    // Send notification email to you (Resend Free Tier compatible)
     const notificationEmail = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
-      to: ["nooh.alsamawi@gmail.com"], // Replace with your email
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: ["noah.al-samawi@gmx.de"],
+      reply_to: email,
       subject: `New Contact: ${subject || "No Subject"}`,
       html: `
         <h2>New Contact Message</h2>
@@ -71,24 +72,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    // Send confirmation email to sender
-    const confirmationEmail = await resend.emails.send({
-      from: "Noah Al-Samawi <onboarding@resend.dev>",
-      to: [email],
-      subject: "Thank you for your message!",
-      html: `
-        <h2>Thank you for reaching out, ${name}!</h2>
-        <p>I have received your message and will get back to you as soon as possible.</p>
-        <hr />
-        <p><strong>Your message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-        <hr />
-        <p>Best regards,<br>Noah Al-Samawi</p>
-      `,
-    });
-
     console.log("Notification email sent:", notificationEmail);
-    console.log("Confirmation email sent:", confirmationEmail);
 
     return new Response(
       JSON.stringify({ success: true, message: "Message sent successfully" }),
