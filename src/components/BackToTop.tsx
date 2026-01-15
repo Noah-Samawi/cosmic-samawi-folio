@@ -31,7 +31,7 @@ const BackToTop: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="fixed bottom-8 right-8 z-50"
+          className="fixed bottom-8 left-8 z-50"
         >
           <Button
             onClick={scrollToTop}
