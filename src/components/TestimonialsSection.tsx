@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,6 +9,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 
 interface Testimonial {
@@ -49,6 +50,22 @@ const testimonials: Testimonial[] = [
 
 const TestimonialsSection: React.FC = () => {
   const { t } = useLanguage();
+  const [api, setApi] = useState<CarouselApi>();
+
+  // Keyboard navigation
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (!api) return;
+    if (e.key === 'ArrowLeft') {
+      api.scrollPrev();
+    } else if (e.key === 'ArrowRight') {
+      api.scrollNext();
+    }
+  }, [api]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
     <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden">
@@ -84,6 +101,7 @@ const TestimonialsSection: React.FC = () => {
           className="max-w-5xl mx-auto px-12"
         >
           <Carousel
+            setApi={setApi}
             opts={{
               align: 'center',
               loop: true,

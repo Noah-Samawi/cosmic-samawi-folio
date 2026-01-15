@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { X, ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Dialog,
@@ -96,8 +96,8 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             </ul>
           </div>
 
-          {/* CTA */}
-          <div className="pt-4 border-t border-border/50">
+          {/* CTA Buttons */}
+          <div className="pt-4 border-t border-border/50 space-y-3">
             <Button
               onClick={() => {
                 onClose();
@@ -106,6 +106,16 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               className="w-full bg-primary hover:bg-primary/90"
             >
               {t('services.modal.cta')}
+            </Button>
+            <Button
+              variant="outline"
+              asChild
+              className="w-full border-primary/30 hover:bg-primary/10"
+            >
+              <a href="/noah-alsamawi-cv.pdf" download>
+                <Download className="w-4 h-4 mr-2" />
+                {t('services.modal.downloadCV')}
+              </a>
             </Button>
           </div>
         </div>
