@@ -74,6 +74,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.modal.techStack': 'Technology Stack',
     'services.modal.keyFeatures': 'Key Features',
     'services.modal.cta': 'Discuss Your Project',
+    'services.modal.downloadCV': 'Download CV',
     
     // Experience
     'experience.title': 'Experience',
@@ -202,6 +203,7 @@ const translations: Record<Language, Record<string, string>> = {
     'services.modal.techStack': 'Technologie-Stack',
     'services.modal.keyFeatures': 'Hauptfunktionen',
     'services.modal.cta': 'Projekt besprechen',
+    'services.modal.downloadCV': 'Lebenslauf herunterladen',
     
     // Experience
     'experience.title': 'Erfahrung',

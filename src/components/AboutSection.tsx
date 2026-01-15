@@ -87,7 +87,7 @@ const AboutSection: React.FC = () => {
             <div className="relative" style={{ perspective: '1000px' }}>
               {/* Main avatar card - 3D Perspective Tilt effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer bg-[#0a0a0a]"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer bg-white dark:bg-[#0a0a0a]"
                 style={{ 
                   y: imageY, 
                   scale: imageScale,
@@ -107,6 +107,10 @@ const AboutSection: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-500"
                   style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
                 />
+                {/* Light mode blend mask - fades image edges to blend with white background */}
+                <div className="absolute inset-0 pointer-events-none dark:hidden" style={{
+                  background: 'radial-gradient(ellipse at center, transparent 50%, white 100%)'
+                }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
                 
                 {/* Shine effect on hover */}
