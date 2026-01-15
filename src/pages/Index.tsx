@@ -12,12 +12,15 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
+import ScrollProgress from '@/components/ScrollProgress';
+import BackToTop from '@/components/BackToTop';
 
 const Index: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
         <div className="min-h-screen bg-background">
+          <ScrollProgress />
           <Navbar />
           <main>
             <HeroSection />
@@ -31,6 +34,7 @@ const Index: React.FC = () => {
           </main>
           <Footer />
           <ChatWidget />
+          <BackToTop />
         </div>
       </LanguageProvider>
     </ThemeProvider>
