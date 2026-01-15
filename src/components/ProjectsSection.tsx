@@ -4,6 +4,7 @@ import { ExternalLink, Github, ArrowUpRight, Shield, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
+import TechIcon from '@/components/TechIcon';
 
 const ProjectsSection: React.FC = () => {
   const { t } = useLanguage();
@@ -133,19 +134,10 @@ const ProjectsSection: React.FC = () => {
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
+                  {/* Technologies with Icons */}
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-2.5 py-1 text-xs font-medium rounded-full ${
-                          tech.toLowerCase() === 'security' || tech.toLowerCase() === 'owasp'
-                            ? 'bg-primary/20 text-primary border border-primary/30'
-                            : 'bg-muted text-muted-foreground'
-                        }`}
-                      >
-                        {tech}
-                      </span>
+                      <TechIcon key={tech} tech={tech} showLabel={true} size="sm" />
                     ))}
                   </div>
                 </div>
@@ -203,12 +195,7 @@ const ProjectsSection: React.FC = () => {
 
                       <div className="flex flex-wrap gap-1.5">
                         {project.technologies.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground"
-                          >
-                            {tech}
-                          </span>
+                          <TechIcon key={tech} tech={tech} showLabel={false} size="sm" />
                         ))}
                         {project.technologies.length > 3 && (
                           <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground">
