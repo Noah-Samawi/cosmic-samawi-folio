@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Preloader from "./components/Preloader";
 import ThemeTransition from "./components/ThemeTransition";
+import SkipNavLink from "./components/SkipNavLink";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => {
       <ThemeProvider>
         <LanguageProvider>
           <TooltipProvider>
+            <SkipNavLink />
             <ThemeTransition />
             {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
             <Toaster />

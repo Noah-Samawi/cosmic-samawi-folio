@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Send, User, MessageSquare, Loader2, MapPin, Linkedin, Github } from 'lucide-react';
 import { z } from 'zod';
+import SuccessConfetti from './SuccessConfetti';
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
@@ -22,6 +23,7 @@ const ContactSection: React.FC = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -104,6 +106,9 @@ const ContactSection: React.FC = () => {
 
       if (error) throw error;
 
+      // Show success confetti animation
+      setShowSuccess(true);
+      
       toast({
         title: t.successTitle,
         description: t.successMessage,
@@ -133,8 +138,10 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+    <>
+      <SuccessConfetti show={showSuccess} onComplete={() => setShowSuccess(false)} />
+      <section id="contact" className="py-20 md:py-32 relative overflow-hidden" aria-labelledby="contact-heading">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -144,7 +151,7 @@ const ContactSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
+          <h2 id="contact-heading" className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
             {t.title}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -160,32 +167,40 @@ const ContactSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
               <div className="relative">
-                <User className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" />
+                <User className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" aria-hidden="true" />
                 <Input
+                  id="contact-name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder={t.namePlaceholder}
+                  aria-label={t.namePlaceholder}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
                   className="pl-10 bg-card/50 border-border/50 focus:border-primary h-12"
                   disabled={isSubmitting}
                 />
-                {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
+                {errors.name && <p id="name-error" className="text-destructive text-sm mt-1" role="alert">{errors.name}</p>}
               </div>
 
               <div className="relative">
-                <Mail className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" />
+                <Mail className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" aria-hidden="true" />
                 <Input
+                  id="contact-email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t.emailPlaceholder}
+                  aria-label={t.emailPlaceholder}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                   className="pl-10 bg-card/50 border-border/50 focus:border-primary h-12"
                   disabled={isSubmitting}
                 />
-                {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
+                {errors.email && <p id="email-error" className="text-destructive text-sm mt-1" role="alert">{errors.email}</p>}
               </div>
 
               <div className="relative">
@@ -296,7 +311,8 @@ const ContactSection: React.FC = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 

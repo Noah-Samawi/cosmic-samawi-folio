@@ -104,8 +104,8 @@ const AboutSection: React.FC = () => {
                 <div 
                   className="w-full h-full"
                   style={{
-                    maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                    maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
                   }}
                 >
                   <img 
