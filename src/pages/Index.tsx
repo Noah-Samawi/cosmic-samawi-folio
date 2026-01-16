@@ -38,7 +38,7 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-background">
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main id="main-content" role="main">
         <HeroSection />
         <AnimatedSection>
           <AboutSection />
