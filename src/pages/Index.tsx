@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LanguageProvider } from '@/contexts/LanguageContext';
-import { ThemeProvider } from '@/contexts/ThemeContext';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -37,41 +35,37 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> =
 
 const Index: React.FC = () => {
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <div className="min-h-screen bg-background">
-          <ScrollProgress />
-          <Navbar />
-          <main>
-            <HeroSection />
-            <AnimatedSection>
-              <AboutSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <ServicesSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <ProjectsSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <SkillsSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <EducationSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <TestimonialsSection />
-            </AnimatedSection>
-            <AnimatedSection delay={0.1}>
-              <ContactSection />
-            </AnimatedSection>
-          </main>
-          <Footer />
-          <ChatWidget />
-          <BackToTop />
-        </div>
-      </LanguageProvider>
-    </ThemeProvider>
+    <div className="min-h-screen bg-background">
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <HeroSection />
+        <AnimatedSection>
+          <AboutSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ServicesSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ProjectsSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <SkillsSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <EducationSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <TestimonialsSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ContactSection />
+        </AnimatedSection>
+      </main>
+      <Footer />
+      <ChatWidget />
+      <BackToTop />
+    </div>
   );
 };
 
