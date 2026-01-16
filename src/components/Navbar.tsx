@@ -10,12 +10,30 @@ const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Detect active section
+      const sections = ['home', 'about', 'services', 'projects', 'skills', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -57,16 +75,32 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.key}
-                href={item.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
-                whileHover={{ scale: 1.02 }}
-              >
-                {t(item.key)}
-              </motion.a>
-            ))}
+            {navItems.map((item) => {
+              const sectionId = item.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              
+              return (
+                <motion.a
+                  key={item.key}
+                  href={item.href}
+                  className={`relative px-4 py-2 text-sm transition-colors rounded-lg ${
+                    isActive 
+                      ? 'text-primary font-medium' 
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {t(item.key)}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_rgba(124,58,237,0.6)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </motion.a>
+              );
+            })}
           </div>
 
           {/* Theme Toggle, Language Toggle & Mobile Menu */}
@@ -118,16 +152,25 @@ const Navbar: React.FC = () => {
             className="md:hidden glass-card border-t border-border/50"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="px-4 py-3 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t(item.key)}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const sectionId = item.href.replace('#', '');
+                const isActive = activeSection === sectionId;
+                
+                return (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    className={`px-4 py-3 transition-colors rounded-lg ${
+                      isActive 
+                        ? 'text-primary bg-primary/10 font-medium' 
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t(item.key)}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         )}
