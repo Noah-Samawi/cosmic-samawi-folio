@@ -98,7 +98,9 @@ const TestimonialsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-5xl mx-auto px-12"
+          className="max-w-5xl mx-auto px-12 group/carousel"
+          onMouseEnter={() => api?.plugins()?.autoplay?.stop()}
+          onMouseLeave={() => api?.plugins()?.autoplay?.play()}
         >
           <Carousel
             setApi={setApi}
@@ -109,7 +111,8 @@ const TestimonialsSection: React.FC = () => {
             plugins={[
               Autoplay({
                 delay: 4500,
-                stopOnInteraction: true,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
               }),
             ]}
             className="w-full"
