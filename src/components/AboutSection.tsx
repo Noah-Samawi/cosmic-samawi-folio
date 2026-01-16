@@ -100,18 +100,26 @@ const AboutSection: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <img 
-                  src={noahProfile} 
-                  alt="Noah Al-Samawi" 
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500"
-                  style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
-                />
+                {/* Image container with gradient mask for soft fade at bottom */}
+                <div 
+                  className="w-full h-full"
+                  style={{
+                    maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                  }}
+                >
+                  <img 
+                    src={noahProfile} 
+                    alt="Noah Al-Samawi" 
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500"
+                    style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
+                  />
+                </div>
                 {/* Light mode blend mask - fades image edges to blend with white background */}
                 <div className="absolute inset-0 pointer-events-none dark:hidden" style={{
                   background: 'radial-gradient(ellipse at center, transparent 50%, white 100%)'
                 }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
                 
                 {/* Shine effect on hover */}
                 <motion.div 

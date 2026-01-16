@@ -11,6 +11,11 @@ import {
   Palette,
   Zap
 } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 // Map technologies to their icon components and colors
 const techIconMap: Record<string, { icon: React.ElementType; color: string; bgColor: string }> = {
@@ -58,10 +63,9 @@ const TechIcon: React.FC<TechIconProps> = ({ tech, showLabel = true, size = 'sm'
   const iconSize = size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4';
   const containerSize = size === 'sm' ? 'p-1.5' : 'p-2';
   
-  return (
+  const iconElement = (
     <div 
-      className={`flex items-center gap-1.5 ${containerSize} rounded-lg ${bgColor} transition-all duration-200 hover:scale-105`}
-      title={tech}
+      className={`flex items-center gap-1.5 ${containerSize} rounded-lg ${bgColor} transition-all duration-200 hover:scale-105 cursor-default`}
     >
       <IconComponent className={`${iconSize} ${color}`} />
       {showLabel && (
@@ -71,6 +75,22 @@ const TechIcon: React.FC<TechIconProps> = ({ tech, showLabel = true, size = 'sm'
       )}
     </div>
   );
+
+  // Only show tooltip when label is hidden
+  if (!showLabel) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          {iconElement}
+        </TooltipTrigger>
+        <TooltipContent side="top" className="bg-popover border border-border">
+          <p className="text-sm font-medium">{tech}</p>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return iconElement;
 };
 
 export default TechIcon;
