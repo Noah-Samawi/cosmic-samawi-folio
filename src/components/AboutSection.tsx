@@ -100,20 +100,19 @@ const AboutSection: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Image container with gradient mask for soft fade at bottom */}
-                <div 
-                  className="w-full h-full"
-                  style={{
-                    maskImage: 'linear-gradient(180deg, black 0%, black 50%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(180deg, black 0%, black 50%, transparent 100%)',
-                  }}
-                >
+                {/* Image container with overlay gradient for soft fade at bottom */}
+                <div className="w-full h-full relative">
                   <img 
                     src={noahProfile} 
                     alt="Noah Al-Samawi" 
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500"
                     style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
+                  />
+                  {/* Bottom fade overlay - paints background color over suit cut-off */}
+                  <div 
+                    className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"
+                    aria-hidden="true"
                   />
                 </div>
                 {/* Light mode blend mask - fades image edges to blend with white background */}
