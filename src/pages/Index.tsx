@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -8,11 +8,14 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import EducationSection from '@/components/EducationSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
+import SectionSkeleton from '@/components/SectionSkeleton';
+
+// Lazy load Contact section for better LCP performance
+const ContactSection = lazy(() => import('@/components/ContactSection'));
 
 // Section wrapper with scroll-triggered animations
 const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
@@ -59,7 +62,9 @@ const Index: React.FC = () => {
           <TestimonialsSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <ContactSection />
+          <Suspense fallback={<SectionSkeleton type="contact" />}>
+            <ContactSection />
+          </Suspense>
         </AnimatedSection>
       </main>
       <Footer />
