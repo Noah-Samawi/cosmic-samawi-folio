@@ -61,24 +61,24 @@ const AnimatedGridBackground: React.FC = () => {
         }}
       />
       
-      {/* Floating particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {/* Floating particles - reduced for mobile performance */}
+      {Array.from({ length: 8 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 rounded-full bg-primary/30"
+          className="absolute w-1 h-1 rounded-full bg-primary/30 hidden md:block"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${(i * 12.5) + 6}%`,
+            top: `${(i * 10) + 10}%`,
           }}
           animate={{
             y: [0, -30, 0],
             opacity: [0.2, 0.6, 0.2],
           }}
           transition={{
-            duration: 3 + Math.random() * 4,
+            duration: 4 + (i % 3),
             repeat: Infinity,
             ease: 'easeInOut',
-            delay: Math.random() * 2,
+            delay: i * 0.3,
           }}
         />
       ))}
