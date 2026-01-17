@@ -28,6 +28,8 @@ const HeroSection: React.FC = () => {
                   src={noahProfile}
                   alt="Noah Al-Samawi"
                   loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover scale-[0.9]"
                 />
               </div>
