@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Briefcase, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
+import SpotlightCard from '@/components/SpotlightCard';
 
 const ExperienceSection: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -69,10 +70,11 @@ const ExperienceSection: React.FC = () => {
 
               {/* Content Card */}
               <div className={`${direction === 'rtl' ? 'pr-16' : 'pl-16'} pb-12 md:${direction === 'rtl' ? 'pr-0 pl-[52%]' : 'pl-0 pr-[52%]'}`}>
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -5 }}
+                <SpotlightCard 
                   className="glass-card p-6 md:p-8"
+                  spotlightColor="rgba(59, 130, 246, 0.15)"
                 >
+                  <motion.div whileHover={{ scale: 1.01, y: -3 }} className="relative z-10">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
                     <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
@@ -124,7 +126,8 @@ const ExperienceSection: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                  </motion.div>
+                </SpotlightCard>
               </div>
             </motion.div>
           ))}

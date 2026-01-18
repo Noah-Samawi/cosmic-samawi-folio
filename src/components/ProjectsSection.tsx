@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
 import TechIcon from '@/components/TechIcon';
+import SpotlightCard from '@/components/SpotlightCard';
 
 const ProjectsSection: React.FC = () => {
   const { t } = useLanguage();
@@ -66,12 +67,13 @@ const ProjectsSection: React.FC = () => {
               variants={itemVariants}
               className="group"
             >
-              <motion.div
-                whileHover={{ y: -8 }}
+              <SpotlightCard 
                 className={`glass-card h-full overflow-hidden flex flex-col relative ${
                   project.isSecurityProject ? 'ring-2 ring-primary/30' : ''
                 }`}
+                spotlightColor={project.isSecurityProject ? 'rgba(59, 130, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}
               >
+                <motion.div whileHover={{ y: -4 }} className="h-full flex flex-col">
                 {/* Featured/Security Badge */}
                 <div className="absolute top-4 right-4 z-20 flex gap-2">
                   {project.isSecurityProject && (
@@ -141,7 +143,8 @@ const ProjectsSection: React.FC = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>
@@ -170,10 +173,11 @@ const ProjectsSection: React.FC = () => {
                   variants={itemVariants}
                   className="group"
                 >
-                  <motion.div
-                    whileHover={{ y: -4 }}
+                  <SpotlightCard 
                     className="glass-card h-full overflow-hidden flex flex-col"
+                    spotlightColor="rgba(139, 92, 246, 0.12)"
                   >
+                    <motion.div whileHover={{ y: -2 }} className="h-full flex flex-col">
                     <div className="p-5 flex-1 flex flex-col">
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -204,7 +208,8 @@ const ProjectsSection: React.FC = () => {
                         )}
                       </div>
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </SpotlightCard>
                 </motion.div>
               ))}
             </motion.div>

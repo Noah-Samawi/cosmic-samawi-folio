@@ -1,7 +1,7 @@
 {
   "name": "Noah Al-Samawi Portfolio",
   "short_name": "Noah.",
-  "description": "Noah Al-Samawi - Software Developer & IT Systems Engineer based in Frankfurt, Germany",
+  "description": "Noah Al-Samawi - Full-Stack Developer & IT Systems Engineer based in Frankfurt, Germany",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b1120",
@@ -12,9 +12,18 @@
       "src": "/favicon.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "categories": ["portfolio", "technology", "developer"],
   "lang": "en",
-  "dir": "ltr"
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "noah-portfolio"
 }
