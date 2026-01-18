@@ -329,3 +329,19 @@
     outline: none;
   }
 }
+
+/* Progressive image shimmer animation */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Spotlight card glow animation */
+.spotlight-glow {
+  transition: all 0.3s ease;
+}
+
+.spotlight-glow:hover {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
+}
