@@ -2,11 +2,13 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Code, Server, Award, Shield, Globe, Zap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useLazyLoad } from '@/hooks/useLazyLoad';
 import noahProfile from '@/assets/noah-profile.png';
 
 const AboutSection: React.FC = () => {
   const { t } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
+  const [imageRef, isImageVisible] = useLazyLoad<HTMLDivElement>();
 
   // 3D Tilt effect
   const mouseX = useMotionValue(0);
@@ -101,17 +103,19 @@ const AboutSection: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Image container - transparent PNG, positioned bottom-center */}
-                <div className="w-full h-full relative flex items-end justify-center">
-                  <img 
-                    src={noahProfile} 
-                    alt="Noah Al-Samawi" 
-                    loading="lazy"
-                    className="w-full h-auto object-contain object-bottom transition-transform duration-500"
-                    style={{ 
-                      transform: isHovering ? 'scale(1.02)' : 'scale(1)',
-                      maxHeight: '100%',
-                    }}
-                  />
+                <div ref={imageRef} className="w-full h-full relative flex items-end justify-center">
+                  {isImageVisible && (
+                    <img 
+                      src={noahProfile} 
+                      alt="Noah Al-Samawi" 
+                      loading="lazy"
+                      className="w-full h-auto object-contain object-bottom transition-transform duration-500"
+                      style={{ 
+                        transform: isHovering ? 'scale(1.02)' : 'scale(1)',
+                        maxHeight: '100%',
+                      }}
+                    />
+                  )}
                 </div>
                 
                 {/* Shine effect on hover */}
