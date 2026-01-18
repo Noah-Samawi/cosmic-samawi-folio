@@ -87,7 +87,7 @@ const AboutSection: React.FC = () => {
             <div className="relative" style={{ perspective: '1000px' }}>
               {/* Main avatar card - 3D Perspective Tilt effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer bg-white dark:bg-[#0a0a0a]"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer"
                 style={{ 
                   y: imageY, 
                   scale: imageScale,
@@ -100,25 +100,19 @@ const AboutSection: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Image container with overlay gradient for soft fade at bottom */}
-                <div className="w-full h-full relative">
+                {/* Image container - transparent PNG, positioned bottom-center */}
+                <div className="w-full h-full relative flex items-end justify-center">
                   <img 
                     src={noahProfile} 
                     alt="Noah Al-Samawi" 
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500"
-                    style={{ transform: isHovering ? 'scale(0.85)' : 'scale(0.85)' }}
-                  />
-                  {/* Bottom fade overlay - paints background color over suit cut-off */}
-                  <div 
-                    className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"
-                    aria-hidden="true"
+                    className="w-full h-auto object-contain object-bottom transition-transform duration-500"
+                    style={{ 
+                      transform: isHovering ? 'scale(1.02)' : 'scale(1)',
+                      maxHeight: '100%',
+                    }}
                   />
                 </div>
-                {/* Light mode blend mask - fades image edges to blend with white background */}
-                <div className="absolute inset-0 pointer-events-none dark:hidden" style={{
-                  background: 'radial-gradient(ellipse at center, transparent 50%, white 100%)'
-                }} />
                 
                 {/* Shine effect on hover */}
                 <motion.div 
