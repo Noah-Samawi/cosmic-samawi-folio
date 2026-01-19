@@ -32,6 +32,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.cta.projects': 'View Projects',
     'hero.cta.download': 'Download CV',
     'hero.location': 'Frankfurt, Germany',
+    'hero.status': 'Open to Opportunities',
     
     // About
     'about.title': 'About Me',
@@ -161,6 +162,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.cta.projects': 'Projekte ansehen',
     'hero.cta.download': 'Lebenslauf herunterladen',
     'hero.location': 'Frankfurt, Deutschland',
+    'hero.status': 'Offen für Projekte',
     
     // About
     'about.title': 'Über mich',
