@@ -1,3 +1,4 @@
+import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
@@ -29,7 +30,7 @@ console.log(
   'font-size: 14px; color: #8b5cf6;'
 );
 console.log(
-  '%c📧 Interested in my code? Get in touch: noah.al-samawi@gmx.de',
+  '%c📧 Interested in my code? Get in touch: kontakt@noahsamawi.de',
   'font-size: 12px; color: #06b6d4;'
 );
 console.log(
@@ -37,4 +38,8 @@ console.log(
   'font-size: 12px; color: #22d3ee;'
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
