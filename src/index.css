@@ -345,3 +345,33 @@
 .spotlight-glow:hover {
   box-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
 }
+
+/* Cosmic Theme Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(200, 80%, 55%), hsl(190, 70%, 50%));
+  border-radius: 5px;
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(200, 80%, 65%), hsl(190, 70%, 60%));
+}
+
+::-webkit-scrollbar-corner {
+  background: #0a0a0a;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(200, 80%, 55%) #0a0a0a;
+}

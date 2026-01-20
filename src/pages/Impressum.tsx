@@ -1,10 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Impressum = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Navbar />
       <main className="container mx-auto px-4 py-32">
         <h1 className="text-4xl font-bold mb-8">Impressum</h1>
