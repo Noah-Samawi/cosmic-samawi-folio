@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const Navbar: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,14 +42,21 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { key: 'nav.home', href: '#home' },
-    { key: 'nav.about', href: '#about' },
-    { key: 'nav.services', href: '#services' },
-    { key: 'nav.projects', href: '#projects' },
-    { key: 'nav.skills', href: '#skills' },
-    { key: 'nav.education', href: '#education' },
-    { key: 'nav.contact', href: '#contact' },
+    { key: 'nav.home', href: '#home', path: '/' },
+    { key: 'nav.about', href: '#about', path: '/#about' },
+    { key: 'nav.services', href: '#services', path: '/#services' },
+    { key: 'nav.projects', href: '#projects', path: '/#projects' },
+    { key: 'nav.skills', href: '#skills', path: '/#skills' },
+    { key: 'nav.education', href: '#education', path: '/#education' },
+    { key: 'nav.contact', href: '#contact', path: '/#contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    if (!isHomePage) {
+      e.preventDefault();
+      navigate(item.path);
+    }
+  };
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'de' : 'en');
@@ -82,16 +93,17 @@ const Navbar: React.FC = () => {
               return (
                 <motion.a
                   key={item.key}
-                  href={item.href}
+                  href={isHomePage ? item.href : item.path}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`relative px-4 py-2 text-sm transition-colors rounded-lg ${
-                    isActive 
+                    isActive && isHomePage
                       ? 'text-primary font-medium' 
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   }`}
                   whileHover={{ scale: 1.02 }}
                 >
                   {t(item.key)}
-                  {isActive && (
+                  {isActive && isHomePage && (
                     <motion.div
                       layoutId="activeNavIndicator"
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_rgba(124,58,237,0.6)]"
@@ -165,21 +177,24 @@ const Navbar: React.FC = () => {
                 const sectionId = item.href.replace('#', '');
                 const isActive = activeSection === sectionId;
                 
-                return (
-                  <a
-                    key={item.key}
-                    href={item.href}
-                    className={`px-4 py-3 transition-colors rounded-lg ${
-                      isActive 
-                        ? 'text-primary bg-primary/10 font-medium' 
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {t(item.key)}
-                  </a>
-                );
-              })}
+                  return (
+                    <a
+                      key={item.key}
+                      href={isHomePage ? item.href : item.path}
+                      className={`px-4 py-3 transition-colors rounded-lg ${
+                        isActive && isHomePage
+                          ? 'text-primary bg-primary/10 font-medium' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
+                      onClick={(e) => {
+                        setIsMobileMenuOpen(false);
+                        handleNavClick(e, item);
+                      }}
+                    >
+                      {t(item.key)}
+                    </a>
+                  );
+                })}
             </div>
           </motion.div>
         )}
