@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     { icon: Github, href: 'https://github.com/Noah-Samawi', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/noah-al-samawi-058583197/', label: 'LinkedIn' },
     { icon: XingIcon, href: 'https://www.xing.com/profile/Noah_AlSamawi', label: 'XING', isCustom: true },
-    { icon: Mail, href: 'mailto:noah.al-samawi@gmx.de', label: 'Email' },
+    { icon: Mail, href: 'mailto:kontakt@noahsamawi.de', label: 'Email' },
   ];
 
   return (
@@ -72,6 +72,22 @@ const Footer: React.FC = () => {
                 )}
               </motion.a>
             ))}
+          </motion.div>
+
+          {/* Legal Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="flex justify-center gap-6 mb-6"
+          >
+            <a href="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Impressum
+            </a>
+            <a href="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Datenschutz
+            </a>
           </motion.div>
 
           {/* Copyright */}

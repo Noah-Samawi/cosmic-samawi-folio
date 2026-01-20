@@ -47,7 +47,7 @@ const ContactSection: React.FC = () => {
       errorTitle: "Error",
       errorMessage: "Failed to send message. Please try again.",
       location: "Frankfurt, Germany",
-      email: "nooh.alsamawi@gmail.com",
+      email: "kontakt@noahsamawi.de",
       contactInfo: "Contact Information",
       followMe: "Follow Me"
     },
@@ -65,7 +65,7 @@ const ContactSection: React.FC = () => {
       errorTitle: "Fehler",
       errorMessage: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
       location: "Frankfurt, Deutschland",
-      email: "nooh.alsamawi@gmail.com",
+      email: "kontakt@noahsamawi.de",
       contactInfo: "Kontaktinformationen",
       followMe: "Folgen Sie mir"
     }
