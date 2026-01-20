@@ -55,11 +55,10 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Database error:", dbError);
     }
 
-    // Send notification email to you (Resend Free Tier compatible)
-    // Note: Free tier only allows sending to your verified Resend account email
+    // Send notification email using verified domain
     const notificationEmail = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["noah.alsamawi@gmail.com"],
+      from: "Portfolio Contact <noreply@noahsamawi.de>",
+      to: ["kontakt@noahsamawi.de"],
       reply_to: email,
       subject: `New Contact: ${subject || "No Subject"}`,
       html: `
