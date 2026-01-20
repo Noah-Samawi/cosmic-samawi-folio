@@ -16,6 +16,18 @@ interface ContactEmailRequest {
   message: string;
 }
 
+// Sanitize user input to prevent XSS in HTML emails
+const escapeHtml = (text: string): string => {
+  const htmlEntities: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return text.replace(/[&<>"']/g, (char) => htmlEntities[char]);
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -42,6 +54,12 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Sanitize all user inputs before using in HTML
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = subject ? escapeHtml(subject) : "No Subject";
+    const safeMessage = escapeHtml(message);
+
     // Save to database
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -55,20 +73,20 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Database error:", dbError);
     }
 
-    // Send notification email using verified domain
+    // Send notification email using verified domain with sanitized content
     const notificationEmail = await resend.emails.send({
       from: "Portfolio Contact <noreply@noahsamawi.de>",
       to: ["kontakt@noahsamawi.de"],
       reply_to: email,
-      subject: `New Contact: ${subject || "No Subject"}`,
+      subject: `New Contact: ${safeSubject}`,
       html: `
         <h2>New Contact Message</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject || "No Subject"}</p>
+        <p><strong>From:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Subject:</strong> ${safeSubject}</p>
         <hr />
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+        <p>${safeMessage.replace(/\n/g, "<br>")}</p>
       `,
     });
 
