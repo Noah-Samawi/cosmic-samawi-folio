@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Datenschutz = () => {
   return (
@@ -11,6 +12,7 @@ const Datenschutz = () => {
       </Helmet>
       <Navbar />
       <main className="container mx-auto px-4 py-32">
+        <Breadcrumbs />
         <h1 className="text-4xl font-bold mb-8">Datenschutzerklärung</h1>
         <div className="prose prose-invert max-w-none space-y-8">
           <section>

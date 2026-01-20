@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
+import CommandPalette from './CommandPalette';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -15,6 +16,20 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  // Handle smooth scrolling after navigation from sub-pages
+  useEffect(() => {
+    if (location.hash && isHomePage) {
+      const sectionId = location.hash.replace('#', '');
+      // Small delay to ensure the page has rendered
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location.hash, isHomePage]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,8 +130,11 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Theme Toggle, Language Toggle & Mobile Menu */}
+          {/* Theme Toggle, Language Toggle, Command Palette & Mobile Menu */}
           <div className="flex items-center gap-2">
+            {/* Command Palette */}
+            <CommandPalette />
+            
             <Button
               variant="ghost"
               size="icon"

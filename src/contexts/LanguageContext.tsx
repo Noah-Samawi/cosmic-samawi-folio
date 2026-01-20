@@ -137,6 +137,21 @@ const translations: Record<Language, Record<string, string>> = {
     // Footer
     'footer.rights': 'All rights reserved.',
     
+    // Command Palette
+    'command.search': 'Search...',
+    'command.placeholder': 'Type a command or search...',
+    'command.navigation': 'Navigation',
+    'command.actions': 'Actions',
+    'command.downloadCV': 'Download CV',
+    'command.copyEmail': 'Copy Email',
+    'command.emailCopied': 'Email copied to clipboard!',
+    'command.lightMode': 'Switch to Light Mode',
+    'command.darkMode': 'Switch to Dark Mode',
+    'command.navigate': 'Navigate',
+    'command.select': 'Select',
+    'command.close': 'Close',
+    'command.noResults': 'No results found.',
+    
     // Common
     'common.loading': 'Loading...',
     'common.error': 'An error occurred',
@@ -266,6 +281,21 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
+    
+    // Command Palette
+    'command.search': 'Suchen...',
+    'command.placeholder': 'Befehl eingeben oder suchen...',
+    'command.navigation': 'Navigation',
+    'command.actions': 'Aktionen',
+    'command.downloadCV': 'Lebenslauf herunterladen',
+    'command.copyEmail': 'E-Mail kopieren',
+    'command.emailCopied': 'E-Mail in Zwischenablage kopiert!',
+    'command.lightMode': 'Zum hellen Modus wechseln',
+    'command.darkMode': 'Zum dunklen Modus wechseln',
+    'command.navigate': 'Navigieren',
+    'command.select': 'Auswählen',
+    'command.close': 'Schließen',
+    'command.noResults': 'Keine Ergebnisse gefunden.',
     
     // Common
     'common.loading': 'Lädt...',
