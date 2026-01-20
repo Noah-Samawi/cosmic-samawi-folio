@@ -147,9 +147,9 @@ const HeroSection: React.FC = () => {
             className="flex items-center justify-center gap-4"
           >
             {[
-              { icon: Github, href: 'https://github.com/noahalsamawi', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com/in/noahalsamawi', label: 'LinkedIn' },
-              { icon: Mail, href: 'mailto:contact@noahalsamawi.dev', label: 'Email' },
+              { icon: Github, href: 'https://github.com/Noah-Samawi', label: 'GitHub' },
+              { icon: Linkedin, href: 'https://linkedin.com/in/noah-al-samawi-058583197', label: 'LinkedIn' },
+              { icon: Mail, href: 'mailto:kontakt@noahsamawi.de', label: 'Email' },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}

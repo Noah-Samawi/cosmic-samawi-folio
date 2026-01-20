@@ -36,11 +36,16 @@ const ChatWidget: React.FC = () => {
   const getWelcomeMessage = () => {
     return `👋 **مرحباً | Hallo | Hello!**
 
-I'm **Noah Intelligence**, your AI guide to Noah's portfolio.
+I'm **Noah Intelligence**, your AI guide to Noah Al-Samawi's portfolio.
 
-🇬🇧 I can help you explore Noah's expertise in full-stack development and cybersecurity.
+Noah is a **Full-Stack Engineer based in Frankfurt, Germany**.
+
+🇬🇧 I can help you explore his expertise in full-stack development and cybersecurity.
 🇩🇪 Ich kann Ihnen Noahs Fachwissen zeigen.
 🇸🇦 يمكنني مساعدتك في استكشاف خبرات نوح.
+
+🌐 Website: **noahsamawi.de**
+📧 Email: **kontakt@noahsamawi.de**
 
 **What would you like to know?**`;
   };
@@ -108,10 +113,11 @@ Would you like to see his projects or contact him?`;
       case 'contact':
         response = `✉️ **Get in Touch with Noah**
 
-Noah is available for full-stack development and cybersecurity opportunities.
+Noah Al-Samawi is a Full-Stack Engineer based in Frankfurt, Germany, available for development and cybersecurity opportunities.
 
 **Contact Information:**
-📧 Email: **noah.al-samawi@gmx.de**
+🌐 Website: **noahsamawi.de**
+📧 Email: **kontakt@noahsamawi.de**
 💼 LinkedIn: [Noah Al-Samawi](https://www.linkedin.com/in/noah-al-samawi-058583197/)
 🔗 GitHub: [Noah-Samawi](https://github.com/Noah-Samawi)
 🌐 XING: [Noah Al-Samawi](https://www.xing.com/profile/Noah_AlSamawi)
@@ -167,7 +173,7 @@ Feel free to reach out for collaborations, job opportunities, or just to connect
       } else if (query.includes('security') || query.includes('cyber') || query.includes('protect')) {
         response = `🛡️ Noah is passionate about cybersecurity! He has 6+ years of enterprise IT experience and specializes in:\n\n• OWASP security practices\n• Secure authentication systems\n• Network security & Active Directory\n• Vulnerability prevention\n\nCheck out his security-focused project on GitHub!`;
       } else if (query.includes('contact') || query.includes('email') || query.includes('hire') || query.includes('reach')) {
-        response = `📧 You can reach Noah at:\n\n**Email:** noah.al-samawi@gmx.de\n**LinkedIn:** linkedin.com/in/noah-al-samawi-058583197\n**GitHub:** github.com/Noah-Samawi\n\nHe's based in Frankfurt, Germany and open to opportunities!`;
+        response = `📧 You can reach Noah at:\n\n**Website:** noahsamawi.de\n**Email:** kontakt@noahsamawi.de\n**LinkedIn:** linkedin.com/in/noah-al-samawi-058583197\n**GitHub:** github.com/Noah-Samawi\n\nHe's a Full-Stack Engineer based in Frankfurt, Germany and open to opportunities!`;
       } else if (query.includes('skill') || query.includes('tech') || query.includes('language')) {
         response = `Noah's technical arsenal:\n\n**Languages:** Python, JavaScript, TypeScript, SQL\n**Frontend:** React, Tailwind CSS, Bootstrap\n**Backend:** Django, Django REST Framework\n**Systems:** Linux, Windows Server, Docker, AWS\n**Security:** Active Directory, OWASP, Network Security`;
       } else if (query.includes('experience') || query.includes('job') || query.includes('cbre')) {
