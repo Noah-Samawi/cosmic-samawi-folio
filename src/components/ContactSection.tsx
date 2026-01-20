@@ -133,8 +133,8 @@ const ContactSection: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "https://linkedin.com/in/noah-alsamawi", label: "LinkedIn" },
-    { icon: Github, href: "https://github.com/noah-alsamawi", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/noah-al-samawi-058583197/", label: "LinkedIn" },
+    { icon: Github, href: "https://github.com/Noah-Samawi", label: "GitHub" },
   ];
 
   return (
