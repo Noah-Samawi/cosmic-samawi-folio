@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 // XING SVG Icon
 const XingIcon = () => (
@@ -11,7 +10,6 @@ const XingIcon = () => (
 );
 
 const Footer: React.FC = () => {
-  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -99,7 +97,7 @@ const Footer: React.FC = () => {
             className="text-sm text-muted-foreground"
           >
             <p className="flex items-center justify-center gap-1">
-              © {currentYear} Noah Al-Samawi. {t('footer.rights')}
+              © {currentYear} Noah Al-Samawi. All rights reserved.
             </p>
             <p className="mt-2 flex items-center justify-center gap-1 text-xs">
               Built with <Heart className="h-3 w-3 text-destructive fill-destructive" /> using React & TypeScript
