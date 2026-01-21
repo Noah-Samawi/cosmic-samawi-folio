@@ -106,7 +106,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send notification email using Resend's default domain for reliable delivery
     const notificationEmail = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["kontakt@noahsamawi.de"],
+      to: ["noah.al-samawi@gmx.de"],
       reply_to: email,
       subject: `New Contact: ${safeSubject}`,
       html: `
