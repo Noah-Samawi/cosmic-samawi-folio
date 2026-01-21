@@ -103,9 +103,9 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Database error:", dbError);
     }
 
-    // Send notification email using verified domain with sanitized content
+    // Send notification email using Resend's default domain for reliable delivery
     const notificationEmail = await resend.emails.send({
-      from: "Portfolio Contact <noreply@noahsamawi.de>",
+      from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["kontakt@noahsamawi.de"],
       reply_to: email,
       subject: `New Contact: ${safeSubject}`,
