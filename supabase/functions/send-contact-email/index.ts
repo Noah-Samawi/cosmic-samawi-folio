@@ -104,9 +104,10 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Send notification email using Resend's default domain for reliable delivery
+    // Note: Using Gmail as recipient since Resend testing mode only allows the account owner's email
     const notificationEmail = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["noah.al-samawi@gmx.de"],
+      to: ["noah.alsamawi@gmail.com"],
       reply_to: email,
       subject: `New Contact: ${safeSubject}`,
       html: `
