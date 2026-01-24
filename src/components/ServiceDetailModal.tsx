@@ -112,7 +112,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               asChild
               className="w-full border-primary/30 hover:bg-primary/10"
             >
-              <a href="/noah-alsamawi-cv.pdf" download>
+              <a href="/noah-alsamawi-cv.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="w-4 h-4 mr-2" />
                 {t('services.modal.downloadCV')}
               </a>
