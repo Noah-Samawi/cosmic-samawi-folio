@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { MapPin, ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,6 +9,26 @@ import noahProfile from '@/assets/noah-profile.png';
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
+  
+  // Mouse parallax for profile photo
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { stiffness: 150, damping: 20 };
+  const photoX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
+  const photoY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-8, 8]), springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      mouseX.set((e.clientX - centerX) / window.innerWidth);
+      mouseY.set((e.clientY - centerY) / window.innerHeight);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -17,12 +37,13 @@ const HeroSection: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Profile Photo */}
+          {/* Profile Photo with Parallax */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-8 flex justify-center"
+            style={{ x: photoX, y: photoY, willChange: 'transform' }}
           >
             <div className="relative">
               <div className="w-44 h-44 md:w-60 md:h-60 rounded-full overflow-hidden ring-[6px] ring-primary/40 shadow-2xl shadow-primary/25 bg-gray-100 dark:bg-white/5 flex items-end justify-center">
