@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: 'Noah Al-Samawi',
     nameAr: 'نوح السماوي',
-    title: 'Full-Stack Developer & Security Specialist',
+    title: 'Full-Stack Developer & Cybersecurity Specialist',
     subtitle: 'Software Developer & IT Systems Engineer',
     location: 'Frankfurt, Germany',
     email: 'noah.al-samawi@gmx.de',
@@ -31,6 +31,17 @@ export const portfolioData = {
   ],
   
   projects: [
+    {
+      id: 'novavault',
+      title: 'NovaVault',
+      description: 'A secure, military-grade Password Manager built as a Progressive Web App (PWA). Features Row Level Security (RLS), end-to-end encryption logic, and biometric-ready UI.',
+      image: '/placeholder.svg',
+      technologies: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
+      liveUrl: 'https://novavault-demo.lovable.app',
+      codeUrl: 'https://github.com/Noah-Samawi/novavault',
+      featured: true,
+      isSecurityProject: true,
+    },
     {
       id: 'visste-sphere',
       title: 'VistaSphere',
@@ -121,6 +132,14 @@ export const portfolioData = {
       { name: 'Networking', level: 85 },
       { name: 'ServiceNow', level: 88 },
     ],
+    security: [
+      { name: 'Burp Suite', level: 85 },
+      { name: 'Wireshark', level: 80 },
+      { name: 'Nmap', level: 82 },
+      { name: 'Metasploit', level: 75 },
+      { name: 'Nessus/OpenVAS', level: 78 },
+      { name: 'Python (OSINT)', level: 85 },
+    ],
   },
   
   education: [
@@ -143,37 +162,35 @@ export const portfolioData = {
   ],
   
   cvContext: `
-    Noah Al-Samawi is a Software Developer and IT Systems Engineer based in Frankfurt, Germany.
+    Noah Al-Samawi is a Full-Stack Developer & Cybersecurity Specialist based in Frankfurt, Germany.
     
-    Professional Experience:
-    - 6 years at CBRE working for DXC/Dell (2017-2023) as IT Support Specialist - 2nd Level
-    - Expertise in Active Directory, ServiceNow, Windows Server, PowerShell, and enterprise networking
-    - Transitioned to full-stack development while maintaining strong IT infrastructure knowledge
-    - Passionate about Cybersecurity and secure coding practices
+    Professional Focus:
+    - I don't just build apps; I secure them. With a hands-on "breaker" mindset, I identify vulnerabilities before they become threats.
+    - Building Home Labs for attack simulation and automating security workflows
+    - 6 years enterprise IT at CBRE for DXC/Dell (2017-2023) as IT Support Specialist - 2nd Level
     
     Technical Skills:
     - Languages: Python, JavaScript, TypeScript, SQL, HTML/CSS, PowerShell
     - Frameworks: React, Django, Django REST Framework, Tailwind CSS, Bootstrap
     - Systems: Linux, Windows Server, Active Directory, Git, Docker, AWS, Networking
-    - Security: OWASP best practices, secure authentication, vulnerability assessment
+    - Cybersecurity: Burp Suite, Wireshark, Nmap, Metasploit, Nessus, OpenVAS, Python OSINT, Bash Scripting
+    - Defensive: SIEM Basics, IDS/IPS Configuration, OWASP best practices
     
     Education:
     - B.Sc. in Computer Science from Sanaa University
     - Full-Stack Web Development Diploma from Code Institute, Dublin (2024)
     
     Projects:
-    - VistaSphere: Modern React application with advanced UI patterns
+    - NovaVault: Military-grade Password Manager PWA with RLS, end-to-end encryption, biometric-ready UI
     - Web Application Security: Security-focused Django project with OWASP practices
+    - VistaSphere: Modern React application with advanced UI patterns
     - Chain Breaker: Habit-tracking application for personal development
     - TechForHer: Platform empowering women in technology
-    - How To Christmas: Festive planning web application
-    - August Hackathon: Team collaboration project
     
     Unique Value:
-    - Hybrid expertise bridging IT infrastructure and modern web development
+    - Hybrid expertise bridging full-stack development with offensive/defensive security
+    - Hands-on penetration testing experience with industry-standard tools
     - Strong understanding of enterprise systems from years of technical support
-    - Passion for cybersecurity and secure software development
-    - Clean code practices and modern development workflows
     - Multilingual: English, German, and Arabic
     
     Contact:

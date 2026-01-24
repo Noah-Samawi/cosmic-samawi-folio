@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Layers, Server } from 'lucide-react';
+import { Code2, Layers, Server, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
 
@@ -25,6 +25,12 @@ const SkillsSection: React.FC = () => {
       icon: Server,
       skills: portfolioData.skills.systems,
       gradient: 'from-primary via-secondary to-primary',
+    },
+    {
+      key: 'security',
+      icon: ShieldCheck,
+      skills: portfolioData.skills.security,
+      gradient: 'from-green-500 to-emerald-500',
     },
   ];
 
@@ -68,7 +74,7 @@ const SkillsSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
         >
           {categories.map(({ key, icon: Icon, skills, gradient }) => (
             <motion.div
