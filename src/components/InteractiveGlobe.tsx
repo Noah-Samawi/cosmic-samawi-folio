@@ -14,12 +14,31 @@ const InteractiveGlobe: React.FC = () => {
   const animationRef = useRef<number>();
   const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(false);
+  const [isInViewport, setIsInViewport] = useState(true);
 
   useEffect(() => {
-    // Fade in after mount
-    const timer = setTimeout(() => setIsVisible(true), 500);
+    // Fade in after mount with shimmer effect
+    const timer = setTimeout(() => setIsVisible(true), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  // Intersection Observer to pause animation when out of view
+  useEffect(() => {
+    if (isMobile) return;
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, [isMobile]);
 
   useEffect(() => {
     // Skip on mobile for performance
@@ -131,6 +150,12 @@ const InteractiveGlobe: React.FC = () => {
 
     // Animation loop
     const animate = () => {
+      // Skip rendering when out of viewport to save resources
+      if (!isInViewport) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       const rect = canvas.getBoundingClientRect();
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
@@ -159,9 +184,6 @@ const InteractiveGlobe: React.FC = () => {
         line.forEach((point) => {
           const rotated = rotatePoint(point, rotX, rotY);
           const projected = project(rotated, centerX, centerY);
-          
-          // Fade based on depth
-          const alpha = 0.15 + (projected.scale - 0.5) * 0.3;
           
           if (!started) {
             ctx.moveTo(projected.x, projected.y);
@@ -243,7 +265,7 @@ const InteractiveGlobe: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isMobile]);
+  }, [isMobile, isInViewport]);
 
   // Don't render on mobile
   if (isMobile) return null;
@@ -251,10 +273,13 @@ const InteractiveGlobe: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-1000"
+      className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ 
         opacity: isVisible ? 1 : 0,
         zIndex: 1,
+        willChange: 'transform',
+        transition: 'opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
+        filter: isVisible ? 'none' : 'blur(10px)',
       }}
       aria-hidden="true"
     />
