@@ -4,6 +4,7 @@ import { MapPin, ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-reac
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AnimatedGridBackground from './AnimatedGridBackground';
+import InteractiveGlobe from './InteractiveGlobe';
 import noahProfile from '@/assets/noah-profile.png';
 
 const HeroSection: React.FC = () => {
@@ -12,6 +13,7 @@ const HeroSection: React.FC = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <AnimatedGridBackground />
+      <InteractiveGlobe />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
