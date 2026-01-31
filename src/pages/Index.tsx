@@ -9,6 +9,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import EducationSection from '@/components/EducationSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import StyleGallerySection from '@/components/StyleGallerySection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -73,6 +74,9 @@ const Index: React.FC = () => {
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <SkillsSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <StyleGallerySection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <EducationSection />
