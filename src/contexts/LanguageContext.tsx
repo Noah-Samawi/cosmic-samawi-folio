@@ -25,9 +25,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     'hero.greeting': 'Hello, I\'m',
     'hero.name': 'Noah Al-Samawi',
-    'hero.title': 'Full-Stack Developer & Cybersecurity Specialist',
-    'hero.subtitle': 'Building secure web solutions with a breaker\'s mindset',
-    'hero.description': 'I don\'t just build apps; I secure them. Bridging robust software engineering with defensive security using tools like Burp Suite, Python scripting, and Home Lab attack simulations.',
+    'hero.title': 'Security-Minded Full-Stack Developer',
+    'hero.subtitle': 'Building modern web applications with a Security-First approach',
+    'hero.description': 'I develop modern web applications with a Security-First mindset. My goal is to build robust software while continuously growing in offensive and defensive security through CTF challenges and Home Labs.',
     'hero.cta.contact': 'Get in Touch',
     'hero.cta.projects': 'View Projects',
     'hero.cta.download': 'Download CV',
@@ -194,6 +194,11 @@ const translations: Record<Language, Record<string, string>> = {
     'gallery.ecommerce.desc': 'Conversion-focused design for online stores.',
     'gallery.creative': 'Creative',
     'gallery.creative.desc': 'Bold, artistic designs that stand out.',
+    
+    // Style Gallery Section
+    'styles.title': 'Choose Your Style',
+    'styles.subtitle': 'Select a design aesthetic that matches your brand vision',
+    'styles.colorPalette': 'Color Palette',
 
     // Cookie Banner
     'cookie.message': 'We use cookies to improve your experience.',
@@ -224,9 +229,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     'hero.greeting': 'Hallo, ich bin',
     'hero.name': 'Noah Al-Samawi',
-    'hero.title': 'Full-Stack Entwickler & Cybersecurity-Spezialist',
-    'hero.subtitle': 'Sichere Weblösungen mit Hacker-Mentalität',
-    'hero.description': 'Ich baue nicht nur Apps; ich sichere sie ab. Verbinde robuste Softwareentwicklung mit defensiver Security durch Tools wie Burp Suite, Python-Scripting und Home-Lab-Angriffssimulationen.',
+    'hero.title': 'Full-Stack Entwickler mit Fokus auf IT-Sicherheit',
+    'hero.subtitle': 'Moderne Webanwendungen mit Security-First-Ansatz',
+    'hero.description': 'Ich entwickle moderne Webanwendungen mit einem Security-First-Ansatz. Mein Ziel ist es, robuste Software zu bauen und mich kontinuierlich in der offensiven und defensiven Sicherheit (wie CTF & Home-Labs) weiterzuentwickeln.',
     'hero.cta.contact': 'Kontakt aufnehmen',
     'hero.cta.projects': 'Projekte ansehen',
     'hero.cta.download': 'Lebenslauf herunterladen',
@@ -393,6 +398,11 @@ const translations: Record<Language, Record<string, string>> = {
     'gallery.ecommerce.desc': 'Konversionsorientiertes Design für Online-Shops.',
     'gallery.creative': 'Kreativ',
     'gallery.creative.desc': 'Mutige, künstlerische Designs, die herausstechen.',
+    
+    // Style Gallery Section
+    'styles.title': 'Wählen Sie Ihren Stil',
+    'styles.subtitle': 'Wählen Sie eine Designästhetik, die zu Ihrer Markenvision passt',
+    'styles.colorPalette': 'Farbpalette',
 
     // Cookie Banner
     'cookie.message': 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.',
@@ -423,9 +433,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     'hero.greeting': 'مرحباً، أنا',
     'hero.name': 'نوح الصماوي',
-    'hero.title': 'مطور Full-Stack وأخصائي أمن سيبراني',
-    'hero.subtitle': 'بناء حلول ويب آمنة بعقلية الهاكر',
-    'hero.description': 'لا أبني التطبيقات فحسب؛ بل أؤمّنها. أجمع بين هندسة البرمجيات المتينة والأمان الدفاعي باستخدام أدوات مثل Burp Suite وبرمجة Python ومحاكاة الهجمات في المختبر المنزلي.',
+    'hero.title': 'مطور Full-Stack مع التركيز على الأمن',
+    'hero.subtitle': 'بناء تطبيقات ويب حديثة بنهج الأمان أولاً',
+    'hero.description': 'أطور تطبيقات ويب حديثة بعقلية الأمان أولاً. هدفي هو بناء برمجيات قوية مع التطور المستمر في الأمن الهجومي والدفاعي من خلال تحديات CTF والمختبرات المنزلية.',
     'hero.cta.contact': 'تواصل معي',
     'hero.cta.projects': 'عرض المشاريع',
     'hero.cta.download': 'تحميل السيرة الذاتية',
@@ -592,6 +602,11 @@ const translations: Record<Language, Record<string, string>> = {
     'gallery.ecommerce.desc': 'تصميم موجه للتحويل للمتاجر الإلكترونية.',
     'gallery.creative': 'إبداعي',
     'gallery.creative.desc': 'تصاميم جريئة وفنية تبرز.',
+    
+    // Style Gallery Section
+    'styles.title': 'اختر أسلوبك',
+    'styles.subtitle': 'اختر جمالية تصميم تناسب رؤية علامتك التجارية',
+    'styles.colorPalette': 'لوحة الألوان',
 
     // Cookie Banner
     'cookie.message': 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك.',

@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Code2, Layers, Server, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
+import { Marquee } from '@/components/ui/marquee';
+import TechIcon from '@/components/TechIcon';
 
 const SkillsSection: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -34,25 +36,16 @@ const SkillsSection: React.FC = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const }
-    },
-  };
+  // Flatten all skills for marquee
+  const allSkills = [
+    ...portfolioData.skills.languages.map(s => ({ ...s, category: 'languages' })),
+    ...portfolioData.skills.frameworks.map(s => ({ ...s, category: 'frameworks' })),
+    ...portfolioData.skills.systems.map(s => ({ ...s, category: 'systems' })),
+    ...portfolioData.skills.security.map(s => ({ ...s, category: 'security' })),
+  ];
 
   return (
-    <section id="skills" className="py-24 md:py-32 relative">
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
         <motion.div
@@ -68,65 +61,97 @@ const SkillsSection: React.FC = () => {
           <p className="text-muted-foreground text-lg">{t('skills.subtitle')}</p>
         </motion.div>
 
-        {/* Skills Categories */}
+        {/* Skills Marquee - Row 1 (Left to Right) */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-6"
         >
-          {categories.map(({ key, icon: Icon, skills, gradient }) => (
+          <Marquee speed="slow" pauseOnHover className="py-4">
+            {allSkills.slice(0, Math.ceil(allSkills.length / 2)).map((skill, index) => (
+              <motion.div
+                key={`${skill.name}-${index}`}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="glass-card px-6 py-4 rounded-xl flex items-center gap-4 min-w-[200px] group cursor-pointer"
+              >
+                <TechIcon tech={skill.name} showLabel={false} size="md" />
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-foreground block">
+                    {skill.name}
+                  </span>
+                  <div className="h-1.5 bg-muted rounded-full overflow-hidden mt-1 w-24">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      className="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                    />
+                  </div>
+                </div>
+                <span className="text-xs text-muted-foreground">{skill.level}%</span>
+              </motion.div>
+            ))}
+          </Marquee>
+        </motion.div>
+
+        {/* Skills Marquee - Row 2 (Right to Left) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <Marquee speed="slow" pauseOnHover reverse className="py-4">
+            {allSkills.slice(Math.ceil(allSkills.length / 2)).map((skill, index) => (
+              <motion.div
+                key={`${skill.name}-r-${index}`}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="glass-card px-6 py-4 rounded-xl flex items-center gap-4 min-w-[200px] group cursor-pointer"
+              >
+                <TechIcon tech={skill.name} showLabel={false} size="md" />
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-foreground block">
+                    {skill.name}
+                  </span>
+                  <div className="h-1.5 bg-muted rounded-full overflow-hidden mt-1 w-24">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      className="h-full rounded-full bg-gradient-to-r from-secondary to-primary"
+                    />
+                  </div>
+                </div>
+                <span className="text-xs text-muted-foreground">{skill.level}%</span>
+              </motion.div>
+            ))}
+          </Marquee>
+        </motion.div>
+
+        {/* Category Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12"
+        >
+          {categories.map(({ key, icon: Icon, gradient }) => (
             <motion.div
               key={key}
-              variants={itemVariants}
-              className="group"
+              whileHover={{ y: -4 }}
+              className="glass-card p-6 text-center group"
             >
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="glass-card p-6 md:p-8 h-full"
-              >
-                {/* Category Header */}
-                <div className="flex items-center gap-4 mb-8">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${gradient} bg-opacity-10`}>
-                    <Icon className="h-6 w-6 text-foreground" />
-                  </div>
-                  <h3 className="font-display text-xl font-semibold text-foreground">
-                    {t(`skills.${key}`)}
-                  </h3>
-                </div>
-
-                {/* Skills List */}
-                <div className="space-y-5">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, x: direction === 'rtl' ? 20 : -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium text-foreground">
-                          {skill.name}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.2 + index * 0.1, ease: 'easeOut' }}
-                          className={`h-full rounded-full bg-gradient-to-r ${gradient}`}
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <div className={`w-12 h-12 rounded-xl mx-auto mb-4 bg-gradient-to-br ${gradient} bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                <Icon className="h-6 w-6 text-foreground" />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground">
+                {t(`skills.${key}`)}
+              </h3>
             </motion.div>
           ))}
         </motion.div>

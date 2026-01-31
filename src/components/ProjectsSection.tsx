@@ -6,26 +6,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
 import TechIcon from '@/components/TechIcon';
 import SpotlightCard from '@/components/SpotlightCard';
+import { Marquee } from '@/components/ui/marquee';
 
 const ProjectsSection: React.FC = () => {
-  const { t } = useLanguage();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const }
-    },
-  };
+  const { t, direction } = useLanguage();
 
   // Separate featured and other projects
   const featuredProjects = portfolioData.projects.filter(p => p.featured);
@@ -53,103 +37,103 @@ const ProjectsSection: React.FC = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t('projects.subtitle')}</p>
         </motion.div>
 
-        {/* Featured Projects Grid */}
+        {/* Featured Projects Marquee */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12"
         >
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className="group"
-            >
-              <SpotlightCard 
-                className={`glass-card h-full overflow-hidden flex flex-col relative ${
-                  project.isSecurityProject ? 'ring-2 ring-primary/30' : ''
-                }`}
-                spotlightColor={project.isSecurityProject ? 'rgba(59, 130, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}
+          <Marquee speed="slow" pauseOnHover reverse={direction === 'rtl'} className="py-4">
+            {featuredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                whileHover={{ y: -8 }}
+                className="w-[350px] md:w-[420px] shrink-0 group"
               >
-                <motion.div whileHover={{ y: -4 }} className="h-full flex flex-col">
-                {/* Featured/Security Badge */}
-                <div className="absolute top-4 right-4 z-20 flex gap-2">
-                  {project.isSecurityProject && (
-                    <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">
-                      <Shield className="h-3 w-3" />
-                      Security
-                    </span>
-                  )}
-                  {project.featured && (
-                    <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">
-                      <Star className="h-3 w-3" />
-                      Featured
-                    </span>
-                  )}
-                </div>
-
-                {/* Project Image/Number */}
-                <div className="relative h-48 overflow-hidden">
-                  <div className={`absolute inset-0 ${
-                    project.isSecurityProject 
-                      ? 'bg-gradient-to-br from-primary/30 to-accent/20' 
-                      : 'bg-gradient-to-br from-primary/20 to-secondary/20'
-                  }`} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-7xl font-display font-bold text-primary/15 group-hover:text-primary/25 transition-colors">
-                      0{index + 1}
-                    </span>
+                <SpotlightCard 
+                  className={`glass-card h-full overflow-hidden flex flex-col relative ${
+                    project.isSecurityProject ? 'ring-2 ring-primary/30' : ''
+                  }`}
+                  spotlightColor={project.isSecurityProject ? 'rgba(59, 130, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}
+                >
+                  {/* Featured/Security Badge */}
+                  <div className="absolute top-4 right-4 z-20 flex gap-2">
+                    {project.isSecurityProject && (
+                      <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">
+                        <Shield className="h-3 w-3" />
+                        Security
+                      </span>
+                    )}
+                    {project.featured && (
+                      <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">
+                        <Star className="h-3 w-3" />
+                        Featured
+                      </span>
+                    )}
                   </div>
-                  
-                  {/* Hover Overlay */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center gap-4"
-                  >
-                    <Button variant="neon" size="sm" asChild className="font-medium">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-1" />
-                        View Project
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </motion.div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                  {/* Project Image/Number */}
+                  <div className="relative h-48 overflow-hidden">
+                    <div className={`absolute inset-0 ${
+                      project.isSecurityProject 
+                        ? 'bg-gradient-to-br from-primary/30 to-accent/20' 
+                        : 'bg-gradient-to-br from-primary/20 to-secondary/20'
+                    }`} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-7xl font-display font-bold text-primary/15 group-hover:text-primary/25 transition-colors">
+                        0{index + 1}
+                      </span>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      className="absolute inset-0 bg-background/90 backdrop-blur-sm flex items-center justify-center gap-4"
+                    >
+                      <Button variant="neon" size="sm" asChild className="font-medium">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-1" />
+                          View Project
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </motion.div>
                   </div>
-                  
-                  <p className="text-muted-foreground text-sm mb-6 flex-1 leading-relaxed">
-                    {project.description}
-                  </p>
 
-                  {/* Technologies with Icons */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <TechIcon key={tech} tech={tech} showLabel={true} size="sm" />
-                    ))}
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                    </div>
+                    
+                    <p className="text-muted-foreground text-sm mb-6 flex-1 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies with Icons */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <TechIcon key={tech} tech={tech} showLabel={true} size="sm" />
+                      ))}
+                    </div>
                   </div>
-                </div>
-                </motion.div>
-              </SpotlightCard>
-            </motion.div>
-          ))}
+                </SpotlightCard>
+              </motion.div>
+            ))}
+          </Marquee>
         </motion.div>
 
-        {/* Other Projects */}
+        {/* Other Projects - Reverse Direction */}
         {otherProjects.length > 0 && (
           <>
             <motion.h3
@@ -161,57 +145,56 @@ const ProjectsSection: React.FC = () => {
               More Projects
             </motion.h3>
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              {otherProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  className="group"
-                >
-                  <SpotlightCard 
-                    className="glass-card h-full overflow-hidden flex flex-col"
-                    spotlightColor="rgba(139, 92, 246, 0.12)"
+              <Marquee speed="normal" pauseOnHover reverse className="py-4">
+                {otherProjects.map((project) => (
+                  <motion.div
+                    key={project.id}
+                    whileHover={{ y: -4 }}
+                    className="w-[300px] shrink-0 group"
                   >
-                    <motion.div whileHover={{ y: -2 }} className="h-full flex flex-col">
-                    <div className="p-5 flex-1 flex flex-col">
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h4>
-                        <a
-                          href={project.codeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg hover:bg-muted transition-colors"
-                        >
-                          <Github className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
-                        </a>
-                      </div>
-                      
-                      <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
-                        {project.description}
-                      </p>
+                    <SpotlightCard 
+                      className="glass-card h-full overflow-hidden flex flex-col"
+                      spotlightColor="rgba(139, 92, 246, 0.12)"
+                    >
+                      <div className="p-5 flex-1 flex flex-col">
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                            {project.title}
+                          </h4>
+                          <a
+                            href={project.codeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-lg hover:bg-muted transition-colors"
+                          >
+                            <Github className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                          </a>
+                        </div>
+                        
+                        <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
+                          {project.description}
+                        </p>
 
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <TechIcon key={tech} tech={tech} showLabel={false} size="sm" />
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground">
-                            +{project.technologies.length - 3}
-                          </span>
-                        )}
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.technologies.slice(0, 3).map((tech) => (
+                            <TechIcon key={tech} tech={tech} showLabel={false} size="sm" />
+                          ))}
+                          {project.technologies.length > 3 && (
+                            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground">
+                              +{project.technologies.length - 3}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    </motion.div>
-                  </SpotlightCard>
-                </motion.div>
-              ))}
+                    </SpotlightCard>
+                  </motion.div>
+                ))}
+              </Marquee>
             </motion.div>
           </>
         )}
