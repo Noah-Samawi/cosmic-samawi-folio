@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Language = 'en' | 'de';
+type Language = 'en' | 'de' | 'ar';
 type Direction = 'ltr' | 'rtl';
 
 interface LanguageContextType {
@@ -49,6 +49,17 @@ const translations: Record<Language, Record<string, string>> = {
     'about.stat1': 'Years IT Experience',
     'about.stat2': 'Hackathons Joined',
     'about.stat3': 'Projects Delivered',
+    
+    // Hire Me Section
+    'hire.title': 'Turn Ideas Into Reality',
+    'hire.subtitle': 'Do you need a website, a custom app, or a security audit? I don\'t just write code; I build businesses.',
+    'hire.webdesign.title': 'Web Design',
+    'hire.webdesign.desc': 'Beautiful, responsive websites that convert visitors into customers.',
+    'hire.apps.title': 'Custom Apps',
+    'hire.apps.desc': 'Tailored web applications built for your specific business needs.',
+    'hire.security.title': 'Cyber Security',
+    'hire.security.desc': 'Protect your digital assets with professional security audits.',
+    'hire.cta': 'Let\'s Work Together',
     
     // Services
     'services.title': 'Services',
@@ -122,6 +133,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Testimonials
     'testimonials.title': 'Testimonials',
     'testimonials.subtitle': 'What clients and colleagues say about working with me',
+    'testimonials.writeReview': 'Write a Review',
     'testimonials.1.name': 'Michael Schmidt',
     'testimonials.1.role': 'IT Manager',
     'testimonials.1.company': 'TechCorp GmbH',
@@ -135,8 +147,23 @@ const translations: Record<Language, Record<string, string>> = {
     'testimonials.3.company': 'StartupHub Berlin',
     'testimonials.3.quote': 'His hackathon mentality combined with enterprise experience is rare. Noah built our MVP in record time without sacrificing code quality or security best practices.',
 
+    // Review Modal
+    'review.title': 'Write a Review',
+    'review.name': 'Your Name',
+    'review.role': 'Your Role (Optional)',
+    'review.company': 'Company (Optional)',
+    'review.message': 'Your Review',
+    'review.rating': 'Rating',
+    'review.submit': 'Submit Review',
+    'review.submitting': 'Submitting...',
+    'review.success': 'Review Submitted!',
+    'review.successMessage': 'Thank you! Your review will be displayed after approval.',
+    'review.error': 'Error',
+    'review.errorMessage': 'Failed to submit review. Please try again.',
+
     // Footer
     'footer.rights': 'All rights reserved.',
+    'footer.visitors': 'Visitors',
     
     // Command Palette
     'command.search': 'Search...',
@@ -152,6 +179,32 @@ const translations: Record<Language, Record<string, string>> = {
     'command.select': 'Select',
     'command.close': 'Close',
     'command.noResults': 'No results found.',
+    
+    // Design Gallery
+    'gallery.title': 'Design Gallery',
+    'gallery.subtitle': 'Choose a style that matches your vision',
+    'gallery.select': 'I want this style',
+    'gallery.minimalist': 'Minimalist',
+    'gallery.minimalist.desc': 'Clean, simple, and elegant design with focus on content.',
+    'gallery.cosmic': 'Cosmic / Dark',
+    'gallery.cosmic.desc': 'Modern dark theme with neon accents and tech aesthetics.',
+    'gallery.corporate': 'Corporate',
+    'gallery.corporate.desc': 'Professional and trustworthy design for businesses.',
+    'gallery.ecommerce': 'E-Commerce',
+    'gallery.ecommerce.desc': 'Conversion-focused design for online stores.',
+    'gallery.creative': 'Creative',
+    'gallery.creative.desc': 'Bold, artistic designs that stand out.',
+
+    // Cookie Banner
+    'cookie.message': 'We use cookies to improve your experience.',
+    'cookie.accept': 'Accept',
+    'cookie.decline': 'Decline',
+    
+    // Contact
+    'contact.title': 'Get In Touch',
+    'contact.subtitle': 'Have a project in mind? Let\'s discuss how we can work together.',
+    'contact.location': 'Frankfurt, Germany',
+    'contact.mapAlt': 'Location Map',
     
     // Common
     'common.loading': 'Loading...',
@@ -195,6 +248,17 @@ const translations: Record<Language, Record<string, string>> = {
     'about.stat1': 'Jahre IT-Erfahrung',
     'about.stat2': 'Hackathons absolviert',
     'about.stat3': 'Projekte geliefert',
+    
+    // Hire Me Section
+    'hire.title': 'Ideen in Realität verwandeln',
+    'hire.subtitle': 'Brauchen Sie eine Website, eine maßgeschneiderte App oder ein Sicherheitsaudit? Ich schreibe nicht nur Code; ich baue Unternehmen.',
+    'hire.webdesign.title': 'Web-Design',
+    'hire.webdesign.desc': 'Schöne, responsive Websites, die Besucher in Kunden verwandeln.',
+    'hire.apps.title': 'Individuelle Apps',
+    'hire.apps.desc': 'Maßgeschneiderte Webanwendungen für Ihre spezifischen Geschäftsanforderungen.',
+    'hire.security.title': 'Cybersicherheit',
+    'hire.security.desc': 'Schützen Sie Ihre digitalen Assets mit professionellen Sicherheitsaudits.',
+    'hire.cta': 'Lass uns zusammenarbeiten',
     
     // Services
     'services.title': 'Leistungen',
@@ -268,6 +332,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Testimonials
     'testimonials.title': 'Referenzen',
     'testimonials.subtitle': 'Was Kunden und Kollegen über die Zusammenarbeit mit mir sagen',
+    'testimonials.writeReview': 'Bewertung schreiben',
     'testimonials.1.name': 'Michael Schmidt',
     'testimonials.1.role': 'IT-Manager',
     'testimonials.1.company': 'TechCorp GmbH',
@@ -281,8 +346,23 @@ const translations: Record<Language, Record<string, string>> = {
     'testimonials.3.company': 'StartupHub Berlin',
     'testimonials.3.quote': 'Seine Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Noah baute unser MVP in Rekordzeit ohne Kompromisse bei Codequalität oder Sicherheits-Best-Practices.',
 
+    // Review Modal
+    'review.title': 'Bewertung schreiben',
+    'review.name': 'Ihr Name',
+    'review.role': 'Ihre Position (Optional)',
+    'review.company': 'Unternehmen (Optional)',
+    'review.message': 'Ihre Bewertung',
+    'review.rating': 'Bewertung',
+    'review.submit': 'Bewertung abschicken',
+    'review.submitting': 'Wird gesendet...',
+    'review.success': 'Bewertung eingereicht!',
+    'review.successMessage': 'Vielen Dank! Ihre Bewertung wird nach Genehmigung angezeigt.',
+    'review.error': 'Fehler',
+    'review.errorMessage': 'Bewertung konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+
     // Footer
     'footer.rights': 'Alle Rechte vorbehalten.',
+    'footer.visitors': 'Besucher',
     
     // Command Palette
     'command.search': 'Suchen...',
@@ -299,9 +379,234 @@ const translations: Record<Language, Record<string, string>> = {
     'command.close': 'Schließen',
     'command.noResults': 'Keine Ergebnisse gefunden.',
     
+    // Design Gallery
+    'gallery.title': 'Design-Galerie',
+    'gallery.subtitle': 'Wählen Sie einen Stil, der zu Ihrer Vision passt',
+    'gallery.select': 'Diesen Stil möchte ich',
+    'gallery.minimalist': 'Minimalistisch',
+    'gallery.minimalist.desc': 'Klares, einfaches und elegantes Design mit Fokus auf Inhalt.',
+    'gallery.cosmic': 'Kosmisch / Dunkel',
+    'gallery.cosmic.desc': 'Modernes dunkles Theme mit Neonakzenten und Tech-Ästhetik.',
+    'gallery.corporate': 'Corporate',
+    'gallery.corporate.desc': 'Professionelles und vertrauenswürdiges Design für Unternehmen.',
+    'gallery.ecommerce': 'E-Commerce',
+    'gallery.ecommerce.desc': 'Konversionsorientiertes Design für Online-Shops.',
+    'gallery.creative': 'Kreativ',
+    'gallery.creative.desc': 'Mutige, künstlerische Designs, die herausstechen.',
+
+    // Cookie Banner
+    'cookie.message': 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.',
+    'cookie.accept': 'Akzeptieren',
+    'cookie.decline': 'Ablehnen',
+    
+    // Contact
+    'contact.title': 'Kontakt aufnehmen',
+    'contact.subtitle': 'Haben Sie ein Projekt im Sinn? Lassen Sie uns besprechen, wie wir zusammenarbeiten können.',
+    'contact.location': 'Frankfurt, Deutschland',
+    'contact.mapAlt': 'Standortkarte',
+    
     // Common
     'common.loading': 'Lädt...',
     'common.error': 'Ein Fehler ist aufgetreten',
+  },
+  ar: {
+    // Navigation
+    'nav.home': 'الرئيسية',
+    'nav.about': 'عني',
+    'nav.services': 'الخدمات',
+    'nav.experience': 'الخبرة',
+    'nav.projects': 'المشاريع',
+    'nav.skills': 'المهارات',
+    'nav.education': 'التعليم',
+    'nav.contact': 'تواصل معي',
+    
+    // Hero
+    'hero.greeting': 'مرحباً، أنا',
+    'hero.name': 'نوح الصماوي',
+    'hero.title': 'مطور Full-Stack وأخصائي أمن سيبراني',
+    'hero.subtitle': 'بناء حلول ويب آمنة بعقلية الهاكر',
+    'hero.description': 'لا أبني التطبيقات فحسب؛ بل أؤمّنها. أجمع بين هندسة البرمجيات المتينة والأمان الدفاعي باستخدام أدوات مثل Burp Suite وبرمجة Python ومحاكاة الهجمات في المختبر المنزلي.',
+    'hero.cta.contact': 'تواصل معي',
+    'hero.cta.projects': 'عرض المشاريع',
+    'hero.cta.download': 'تحميل السيرة الذاتية',
+    'hero.location': 'فرانكفورت، ألمانيا',
+    'hero.status': 'متاح للفرص',
+    
+    // About
+    'about.title': 'عني',
+    'about.subtitle': 'تعرف علي أكثر',
+    'about.years': 'سنوات الخبرة',
+    'about.valueProposition': 'شغوف بربط هندسة البرمجيات المتينة بالأمان الدفاعي.',
+    'about.description1': 'لا أبني التطبيقات فحسب؛ بل أؤمّنها. بعقلية "المخترق"، أستخدم أدوات مثل Burp Suite وبرمجة Python لتحديد الثغرات قبل أن تصبح تهديدات.',
+    'about.description2': 'تشمل خلفيتي بناء مختبرات منزلية لمحاكاة الهجمات وأتمتة سير عمل الأمان. مع أكثر من 6 سنوات من تقنية المعلومات للشركات وتطوير Full-Stack، أقدم حلولاً عملية ومحصنة.',
+    'about.highlight1': 'أكثر من 6 سنوات خبرة في شركات Fortune 500',
+    'about.highlight2': 'تطوير Full-Stack مع React وDjango وTypeScript',
+    'about.highlight3': 'دبلوم تطوير الويب Full-Stack من Code Institute (2024)',
+    'about.highlight4': 'النماذج الأولية السريعة والابتكار من خلال الهاكاثونات',
+    'about.highlight5': 'حلول مخصصة للعملاء المستقلين',
+    'about.stat1': 'سنوات خبرة IT',
+    'about.stat2': 'هاكاثونات',
+    'about.stat3': 'مشاريع منجزة',
+    
+    // Hire Me Section
+    'hire.title': 'حوّل الأفكار إلى واقع',
+    'hire.subtitle': 'هل تحتاج موقع ويب، تطبيق مخصص، أو تدقيق أمني؟ أنا لا أكتب الكود فقط؛ أنا أبني أعمالاً.',
+    'hire.webdesign.title': 'تصميم الويب',
+    'hire.webdesign.desc': 'مواقع جميلة ومتجاوبة تحول الزوار إلى عملاء.',
+    'hire.apps.title': 'تطبيقات مخصصة',
+    'hire.apps.desc': 'تطبيقات ويب مصممة لاحتياجات عملك الخاصة.',
+    'hire.security.title': 'الأمن السيبراني',
+    'hire.security.desc': 'احمِ أصولك الرقمية بتدقيقات أمنية احترافية.',
+    'hire.cta': 'لنعمل معاً',
+    
+    // Services
+    'services.title': 'الخدمات',
+    'services.subtitle': 'كيف يمكنني مساعدتك في تحقيق أفكارك',
+    'services.webdev.title': 'تطوير الويب',
+    'services.webdev.desc': 'بناء تطبيقات ويب حديثة ومتجاوبة بأحدث التقنيات.',
+    'services.webdev.f1': 'واجهات React وTypeScript',
+    'services.webdev.f2': 'خلفيات Django وREST API',
+    'services.webdev.f3': 'تصميم وتحسين قواعد البيانات',
+    'services.security.title': 'الأمن السيبراني',
+    'services.security.desc': 'حماية أصولك الرقمية بممارسات أمان مؤسسية.',
+    'services.security.f1': 'تدقيقات وتقييمات أمنية',
+    'services.security.f2': 'تكوين أمان الشبكة',
+    'services.security.f3': 'إدارة Active Directory',
+    'services.support.title': 'الدعم التقني',
+    'services.support.desc': 'دعم IT احترافي بخبرة مؤسسية في استكشاف الأخطاء.',
+    'services.support.f1': 'إدارة Windows Server',
+    'services.support.f2': 'إدارة البنية التحتية لـ IT',
+    'services.support.f3': 'تذاكر ServiceNow والتصعيد',
+    'services.learnMore': 'اعرف المزيد',
+    'services.webdev.details': 'أبني تطبيقات ويب كاملة من الفكرة إلى النشر. باستخدام React وTypeScript للواجهات الديناميكية مع خلفيات Django REST، أنشئ حلولاً قابلة للتوسع والصيانة.',
+    'services.security.details': 'بخبرة أكثر من 6 سنوات في IT المؤسسي، أساعد في تأمين بنيتك التحتية الرقمية. من تقوية Active Directory إلى تكوين أمان الشبكة، أنفذ أفضل الممارسات.',
+    'services.support.details': 'دعم IT احترافي بخبرة مؤسسية. أحل المشاكل في بيئات Windows المعقدة، وأدير الخدمات السحابية، وأضمن تشغيل بنيتك التحتية بسلاسة.',
+    'services.modal.techStack': 'التقنيات المستخدمة',
+    'services.modal.keyFeatures': 'الميزات الرئيسية',
+    'services.modal.cta': 'ناقش مشروعك',
+    'services.modal.downloadCV': 'تحميل السيرة الذاتية',
+    
+    // Experience
+    'experience.title': 'الخبرة',
+    'experience.subtitle': 'المسيرة المهنية',
+    'experience.cbre.title': 'أخصائي دعم IT - المستوى الثاني',
+    'experience.cbre.company': 'CBRE لـ DXC/Dell',
+    'experience.cbre.period': '2017 - 2023',
+    'experience.cbre.description': 'قدمت دعماً تقنياً على مستوى المؤسسات لإدارة Active Directory وتذاكر ServiceNow وبيئات Windows المعقدة.',
+    'experience.cbre.task1': 'إدارة مستخدمي ومجموعات Active Directory',
+    'experience.cbre.task2': 'حل حوادث ServiceNow والتصعيد',
+    'experience.cbre.task3': 'دعم تقني المستوى الثاني واستكشاف الأخطاء',
+    'experience.cbre.task4': 'إدارة Windows Server',
+    'experience.cbre.task5': 'تكوين الشبكة وإدارة VPN',
+    
+    // Projects
+    'projects.title': 'المشاريع',
+    'projects.subtitle': 'تطبيقات Full-Stack',
+    'projects.viewLive': 'عرض مباشر',
+    'projects.viewCode': 'عرض الكود',
+    
+    // Skills
+    'skills.title': 'التقنيات',
+    'skills.subtitle': 'التقنيات التي أعمل بها',
+    'skills.languages': 'اللغات',
+    'skills.frameworks': 'أطر العمل',
+    'skills.systems': 'الأنظمة والأدوات',
+    'skills.security': 'الأمن السيبراني واختبار الاختراق',
+    
+    // Education
+    'education.title': 'التعليم',
+    'education.subtitle': 'الخلفية الأكاديمية',
+    'education.bsc.degree': 'بكالوريوس علوم الحاسوب',
+    'education.bsc.school': 'جامعة صنعاء',
+    'education.diploma.degree': 'دبلوم تطوير الويب Full-Stack',
+    'education.diploma.school': 'Code Institute، دبلن',
+    'education.diploma.year': '2024',
+    
+    // Chat
+    'chat.title': 'المساعد الذكي',
+    'chat.placeholder': 'اسألني أي شيء عن نوح...',
+    'chat.welcome': 'مرحباً! أنا مساعد نوح الذكي. أعرف سيرته الذاتية بالكامل. اسألني عن خبرته أو مهاراته أو مشاريعه!',
+    'chat.send': 'إرسال',
+    
+    // Testimonials
+    'testimonials.title': 'التوصيات',
+    'testimonials.subtitle': 'ما يقوله العملاء والزملاء عن العمل معي',
+    'testimonials.writeReview': 'اكتب تقييماً',
+    'testimonials.1.name': 'ميخائيل شميت',
+    'testimonials.1.role': 'مدير IT',
+    'testimonials.1.company': 'TechCorp GmbH',
+    'testimonials.1.quote': 'خبرة نوح في Full-Stack وفهمه العميق للبنية التحتية لـ IT جعلته لا غنى عنه. قدم تطبيق ويب متين مع دمج سلس في أنظمتنا المؤسسية.',
+    'testimonials.2.name': 'سارة ويبر',
+    'testimonials.2.role': 'مطور رئيسي',
+    'testimonials.2.company': 'Digital Solutions AG',
+    'testimonials.2.quote': 'مهارات استثنائية في حل المشاكل وتسليم موثوق. نوح تجاوز التوقعات باستمرار، متعاملاً مع التحديات المعقدة بإبداع ودقة تقنية.',
+    'testimonials.3.name': 'توماس مولر',
+    'testimonials.3.role': 'CTO',
+    'testimonials.3.company': 'StartupHub Berlin',
+    'testimonials.3.quote': 'عقليته في الهاكاثون مع خبرته المؤسسية نادرة. بنى نوح MVP في وقت قياسي دون التضحية بجودة الكود أو أفضل ممارسات الأمان.',
+
+    // Review Modal
+    'review.title': 'اكتب تقييماً',
+    'review.name': 'اسمك',
+    'review.role': 'منصبك (اختياري)',
+    'review.company': 'الشركة (اختياري)',
+    'review.message': 'تقييمك',
+    'review.rating': 'التقييم',
+    'review.submit': 'إرسال التقييم',
+    'review.submitting': 'جارٍ الإرسال...',
+    'review.success': 'تم إرسال التقييم!',
+    'review.successMessage': 'شكراً! سيظهر تقييمك بعد الموافقة.',
+    'review.error': 'خطأ',
+    'review.errorMessage': 'فشل إرسال التقييم. يرجى المحاولة مرة أخرى.',
+
+    // Footer
+    'footer.rights': 'جميع الحقوق محفوظة.',
+    'footer.visitors': 'الزوار',
+    
+    // Command Palette
+    'command.search': 'بحث...',
+    'command.placeholder': 'اكتب أمراً أو ابحث...',
+    'command.navigation': 'التنقل',
+    'command.actions': 'الإجراءات',
+    'command.downloadCV': 'تحميل السيرة الذاتية',
+    'command.copyEmail': 'نسخ البريد الإلكتروني',
+    'command.emailCopied': 'تم نسخ البريد الإلكتروني!',
+    'command.lightMode': 'التبديل للوضع الفاتح',
+    'command.darkMode': 'التبديل للوضع الداكن',
+    'command.navigate': 'تنقل',
+    'command.select': 'اختيار',
+    'command.close': 'إغلاق',
+    'command.noResults': 'لا توجد نتائج.',
+    
+    // Design Gallery
+    'gallery.title': 'معرض التصاميم',
+    'gallery.subtitle': 'اختر أسلوباً يناسب رؤيتك',
+    'gallery.select': 'أريد هذا الأسلوب',
+    'gallery.minimalist': 'بسيط',
+    'gallery.minimalist.desc': 'تصميم نظيف وبسيط وأنيق مع التركيز على المحتوى.',
+    'gallery.cosmic': 'كوني / داكن',
+    'gallery.cosmic.desc': 'ثيم داكن حديث مع لمسات نيون وجماليات تقنية.',
+    'gallery.corporate': 'مؤسسي',
+    'gallery.corporate.desc': 'تصميم احترافي وموثوق للأعمال.',
+    'gallery.ecommerce': 'تجارة إلكترونية',
+    'gallery.ecommerce.desc': 'تصميم موجه للتحويل للمتاجر الإلكترونية.',
+    'gallery.creative': 'إبداعي',
+    'gallery.creative.desc': 'تصاميم جريئة وفنية تبرز.',
+
+    // Cookie Banner
+    'cookie.message': 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك.',
+    'cookie.accept': 'قبول',
+    'cookie.decline': 'رفض',
+    
+    // Contact
+    'contact.title': 'تواصل معي',
+    'contact.subtitle': 'هل لديك مشروع في ذهنك؟ لنناقش كيف يمكننا العمل معاً.',
+    'contact.location': 'فرانكفورت، ألمانيا',
+    'contact.mapAlt': 'خريطة الموقع',
+    
+    // Common
+    'common.loading': 'جارٍ التحميل...',
+    'common.error': 'حدث خطأ',
   },
 };
 
@@ -309,11 +614,14 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
-  const direction: Direction = 'ltr'; // Both English and German are LTR
+  
+  // Arabic is RTL, English and German are LTR
+  const direction: Direction = language === 'ar' ? 'rtl' : 'ltr';
 
   useEffect(() => {
     document.documentElement.lang = language;
-  }, [language]);
+    document.documentElement.dir = direction;
+  }, [language, direction]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
@@ -326,7 +634,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   useEffect(() => {
     const saved = localStorage.getItem('portfolio-language') as Language | null;
-    if (saved && (saved === 'en' || saved === 'de')) {
+    if (saved && (saved === 'en' || saved === 'de' || saved === 'ar')) {
       setLanguageState(saved);
     }
   }, []);

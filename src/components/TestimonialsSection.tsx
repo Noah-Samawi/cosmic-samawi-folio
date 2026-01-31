@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Quote, Star } from 'lucide-react';
+import { Quote, Star, PenLine } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 import Autoplay from 'embla-carousel-autoplay';
 import {
   Carousel,
@@ -11,17 +12,24 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from '@/components/ui/carousel';
+import ReviewModal from './ReviewModal';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Testimonial {
   id: string;
-  nameKey: string;
-  roleKey: string;
-  companyKey: string;
-  quoteKey: string;
+  nameKey?: string;
+  roleKey?: string;
+  companyKey?: string;
+  quoteKey?: string;
+  name?: string;
+  role?: string;
+  company?: string;
+  message?: string;
   rating: number;
+  isFromDB?: boolean;
 }
 
-const testimonials: Testimonial[] = [
+const staticTestimonials: Testimonial[] = [
   {
     id: '1',
     nameKey: 'testimonials.1.name',
@@ -49,8 +57,38 @@ const testimonials: Testimonial[] = [
 ];
 
 const TestimonialsSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, direction } = useLanguage();
   const [api, setApi] = useState<CarouselApi>();
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [dbTestimonials, setDbTestimonials] = useState<Testimonial[]>([]);
+
+  // Fetch approved reviews from database
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('*')
+        .eq('is_approved', true)
+        .order('created_at', { ascending: false });
+
+      if (!error && data) {
+        const formattedReviews: Testimonial[] = data.map(review => ({
+          id: review.id,
+          name: review.name,
+          role: review.role || undefined,
+          company: review.company || undefined,
+          message: review.message,
+          rating: review.rating,
+          isFromDB: true,
+        }));
+        setDbTestimonials(formattedReviews);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  const allTestimonials = [...staticTestimonials, ...dbTestimonials];
 
   // Keyboard navigation
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -67,8 +105,20 @@ const TestimonialsSection: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  const getTestimonialName = (testimonial: Testimonial) => 
+    testimonial.isFromDB ? testimonial.name : t(testimonial.nameKey!);
+  
+  const getTestimonialRole = (testimonial: Testimonial) => 
+    testimonial.isFromDB ? testimonial.role : t(testimonial.roleKey!);
+  
+  const getTestimonialCompany = (testimonial: Testimonial) => 
+    testimonial.isFromDB ? testimonial.company : t(testimonial.companyKey!);
+  
+  const getTestimonialQuote = (testimonial: Testimonial) => 
+    testimonial.isFromDB ? testimonial.message : t(testimonial.quoteKey!);
+
   return (
-    <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden" dir={direction}>
       {/* Background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -87,9 +137,17 @@ const TestimonialsSection: React.FC = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">{t('testimonials.title')}</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-6">
             {t('testimonials.subtitle')}
           </p>
+          <Button
+            variant="outline"
+            onClick={() => setIsReviewModalOpen(true)}
+            className="gap-2 border-primary/30 hover:bg-primary/10"
+          >
+            <PenLine className="w-4 h-4" />
+            {t('testimonials.writeReview')}
+          </Button>
         </motion.div>
 
         {/* Carousel */}
@@ -107,6 +165,7 @@ const TestimonialsSection: React.FC = () => {
             opts={{
               align: 'center',
               loop: true,
+              direction: direction,
             }}
             plugins={[
               Autoplay({
@@ -118,7 +177,7 @@ const TestimonialsSection: React.FC = () => {
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial, index) => (
+              {allTestimonials.map((testimonial, index) => (
                 <CarouselItem key={testimonial.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/2">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -154,21 +213,21 @@ const TestimonialsSection: React.FC = () => {
 
                       {/* Quote text */}
                       <p className="text-foreground/90 text-base md:text-lg leading-relaxed mb-6 relative z-10 italic">
-                        "{t(testimonial.quoteKey)}"
+                        "{getTestimonialQuote(testimonial)}"
                       </p>
 
                       {/* Author */}
                       <div className="relative z-10 flex items-center gap-4">
                         {/* Avatar placeholder with gradient */}
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/60 to-accent/60 flex items-center justify-center text-primary-foreground font-bold text-lg">
-                          {t(testimonial.nameKey).charAt(0)}
+                          {getTestimonialName(testimonial)?.charAt(0)}
                         </div>
                         <div>
                           <p className="font-semibold text-foreground">
-                            {t(testimonial.nameKey)}
+                            {getTestimonialName(testimonial)}
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            {t(testimonial.roleKey)} · {t(testimonial.companyKey)}
+                            {getTestimonialRole(testimonial)} {getTestimonialCompany(testimonial) && `· ${getTestimonialCompany(testimonial)}`}
                           </p>
                         </div>
                       </div>
@@ -183,7 +242,7 @@ const TestimonialsSection: React.FC = () => {
 
           {/* Mobile indicators */}
           <div className="flex justify-center gap-2 mt-6 md:hidden">
-            {testimonials.map((_, i) => (
+            {allTestimonials.map((_, i) => (
               <div
                 key={i}
                 className="w-2 h-2 rounded-full bg-primary/30"
@@ -192,6 +251,12 @@ const TestimonialsSection: React.FC = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Review Modal */}
+      <ReviewModal 
+        isOpen={isReviewModalOpen} 
+        onClose={() => setIsReviewModalOpen(false)} 
+      />
     </section>
   );
 };

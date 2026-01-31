@@ -6,22 +6,33 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import CommandPalette from './CommandPalette';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, direction } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const languageLabels: Record<string, string> = {
+    en: 'EN',
+    de: 'DE',
+    ar: 'AR',
+  };
+
   // Handle smooth scrolling after navigation from sub-pages
   useEffect(() => {
     if (location.hash && isHomePage) {
       const sectionId = location.hash.replace('#', '');
-      // Small delay to ensure the page has rendered
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -35,7 +46,6 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Detect active section
       const sections = ['home', 'about', 'services', 'projects', 'skills', 'education', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
@@ -52,7 +62,7 @@ const Navbar: React.FC = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -73,8 +83,11 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'de' : 'en');
+  const cycleLanguage = () => {
+    const languages: Array<'en' | 'de' | 'ar'> = ['en', 'de', 'ar'];
+    const currentIndex = languages.indexOf(language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    setLanguage(languages[nextIndex]);
   };
 
   return (
@@ -87,6 +100,7 @@ const Navbar: React.FC = () => {
           ? 'glass-card border-b border-border/50 backdrop-blur-xl'
           : 'bg-transparent'
       }`}
+      dir={direction}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -157,17 +171,37 @@ const Navbar: React.FC = () => {
               </motion.div>
             </Button>
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleLanguage}
-              className="relative"
-            >
-              <Globe className="h-5 w-5" />
-              <span className="absolute -bottom-1 -right-1 text-[10px] font-bold bg-primary text-primary-foreground rounded px-1">
-                {language === 'en' ? 'DE' : 'EN'}
-              </span>
-            </Button>
+            {/* Language Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                  <Globe className="h-5 w-5" />
+                  <span className="absolute -bottom-1 -right-1 text-[10px] font-bold bg-primary text-primary-foreground rounded px-1">
+                    {languageLabels[language]}
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[100px]">
+                <DropdownMenuItem 
+                  onClick={() => setLanguage('en')}
+                  className={language === 'en' ? 'bg-primary/10 text-primary' : ''}
+                >
+                  🇬🇧 English
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => setLanguage('de')}
+                  className={language === 'de' ? 'bg-primary/10 text-primary' : ''}
+                >
+                  🇩🇪 Deutsch
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => setLanguage('ar')}
+                  className={language === 'ar' ? 'bg-primary/10 text-primary' : ''}
+                >
+                  🇸🇦 العربية
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <Button
               variant="ghost"

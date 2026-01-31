@@ -1,8 +1,9 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import HireMeSection from '@/components/HireMeSection';
 import ServicesSection from '@/components/ServicesSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
@@ -13,6 +14,8 @@ import ChatWidget from '@/components/ChatWidget';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
+import DesignGallery from '@/components/DesignGallery';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Lazy load Contact section for better LCP performance
 const ContactSection = lazy(() => import('@/components/ContactSection'));
@@ -37,14 +40,30 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> =
 );
 
 const Index: React.FC = () => {
+  const { direction } = useLanguage();
+  const [isDesignGalleryOpen, setIsDesignGalleryOpen] = useState(false);
+
+  // Listen for design gallery open event from command palette
+  useEffect(() => {
+    const handleOpenDesignGallery = () => {
+      setIsDesignGalleryOpen(true);
+    };
+
+    window.addEventListener('openDesignGallery', handleOpenDesignGallery);
+    return () => window.removeEventListener('openDesignGallery', handleOpenDesignGallery);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" dir={direction}>
       <ScrollProgress />
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
         <AnimatedSection>
           <AboutSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <HireMeSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <ServicesSection />
@@ -70,6 +89,10 @@ const Index: React.FC = () => {
       <Footer />
       <ChatWidget />
       <BackToTop />
+      <DesignGallery 
+        isOpen={isDesignGalleryOpen} 
+        onClose={() => setIsDesignGalleryOpen(false)} 
+      />
     </div>
   );
 };
