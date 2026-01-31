@@ -14,9 +14,10 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ["react", "react-dom", "framer-motion"],
+    dedupe: ["react", "react-dom", "react/jsx-runtime", "framer-motion"],
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "framer-motion"],
+    include: ["react", "react-dom", "react/jsx-runtime", "framer-motion"],
+    force: true,
   },
 }));
