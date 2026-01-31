@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, Globe } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 
 // XING SVG Icon
 const XingIcon = () => (
@@ -11,6 +13,29 @@ const XingIcon = () => (
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { t, direction } = useLanguage();
+  const [visitorCount, setVisitorCount] = useState<number>(0);
+
+  // Fetch visitor count
+  useEffect(() => {
+    const fetchVisitorCount = async () => {
+      const { data, error } = await supabase
+        .from('visitor_stats')
+        .select('visitor_count')
+        .limit(1)
+        .maybeSingle();
+
+      if (!error && data) {
+        setVisitorCount(data.visitor_count);
+      }
+    };
+
+    fetchVisitorCount();
+  }, []);
+
+  const formatNumber = (num: number) => {
+    return num.toLocaleString();
+  };
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Noah-Samawi', label: 'GitHub' },
@@ -20,7 +45,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer id="contact" className="relative py-16 border-t border-border/50">
+    <footer id="contact" className="relative py-16 border-t border-border/50" dir={direction}>
       {/* Background gradient */}
       <div className="absolute inset-0 opacity-50">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-radial from-primary/5 via-transparent to-transparent" />
@@ -72,6 +97,24 @@ const Footer: React.FC = () => {
             ))}
           </motion.div>
 
+          {/* Visitor Counter */}
+          {visitorCount > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.12 }}
+              className="flex justify-center mb-6"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                <Globe className="w-4 h-4 text-primary" />
+                <span className="text-sm text-foreground">
+                  {t('footer.visitors')}: <span className="font-semibold text-primary">{formatNumber(visitorCount)}</span>
+                </span>
+              </div>
+            </motion.div>
+          )}
+
           {/* Legal Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +140,7 @@ const Footer: React.FC = () => {
             className="text-sm text-muted-foreground"
           >
             <p className="flex items-center justify-center gap-1">
-              © {currentYear} Noah Al-Samawi. All rights reserved.
+              © {currentYear} Noah Al-Samawi. {t('footer.rights')}
             </p>
             <p className="mt-2 flex items-center justify-center gap-1 text-xs">
               Built with <Heart className="h-3 w-3 text-destructive fill-destructive" /> using React & TypeScript

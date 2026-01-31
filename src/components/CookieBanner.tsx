@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Cookie } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CookieBanner: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t, direction } = useLanguage();
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie-consent');
@@ -32,6 +34,7 @@ const CookieBanner: React.FC = () => {
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          dir={direction}
         >
           <div className="max-w-4xl mx-auto bg-card/95 backdrop-blur-lg border border-border/50 rounded-2xl p-4 md:p-6 shadow-2xl">
             <div className="flex flex-col md:flex-row items-center gap-4">
@@ -40,7 +43,7 @@ const CookieBanner: React.FC = () => {
                   <Cookie className="h-5 w-5 text-primary" />
                 </div>
                 <p className="text-sm text-foreground">
-                  Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.
+                  {t('cookie.message')}
                 </p>
               </div>
               <div className="flex gap-3">
@@ -49,13 +52,13 @@ const CookieBanner: React.FC = () => {
                   onClick={handleDecline}
                   className="px-6"
                 >
-                  Ablehnen
+                  {t('cookie.decline')}
                 </Button>
                 <Button
                   onClick={handleAccept}
                   className="px-6 bg-primary hover:bg-primary/90"
                 >
-                  Akzeptieren
+                  {t('cookie.accept')}
                 </Button>
               </div>
             </div>

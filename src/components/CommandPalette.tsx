@@ -16,6 +16,8 @@ import {
   Sun,
   X,
   Command,
+  Star,
+  Palette,
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -28,13 +30,18 @@ interface CommandItem {
   shortcut?: string;
   category: 'navigation' | 'action';
   action: () => void;
+  aliases?: string[]; // For fuzzy search
 }
 
-const CommandPalette: React.FC = () => {
+interface CommandPaletteProps {
+  onOpenDesignGallery?: () => void;
+}
+
+const CommandPalette: React.FC<CommandPaletteProps> = ({ onOpenDesignGallery }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { t } = useLanguage();
+  const { t, direction } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,6 +68,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.home'),
       category: 'navigation',
       action: () => navigateToSection('home'),
+      aliases: ['start', 'top', 'beginning'],
     },
     {
       id: 'about',
@@ -68,6 +76,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.about'),
       category: 'navigation',
       action: () => navigateToSection('about'),
+      aliases: ['me', 'bio', 'profile', 'who'],
     },
     {
       id: 'services',
@@ -75,6 +84,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.services'),
       category: 'navigation',
       action: () => navigateToSection('services'),
+      aliases: ['what i do', 'offer', 'work'],
     },
     {
       id: 'projects',
@@ -82,6 +92,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.projects'),
       category: 'navigation',
       action: () => navigateToSection('projects'),
+      aliases: ['portfolio', 'work', 'apps', 'websites'],
     },
     {
       id: 'skills',
@@ -89,6 +100,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.skills'),
       category: 'navigation',
       action: () => navigateToSection('skills'),
+      aliases: ['tech', 'technologies', 'stack', 'tools'],
     },
     {
       id: 'education',
@@ -96,6 +108,15 @@ const CommandPalette: React.FC = () => {
       label: t('nav.education'),
       category: 'navigation',
       action: () => navigateToSection('education'),
+      aliases: ['school', 'degree', 'university', 'learning'],
+    },
+    {
+      id: 'testimonials',
+      icon: Star,
+      label: t('testimonials.title'),
+      category: 'navigation',
+      action: () => navigateToSection('testimonials'),
+      aliases: ['reviews', 'feedback', 'opinions', 'comments', 'ratings', 'what people say'],
     },
     {
       id: 'contact',
@@ -103,6 +124,7 @@ const CommandPalette: React.FC = () => {
       label: t('nav.contact'),
       category: 'navigation',
       action: () => navigateToSection('contact'),
+      aliases: ['email', 'message', 'reach', 'hire'],
     },
     {
       id: 'download-cv',
@@ -115,6 +137,7 @@ const CommandPalette: React.FC = () => {
         setSearch('');
         window.open('/noah-alsamawi-cv.pdf', '_blank');
       },
+      aliases: ['resume', 'pdf', 'curriculum'],
     },
     {
       id: 'copy-email',
@@ -128,6 +151,7 @@ const CommandPalette: React.FC = () => {
         navigator.clipboard.writeText('kontakt@noahsamawi.de');
         toast.success(t('command.emailCopied') || 'Email copied to clipboard!');
       },
+      aliases: ['email address', 'mail'],
     },
     {
       id: 'toggle-theme',
@@ -142,12 +166,34 @@ const CommandPalette: React.FC = () => {
         setSearch('');
         toggleTheme();
       },
+      aliases: ['dark mode', 'light mode', 'theme', 'color scheme'],
+    },
+    {
+      id: 'design-gallery',
+      icon: Palette,
+      label: t('gallery.title') || 'Design Gallery',
+      category: 'action',
+      action: () => {
+        setIsOpen(false);
+        setSearch('');
+        if (onOpenDesignGallery) {
+          onOpenDesignGallery();
+        } else {
+          // Emit custom event for design gallery
+          window.dispatchEvent(new CustomEvent('openDesignGallery'));
+        }
+      },
+      aliases: ['styles', 'portfolio styles', 'design options'],
     },
   ];
 
-  const filteredCommands = commands.filter((cmd) =>
-    cmd.label.toLowerCase().includes(search.toLowerCase())
-  );
+  // Fuzzy search - check label and aliases
+  const filteredCommands = commands.filter((cmd) => {
+    const searchLower = search.toLowerCase();
+    const labelMatch = cmd.label.toLowerCase().includes(searchLower);
+    const aliasMatch = cmd.aliases?.some(alias => alias.toLowerCase().includes(searchLower));
+    return labelMatch || aliasMatch;
+  });
 
   const navigationCommands = filteredCommands.filter((cmd) => cmd.category === 'navigation');
   const actionCommands = filteredCommands.filter((cmd) => cmd.category === 'action');
@@ -243,6 +289,7 @@ const CommandPalette: React.FC = () => {
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="fixed top-[20%] left-1/2 -translate-x-1/2 z-[101] w-full max-w-lg mx-4"
+              dir={direction}
             >
               <div className="relative overflow-hidden rounded-2xl glass-card border border-primary/20 shadow-2xl shadow-primary/10">
                 {/* Glow effect */}
