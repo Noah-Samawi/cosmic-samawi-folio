@@ -223,6 +223,24 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.subtitle": "Have a project in mind? Let's discuss how we can work together.",
     "contact.location": "Frankfurt, Germany",
     "contact.mapAlt": "Location Map",
+    "contact.name": "Your Name",
+    "contact.email": "Your Email",
+    "contact.message": "Your Message",
+    "contact.send": "Send Message",
+    "contact.sending": "Sending...",
+    "contact.success": "Message Sent!",
+    "contact.successMessage": "Thank you for reaching out. I'll get back to you soon.",
+    "contact.error": "Error",
+    "contact.errorMessage": "Failed to send message. Please try again.",
+    "contact.fillAll": "Please fill in all required fields.",
+
+    // Styles Inquiry
+    "styles.inquiryDesc": "Send me a project inquiry for:",
+    "command.back": "Back",
+
+    // Skills Filter
+    "skills.all": "All Technologies",
+    "skills.active": "Active",
 
     // Common
     "common.loading": "Loading...",
@@ -440,6 +458,24 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.subtitle": "Haben Sie ein Projekt im Sinn? Lassen Sie uns besprechen, wie wir zusammenarbeiten können.",
     "contact.location": "Frankfurt, Deutschland",
     "contact.mapAlt": "Standortkarte",
+    "contact.name": "Ihr Name",
+    "contact.email": "Ihre E-Mail",
+    "contact.message": "Ihre Nachricht",
+    "contact.send": "Nachricht senden",
+    "contact.sending": "Wird gesendet...",
+    "contact.success": "Nachricht gesendet!",
+    "contact.successMessage": "Vielen Dank für Ihre Nachricht. Ich werde mich bald bei Ihnen melden.",
+    "contact.error": "Fehler",
+    "contact.errorMessage": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "contact.fillAll": "Bitte füllen Sie alle erforderlichen Felder aus.",
+
+    // Styles Inquiry
+    "styles.inquiryDesc": "Senden Sie mir eine Projektanfrage für:",
+    "command.back": "Zurück",
+
+    // Skills Filter
+    "skills.all": "Alle Technologien",
+    "skills.active": "Aktiv",
 
     // Common
     "common.loading": "Lädt...",
@@ -654,6 +690,24 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.subtitle": "هل لديك مشروع في ذهنك؟ لنناقش كيف يمكننا العمل معاً.",
     "contact.location": "فرانكفورت، ألمانيا",
     "contact.mapAlt": "خريطة الموقع",
+    "contact.name": "اسمك",
+    "contact.email": "بريدك الإلكتروني",
+    "contact.message": "رسالتك",
+    "contact.send": "إرسال الرسالة",
+    "contact.sending": "جارٍ الإرسال...",
+    "contact.success": "تم إرسال الرسالة!",
+    "contact.successMessage": "شكراً لتواصلك. سأرد عليك قريباً.",
+    "contact.error": "خطأ",
+    "contact.errorMessage": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+    "contact.fillAll": "يرجى ملء جميع الحقول المطلوبة.",
+
+    // Styles Inquiry
+    "styles.inquiryDesc": "أرسل لي استفسار مشروع لـ:",
+    "command.back": "رجوع",
+
+    // Skills Filter
+    "skills.all": "جميع التقنيات",
+    "skills.active": "نشط",
 
     // Common
     "common.loading": "جارٍ التحميل...",
