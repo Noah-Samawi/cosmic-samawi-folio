@@ -1,9 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { X, Sparkles, Building2, ShoppingCart, Palette, Zap, Check, Eye } from 'lucide-react';
+import { X, Sparkles, Building2, ShoppingCart, Palette, Zap, Check, Eye, Loader2, Send } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import {
   Dialog,
   DialogContent,
@@ -19,6 +22,7 @@ interface DesignStyle {
   colors: string[];
   preview: string;
   gradient: string;
+  englishName: string;
 }
 
 const TiltCard: React.FC<{
@@ -73,6 +77,9 @@ const StyleGallerySection: React.FC = () => {
   const { toast } = useToast();
   const [selectedStyle, setSelectedStyle] = useState<DesignStyle | null>(null);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const designStyles: DesignStyle[] = [
     {
@@ -83,6 +90,7 @@ const StyleGallerySection: React.FC = () => {
       colors: ['#ffffff', '#f5f5f5', '#1a1a1a', '#666666'],
       preview: 'bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800',
       gradient: 'from-gray-100 to-gray-300 dark:from-gray-800 dark:to-gray-900',
+      englishName: 'Minimalist',
     },
     {
       id: 'corporate',
@@ -92,6 +100,7 @@ const StyleGallerySection: React.FC = () => {
       colors: ['#1e3a5f', '#ffffff', '#4a90d9', '#2c5282'],
       preview: 'bg-gradient-to-br from-[#1e3a5f] to-[#2c5282]',
       gradient: 'from-blue-800 to-blue-950',
+      englishName: 'Corporate/Trust',
     },
     {
       id: 'cosmic',
@@ -101,6 +110,7 @@ const StyleGallerySection: React.FC = () => {
       colors: ['#0b1120', '#06b6d4', '#8b5cf6', '#22d3ee'],
       preview: 'bg-gradient-to-br from-[#0b1120] via-[#1e1b4b] to-[#0b1120]',
       gradient: 'from-indigo-950 via-purple-900 to-slate-950',
+      englishName: 'Cosmic/Dark',
     },
     {
       id: 'ecommerce',
@@ -110,6 +120,7 @@ const StyleGallerySection: React.FC = () => {
       colors: ['#f97316', '#fbbf24', '#ffffff', '#1a1a1a'],
       preview: 'bg-gradient-to-br from-orange-500 to-amber-400',
       gradient: 'from-orange-500 to-amber-400',
+      englishName: 'E-Commerce',
     },
     {
       id: 'creative',
@@ -119,6 +130,7 @@ const StyleGallerySection: React.FC = () => {
       colors: ['#ec4899', '#8b5cf6', '#06b6d4', '#fbbf24'],
       preview: 'bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500',
       gradient: 'from-pink-500 via-purple-500 to-cyan-500',
+      englishName: 'Creative',
     },
   ];
 
@@ -128,16 +140,55 @@ const StyleGallerySection: React.FC = () => {
   };
 
   const handleConfirmStyle = () => {
-    if (selectedStyle) {
+    setShowContactForm(true);
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmitInquiry = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedStyle || !formData.name || !formData.email || !formData.message) {
       toast({
-        title: `${t(selectedStyle.titleKey)} selected!`,
-        description: "I'll contact you to discuss this style for your project.",
+        title: t('contact.error'),
+        description: t('contact.fillAll'),
+        variant: 'destructive',
       });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          subject: `Project Inquiry: ${selectedStyle.englishName}`,
+          message: `[Design Style: ${selectedStyle.englishName}]\n\n${formData.message}`,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: t('contact.success'),
+        description: t('contact.successMessage'),
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+      setShowContactForm(false);
       setPreviewOpen(false);
-      // Scroll to contact after a short delay
-      setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      }, 500);
+      setSelectedStyle(null);
+    } catch (error) {
+      console.error('Error sending inquiry:', error);
+      toast({
+        title: t('contact.error'),
+        description: t('contact.errorMessage'),
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -224,7 +275,12 @@ const StyleGallerySection: React.FC = () => {
       </div>
 
       {/* Preview Modal */}
-      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+      <Dialog open={previewOpen} onOpenChange={(open) => {
+        setPreviewOpen(open);
+        if (!open) {
+          setShowContactForm(false);
+        }
+      }}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle className="font-display text-2xl">
@@ -232,7 +288,7 @@ const StyleGallerySection: React.FC = () => {
             </DialogTitle>
           </DialogHeader>
           
-          {selectedStyle && (
+          {selectedStyle && !showContactForm && (
             <div className="space-y-6">
               {/* Large preview */}
               <div className={`h-64 rounded-xl ${selectedStyle.preview} relative overflow-hidden`}>
@@ -273,6 +329,72 @@ const StyleGallerySection: React.FC = () => {
                 </Button>
               </div>
             </div>
+          )}
+
+          {selectedStyle && showContactForm && (
+            <form onSubmit={handleSubmitInquiry} className="space-y-4">
+              <p className="text-muted-foreground text-sm mb-4">
+                {t('styles.inquiryDesc')} <strong>{t(selectedStyle.titleKey)}</strong>
+              </p>
+              
+              <Input
+                name="name"
+                placeholder={t('contact.name')}
+                value={formData.name}
+                onChange={handleFormChange}
+                disabled={isSubmitting}
+                required
+              />
+              <Input
+                name="email"
+                type="email"
+                placeholder={t('contact.email')}
+                value={formData.email}
+                onChange={handleFormChange}
+                disabled={isSubmitting}
+                required
+              />
+              <Textarea
+                name="message"
+                placeholder={t('contact.message')}
+                value={formData.message}
+                onChange={handleFormChange}
+                rows={4}
+                disabled={isSubmitting}
+                required
+              />
+              
+              <div className="flex gap-3">
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  size="lg" 
+                  className="flex-1 gap-2"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      {t('contact.sending')}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      {t('contact.send')}
+                    </>
+                  )}
+                </Button>
+                <Button 
+                  type="button"
+                  variant="outline" 
+                  size="lg" 
+                  onClick={() => setShowContactForm(false)}
+                  disabled={isSubmitting}
+                >
+                  {t('command.back')}
+                </Button>
+              </div>
+            </form>
           )}
         </DialogContent>
       </Dialog>
