@@ -182,12 +182,13 @@ const SkillsSection: React.FC = () => {
           {/* Category Cards Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {categories.map(({ key, icon: Icon, gradient }) => (
-              <motion.div
+              <motion.button
+                type="button"
                 key={key}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleCategoryClick(key)}
-                className={`glass-card p-6 text-center group cursor-pointer transition-all duration-300 ${
+                className={`glass-card p-6 text-center group cursor-pointer transition-all duration-300 w-full ${
                   activeFilter === key 
                     ? 'ring-2 ring-primary border-primary/50 bg-primary/5' 
                     : 'hover:border-primary/30'
@@ -210,7 +211,7 @@ const SkillsSection: React.FC = () => {
                     {t('skills.active')}
                   </motion.div>
                 )}
-              </motion.div>
+              </motion.button>
             ))}
           </div>
         </motion.div>
