@@ -1,12 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight, Shield, Star } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Shield, Star, Radio } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { portfolioData } from '@/data/portfolio';
 import TechIcon from '@/components/TechIcon';
 import SpotlightCard from '@/components/SpotlightCard';
 import { Marquee } from '@/components/ui/marquee';
+import mustaphaImage from '@/assets/project-mustapha.png';
+import nakaaImage from '@/assets/project-nakaa.png';
+
+// Map project IDs to imported images
+const projectImages: Record<string, string> = {
+  'mustapha-lamjahdi': mustaphaImage,
+  'nakaa': nakaaImage,
+};
 
 const ProjectsSection: React.FC = () => {
   const { t, direction } = useLanguage();
@@ -58,15 +66,21 @@ const ProjectsSection: React.FC = () => {
                   }`}
                   spotlightColor={project.isSecurityProject ? 'rgba(59, 130, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}
                 >
-                  {/* Featured/Security Badge */}
+                  {/* Featured/Security/Live Badge */}
                   <div className="absolute top-4 right-4 z-20 flex gap-2">
+                    {(project as any).isLive && (
+                      <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 border border-green-500/30 animate-pulse">
+                        <Radio className="h-3 w-3" />
+                        Live
+                      </span>
+                    )}
                     {project.isSecurityProject && (
                       <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">
                         <Shield className="h-3 w-3" />
                         Security
                       </span>
                     )}
-                    {project.featured && (
+                    {project.featured && !(project as any).isLive && (
                       <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">
                         <Star className="h-3 w-3" />
                         Featured
@@ -76,16 +90,26 @@ const ProjectsSection: React.FC = () => {
 
                   {/* Project Image/Number */}
                   <div className="relative h-48 overflow-hidden">
-                    <div className={`absolute inset-0 ${
-                      project.isSecurityProject 
-                        ? 'bg-gradient-to-br from-primary/30 to-accent/20' 
-                        : 'bg-gradient-to-br from-primary/20 to-secondary/20'
-                    }`} />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-7xl font-display font-bold text-primary/15 group-hover:text-primary/25 transition-colors">
-                        0{index + 1}
-                      </span>
-                    </div>
+                    {projectImages[project.id] ? (
+                      <img 
+                        src={projectImages[project.id]} 
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <>
+                        <div className={`absolute inset-0 ${
+                          project.isSecurityProject 
+                            ? 'bg-gradient-to-br from-primary/30 to-accent/20' 
+                            : 'bg-gradient-to-br from-primary/20 to-secondary/20'
+                        }`} />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-7xl font-display font-bold text-primary/15 group-hover:text-primary/25 transition-colors">
+                            0{index + 1}
+                          </span>
+                        </div>
+                      </>
+                    )}
                     
                     {/* Hover Overlay */}
                     <motion.div
@@ -99,11 +123,13 @@ const ProjectsSection: React.FC = () => {
                           View Project
                         </a>
                       </Button>
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4" />
-                        </a>
-                      </Button>
+                      {project.codeUrl && (
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4" />
+                          </a>
+                        </Button>
+                      )}
                     </motion.div>
                   </div>
 

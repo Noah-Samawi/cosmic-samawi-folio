@@ -32,6 +32,30 @@ export const portfolioData = {
   
   projects: [
     {
+      id: 'mustapha-lamjahdi',
+      title: 'Mustapha Lamjahdi Campaign',
+      description: 'A complete digital campaign platform for an SPD candidate in Frankfurt. Features a custom CMS-like structure, event management, newsletter system, and PWA installability.',
+      image: '/src/assets/project-mustapha.png',
+      technologies: ['React', 'Tailwind CSS', 'Supabase', 'Resend', 'Framer Motion'],
+      liveUrl: 'https://mustapha-lamjahdi.de',
+      codeUrl: '',
+      featured: true,
+      isLive: true,
+      highlights: ['Interactive Map', 'Event RSVP', 'Dynamic News Slider'],
+    },
+    {
+      id: 'nakaa',
+      title: 'Nakaa - Food Scanner',
+      description: 'An AI-powered food scanning app for Halal, Vegan, and Allergy-conscious users. Scans barcodes and ingredient lists (OCR) to give an instant "Traffic Light" verdict.',
+      image: '/src/assets/project-nakaa.png',
+      technologies: ['React', 'TypeScript', 'Open Food Facts API', 'Tesseract.js', 'PWA'],
+      liveUrl: 'https://nakaa-pure-scan.lovable.app',
+      codeUrl: '',
+      featured: true,
+      isLive: true,
+      highlights: ['Barcode Scanning', 'AI Ingredient Analysis', 'Multi-language (AR/EN/DE)'],
+    },
+    {
       id: 'novavault',
       title: 'NovaVault',
       description: 'A secure, military-grade Password Manager built as a Progressive Web App (PWA). Features Row Level Security (RLS), end-to-end encryption logic, and biometric-ready UI.',
