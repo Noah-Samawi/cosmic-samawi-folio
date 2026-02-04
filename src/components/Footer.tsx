@@ -16,21 +16,35 @@ const Footer: React.FC = () => {
   const { t, direction } = useLanguage();
   const [visitorCount, setVisitorCount] = useState<number>(0);
 
-  // Fetch visitor count
+  // Increment and fetch visitor count (with session deduplication)
   useEffect(() => {
-    const fetchVisitorCount = async () => {
-      const { data, error } = await supabase
-        .from('visitor_stats')
-        .select('visitor_count')
-        .limit(1)
-        .maybeSingle();
+    const trackVisitor = async () => {
+      const sessionKey = 'visitor_counted';
+      const alreadyCounted = sessionStorage.getItem(sessionKey);
 
-      if (!error && data) {
-        setVisitorCount(data.visitor_count);
+      if (!alreadyCounted) {
+        // First visit this session - increment count
+        const { data, error } = await supabase.rpc('increment_visitor_count');
+        
+        if (!error && data) {
+          setVisitorCount(data);
+          sessionStorage.setItem(sessionKey, 'true');
+        }
+      } else {
+        // Already counted - just fetch current count
+        const { data, error } = await supabase
+          .from('visitor_stats')
+          .select('visitor_count')
+          .limit(1)
+          .maybeSingle();
+
+        if (!error && data) {
+          setVisitorCount(data.visitor_count);
+        }
       }
     };
 
-    fetchVisitorCount();
+    trackVisitor();
   }, []);
 
   const formatNumber = (num: number) => {
