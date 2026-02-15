@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import BentoServicesSection from '@/components/BentoServicesSection';
@@ -48,6 +49,7 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background" dir={direction}>
+      <TopBar />
       <ScrollProgress />
       <Navbar />
       <main id="main-content" role="main">
