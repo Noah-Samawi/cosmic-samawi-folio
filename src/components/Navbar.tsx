@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = ['home', 'about', 'services', 'projects', 'skills', 'education', 'contact'];
+      const sections = ['home', 'services', 'case-studies', 'about', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -68,12 +68,9 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { key: 'nav.home', href: '#home', path: '/' },
-    { key: 'nav.about', href: '#about', path: '/#about' },
     { key: 'nav.services', href: '#services', path: '/#services' },
-    { key: 'nav.projects', href: '#projects', path: '/#projects' },
-    { key: 'nav.skills', href: '#skills', path: '/#skills' },
-    { key: 'nav.education', href: '#education', path: '/#education' },
-    { key: 'nav.contact', href: '#contact', path: '/#contact' },
+    { key: 'nav.casestudies', href: '#case-studies', path: '/#case-studies' },
+    { key: 'nav.about', href: '#about', path: '/#about' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -110,7 +107,7 @@ const Navbar: React.FC = () => {
             className="font-display text-xl md:text-2xl font-bold gradient-text"
             whileHover={{ scale: 1.02 }}
           >
-            Noah<span className="text-foreground">.</span>
+            Tech-Noah<span className="text-foreground"> Solutions</span>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -144,8 +141,12 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Theme Toggle, Language Toggle, Command Palette & Mobile Menu */}
+          {/* Consult Now CTA, Theme Toggle, Language Toggle, Command Palette & Mobile Menu */}
           <div className="flex items-center gap-2">
+            {/* Consult Now CTA - Desktop */}
+            <Button variant="default" size="sm" asChild className="hidden md:inline-flex">
+              <a href="#contact">{t('nav.consult')}</a>
+            </Button>
             {/* Command Palette */}
             <CommandPalette />
             

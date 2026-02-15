@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
           >
             <a href="#home" className="inline-block">
               <span className="font-display text-3xl font-bold gradient-text">
-                Noah<span className="text-foreground">.</span>
+                Tech-Noah<span className="text-foreground"> Solutions</span>
               </span>
             </a>
           </motion.div>
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
             className="text-sm text-muted-foreground"
           >
             <p className="flex items-center justify-center gap-1">
-              © {currentYear} Noah Al-Samawi. {t('footer.rights')}
+              © {currentYear} Tech-Noah Solutions. {t('footer.rights')}
             </p>
             <p className="mt-2 flex items-center justify-center gap-1 text-xs">
               Built with <Heart className="h-3 w-3 text-destructive fill-destructive" /> using React & TypeScript

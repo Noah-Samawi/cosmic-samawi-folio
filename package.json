@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "@fontsource/sora": "^5.2.8",
     "@hookform/resolvers": "^3.10.0",
     "@playwright/test": "^1.57.0",

@@ -16,35 +16,39 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "Home",
     "nav.about": "About",
     "nav.services": "Services",
+    "nav.casestudies": "Case Studies",
     "nav.experience": "Experience",
     "nav.projects": "Projects",
     "nav.skills": "Skills",
     "nav.education": "Education",
     "nav.contact": "Contact",
+    "nav.consult": "Consult Now",
 
-    // Hero
+    // Hero - Agency
+    "hero.badge": "AI-Powered Software Agency",
+    "hero.tagline": "Automating the Future with AI-Powered Solutions",
+    "hero.description": "We design, build, and automate intelligent software systems that help businesses scale faster. From custom web apps to AI integration and workflow automation.",
+    "hero.cta.consult": "Start a Project",
+    "hero.cta.casestudies": "View Case Studies",
     "hero.greeting": "Hello, I'm",
     "hero.name": "Noah Al-Samawi",
     "hero.title": "Security-Minded Full-Stack Developer",
     "hero.subtitle": "Building modern web applications with a Security-First approach",
-    "hero.description":
-      "I develop modern web applications with a Security-First mindset. My goal is to build robust software while continuously growing in offensive and defensive security through CTF challenges and Home Labs.",
     "hero.cta.contact": "Get in Touch",
     "hero.cta.projects": "View Projects",
     "hero.cta.download": "Download CV",
     "hero.location": "Frankfurt, Germany",
     "hero.status": "Open to Opportunities",
 
-    // About
+    // About - Founder
+    "about.agencyTitle": "Founder & Lead Engineer",
+    "about.agencySubtitle": "The mind behind Tech-Noah Solutions",
     "about.title": "About Me",
     "about.subtitle": "Get to know me better",
     "about.years": "Years Experience",
-    "about.valueProposition":
-      "Passionate about bridging the gap between robust software engineering and defensive security.",
-    "about.description1":
-      'I don\'t just build apps; I secure them. With a hands-on "breaker" mindset, I utilize tools like Burp Suite and Python scripting to identify vulnerabilities before they become threats.',
-    "about.description2":
-      "My background involves building Home Labs for attack simulation and automating security workflows. Combined with 6+ years of enterprise IT and full-stack development, I deliver solutions that are both functional and fortified.",
+    "about.valueProposition": "Passionate about bridging the gap between robust software engineering and defensive security.",
+    "about.description1": 'I don\'t just build apps; I secure them. With a hands-on "breaker" mindset, I utilize tools like Burp Suite and Python scripting to identify vulnerabilities before they become threats.',
+    "about.description2": "My background involves building Home Labs for attack simulation and automating security workflows. Combined with 6+ years of enterprise IT and full-stack development, I deliver solutions that are both functional and fortified.",
     "about.highlight1": "6+ years enterprise IT experience at Fortune 500 companies",
     "about.highlight2": "Full-Stack development with React, Django & TypeScript",
     "about.highlight3": "Code Institute Diploma in Full-Stack Web Development (2024)",
@@ -56,8 +60,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hire Me Section
     "hire.title": "Turn Ideas Into Reality",
-    "hire.subtitle":
-      "Do you need a website, a custom app, or a security audit? I don't just write code; I build businesses.",
+    "hire.subtitle": "Do you need a website, a custom app, or a security audit? I don't just write code; I build businesses.",
     "hire.webdesign.title": "Web Design",
     "hire.webdesign.desc": "Beautiful, responsive websites that convert visitors into customers.",
     "hire.apps.title": "Custom Apps",
@@ -66,7 +69,19 @@ const translations: Record<Language, Record<string, string>> = {
     "hire.security.desc": "Protect your digital assets with professional security audits.",
     "hire.cta": "Let's Work Together",
 
-    // Services
+    // Agency Services (Bento Grid)
+    "agency.services.title": "Our Services",
+    "agency.services.subtitle": "End-to-end technology solutions to power your business growth",
+    "agency.services.webdev.title": "Custom Web & App Development",
+    "agency.services.webdev.desc": "Full-stack applications built with modern frameworks. From MVPs to enterprise platforms, we deliver scalable, secure, and performant solutions.",
+    "agency.services.ai.title": "AI Systems & Integration",
+    "agency.services.ai.desc": "Leverage the power of AI to supercharge your business. We build custom GPT integrations, ML pipelines, and intelligent automation that drives real results.",
+    "agency.services.automation.title": "Business Automation",
+    "agency.services.automation.desc": "Streamline your operations with smart workflow automation. CRM integrations, data pipelines, and process optimization.",
+    "agency.services.consulting.title": "Strategic Consulting",
+    "agency.services.consulting.desc": "Expert guidance on architecture decisions, security audits, and technology strategy to future-proof your business.",
+
+    // Services (legacy)
     "services.title": "Services",
     "services.subtitle": "How I can help bring your ideas to life",
     "services.webdev.title": "Web Development",
@@ -85,16 +100,59 @@ const translations: Record<Language, Record<string, string>> = {
     "services.support.f2": "IT infrastructure management",
     "services.support.f3": "ServiceNow ticketing & escalation",
     "services.learnMore": "Learn more",
-    "services.webdev.details":
-      "I build complete web applications from concept to deployment. Using React and TypeScript for dynamic frontends paired with Django REST backends, I create scalable, maintainable solutions. Whether you need a single-page app, e-commerce platform, or custom dashboard, I deliver clean code that performs.",
-    "services.security.details":
-      "Leveraging 6+ years of enterprise IT experience, I help secure your digital infrastructure. From Active Directory hardening to network security configuration, I implement industry best practices to protect your assets against modern threats.",
-    "services.support.details":
-      "Professional IT support with enterprise-level expertise. I troubleshoot complex Windows environments, manage cloud services, and ensure your infrastructure runs smoothly. ITIL-certified approach to incident management and problem resolution.",
+    "services.webdev.details": "I build complete web applications from concept to deployment.",
+    "services.security.details": "Leveraging 6+ years of enterprise IT experience, I help secure your digital infrastructure.",
+    "services.support.details": "Professional IT support with enterprise-level expertise.",
     "services.modal.techStack": "Technology Stack",
     "services.modal.keyFeatures": "Key Features",
     "services.modal.cta": "Discuss Your Project",
     "services.modal.downloadCV": "Download CV",
+
+    // Case Studies
+    "casestudies.title": "Case Studies",
+    "casestudies.subtitle": "Real solutions we've built for real businesses",
+    "casestudies.viewProject": "View Project",
+    "casestudies.1.title": "Mustapha Lamjahdi – Digital Campaign Platform",
+    "casestudies.1.desc": "A full-featured political campaign platform with event management, newsletter system, and real-time content management for an SPD candidate in Frankfurt.",
+    "casestudies.1.result": "Launched in 3 weeks — fully responsive PWA with integrated email system",
+    "casestudies.2.title": "Nakaa – AI-Powered Food Scanner",
+    "casestudies.2.desc": "An intelligent food scanning application using OCR and AI to analyze ingredients for Halal, Vegan, and Allergy-conscious users with instant traffic-light verdicts.",
+    "casestudies.2.result": "Multi-language support (AR/EN/DE) with real-time barcode & ingredient analysis",
+    "casestudies.3.title": "NovaVault – Military-Grade Password Manager",
+    "casestudies.3.desc": "A secure PWA password manager with Row Level Security, end-to-end encryption architecture, and biometric-ready UI for enterprise-grade credential management.",
+    "casestudies.3.result": "Zero-knowledge architecture with RLS-enforced data isolation",
+
+    // Multi-step Inquiry
+    "inquiry.title": "Start Your Project",
+    "inquiry.subtitle": "Tell us about your project and we'll get back to you within 24 hours.",
+    "inquiry.step1.title": "What do you need?",
+    "inquiry.step1.subtitle": "Select the type of service you're looking for",
+    "inquiry.step2.title": "Budget & Timeline",
+    "inquiry.step2.subtitle": "Help us understand your project scope",
+    "inquiry.step3.title": "Your Details",
+    "inquiry.step3.subtitle": "How can we reach you?",
+    "inquiry.type.webdev": "Web / App Development",
+    "inquiry.type.ai": "AI Integration & Automation",
+    "inquiry.type.automation": "Business Process Automation",
+    "inquiry.type.consulting": "Strategic Tech Consulting",
+    "inquiry.industry": "Your Industry (optional)",
+    "inquiry.budget": "Estimated Budget",
+    "inquiry.timelineLabel": "Project Timeline",
+    "inquiry.timeline.asap": "ASAP",
+    "inquiry.timeline.1to3": "1–3 Months",
+    "inquiry.timeline.3to6": "3–6 Months",
+    "inquiry.timeline.flexible": "Flexible",
+    "inquiry.name": "Your Name",
+    "inquiry.email": "Your Email",
+    "inquiry.details": "Tell us more about your project...",
+    "inquiry.back": "Back",
+    "inquiry.next": "Next",
+    "inquiry.submit": "Submit Inquiry",
+    "inquiry.submitting": "Submitting...",
+    "inquiry.success": "Inquiry Submitted!",
+    "inquiry.successMessage": "Thank you! We'll get back to you within 24 hours.",
+    "inquiry.error": "Error",
+    "inquiry.errorMessage": "Failed to submit. Please try again.",
 
     // Experience
     "experience.title": "Experience",
@@ -102,8 +160,7 @@ const translations: Record<Language, Record<string, string>> = {
     "experience.cbre.title": "IT Support Specialist - 2nd Level",
     "experience.cbre.company": "CBRE for DXC/Dell",
     "experience.cbre.period": "2017 - 2023",
-    "experience.cbre.description":
-      "Provided enterprise-level technical support managing Active Directory, ServiceNow ticketing, and complex Windows environments across global infrastructure.",
+    "experience.cbre.description": "Provided enterprise-level technical support managing Active Directory, ServiceNow ticketing, and complex Windows environments across global infrastructure.",
     "experience.cbre.task1": "Active Directory user & group management",
     "experience.cbre.task2": "ServiceNow incident resolution & escalation",
     "experience.cbre.task3": "2nd Level technical support & troubleshooting",
@@ -118,7 +175,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Skills
     "skills.title": "Technical Stack",
-    "skills.subtitle": "Technologies I Work With",
+    "skills.subtitle": "Technologies We Work With",
     "skills.languages": "Languages",
     "skills.frameworks": "Frameworks",
     "skills.systems": "Systems & Tools",
@@ -135,30 +192,26 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Chat
     "chat.title": "AI Assistant",
-    "chat.placeholder": "Ask me anything about Noah...",
-    "chat.welcome":
-      "Hello! I'm Noah's AI assistant. I know his CV inside and out. Ask me about his experience, skills, or projects!",
+    "chat.placeholder": "Ask us anything...",
+    "chat.welcome": "Hello! I'm the Tech-Noah Solutions assistant. Ask me about our services, case studies, or how we can help your business!",
     "chat.send": "Send",
 
     // Testimonials
-    "testimonials.title": "Testimonials",
-    "testimonials.subtitle": "What clients and colleagues say about working with me",
+    "testimonials.title": "Client Testimonials",
+    "testimonials.subtitle": "What our clients say about working with Tech-Noah Solutions",
     "testimonials.writeReview": "Write a Review",
     "testimonials.1.name": "Michael Schmidt",
     "testimonials.1.role": "IT Manager",
     "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote":
-      "Noah's Full-Stack expertise and deep understanding of IT infrastructure made him invaluable. He delivered a robust web application while seamlessly integrating with our enterprise systems.",
+    "testimonials.1.quote": "Tech-Noah's Full-Stack expertise and deep understanding of IT infrastructure made them invaluable. They delivered a robust web application while seamlessly integrating with our enterprise systems.",
     "testimonials.2.name": "Sarah Weber",
     "testimonials.2.role": "Lead Developer",
     "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote":
-      "Exceptional problem-solving skills and reliable delivery. Noah consistently exceeded expectations, tackling complex challenges with both creativity and technical precision.",
+    "testimonials.2.quote": "Exceptional problem-solving skills and reliable delivery. The team consistently exceeded expectations, tackling complex challenges with both creativity and technical precision.",
     "testimonials.3.name": "Thomas Müller",
     "testimonials.3.role": "CTO",
     "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote":
-      "His hackathon mentality combined with enterprise experience is rare. Noah built our MVP in record time without sacrificing code quality or security best practices.",
+    "testimonials.3.quote": "Their hackathon mentality combined with enterprise experience is rare. They built our MVP in record time without sacrificing code quality or security best practices.",
 
     // Review Modal
     "review.title": "Write a Review",
@@ -229,13 +282,13 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.send": "Send Message",
     "contact.sending": "Sending...",
     "contact.success": "Message Sent!",
-    "contact.successMessage": "Thank you for reaching out. I'll get back to you soon.",
+    "contact.successMessage": "Thank you for reaching out. We'll get back to you soon.",
     "contact.error": "Error",
     "contact.errorMessage": "Failed to send message. Please try again.",
     "contact.fillAll": "Please fill in all required fields.",
 
     // Styles Inquiry
-    "styles.inquiryDesc": "Send me a project inquiry for:",
+    "styles.inquiryDesc": "Send us a project inquiry for:",
     "command.back": "Back",
 
     // Skills Filter
@@ -249,37 +302,41 @@ const translations: Record<Language, Record<string, string>> = {
   de: {
     // Navigation
     "nav.home": "Startseite",
-    "nav.about": "Über mich",
+    "nav.about": "Über uns",
     "nav.services": "Leistungen",
+    "nav.casestudies": "Fallstudien",
     "nav.experience": "Erfahrung",
     "nav.projects": "Projekte",
     "nav.skills": "Fähigkeiten",
     "nav.education": "Ausbildung",
     "nav.contact": "Kontakt",
+    "nav.consult": "Beratung starten",
 
-    // Hero
+    // Hero - Agency
+    "hero.badge": "KI-gestützte Software-Agentur",
+    "hero.tagline": "Die Zukunft mit KI-gestützten Lösungen automatisieren",
+    "hero.description": "Wir entwerfen, entwickeln und automatisieren intelligente Softwaresysteme, die Unternehmen schneller skalieren lassen. Von maßgeschneiderten Web-Apps bis hin zu KI-Integration und Workflow-Automatisierung.",
+    "hero.cta.consult": "Projekt starten",
+    "hero.cta.casestudies": "Fallstudien ansehen",
     "hero.greeting": "Hallo, ich bin",
     "hero.name": "Noah Al-Samawi",
     "hero.title": "Full-Stack Entwickler mit Fokus auf IT-Sicherheit",
     "hero.subtitle": "Moderne Webanwendungen mit Security-First-Ansatz",
-    "hero.description":
-      "Ich entwickle moderne Webanwendungen mit einem Security-First-Ansatz. Mein Ziel ist es, robuste Software zu bauen und mich kontinuierlich in der offensiven und defensiven Sicherheit (wie CTF & Home-Labs) weiterzuentwickeln.",
     "hero.cta.contact": "Kontakt aufnehmen",
     "hero.cta.projects": "Projekte ansehen",
     "hero.cta.download": "Lebenslauf herunterladen",
     "hero.location": "Frankfurt, Deutschland",
     "hero.status": "Offen für Projekte",
 
-    // About
+    // About - Founder
+    "about.agencyTitle": "Gründer & Lead Engineer",
+    "about.agencySubtitle": "Der Kopf hinter Tech-Noah Solutions",
     "about.title": "Über mich",
     "about.subtitle": "Lernen Sie mich kennen",
     "about.years": "Jahre Erfahrung",
-    "about.valueProposition":
-      "Leidenschaftlich daran, robuste Softwareentwicklung mit defensiver Security zu verbinden.",
-    "about.description1":
-      'Ich baue nicht nur Apps; ich sichere sie ab. Mit einer "Breaker"-Mentalität nutze ich Tools wie Burp Suite und Python-Scripting, um Schwachstellen zu identifizieren, bevor sie zu Bedrohungen werden.',
-    "about.description2":
-      "Mein Hintergrund umfasst den Aufbau von Home Labs für Angriffssimulationen und die Automatisierung von Security-Workflows. Kombiniert mit 6+ Jahren Enterprise-IT und Full-Stack-Entwicklung liefere ich Lösungen, die funktional und sicher sind.",
+    "about.valueProposition": "Leidenschaftlich daran, robuste Softwareentwicklung mit defensiver Security zu verbinden.",
+    "about.description1": 'Ich baue nicht nur Apps; ich sichere sie ab.',
+    "about.description2": "Mein Hintergrund umfasst den Aufbau von Home Labs für Angriffssimulationen und die Automatisierung von Security-Workflows. Kombiniert mit 6+ Jahren Enterprise-IT und Full-Stack-Entwicklung liefere ich Lösungen, die funktional und sicher sind.",
     "about.highlight1": "6+ Jahre Enterprise-IT bei Fortune-500-Unternehmen",
     "about.highlight2": "Full-Stack-Entwicklung mit React, Django & TypeScript",
     "about.highlight3": "Code Institute Diplom in Full-Stack Webentwicklung (2024)",
@@ -291,8 +348,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hire Me Section
     "hire.title": "Ideen in Realität verwandeln",
-    "hire.subtitle":
-      "Brauchen Sie eine Website, eine maßgeschneiderte App oder ein Sicherheitsaudit? Ich schreibe nicht nur Code; ich baue Unternehmen.",
+    "hire.subtitle": "Brauchen Sie eine Website, eine maßgeschneiderte App oder ein Sicherheitsaudit?",
     "hire.webdesign.title": "Web-Design",
     "hire.webdesign.desc": "Schöne, responsive Websites, die Besucher in Kunden verwandeln.",
     "hire.apps.title": "Individuelle Apps",
@@ -301,35 +357,90 @@ const translations: Record<Language, Record<string, string>> = {
     "hire.security.desc": "Schützen Sie Ihre digitalen Assets mit professionellen Sicherheitsaudits.",
     "hire.cta": "Lass uns zusammenarbeiten",
 
-    // Services
+    // Agency Services
+    "agency.services.title": "Unsere Leistungen",
+    "agency.services.subtitle": "End-to-End-Technologielösungen für Ihr Unternehmenswachstum",
+    "agency.services.webdev.title": "Web- & App-Entwicklung",
+    "agency.services.webdev.desc": "Full-Stack-Anwendungen mit modernen Frameworks. Von MVPs bis zu Enterprise-Plattformen – skalierbar, sicher und performant.",
+    "agency.services.ai.title": "KI-Systeme & Integration",
+    "agency.services.ai.desc": "Nutzen Sie die Kraft der KI für Ihr Unternehmen. Wir entwickeln GPT-Integrationen, ML-Pipelines und intelligente Automatisierung.",
+    "agency.services.automation.title": "Geschäftsautomatisierung",
+    "agency.services.automation.desc": "Optimieren Sie Ihre Abläufe mit intelligenter Workflow-Automatisierung. CRM-Integrationen, Datenpipelines und Prozessoptimierung.",
+    "agency.services.consulting.title": "Strategische Beratung",
+    "agency.services.consulting.desc": "Expertenberatung zu Architektur, Sicherheitsaudits und Technologiestrategie für die Zukunftssicherheit Ihres Unternehmens.",
+
+    // Services (legacy)
     "services.title": "Leistungen",
     "services.subtitle": "Wie ich Ihnen helfen kann",
+    "services.learnMore": "Mehr erfahren",
     "services.webdev.title": "Webentwicklung",
-    "services.webdev.desc": "Moderne, responsive Webanwendungen mit aktuellen Technologien.",
+    "services.webdev.desc": "Moderne, responsive Webanwendungen.",
     "services.webdev.f1": "React & TypeScript Frontends",
     "services.webdev.f2": "Django & REST API Backends",
     "services.webdev.f3": "Datenbankdesign & Optimierung",
     "services.security.title": "Cybersicherheit",
-    "services.security.desc": "Schutz digitaler Assets mit Enterprise-Sicherheitspraktiken.",
+    "services.security.desc": "Schutz digitaler Assets.",
     "services.security.f1": "Sicherheitsaudits & Bewertungen",
     "services.security.f2": "Netzwerksicherheitskonfiguration",
     "services.security.f3": "Active Directory Management",
     "services.support.title": "Tech-Support",
-    "services.support.desc": "Professioneller IT-Support mit Enterprise-Level-Fehlerbehebung.",
+    "services.support.desc": "Professioneller IT-Support.",
     "services.support.f1": "Windows Server Administration",
     "services.support.f2": "IT-Infrastruktur-Management",
     "services.support.f3": "ServiceNow Ticketing & Eskalation",
-    "services.learnMore": "Mehr erfahren",
-    "services.webdev.details":
-      "Ich entwickle komplette Webanwendungen vom Konzept bis zum Deployment. Mit React und TypeScript für dynamische Frontends und Django REST Backends erstelle ich skalierbare, wartbare Lösungen. Ob Single-Page-App, E-Commerce-Plattform oder Custom Dashboard – ich liefere sauberen, performanten Code.",
-    "services.security.details":
-      "Mit 6+ Jahren Enterprise-IT-Erfahrung helfe ich, Ihre digitale Infrastruktur zu sichern. Von Active Directory-Härtung bis zur Netzwerksicherheitskonfiguration implementiere ich Best Practices zum Schutz gegen moderne Bedrohungen.",
-    "services.support.details":
-      "Professioneller IT-Support mit Enterprise-Level-Expertise. Ich behebe Probleme in komplexen Windows-Umgebungen, verwalte Cloud-Dienste und sorge für reibungslosen Infrastrukturbetrieb. ITIL-zertifizierter Ansatz für Incident Management.",
+    "services.webdev.details": "Komplette Webanwendungen vom Konzept bis zum Deployment.",
+    "services.security.details": "Sicherung Ihrer digitalen Infrastruktur.",
+    "services.support.details": "Professioneller IT-Support mit Enterprise-Level-Expertise.",
     "services.modal.techStack": "Technologie-Stack",
     "services.modal.keyFeatures": "Hauptfunktionen",
     "services.modal.cta": "Projekt besprechen",
     "services.modal.downloadCV": "Lebenslauf herunterladen",
+
+    // Case Studies
+    "casestudies.title": "Fallstudien",
+    "casestudies.subtitle": "Echte Lösungen, die wir für echte Unternehmen entwickelt haben",
+    "casestudies.viewProject": "Projekt ansehen",
+    "casestudies.1.title": "Mustapha Lamjahdi – Digitale Kampagnenplattform",
+    "casestudies.1.desc": "Eine vollständige politische Kampagnenplattform mit Eventmanagement, Newsletter-System und Echtzeit-Content-Management.",
+    "casestudies.1.result": "In 3 Wochen gestartet — voll responsive PWA mit integriertem E-Mail-System",
+    "casestudies.2.title": "Nakaa – KI-gestützter Food-Scanner",
+    "casestudies.2.desc": "Eine intelligente Lebensmittel-Scan-App mit OCR und KI zur Analyse von Zutaten für Halal-, Vegane und Allergie-bewusste Nutzer.",
+    "casestudies.2.result": "Mehrsprachig (AR/EN/DE) mit Echtzeit-Barcode- & Zutatenanalyse",
+    "casestudies.3.title": "NovaVault – Militärischer Passwort-Manager",
+    "casestudies.3.desc": "Ein sicherer PWA-Passwort-Manager mit Row Level Security und Ende-zu-Ende-Verschlüsselungsarchitektur.",
+    "casestudies.3.result": "Zero-Knowledge-Architektur mit RLS-geschützter Datenisolation",
+
+    // Multi-step Inquiry
+    "inquiry.title": "Ihr Projekt starten",
+    "inquiry.subtitle": "Erzählen Sie uns von Ihrem Projekt und wir melden uns innerhalb von 24 Stunden.",
+    "inquiry.step1.title": "Was brauchen Sie?",
+    "inquiry.step1.subtitle": "Wählen Sie die Art der gewünschten Dienstleistung",
+    "inquiry.step2.title": "Budget & Zeitplan",
+    "inquiry.step2.subtitle": "Helfen Sie uns, den Umfang zu verstehen",
+    "inquiry.step3.title": "Ihre Daten",
+    "inquiry.step3.subtitle": "Wie können wir Sie erreichen?",
+    "inquiry.type.webdev": "Web- / App-Entwicklung",
+    "inquiry.type.ai": "KI-Integration & Automatisierung",
+    "inquiry.type.automation": "Geschäftsprozess-Automatisierung",
+    "inquiry.type.consulting": "Strategische Tech-Beratung",
+    "inquiry.industry": "Ihre Branche (optional)",
+    "inquiry.budget": "Geschätztes Budget",
+    "inquiry.timelineLabel": "Projektzeitplan",
+    "inquiry.timeline.asap": "Sofort",
+    "inquiry.timeline.1to3": "1–3 Monate",
+    "inquiry.timeline.3to6": "3–6 Monate",
+    "inquiry.timeline.flexible": "Flexibel",
+    "inquiry.name": "Ihr Name",
+    "inquiry.email": "Ihre E-Mail",
+    "inquiry.details": "Erzählen Sie uns mehr über Ihr Projekt...",
+    "inquiry.back": "Zurück",
+    "inquiry.next": "Weiter",
+    "inquiry.submit": "Anfrage senden",
+    "inquiry.submitting": "Wird gesendet...",
+    "inquiry.success": "Anfrage gesendet!",
+    "inquiry.successMessage": "Vielen Dank! Wir melden uns innerhalb von 24 Stunden.",
+    "inquiry.error": "Fehler",
+    "inquiry.errorMessage": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
 
     // Experience
     "experience.title": "Erfahrung",
@@ -337,8 +448,7 @@ const translations: Record<Language, Record<string, string>> = {
     "experience.cbre.title": "IT Support Spezialist - 2nd Level",
     "experience.cbre.company": "CBRE für DXC/Dell",
     "experience.cbre.period": "2017 - 2023",
-    "experience.cbre.description":
-      "Enterprise-Level technischer Support mit Active Directory, ServiceNow und komplexen Windows-Umgebungen in globaler Infrastruktur.",
+    "experience.cbre.description": "Enterprise-Level technischer Support mit Active Directory, ServiceNow und komplexen Windows-Umgebungen.",
     "experience.cbre.task1": "Active Directory Benutzer- & Gruppenverwaltung",
     "experience.cbre.task2": "ServiceNow Incident-Auflösung & Eskalation",
     "experience.cbre.task3": "2nd Level technischer Support & Fehlerbehebung",
@@ -353,7 +463,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Skills
     "skills.title": "Technologien",
-    "skills.subtitle": "Womit ich arbeite",
+    "skills.subtitle": "Womit wir arbeiten",
     "skills.languages": "Sprachen",
     "skills.frameworks": "Frameworks",
     "skills.systems": "Systeme & Tools",
@@ -370,30 +480,26 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Chat
     "chat.title": "KI-Assistent",
-    "chat.placeholder": "Fragen Sie mich über Noah...",
-    "chat.welcome":
-      "Hallo! Ich bin Noahs KI-Assistent. Fragen Sie mich zu seiner Erfahrung, Fähigkeiten oder Projekten!",
+    "chat.placeholder": "Fragen Sie uns...",
+    "chat.welcome": "Hallo! Ich bin der Tech-Noah Solutions Assistent. Fragen Sie mich zu unseren Leistungen oder Fallstudien!",
     "chat.send": "Senden",
 
     // Testimonials
-    "testimonials.title": "Referenzen",
-    "testimonials.subtitle": "Was Kunden und Kollegen über die Zusammenarbeit mit mir sagen",
+    "testimonials.title": "Kundenstimmen",
+    "testimonials.subtitle": "Was unsere Kunden über die Zusammenarbeit mit Tech-Noah Solutions sagen",
     "testimonials.writeReview": "Bewertung schreiben",
     "testimonials.1.name": "Michael Schmidt",
     "testimonials.1.role": "IT-Manager",
     "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote":
-      "Noahs Full-Stack-Expertise und sein tiefes Verständnis der IT-Infrastruktur machten ihn unverzichtbar. Er lieferte eine robuste Webanwendung und integrierte sie nahtlos in unsere Unternehmenssysteme.",
+    "testimonials.1.quote": "Tech-Noahs Full-Stack-Expertise und tiefes Verständnis der IT-Infrastruktur machten sie unverzichtbar.",
     "testimonials.2.name": "Sarah Weber",
     "testimonials.2.role": "Lead Developer",
     "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote":
-      "Außergewöhnliche Problemlösungsfähigkeiten und zuverlässige Lieferung. Noah übertraf konstant die Erwartungen und meisterte komplexe Herausforderungen mit Kreativität und technischer Präzision.",
+    "testimonials.2.quote": "Außergewöhnliche Problemlösungsfähigkeiten und zuverlässige Lieferung. Das Team übertraf konstant die Erwartungen.",
     "testimonials.3.name": "Thomas Müller",
     "testimonials.3.role": "CTO",
     "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote":
-      "Seine Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Noah baute unser MVP in Rekordzeit ohne Kompromisse bei Codequalität oder Sicherheits-Best-Practices.",
+    "testimonials.3.quote": "Ihre Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Sie bauten unser MVP in Rekordzeit.",
 
     // Review Modal
     "review.title": "Bewertung schreiben",
@@ -484,36 +590,41 @@ const translations: Record<Language, Record<string, string>> = {
   ar: {
     // Navigation
     "nav.home": "الرئيسية",
-    "nav.about": "عني",
+    "nav.about": "عنا",
     "nav.services": "الخدمات",
+    "nav.casestudies": "دراسات الحالة",
     "nav.experience": "الخبرة",
     "nav.projects": "المشاريع",
     "nav.skills": "المهارات",
     "nav.education": "التعليم",
-    "nav.contact": "تواصل معي",
+    "nav.contact": "تواصل معنا",
+    "nav.consult": "ابدأ مشروعك",
 
-    // Hero
+    // Hero - Agency
+    "hero.badge": "وكالة برمجيات مدعومة بالذكاء الاصطناعي",
+    "hero.tagline": "أتمتة المستقبل بحلول مدعومة بالذكاء الاصطناعي",
+    "hero.description": "نصمم ونبني ونؤتمت أنظمة برمجية ذكية تساعد الشركات على التوسع بشكل أسرع. من تطبيقات الويب المخصصة إلى تكامل الذكاء الاصطناعي وأتمتة سير العمل.",
+    "hero.cta.consult": "ابدأ مشروعاً",
+    "hero.cta.casestudies": "عرض دراسات الحالة",
     "hero.greeting": "مرحباً، أنا",
     "hero.name": "نوح السماوي",
     "hero.title": "مطور Full-Stack مع التركيز على الأمن",
     "hero.subtitle": "بناء تطبيقات ويب حديثة بنهج الأمان أولاً",
-    "hero.description":
-      "أطور تطبيقات ويب حديثة بعقلية الأمان أولاً. هدفي هو بناء برمجيات قوية مع التطور المستمر في الأمن الهجومي والدفاعي من خلال تحديات CTF والمختبرات المنزلية.",
-    "hero.cta.contact": "تواصل معي",
+    "hero.cta.contact": "تواصل معنا",
     "hero.cta.projects": "عرض المشاريع",
     "hero.cta.download": "تحميل السيرة الذاتية",
     "hero.location": "فرانكفورت، ألمانيا",
     "hero.status": "متاح للفرص",
 
-    // About
-    "about.title": "عني",
-    "about.subtitle": "تعرف علي أكثر",
+    // About - Founder
+    "about.agencyTitle": "المؤسس والمهندس الرئيسي",
+    "about.agencySubtitle": "العقل المدبر وراء Tech-Noah Solutions",
+    "about.title": "عنا",
+    "about.subtitle": "تعرف علينا أكثر",
     "about.years": "سنوات الخبرة",
     "about.valueProposition": "شغوف بربط هندسة البرمجيات المتينة بالأمان الدفاعي.",
-    "about.description1":
-      'لا أبني التطبيقات فحسب؛ بل أؤمّنها. بعقلية "المخترق"، أستخدم أدوات مثل Burp Suite وبرمجة Python لتحديد الثغرات قبل أن تصبح تهديدات.',
-    "about.description2":
-      "تشمل خلفيتي بناء مختبرات منزلية لمحاكاة الهجمات وأتمتة سير عمل الأمان. مع أكثر من 6 سنوات من تقنية المعلومات للشركات وتطوير Full-Stack، أقدم حلولاً عملية ومحصنة.",
+    "about.description1": 'لا نبني التطبيقات فحسب؛ بل نؤمّنها.',
+    "about.description2": "تشمل خلفيتنا بناء مختبرات منزلية لمحاكاة الهجمات وأتمتة سير عمل الأمان. مع أكثر من 6 سنوات من تقنية المعلومات للشركات وتطوير Full-Stack.",
     "about.highlight1": "أكثر من 6 سنوات خبرة في شركات Fortune 500",
     "about.highlight2": "تطوير Full-Stack مع React وDjango وTypeScript",
     "about.highlight3": "دبلوم تطوير الويب Full-Stack من Code Institute (2024)",
@@ -525,7 +636,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hire Me Section
     "hire.title": "حوّل الأفكار إلى واقع",
-    "hire.subtitle": "هل تحتاج موقع ويب، تطبيق مخصص، أو تدقيق أمني؟ أنا لا أكتب الكود فقط؛ أنا أبني أعمالاً.",
+    "hire.subtitle": "هل تحتاج موقع ويب، تطبيق مخصص، أو تدقيق أمني؟",
     "hire.webdesign.title": "تصميم الويب",
     "hire.webdesign.desc": "مواقع جميلة ومتجاوبة تحول الزوار إلى عملاء.",
     "hire.apps.title": "تطبيقات مخصصة",
@@ -534,35 +645,90 @@ const translations: Record<Language, Record<string, string>> = {
     "hire.security.desc": "احمِ أصولك الرقمية بتدقيقات أمنية احترافية.",
     "hire.cta": "لنعمل معاً",
 
-    // Services
+    // Agency Services
+    "agency.services.title": "خدماتنا",
+    "agency.services.subtitle": "حلول تقنية شاملة لنمو أعمالك",
+    "agency.services.webdev.title": "تطوير الويب والتطبيقات",
+    "agency.services.webdev.desc": "تطبيقات Full-Stack بأطر عمل حديثة. من MVPs إلى منصات المؤسسات – قابلة للتوسع وآمنة وعالية الأداء.",
+    "agency.services.ai.title": "أنظمة الذكاء الاصطناعي والتكامل",
+    "agency.services.ai.desc": "استفد من قوة الذكاء الاصطناعي لتعزيز أعمالك. نبني تكاملات GPT المخصصة وخطوط ML والأتمتة الذكية.",
+    "agency.services.automation.title": "أتمتة الأعمال",
+    "agency.services.automation.desc": "بسّط عملياتك بأتمتة سير العمل الذكية. تكاملات CRM وخطوط البيانات وتحسين العمليات.",
+    "agency.services.consulting.title": "الاستشارات الاستراتيجية",
+    "agency.services.consulting.desc": "إرشاد خبير في قرارات الهندسة وتدقيقات الأمان واستراتيجية التكنولوجيا.",
+
+    // Services (legacy)
     "services.title": "الخدمات",
-    "services.subtitle": "كيف يمكنني مساعدتك في تحقيق أفكارك",
+    "services.subtitle": "كيف يمكننا مساعدتك",
+    "services.learnMore": "اعرف المزيد",
     "services.webdev.title": "تطوير الويب",
-    "services.webdev.desc": "بناء تطبيقات ويب حديثة ومتجاوبة بأحدث التقنيات.",
+    "services.webdev.desc": "بناء تطبيقات ويب حديثة ومتجاوبة.",
     "services.webdev.f1": "واجهات React وTypeScript",
     "services.webdev.f2": "خلفيات Django وREST API",
     "services.webdev.f3": "تصميم وتحسين قواعد البيانات",
     "services.security.title": "الأمن السيبراني",
-    "services.security.desc": "حماية أصولك الرقمية بممارسات أمان مؤسسية.",
+    "services.security.desc": "حماية أصولك الرقمية.",
     "services.security.f1": "تدقيقات وتقييمات أمنية",
     "services.security.f2": "تكوين أمان الشبكة",
     "services.security.f3": "إدارة Active Directory",
     "services.support.title": "الدعم التقني",
-    "services.support.desc": "دعم IT احترافي بخبرة مؤسسية في استكشاف الأخطاء.",
+    "services.support.desc": "دعم IT احترافي.",
     "services.support.f1": "إدارة Windows Server",
     "services.support.f2": "إدارة البنية التحتية لـ IT",
     "services.support.f3": "تذاكر ServiceNow والتصعيد",
-    "services.learnMore": "اعرف المزيد",
-    "services.webdev.details":
-      "أبني تطبيقات ويب كاملة من الفكرة إلى النشر. باستخدام React وTypeScript للواجهات الديناميكية مع خلفيات Django REST، أنشئ حلولاً قابلة للتوسع والصيانة.",
-    "services.security.details":
-      "بخبرة أكثر من 6 سنوات في IT المؤسسي، أساعد في تأمين بنيتك التحتية الرقمية. من تقوية Active Directory إلى تكوين أمان الشبكة، أنفذ أفضل الممارسات.",
-    "services.support.details":
-      "دعم IT احترافي بخبرة مؤسسية. أحل المشاكل في بيئات Windows المعقدة، وأدير الخدمات السحابية، وأضمن تشغيل بنيتك التحتية بسلاسة.",
+    "services.webdev.details": "أبني تطبيقات ويب كاملة من الفكرة إلى النشر.",
+    "services.security.details": "تأمين بنيتك التحتية الرقمية.",
+    "services.support.details": "دعم IT احترافي بخبرة مؤسسية.",
     "services.modal.techStack": "التقنيات المستخدمة",
     "services.modal.keyFeatures": "الميزات الرئيسية",
     "services.modal.cta": "ناقش مشروعك",
     "services.modal.downloadCV": "تحميل السيرة الذاتية",
+
+    // Case Studies
+    "casestudies.title": "دراسات الحالة",
+    "casestudies.subtitle": "حلول حقيقية بنيناها لشركات حقيقية",
+    "casestudies.viewProject": "عرض المشروع",
+    "casestudies.1.title": "مصطفى لمجاهدي – منصة حملة رقمية",
+    "casestudies.1.desc": "منصة حملة سياسية متكاملة مع إدارة الفعاليات ونظام النشرات الإخبارية وإدارة المحتوى في الوقت الحقيقي.",
+    "casestudies.1.result": "أُطلقت في 3 أسابيع — PWA متجاوب بالكامل مع نظام بريد إلكتروني متكامل",
+    "casestudies.2.title": "نقاء – ماسح الطعام بالذكاء الاصطناعي",
+    "casestudies.2.desc": "تطبيق مسح طعام ذكي يستخدم OCR والذكاء الاصطناعي لتحليل المكونات للمستخدمين الحلال والنباتيين والمتحسسين.",
+    "casestudies.2.result": "دعم متعدد اللغات (AR/EN/DE) مع تحليل الباركود والمكونات في الوقت الحقيقي",
+    "casestudies.3.title": "NovaVault – مدير كلمات مرور عسكري",
+    "casestudies.3.desc": "مدير كلمات مرور PWA آمن مع أمان على مستوى الصفوف وبنية تشفير من طرف إلى طرف.",
+    "casestudies.3.result": "بنية صفرية المعرفة مع عزل بيانات محمي بـ RLS",
+
+    // Multi-step Inquiry
+    "inquiry.title": "ابدأ مشروعك",
+    "inquiry.subtitle": "أخبرنا عن مشروعك وسنرد عليك خلال 24 ساعة.",
+    "inquiry.step1.title": "ماذا تحتاج؟",
+    "inquiry.step1.subtitle": "اختر نوع الخدمة التي تبحث عنها",
+    "inquiry.step2.title": "الميزانية والجدول الزمني",
+    "inquiry.step2.subtitle": "ساعدنا في فهم نطاق مشروعك",
+    "inquiry.step3.title": "بياناتك",
+    "inquiry.step3.subtitle": "كيف يمكننا الوصول إليك؟",
+    "inquiry.type.webdev": "تطوير الويب / التطبيقات",
+    "inquiry.type.ai": "تكامل الذكاء الاصطناعي والأتمتة",
+    "inquiry.type.automation": "أتمتة العمليات التجارية",
+    "inquiry.type.consulting": "استشارات تقنية استراتيجية",
+    "inquiry.industry": "مجال عملك (اختياري)",
+    "inquiry.budget": "الميزانية المقدرة",
+    "inquiry.timelineLabel": "الجدول الزمني للمشروع",
+    "inquiry.timeline.asap": "في أقرب وقت",
+    "inquiry.timeline.1to3": "1–3 أشهر",
+    "inquiry.timeline.3to6": "3–6 أشهر",
+    "inquiry.timeline.flexible": "مرن",
+    "inquiry.name": "اسمك",
+    "inquiry.email": "بريدك الإلكتروني",
+    "inquiry.details": "أخبرنا المزيد عن مشروعك...",
+    "inquiry.back": "رجوع",
+    "inquiry.next": "التالي",
+    "inquiry.submit": "إرسال الاستفسار",
+    "inquiry.submitting": "جارٍ الإرسال...",
+    "inquiry.success": "تم إرسال الاستفسار!",
+    "inquiry.successMessage": "شكراً! سنرد عليك خلال 24 ساعة.",
+    "inquiry.error": "خطأ",
+    "inquiry.errorMessage": "فشل الإرسال. يرجى المحاولة مرة أخرى.",
 
     // Experience
     "experience.title": "الخبرة",
@@ -570,8 +736,7 @@ const translations: Record<Language, Record<string, string>> = {
     "experience.cbre.title": "أخصائي دعم IT - المستوى الثاني",
     "experience.cbre.company": "CBRE لـ DXC/Dell",
     "experience.cbre.period": "2017 - 2023",
-    "experience.cbre.description":
-      "قدمت دعماً تقنياً على مستوى المؤسسات لإدارة Active Directory وتذاكر ServiceNow وبيئات Windows المعقدة.",
+    "experience.cbre.description": "دعم تقني على مستوى المؤسسات.",
     "experience.cbre.task1": "إدارة مستخدمي ومجموعات Active Directory",
     "experience.cbre.task2": "حل حوادث ServiceNow والتصعيد",
     "experience.cbre.task3": "دعم تقني المستوى الثاني واستكشاف الأخطاء",
@@ -586,7 +751,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Skills
     "skills.title": "التقنيات",
-    "skills.subtitle": "التقنيات التي أعمل بها",
+    "skills.subtitle": "التقنيات التي نعمل بها",
     "skills.languages": "اللغات",
     "skills.frameworks": "أطر العمل",
     "skills.systems": "الأنظمة والأدوات",
@@ -603,29 +768,26 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Chat
     "chat.title": "المساعد الذكي",
-    "chat.placeholder": "اسألني أي شيء عن نوح...",
-    "chat.welcome": "مرحباً! أنا مساعد نوح الذكي. أعرف سيرته الذاتية بالكامل. اسألني عن خبرته أو مهاراته أو مشاريعه!",
+    "chat.placeholder": "اسألنا أي شيء...",
+    "chat.welcome": "مرحباً! أنا مساعد Tech-Noah Solutions الذكي. اسألني عن خدماتنا أو دراسات الحالة!",
     "chat.send": "إرسال",
 
     // Testimonials
-    "testimonials.title": "التوصيات",
-    "testimonials.subtitle": "ما يقوله العملاء والزملاء عن العمل معي",
+    "testimonials.title": "آراء العملاء",
+    "testimonials.subtitle": "ما يقوله عملاؤنا عن العمل مع Tech-Noah Solutions",
     "testimonials.writeReview": "اكتب تقييماً",
     "testimonials.1.name": "ميخائيل شميت",
     "testimonials.1.role": "مدير IT",
     "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote":
-      "خبرة نوح في Full-Stack وفهمه العميق للبنية التحتية لـ IT جعلته لا غنى عنه. قدم تطبيق ويب متين مع دمج سلس في أنظمتنا المؤسسية.",
+    "testimonials.1.quote": "خبرة Tech-Noah في Full-Stack وفهمهم العميق للبنية التحتية جعلهم لا غنى عنهم.",
     "testimonials.2.name": "سارة ويبر",
     "testimonials.2.role": "مطور رئيسي",
     "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote":
-      "مهارات استثنائية في حل المشاكل وتسليم موثوق. نوح تجاوز التوقعات باستمرار، متعاملاً مع التحديات المعقدة بإبداع ودقة تقنية.",
+    "testimonials.2.quote": "مهارات استثنائية في حل المشاكل وتسليم موثوق. الفريق تجاوز التوقعات باستمرار.",
     "testimonials.3.name": "توماس مولر",
     "testimonials.3.role": "CTO",
     "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote":
-      "عقليته في الهاكاثون مع خبرته المؤسسية نادرة. بنى نوح MVP في وقت قياسي دون التضحية بجودة الكود أو أفضل ممارسات الأمان.",
+    "testimonials.3.quote": "عقليتهم في الهاكاثون مع خبرتهم المؤسسية نادرة. بنوا MVP في وقت قياسي.",
 
     // Review Modal
     "review.title": "اكتب تقييماً",
@@ -665,13 +827,13 @@ const translations: Record<Language, Record<string, string>> = {
     "gallery.subtitle": "اختر أسلوباً يناسب رؤيتك",
     "gallery.select": "أريد هذا الأسلوب",
     "gallery.minimalist": "بسيط",
-    "gallery.minimalist.desc": "تصميم نظيف وبسيط وأنيق مع التركيز على المحتوى.",
+    "gallery.minimalist.desc": "تصميم نظيف وبسيط وأنيق.",
     "gallery.cosmic": "كوني / داكن",
-    "gallery.cosmic.desc": "ثيم داكن حديث مع لمسات نيون وجماليات تقنية.",
+    "gallery.cosmic.desc": "ثيم داكن حديث مع لمسات نيون.",
     "gallery.corporate": "مؤسسي",
     "gallery.corporate.desc": "تصميم احترافي وموثوق للأعمال.",
     "gallery.ecommerce": "تجارة إلكترونية",
-    "gallery.ecommerce.desc": "تصميم موجه للتحويل للمتاجر الإلكترونية.",
+    "gallery.ecommerce.desc": "تصميم موجه للتحويل.",
     "gallery.creative": "إبداعي",
     "gallery.creative.desc": "تصاميم جريئة وفنية تبرز.",
 
@@ -686,7 +848,7 @@ const translations: Record<Language, Record<string, string>> = {
     "cookie.decline": "رفض",
 
     // Contact
-    "contact.title": "تواصل معي",
+    "contact.title": "تواصل معنا",
     "contact.subtitle": "هل لديك مشروع في ذهنك؟ لنناقش كيف يمكننا العمل معاً.",
     "contact.location": "فرانكفورت، ألمانيا",
     "contact.mapAlt": "خريطة الموقع",
@@ -696,13 +858,13 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.send": "إرسال الرسالة",
     "contact.sending": "جارٍ الإرسال...",
     "contact.success": "تم إرسال الرسالة!",
-    "contact.successMessage": "شكراً لتواصلك. سأرد عليك قريباً.",
+    "contact.successMessage": "شكراً لتواصلك. سنرد عليك قريباً.",
     "contact.error": "خطأ",
     "contact.errorMessage": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
     "contact.fillAll": "يرجى ملء جميع الحقول المطلوبة.",
 
     // Styles Inquiry
-    "styles.inquiryDesc": "أرسل لي استفسار مشروع لـ:",
+    "styles.inquiryDesc": "أرسل لنا استفسار مشروع لـ:",
     "command.back": "رجوع",
 
     // Skills Filter

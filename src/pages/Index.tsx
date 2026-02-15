@@ -2,14 +2,11 @@ import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import BentoServicesSection from '@/components/BentoServicesSection';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
 import AboutSection from '@/components/AboutSection';
-import HireMeSection from '@/components/HireMeSection';
-import ServicesSection from '@/components/ServicesSection';
-import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
-import EducationSection from '@/components/EducationSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import StyleGallerySection from '@/components/StyleGallerySection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -18,8 +15,7 @@ import SectionSkeleton from '@/components/SectionSkeleton';
 import DesignGallery from '@/components/DesignGallery';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// Lazy load Contact section for better LCP performance
-const ContactSection = lazy(() => import('@/components/ContactSection'));
+const MultiStepInquiry = lazy(() => import('@/components/MultiStepInquiry'));
 
 // Section wrapper with scroll-triggered animations
 const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
@@ -44,12 +40,8 @@ const Index: React.FC = () => {
   const { direction } = useLanguage();
   const [isDesignGalleryOpen, setIsDesignGalleryOpen] = useState(false);
 
-  // Listen for design gallery open event from command palette
   useEffect(() => {
-    const handleOpenDesignGallery = () => {
-      setIsDesignGalleryOpen(true);
-    };
-
+    const handleOpenDesignGallery = () => setIsDesignGalleryOpen(true);
     window.addEventListener('openDesignGallery', handleOpenDesignGallery);
     return () => window.removeEventListener('openDesignGallery', handleOpenDesignGallery);
   }, []);
@@ -61,32 +53,23 @@ const Index: React.FC = () => {
       <main id="main-content" role="main">
         <HeroSection />
         <AnimatedSection>
+          <BentoServicesSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <CaseStudiesSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
           <AboutSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <HireMeSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <ServicesSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <ProjectsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
           <SkillsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <StyleGallerySection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <EducationSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <TestimonialsSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <Suspense fallback={<SectionSkeleton type="contact" />}>
-            <ContactSection />
+            <MultiStepInquiry />
           </Suspense>
         </AnimatedSection>
       </main>
