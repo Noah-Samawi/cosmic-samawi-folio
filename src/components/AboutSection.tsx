@@ -72,9 +72,9 @@ const AboutSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">{t('about.title')}</span>
+            <span className="gradient-text">{t('about.agencyTitle')}</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t('about.subtitle')}</p>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t('about.agencySubtitle')}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

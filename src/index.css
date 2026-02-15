@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
 @import "@fontsource/sora/400.css";
 @import "@fontsource/sora/500.css";
 @import "@fontsource/sora/600.css";
 @import "@fontsource/sora/700.css";
-@import "@fontsource/dm-sans/400.css";
-@import "@fontsource/dm-sans/500.css";
-@import "@fontsource/dm-sans/600.css";
 
 @layer base {
   :root {
@@ -76,27 +78,27 @@
   }
 
   .dark {
-    /* Professional Dark Theme - High Contrast & Readable */
-    --background: 222 20% 8%;
+    /* Agency Dark Theme - Deep Charcoal + Electric Blue */
+    --background: 0 0% 7%;
     --foreground: 210 40% 98%;
 
-    --card: 222 18% 11%;
+    --card: 0 0% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 18% 11%;
+    --popover: 0 0% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 200 80% 55%;
-    --primary-foreground: 222 20% 8%;
+    --primary: 189 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
     --secondary: 220 15% 16%;
     --secondary-foreground: 210 30% 90%;
 
-    --muted: 220 15% 14%;
+    --muted: 220 12% 14%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 190 70% 50%;
-    --accent-foreground: 222 20% 8%;
+    --accent: 200 100% 55%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 70% 55%;
     --destructive-foreground: 210 40% 98%;
@@ -150,12 +152,12 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: "DM Sans", system-ui, sans-serif;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Sora", system-ui, sans-serif;
-    @apply text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    @apply text-foreground font-bold;
   }
 
   p {
@@ -164,7 +166,7 @@
 
   /* RTL Support */
   [dir="rtl"] {
-    font-family: "Sora", "DM Sans", system-ui, sans-serif;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   }
 }
 
