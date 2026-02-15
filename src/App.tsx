@@ -11,6 +11,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import Preloader from "./components/Preloader";
 import ThemeTransition from "./components/ThemeTransition";
 import SkipNavLink from "./components/SkipNavLink";
@@ -35,6 +37,8 @@ const App = () => {
               <BrowserRouter>
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
                   <Route path="*" element={<NotFound />} />

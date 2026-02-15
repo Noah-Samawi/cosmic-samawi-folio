@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { ExternalLink, ArrowUpRight, TrendingUp, Zap, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import mustaphaImage from '@/assets/project-mustapha.png';
-import nakaaImage from '@/assets/project-nakaa.png';
+import aiIntelligenceImage from '@/assets/casestudy-ai-intelligence.jpg';
+import financialDashboardImage from '@/assets/casestudy-financial-dashboard.jpg';
+import workflowAutomationImage from '@/assets/casestudy-workflow-automation.jpg';
 
 interface CaseStudy {
   id: string;
@@ -14,7 +15,6 @@ interface CaseStudy {
   image?: string;
   tags: string[];
   icon: React.ElementType;
-  liveUrl?: string;
   gradient: string;
 }
 
@@ -23,35 +23,33 @@ const CaseStudiesSection: React.FC = () => {
 
   const caseStudies: CaseStudy[] = [
     {
-      id: 'mustapha',
+      id: 'ai-intelligence',
       titleKey: 'casestudies.1.title',
       descKey: 'casestudies.1.desc',
       resultKey: 'casestudies.1.result',
-      image: mustaphaImage,
-      tags: ['React', 'Supabase', 'PWA', 'Resend'],
+      image: aiIntelligenceImage,
+      tags: ['GPT-4o', 'Node.js', 'WhatsApp API', 'AI'],
       icon: TrendingUp,
-      liveUrl: 'https://mustapha-lamjahdi.de',
       gradient: 'from-[hsl(189,100%,50%)] to-[hsl(200,100%,55%)]',
     },
     {
-      id: 'nakaa',
+      id: 'financial-dashboard',
       titleKey: 'casestudies.2.title',
       descKey: 'casestudies.2.desc',
       resultKey: 'casestudies.2.result',
-      image: nakaaImage,
-      tags: ['React', 'AI/OCR', 'TypeScript', 'PWA'],
+      image: financialDashboardImage,
+      tags: ['Next.js', 'Supabase', 'Recharts', 'SaaS'],
       icon: Zap,
-      liveUrl: 'https://nakaa-pure-scan.lovable.app',
       gradient: 'from-[hsl(280,80%,60%)] to-[hsl(320,80%,55%)]',
     },
     {
-      id: 'novavault',
+      id: 'workflow-automation',
       titleKey: 'casestudies.3.title',
       descKey: 'casestudies.3.desc',
       resultKey: 'casestudies.3.result',
-      tags: ['React', 'Supabase', 'RLS', 'Encryption'],
+      image: workflowAutomationImage,
+      tags: ['n8n', 'Make.com', 'Python', 'Automation'],
       icon: Shield,
-      liveUrl: 'https://novavault-demo.lovable.app',
       gradient: 'from-[hsl(150,80%,45%)] to-[hsl(170,80%,45%)]',
     },
   ];
@@ -144,15 +142,10 @@ const CaseStudiesSection: React.FC = () => {
                       </div>
 
                       {/* CTA */}
-                      {study.liveUrl && (
-                        <Button variant="outline" size="sm" asChild className="w-fit gap-2">
-                          <a href={study.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4" />
-                            {t('casestudies.viewProject')}
-                            <ArrowUpRight className="w-3 h-3" />
-                          </a>
-                        </Button>
-                      )}
+                      <Button variant="outline" size="sm" className="w-fit gap-2 opacity-60 cursor-not-allowed">
+                        <ExternalLink className="w-4 h-4" />
+                        {t('casestudies.livePreview')}
+                      </Button>
                     </div>
                   </div>
                 </div>

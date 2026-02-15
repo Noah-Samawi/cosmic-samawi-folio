@@ -43,10 +43,9 @@ const MultiStepInquiry: React.FC = () => {
   ];
 
   const budgets = [
-    { key: '< €5k', label: '< €5,000' },
-    { key: '€5k-€15k', label: '€5,000 – €15,000' },
-    { key: '€15k-€50k', label: '€15,000 – €50,000' },
-    { key: '€50k+', label: '€50,000+' },
+    { key: '< €2k', label: 'Startup/MVP (< €2k)' },
+    { key: '€2k-€10k', label: 'Growth Phase (€2k – €10k)' },
+    { key: '€10k+', label: 'Custom Enterprise (€10k+)' },
   ];
 
   const timelines = [
