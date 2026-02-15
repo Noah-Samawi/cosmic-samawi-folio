@@ -16,7 +16,7 @@ import {
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === '/home';
   const { language, setLanguage, t, direction } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,10 +67,10 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { key: 'nav.home', href: '#home', path: '/' },
-    { key: 'nav.services', href: '#services', path: '/#services' },
-    { key: 'nav.casestudies', href: '#case-studies', path: '/#case-studies' },
-    { key: 'nav.about', href: '#about', path: '/#about' },
+    { key: 'nav.home', href: '#home', path: '/home' },
+    { key: 'nav.services', href: '#services', path: '/home#services' },
+    { key: 'nav.casestudies', href: '#case-studies', path: '/home#case-studies' },
+    { key: 'nav.about', href: '#about', path: '/home#about' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {

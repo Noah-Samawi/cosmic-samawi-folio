@@ -14,6 +14,7 @@ import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
 import DesignGallery from '@/components/DesignGallery';
+import ContactSection from '@/components/ContactSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const MultiStepInquiry = lazy(() => import('@/components/MultiStepInquiry'));
@@ -73,6 +74,9 @@ const Index: React.FC = () => {
           <Suspense fallback={<SectionSkeleton type="contact" />}>
             <MultiStepInquiry />
           </Suspense>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ContactSection />
         </AnimatedSection>
       </main>
       <Footer />

@@ -18,7 +18,7 @@ const TopBar: React.FC = () => {
           <span>{t('topbar.clientLogin')}</span>
         </button>
         <a
-          href="#case-studies"
+          href="/home#case-studies"
           className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
         >
           <Search className="w-3 h-3" />
