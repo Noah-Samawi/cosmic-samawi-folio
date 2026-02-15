@@ -71,6 +71,7 @@ const Navbar: React.FC = () => {
     { key: 'nav.services', href: '#services', path: '/home#services' },
     { key: 'nav.casestudies', href: '#case-studies', path: '/home#case-studies' },
     { key: 'nav.about', href: '#about', path: '/home#about' },
+    { key: 'nav.contact', href: '#contact', path: '/home#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
