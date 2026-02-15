@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart, Globe } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, Globe, Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -54,6 +54,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Noah-Samawi', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/noah-al-samawi-058583197/', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/noahsamawi.dev', label: 'Instagram' },
     { icon: XingIcon, href: 'https://www.xing.com/profile/Noah_AlSamawi', label: 'XING', isCustom: true },
     { icon: Mail, href: 'mailto:kontakt@noahsamawi.de', label: 'Email' },
   ];

@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { Mail, Send, User, MessageSquare, Loader2, Linkedin, Github } from 'lucide-react';
+import { Mail, Send, User, MessageSquare, Loader2, Linkedin, Github, Instagram } from 'lucide-react';
 import { z } from 'zod';
 import SuccessConfetti from './SuccessConfetti';
 import CosmicMap from './CosmicMap';
@@ -148,6 +148,7 @@ const ContactSection: React.FC = () => {
   const socialLinks = [
     { icon: Linkedin, href: "https://www.linkedin.com/in/noah-al-samawi-058583197/", label: "LinkedIn" },
     { icon: Github, href: "https://github.com/Noah-Samawi", label: "GitHub" },
+    { icon: Instagram, href: "https://www.instagram.com/noahsamawi.dev", label: "Instagram" },
   ];
 
   return (
