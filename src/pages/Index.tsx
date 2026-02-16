@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import SystemStatusTicker from '@/components/SystemStatusTicker';
 import BentoServicesSection from '@/components/BentoServicesSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
+import ROICalculator from '@/components/ROICalculator';
+import TechStackGrid from '@/components/TechStackGrid';
 import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -55,11 +58,18 @@ const Index: React.FC = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
+        <SystemStatusTicker />
         <AnimatedSection>
           <BentoServicesSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <CaseStudiesSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ROICalculator />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <TechStackGrid />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <AboutSection />
