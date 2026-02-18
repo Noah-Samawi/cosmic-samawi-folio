@@ -1,7 +1,7 @@
 {
-  "name": "Noah Al-Samawi",
-  "short_name": "Noah",
-  "description": "Noah Al-Samawi - Full-Stack Developer & IT Engineer based in Frankfurt, Germany",
+  "name": "Tech-Noah Solutions",
+  "short_name": "Tech-Noah",
+  "description": "Tech-Noah Solutions - AI-Powered Software & Automation Agency based in Frankfurt, Germany",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.png?v=3",
+      "src": "/favicon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.png?v=3",
+      "src": "/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -26,5 +26,5 @@
   "dir": "ltr",
   "prefer_related_applications": false,
   "scope": "/",
-  "id": "noah-portfolio"
+  "id": "tech-noah-solutions"
 }

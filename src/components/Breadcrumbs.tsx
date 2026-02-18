@@ -23,6 +23,9 @@ const Breadcrumbs: React.FC = () => {
       case '/datenschutz':
         breadcrumbs.push({ label: 'Datenschutz' });
         break;
+      case '/presse':
+        breadcrumbs.push({ label: 'Presse' });
+        break;
       default:
         break;
     }
