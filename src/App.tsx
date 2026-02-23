@@ -15,6 +15,7 @@ import Datenschutz from "./pages/Datenschutz";
 import Presse from "./pages/Presse";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import AuthCallback from "./pages/AuthCallback";
 import Preloader from "./components/Preloader";
 import ThemeTransition from "./components/ThemeTransition";
 import SkipNavLink from "./components/SkipNavLink";
@@ -41,6 +42,7 @@ const App = () => {
                   <Route path="/" element={<WelcomeGate />} />
                   <Route path="/home" element={<Index />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
