@@ -12,6 +12,7 @@ import {
   Zap,
   MessageSquare,
   User,
+  Globe,
 } from 'lucide-react';
 
 type TabKey = 'overview' | 'projects' | 'support' | 'billing';
@@ -108,6 +109,13 @@ const Dashboard: React.FC = () => {
         </div>
 
         <nav className="flex-1 p-4 space-y-1">
+          <button
+            onClick={() => navigate('/home')}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-muted-foreground hover:text-foreground hover:bg-muted/50 mb-2 border border-border/30"
+          >
+            <Globe className="w-4 h-4" />
+            Back to Website
+          </button>
           {sidebarItems.map(({ key, icon: Icon, label }) => (
             <button
               key={key}
