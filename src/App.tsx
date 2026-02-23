@@ -20,6 +20,7 @@ import ThemeTransition from "./components/ThemeTransition";
 import SkipNavLink from "./components/SkipNavLink";
 import CookieBanner from "./components/CookieBanner";
 
+// Force rebuild - 2026-02-23
 const queryClient = new QueryClient();
 
 const App = () => {
