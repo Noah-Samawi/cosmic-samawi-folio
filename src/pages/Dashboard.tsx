@@ -11,17 +11,10 @@ import {
   LogOut,
   Zap,
   MessageSquare,
-  User,
   Globe,
 } from 'lucide-react';
 
 type TabKey = 'overview' | 'projects' | 'support' | 'billing';
-
-interface ProjectStatus {
-  name: string;
-  status: 'in_progress' | 'deployed' | 'planning';
-  description: string;
-}
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -63,31 +56,6 @@ const Dashboard: React.FC = () => {
     { key: 'billing', icon: CreditCard, label: 'Billing' },
   ];
 
-  const mockProjects: ProjectStatus[] = [
-    {
-      name: 'AI Customer Intelligence Suite',
-      status: 'in_progress',
-      description: 'Optimizing automation workflows. Next: Sprint Review.',
-    },
-    {
-      name: 'Smart SaaS Financial Dashboard',
-      status: 'deployed',
-      description: 'System Live. Your AI integration is now scaling operations.',
-    },
-  ];
-
-  const statusColors: Record<string, string> = {
-    in_progress: 'text-amber-400 bg-amber-400/10 border-amber-400/30',
-    deployed: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30',
-    planning: 'text-primary bg-primary/10 border-primary/30',
-  };
-
-  const statusLabels: Record<string, string> = {
-    in_progress: 'In Progress',
-    deployed: 'Deployed',
-    planning: 'Planning',
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -96,13 +64,30 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  const userName = user?.email?.split('@')[0] || 'Client';
+  const userName =
+    user?.user_metadata?.first_name ||
+    user?.user_metadata?.full_name?.split(' ')[0] ||
+    'Partner';
+
+  const EmptyProjectsCard = () => (
+    <div className="glass-card p-8 text-center">
+      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+        <FolderKanban className="w-8 h-8 text-primary" />
+      </div>
+      <h3 className="font-display text-lg font-bold text-foreground mb-2">No Active Projects</h3>
+      <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
+        You don't have any projects yet. Start a new inquiry to get your first project rolling.
+      </p>
+      <Button onClick={() => navigate('/home#contact')} className="gap-2">
+        <Zap className="w-4 h-4" /> Start a New Inquiry
+      </Button>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
       <aside className="w-64 border-r border-primary/20 bg-card/50 backdrop-blur-sm flex flex-col relative overflow-hidden">
-        {/* Cyberpunk accent line */}
         <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
         <div className="p-6 border-b border-primary/20">
           <a href="/" className="flex items-center gap-3">
@@ -115,7 +100,7 @@ const Dashboard: React.FC = () => {
 
         <nav className="flex-1 p-4 space-y-1">
           <button
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/')}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-muted-foreground hover:text-foreground hover:bg-muted/50 mb-2 border border-border/30"
           >
             <Globe className="w-4 h-4" />
@@ -146,17 +131,13 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
-        {/* Header with neon welcome */}
         <header className="border-b border-border/30 p-6 md:p-8">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="font-display text-2xl md:text-3xl font-bold">
-              Welcome back, <span className="gradient-text glow-text">{userName}</span>.
+              Welcome, <span className="gradient-text glow-text">{userName}</span>.
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
-              Your AI systems are running at optimal performance.
+              Your command center is ready.
             </p>
           </motion.div>
         </header>
@@ -164,11 +145,10 @@ const Dashboard: React.FC = () => {
         <div className="p-6 md:p-8">
           {activeTab === 'overview' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-              {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { label: 'Active Projects', value: '2', icon: FolderKanban },
-                  { label: 'System Uptime', value: '99.9%', icon: Zap },
+                  { label: 'Active Projects', value: '0', icon: FolderKanban },
+                  { label: 'System Status', value: 'Online', icon: Zap },
                   { label: 'Support Tickets', value: '0 Open', icon: HeadphonesIcon },
                 ].map(({ label, value, icon: Icon }) => (
                   <div key={label} className="glass-card p-6">
@@ -183,38 +163,15 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
 
-              {/* Projects */}
               <h2 className="font-display text-xl font-bold text-foreground">Your Projects</h2>
-              <div className="grid gap-4">
-                {mockProjects.map((project) => (
-                  <div key={project.name} className="glass-card p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-display text-lg font-semibold text-foreground">{project.name}</h3>
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full border ${statusColors[project.status]}`}>
-                        {statusLabels[project.status]}
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground text-sm">{project.description}</p>
-                  </div>
-                ))}
-              </div>
+              <EmptyProjectsCard />
             </motion.div>
           )}
 
           {activeTab === 'projects' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
               <h2 className="font-display text-xl font-bold text-foreground">My Projects</h2>
-              {mockProjects.map((project) => (
-                <div key={project.name} className="glass-card p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-display text-lg font-semibold text-foreground">{project.name}</h3>
-                    <span className={`px-3 py-1 text-xs font-medium rounded-full border ${statusColors[project.status]}`}>
-                      {statusLabels[project.status]}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground text-sm">{project.description}</p>
-                </div>
-              ))}
+              <EmptyProjectsCard />
             </motion.div>
           )}
 
@@ -234,7 +191,7 @@ const Dashboard: React.FC = () => {
                 </p>
                 <Button asChild>
                   <a href="mailto:kontakt@noahsamawi.de" className="gap-2">
-                    <Mail className="w-4 h-4" /> Send Message
+                    <MailIcon className="w-4 h-4" /> Send Message
                   </a>
                 </Button>
               </div>
@@ -263,8 +220,7 @@ const Dashboard: React.FC = () => {
   );
 };
 
-// Need Mail icon import fix
-const Mail = ({ className }: { className?: string }) => (
+const MailIcon = ({ className }: { className?: string }) => (
   <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="16" x="2" y="4" rx="2" />
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
