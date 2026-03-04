@@ -74,6 +74,42 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          budget: string | null
+          created_at: string
+          description: string | null
+          id: string
+          status: string
+          timeline: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          budget?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: string
+          timeline?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          budget?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: string
+          timeline?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           company: string | null
