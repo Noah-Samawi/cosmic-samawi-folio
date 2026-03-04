@@ -101,10 +101,15 @@ const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-border/50 bg-card/50 backdrop-blur-sm flex flex-col">
-        <div className="p-6 border-b border-border/30">
-          <a href="/" className="font-display text-lg font-bold gradient-text">
-            Tech-Noah<span className="text-foreground"> Solutions</span>
+      <aside className="w-64 border-r border-primary/20 bg-card/50 backdrop-blur-sm flex flex-col relative overflow-hidden">
+        {/* Cyberpunk accent line */}
+        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+        <div className="p-6 border-b border-primary/20">
+          <a href="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center font-display text-sm font-bold text-primary-foreground shadow-[0_0_15px_hsl(var(--primary)/0.4)]">
+              NS
+            </div>
+            <span className="font-display text-lg font-bold gradient-text">Tech-Noah</span>
           </a>
         </div>
 

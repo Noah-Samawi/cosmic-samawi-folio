@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { lovable } from '@/integrations/lovable/index';
 import { Loader2, ArrowLeft, Mail, Lock, Sparkles } from 'lucide-react';
 
 // Google icon
@@ -45,11 +44,14 @@ const Login: React.FC = () => {
   }, [navigate]);
 
   const handleOAuth = async (provider: 'google' | 'apple') => {
-    const { error } = await lovable.auth.signInWithOAuth(provider, {
-      redirect_uri: window.location.origin,
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
     });
     if (error) {
-      toast({ title: 'Error', description: String(error), variant: 'destructive' });
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
     }
   };
 
