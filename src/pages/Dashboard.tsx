@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import ProfileSettingsModal from '@/components/ProfileSettingsModal';
 import {
   LayoutDashboard,
   FolderKanban,
@@ -12,6 +13,8 @@ import {
   Zap,
   MessageSquare,
   Globe,
+  UserCog,
+  Rocket,
 } from 'lucide-react';
 
 type TabKey = 'overview' | 'projects' | 'support' | 'billing';
@@ -21,6 +24,8 @@ const Dashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<TabKey>('overview');
   const [loading, setLoading] = useState(true);
+  const [profileName, setProfileName] = useState<string | null>(null);
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -28,6 +33,7 @@ const Dashboard: React.FC = () => {
         navigate('/login');
       } else {
         setUser(session.user);
+        fetchProfile(session.user.id);
         setLoading(false);
       }
     });
@@ -37,6 +43,7 @@ const Dashboard: React.FC = () => {
         navigate('/login');
       } else {
         setUser(session.user);
+        fetchProfile(session.user.id);
         setLoading(false);
       }
     });
@@ -44,10 +51,26 @@ const Dashboard: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
+  const fetchProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('first_name')
+      .eq('user_id', userId)
+      .maybeSingle();
+    if (data?.first_name) {
+      setProfileName(data.first_name);
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/');
   };
+
+  const userName = profileName ||
+    user?.user_metadata?.first_name ||
+    user?.user_metadata?.full_name?.split(' ')[0] ||
+    'Partner';
 
   const sidebarItems: { key: TabKey; icon: React.ElementType; label: string }[] = [
     { key: 'overview', icon: LayoutDashboard, label: 'Overview' },
@@ -64,24 +87,23 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  const userName =
-    user?.user_metadata?.first_name ||
-    user?.user_metadata?.full_name?.split(' ')[0] ||
-    'Partner';
-
-  const EmptyProjectsCard = () => (
-    <div className="glass-card p-8 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-        <FolderKanban className="w-8 h-8 text-primary" />
+  const StartProjectCard = () => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="glass-card p-10 text-center border border-primary/20"
+    >
+      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mx-auto mb-6">
+        <Rocket className="w-10 h-10 text-primary" />
       </div>
-      <h3 className="font-display text-lg font-bold text-foreground mb-2">No Active Projects</h3>
-      <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
-        You don't have any projects yet. Start a new inquiry to get your first project rolling.
+      <h3 className="font-display text-xl font-bold text-foreground mb-3">Start Your First Project</h3>
+      <p className="text-muted-foreground text-sm max-w-sm mx-auto mb-6">
+        Ready to build something extraordinary? Tell us about your vision and we'll bring it to life.
       </p>
-      <Button onClick={() => navigate('/home#contact')} className="gap-2">
-        <Zap className="w-4 h-4" /> Start a New Inquiry
+      <Button onClick={() => navigate('/home#contact')} size="lg" className="gap-2 px-8">
+        <Zap className="w-4 h-4" /> Launch Project Inquiry
       </Button>
-    </div>
+    </motion.div>
   );
 
   return (
@@ -122,7 +144,10 @@ const Dashboard: React.FC = () => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-border/30">
+        <div className="p-4 border-t border-border/30 space-y-1">
+          <Button variant="ghost" size="sm" onClick={() => setProfileModalOpen(true)} className="w-full justify-start gap-2 text-muted-foreground">
+            <UserCog className="w-4 h-4" /> Profile Settings
+          </Button>
           <Button variant="ghost" size="sm" onClick={handleLogout} className="w-full justify-start gap-2 text-muted-foreground">
             <LogOut className="w-4 h-4" /> Sign Out
           </Button>
@@ -164,14 +189,14 @@ const Dashboard: React.FC = () => {
               </div>
 
               <h2 className="font-display text-xl font-bold text-foreground">Your Projects</h2>
-              <EmptyProjectsCard />
+              <StartProjectCard />
             </motion.div>
           )}
 
           {activeTab === 'projects' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
               <h2 className="font-display text-xl font-bold text-foreground">My Projects</h2>
-              <EmptyProjectsCard />
+              <StartProjectCard />
             </motion.div>
           )}
 
@@ -216,6 +241,17 @@ const Dashboard: React.FC = () => {
           )}
         </div>
       </main>
+
+      {user && (
+        <ProfileSettingsModal
+          open={profileModalOpen}
+          onOpenChange={setProfileModalOpen}
+          userId={user.id}
+          onProfileUpdate={(p) => {
+            if (p.first_name) setProfileName(p.first_name);
+          }}
+        />
+      )}
     </div>
   );
 };
