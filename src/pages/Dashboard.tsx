@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import ProfileSettingsModal from '@/components/ProfileSettingsModal';
+import NewProjectDialog from '@/components/NewProjectDialog';
 import {
   LayoutDashboard,
   FolderKanban,
@@ -15,9 +16,22 @@ import {
   Globe,
   UserCog,
   Rocket,
+  Plus,
+  Calendar,
+  DollarSign,
 } from 'lucide-react';
 
 type TabKey = 'overview' | 'projects' | 'support' | 'billing';
+
+interface Project {
+  id: string;
+  title: string;
+  status: string;
+  budget: string | null;
+  timeline: string | null;
+  description: string | null;
+  created_at: string;
+}
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -26,41 +40,44 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [profileName, setProfileName] = useState<string | null>(null);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [newProjectOpen, setNewProjectOpen] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  const fetchProjects = useCallback(async () => {
+    const { data } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (data) setProjects(data as Project[]);
+  }, []);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!session) {
-        navigate('/login');
-      } else {
-        setUser(session.user);
-        fetchProfile(session.user.id);
-        setLoading(false);
-      }
+    const init = async (userId: string) => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('first_name')
+        .eq('user_id', userId)
+        .maybeSingle();
+      if (data?.first_name) setProfileName(data.first_name);
+      await fetchProjects();
+    };
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      if (!session) { navigate('/login'); return; }
+      setUser(session.user);
+      init(session.user.id);
+      setLoading(false);
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate('/login');
-      } else {
-        setUser(session.user);
-        fetchProfile(session.user.id);
-        setLoading(false);
-      }
+      if (!session) { navigate('/login'); return; }
+      setUser(session.user);
+      init(session.user.id);
+      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
-
-  const fetchProfile = async (userId: string) => {
-    const { data } = await supabase
-      .from('profiles')
-      .select('first_name')
-      .eq('user_id', userId)
-      .maybeSingle();
-    if (data?.first_name) {
-      setProfileName(data.first_name);
-    }
-  };
+  }, [navigate, fetchProjects]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -87,7 +104,43 @@ const Dashboard: React.FC = () => {
     );
   }
 
-  const StartProjectCard = () => (
+  const statusColor = (status: string) => {
+    switch (status) {
+      case 'In Review': return 'bg-yellow-500/20 text-yellow-400';
+      case 'Active': return 'bg-green-500/20 text-green-400';
+      case 'Completed': return 'bg-blue-500/20 text-blue-400';
+      default: return 'bg-muted text-muted-foreground';
+    }
+  };
+
+  const ProjectCard = ({ project }: { project: Project }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="glass-card p-6 border border-border/50 hover:border-primary/30 transition-colors"
+    >
+      <div className="flex items-start justify-between mb-3">
+        <h3 className="font-display text-lg font-bold text-foreground">{project.title}</h3>
+        <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${statusColor(project.status)}`}>
+          {project.status}
+        </span>
+      </div>
+      {project.description && (
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+      )}
+      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        {project.budget && (
+          <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" />{project.budget}</span>
+        )}
+        {project.timeline && (
+          <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{project.timeline}</span>
+        )}
+        <span className="ml-auto">{new Date(project.created_at).toLocaleDateString()}</span>
+      </div>
+    </motion.div>
+  );
+
+  const EmptyState = () => (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -100,10 +153,28 @@ const Dashboard: React.FC = () => {
       <p className="text-muted-foreground text-sm max-w-sm mx-auto mb-6">
         Ready to build something extraordinary? Tell us about your vision and we'll bring it to life.
       </p>
-      <Button onClick={() => navigate('/home#contact')} size="lg" className="gap-2 px-8">
-        <Zap className="w-4 h-4" /> Launch Project Inquiry
+      <Button onClick={() => setNewProjectOpen(true)} size="lg" className="gap-2 px-8">
+        <Zap className="w-4 h-4" /> Launch Project
       </Button>
     </motion.div>
+  );
+
+  const ProjectsList = () => (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h2 className="font-display text-xl font-bold text-foreground">
+          {activeTab === 'overview' ? 'Your Projects' : 'My Projects'}
+        </h2>
+        <Button onClick={() => setNewProjectOpen(true)} size="sm" className="gap-2">
+          <Plus className="w-4 h-4" /> New Project
+        </Button>
+      </div>
+      {projects.length === 0 ? <EmptyState /> : (
+        <div className="grid gap-4">
+          {projects.map((p) => <ProjectCard key={p.id} project={p} />)}
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -161,9 +232,7 @@ const Dashboard: React.FC = () => {
             <h1 className="font-display text-2xl md:text-3xl font-bold">
               Welcome, <span className="gradient-text glow-text">{userName}</span>.
             </h1>
-            <p className="text-muted-foreground text-sm mt-1">
-              Your command center is ready.
-            </p>
+            <p className="text-muted-foreground text-sm mt-1">Your command center is ready.</p>
           </motion.div>
         </header>
 
@@ -172,7 +241,7 @@ const Dashboard: React.FC = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
-                  { label: 'Active Projects', value: '0', icon: FolderKanban },
+                  { label: 'Active Projects', value: String(projects.length), icon: FolderKanban },
                   { label: 'System Status', value: 'Online', icon: Zap },
                   { label: 'Support Tickets', value: '0 Open', icon: HeadphonesIcon },
                 ].map(({ label, value, icon: Icon }) => (
@@ -187,16 +256,13 @@ const Dashboard: React.FC = () => {
                   </div>
                 ))}
               </div>
-
-              <h2 className="font-display text-xl font-bold text-foreground">Your Projects</h2>
-              <StartProjectCard />
+              <ProjectsList />
             </motion.div>
           )}
 
           {activeTab === 'projects' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-              <h2 className="font-display text-xl font-bold text-foreground">My Projects</h2>
-              <StartProjectCard />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <ProjectsList />
             </motion.div>
           )}
 
@@ -207,9 +273,7 @@ const Dashboard: React.FC = () => {
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <MessageSquare className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                  Direct Access to Lead Engineer
-                </h3>
+                <h3 className="font-display text-lg font-bold text-foreground mb-2">Direct Access to Lead Engineer</h3>
                 <p className="text-muted-foreground text-sm max-w-md mx-auto mb-4">
                   Have a technical question? Message Noah directly.<br />
                   Response time: <span className="text-primary font-semibold">&lt;4 hrs</span>
@@ -230,9 +294,7 @@ const Dashboard: React.FC = () => {
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <CreditCard className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                  No Active Subscription
-                </h3>
+                <h3 className="font-display text-lg font-bold text-foreground mb-2">No Active Subscription</h3>
                 <p className="text-muted-foreground text-sm max-w-md mx-auto">
                   Your billing details will appear here once a service retainer or support plan is activated.
                 </p>
@@ -243,14 +305,20 @@ const Dashboard: React.FC = () => {
       </main>
 
       {user && (
-        <ProfileSettingsModal
-          open={profileModalOpen}
-          onOpenChange={setProfileModalOpen}
-          userId={user.id}
-          onProfileUpdate={(p) => {
-            if (p.first_name) setProfileName(p.first_name);
-          }}
-        />
+        <>
+          <ProfileSettingsModal
+            open={profileModalOpen}
+            onOpenChange={setProfileModalOpen}
+            userId={user.id}
+            onProfileUpdate={(p) => { if (p.first_name) setProfileName(p.first_name); }}
+          />
+          <NewProjectDialog
+            open={newProjectOpen}
+            onOpenChange={setNewProjectOpen}
+            userId={user.id}
+            onProjectCreated={fetchProjects}
+          />
+        </>
       )}
     </div>
   );
