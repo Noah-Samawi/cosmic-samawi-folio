@@ -12,16 +12,16 @@ import SuccessConfetti from './SuccessConfetti';
 import CosmicMap from './CosmicMap';
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
-  email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
-  subject: z.string().trim().max(200, { message: "Subject must be less than 200 characters" }).optional(),
-  message: z.string().trim().min(1, { message: "Message is required" }).max(2000, { message: "Message must be less than 2000 characters" })
+  name: z.string().trim().min(1, { message: "Name is required" }).max(100),
+  email: z.string().trim().email({ message: "Invalid email address" }).max(255),
+  subject: z.string().trim().max(200).optional(),
+  message: z.string().trim().min(1, { message: "Message is required" }).max(2000)
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactSection: React.FC = () => {
-  const { language, t, direction } = useLanguage();
+  const { language, direction } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -35,8 +35,8 @@ const ContactSection: React.FC = () => {
 
   const content = {
     en: {
-      title: "Get In Touch",
-      subtitle: "Have a project in mind? Let's discuss how we can work together.",
+      title: "Let's build something great together.",
+      subtitle: "Whether it's a job opportunity, a freelance project, or just a chat — I'd love to hear from you.",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Your Email",
       subjectPlaceholder: "Subject (Optional)",
@@ -47,14 +47,14 @@ const ContactSection: React.FC = () => {
       successMessage: "Thank you for reaching out. I'll get back to you soon.",
       errorTitle: "Error",
       errorMessage: "Failed to send message. Please try again.",
-      location: "Frankfurt, Germany",
-      email: "kontakt@noahsamawi.de",
       contactInfo: "Contact Information",
-      followMe: "Follow Me"
+      followMe: "Connect With Me",
+      email: "kontakt@noahsamawi.de",
+      location: "Frankfurt, Germany",
     },
     de: {
-      title: "Kontakt aufnehmen",
-      subtitle: "Haben Sie ein Projekt im Sinn? Lassen Sie uns besprechen, wie wir zusammenarbeiten können.",
+      title: "Lass uns gemeinsam etwas Großartiges bauen.",
+      subtitle: "Ob Jobangebot, Freelance-Projekt oder einfach ein Gespräch — ich freue mich auf Ihre Nachricht.",
       namePlaceholder: "Ihr Name",
       emailPlaceholder: "Ihre E-Mail",
       subjectPlaceholder: "Betreff (Optional)",
@@ -62,17 +62,17 @@ const ContactSection: React.FC = () => {
       sendButton: "Nachricht senden",
       sending: "Wird gesendet...",
       successTitle: "Nachricht gesendet!",
-      successMessage: "Vielen Dank für Ihre Nachricht. Ich werde mich bald bei Ihnen melden.",
+      successMessage: "Vielen Dank. Ich melde mich bald bei Ihnen.",
       errorTitle: "Fehler",
-      errorMessage: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
-      location: "Frankfurt, Deutschland",
-      email: "kontakt@noahsamawi.de",
+      errorMessage: "Nachricht konnte nicht gesendet werden.",
       contactInfo: "Kontaktinformationen",
-      followMe: "Folgen Sie mir"
+      followMe: "Vernetzen Sie sich",
+      email: "kontakt@noahsamawi.de",
+      location: "Frankfurt, Deutschland",
     },
     ar: {
-      title: "تواصل معي",
-      subtitle: "هل لديك مشروع في ذهنك؟ لنناقش كيف يمكننا العمل معاً.",
+      title: "لنبني شيئاً رائعاً معاً.",
+      subtitle: "سواء كانت فرصة عمل أو مشروع حر أو مجرد محادثة — أتطلع لسماعك.",
       namePlaceholder: "اسمك",
       emailPlaceholder: "بريدك الإلكتروني",
       subjectPlaceholder: "الموضوع (اختياري)",
@@ -82,15 +82,15 @@ const ContactSection: React.FC = () => {
       successTitle: "تم إرسال الرسالة!",
       successMessage: "شكراً لتواصلك. سأرد عليك قريباً.",
       errorTitle: "خطأ",
-      errorMessage: "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
-      location: "فرانكفورت، ألمانيا",
-      email: "kontakt@noahsamawi.de",
+      errorMessage: "فشل إرسال الرسالة.",
       contactInfo: "معلومات الاتصال",
-      followMe: "تابعني"
+      followMe: "تواصل معي",
+      email: "kontakt@noahsamawi.de",
+      location: "فرانكفورت، ألمانيا",
     }
   };
 
-  const currentContent = content[language] || content.en;
+  const c = content[language] || content.en;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -102,14 +102,11 @@ const ContactSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     const result = contactSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
       result.error.errors.forEach(err => {
-        if (err.path[0]) {
-          fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
-        }
+        if (err.path[0]) fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
       });
       setErrors(fieldErrors);
       return;
@@ -119,27 +116,14 @@ const ContactSection: React.FC = () => {
     setErrors({});
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: result.data
-      });
-
+      const { error } = await supabase.functions.invoke('send-contact-email', { body: result.data });
       if (error) throw error;
-
       setShowSuccess(true);
-      
-      toast({
-        title: currentContent.successTitle,
-        description: currentContent.successMessage,
-      });
-
+      toast({ title: c.successTitle, description: c.successMessage });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Error sending message:', error);
-      toast({
-        title: currentContent.errorTitle,
-        description: currentContent.errorMessage,
-        variant: 'destructive',
-      });
+      toast({ title: c.errorTitle, description: c.errorMessage, variant: 'destructive' });
     } finally {
       setIsSubmitting(false);
     }
@@ -154,169 +138,88 @@ const ContactSection: React.FC = () => {
   return (
     <>
       <SuccessConfetti show={showSuccess} onComplete={() => setShowSuccess(false)} />
-      <section id="contact" className="py-20 md:py-32 relative overflow-hidden" aria-labelledby="contact-heading" dir={direction}>
+      <section id="contact" className="py-20 md:py-32 relative overflow-hidden" dir={direction}>
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 id="contact-heading" className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
-            {currentContent.title}
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {currentContent.subtitle}
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: direction === 'rtl' ? 50 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
-              <div className="relative">
-                <User className="absolute top-3 left-3 h-5 w-5 text-muted-foreground rtl:left-auto rtl:right-3" aria-hidden="true" />
-                <Input
-                  id="contact-name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder={currentContent.namePlaceholder}
-                  aria-label={currentContent.namePlaceholder}
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "name-error" : undefined}
-                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-card/50 border-border/50 focus:border-primary h-12"
-                  disabled={isSubmitting}
-                />
-                {errors.name && <p id="name-error" className="text-destructive text-sm mt-1" role="alert">{errors.name}</p>}
-              </div>
-
-              <div className="relative">
-                <Mail className="absolute top-3 left-3 h-5 w-5 text-muted-foreground rtl:left-auto rtl:right-3" aria-hidden="true" />
-                <Input
-                  id="contact-email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder={currentContent.emailPlaceholder}
-                  aria-label={currentContent.emailPlaceholder}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-card/50 border-border/50 focus:border-primary h-12"
-                  disabled={isSubmitting}
-                />
-                {errors.email && <p id="email-error" className="text-destructive text-sm mt-1" role="alert">{errors.email}</p>}
-              </div>
-
-              <div className="relative">
-                <MessageSquare className="absolute top-3 left-3 h-5 w-5 text-muted-foreground rtl:left-auto rtl:right-3" />
-                <Input
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder={currentContent.subjectPlaceholder}
-                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-card/50 border-border/50 focus:border-primary h-12"
-                  disabled={isSubmitting}
-                />
-                {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject}</p>}
-              </div>
-
-              <div>
-                <Textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder={currentContent.messagePlaceholder}
-                  rows={5}
-                  className="bg-card/50 border-border/50 focus:border-primary resize-none"
-                  disabled={isSubmitting}
-                />
-                {errors.message && <p className="text-destructive text-sm mt-1">{errors.message}</p>}
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin mr-2 rtl:mr-0 rtl:ml-2" />
-                    {currentContent.sending}
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5 mr-2 rtl:mr-0 rtl:ml-2" />
-                    {currentContent.sendButton}
-                  </>
-                )}
-              </Button>
-            </form>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">{c.title}</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{c.subtitle}</p>
           </motion.div>
 
-          {/* Contact Info with Cosmic Map */}
-          <motion.div
-            initial={{ opacity: 0, x: direction === 'rtl' ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-6"
-          >
-            {/* Cosmic Map */}
-            <CosmicMap />
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: direction === 'rtl' ? 50 : -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="relative">
+                  <User className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" />
+                  <Input name="name" value={formData.name} onChange={handleChange} placeholder={c.namePlaceholder} className="pl-10 bg-card/50 border-border/50 focus:border-primary h-12" disabled={isSubmitting} />
+                  {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
+                </div>
+                <div className="relative">
+                  <Mail className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" />
+                  <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={c.emailPlaceholder} className="pl-10 bg-card/50 border-border/50 focus:border-primary h-12" disabled={isSubmitting} />
+                  {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
+                </div>
+                <div className="relative">
+                  <MessageSquare className="absolute top-3 left-3 h-5 w-5 text-muted-foreground" />
+                  <Input name="subject" value={formData.subject} onChange={handleChange} placeholder={c.subjectPlaceholder} className="pl-10 bg-card/50 border-border/50 focus:border-primary h-12" disabled={isSubmitting} />
+                </div>
+                <div>
+                  <Textarea name="message" value={formData.message} onChange={handleChange} placeholder={c.messagePlaceholder} rows={5} className="bg-card/50 border-border/50 focus:border-primary resize-none" disabled={isSubmitting} />
+                  {errors.message && <p className="text-destructive text-sm mt-1">{errors.message}</p>}
+                </div>
+                <Button type="submit" disabled={isSubmitting} className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  {isSubmitting ? (
+                    <><Loader2 className="h-5 w-5 animate-spin mr-2" />{c.sending}</>
+                  ) : (
+                    <><Send className="h-5 w-5 mr-2" />{c.sendButton}</>
+                  )}
+                </Button>
+              </form>
+            </motion.div>
 
-            {/* Contact Card */}
-            <div className="bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-border/30">
-              <h3 className="text-xl font-bold mb-4 text-foreground">
-                {currentContent.contactInfo}
-              </h3>
-              
-              <div className="space-y-3 mb-6">
-                <a 
-                  href={`mailto:${currentContent.email}`} 
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Mail className="h-4 w-4 text-primary" />
+            <motion.div
+              initial={{ opacity: 0, x: direction === 'rtl' ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-6"
+            >
+              <CosmicMap />
+              <div className="bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-border/30">
+                <h3 className="text-xl font-bold mb-4 text-foreground">{c.contactInfo}</h3>
+                <div className="space-y-3 mb-6">
+                  <a href={`mailto:${c.email}`} className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Mail className="h-4 w-4 text-primary" />
+                    </div>
+                    {c.email}
+                  </a>
+                </div>
+                <div className="border-t border-border/30 pt-4">
+                  <h4 className="text-sm font-semibold mb-3 text-foreground">{c.followMe}</h4>
+                  <div className="flex gap-3">
+                    {socialLinks.map((social, i) => (
+                      <motion.a key={i} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                        <social.icon className="h-4 w-4 text-primary" />
+                      </motion.a>
+                    ))}
                   </div>
-                  {currentContent.email}
-                </a>
-              </div>
-
-              <div className="border-t border-border/30 pt-4">
-                <h4 className="text-sm font-semibold mb-3 text-foreground">
-                  {currentContent.followMe}
-                </h4>
-                <div className="flex gap-3">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
-                    >
-                      <social.icon className="h-4 w-4 text-primary" />
-                    </motion.a>
-                  ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
       </section>
     </>
   );

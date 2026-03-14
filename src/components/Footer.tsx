@@ -16,40 +16,32 @@ const Footer: React.FC = () => {
   const { t, direction } = useLanguage();
   const [visitorCount, setVisitorCount] = useState<number>(0);
 
-  // Increment and fetch visitor count (with session deduplication)
   useEffect(() => {
     const trackVisitor = async () => {
       const sessionKey = 'visitor_counted';
       const alreadyCounted = sessionStorage.getItem(sessionKey);
 
       if (!alreadyCounted) {
-        // First visit this session - increment count
         const { data, error } = await supabase.rpc('increment_visitor_count');
-        
         if (!error && data) {
           setVisitorCount(data);
           sessionStorage.setItem(sessionKey, 'true');
         }
       } else {
-        // Already counted - just fetch current count
         const { data, error } = await supabase
           .from('visitor_stats')
           .select('visitor_count')
           .limit(1)
           .maybeSingle();
-
         if (!error && data) {
           setVisitorCount(data.visitor_count);
         }
       }
     };
-
     trackVisitor();
   }, []);
 
-  const formatNumber = (num: number) => {
-    return num.toLocaleString();
-  };
+  const formatNumber = (num: number) => num.toLocaleString();
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/Noah-Samawi', label: 'GitHub' },
@@ -60,36 +52,22 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer id="contact" className="relative py-16 border-t border-border/50" dir={direction}>
-      {/* Background gradient */}
+    <footer className="relative py-16 border-t border-border/50" dir={direction}>
       <div className="absolute inset-0 opacity-50">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-radial from-primary/5 via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8">
             <a href="#home" className="inline-block">
               <span className="font-display text-3xl font-bold gradient-text">
-                Tech-Noah<span className="text-foreground"> Solutions</span>
+                Noah<span className="text-foreground"> Al-Samawi</span>
               </span>
             </a>
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="flex justify-center gap-4 mb-8"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="flex justify-center gap-4 mb-8">
             {socialLinks.map(({ icon: Icon, href, label, isCustom }) => (
               <motion.a
                 key={label}
@@ -102,9 +80,7 @@ const Footer: React.FC = () => {
                 aria-label={label}
               >
                 {isCustom ? (
-                  <span className="text-muted-foreground group-hover:text-primary transition-colors">
-                    <Icon />
-                  </span>
+                  <span className="text-muted-foreground group-hover:text-primary transition-colors"><Icon /></span>
                 ) : (
                   <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 )}
@@ -112,15 +88,8 @@ const Footer: React.FC = () => {
             ))}
           </motion.div>
 
-          {/* Visitor Counter */}
           {visitorCount > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.12 }}
-              className="flex justify-center mb-6"
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }} className="flex justify-center mb-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
                 <Globe className="w-4 h-4 text-primary" />
                 <span className="text-sm text-foreground">
@@ -130,33 +99,13 @@ const Footer: React.FC = () => {
             </motion.div>
           )}
 
-          {/* Legal Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className="flex justify-center gap-6 mb-6"
-          >
-            <a href="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Impressum
-            </a>
-            <a href="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Datenschutz
-            </a>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }} className="flex justify-center gap-6 mb-6">
+            <a href="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">Impressum</a>
+            <a href="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors">Datenschutz</a>
           </motion.div>
 
-          {/* Copyright */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-sm text-muted-foreground"
-          >
-            <p className="flex items-center justify-center gap-1">
-              © {currentYear} Tech-Noah Solutions. {t('footer.rights')}
-            </p>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-sm text-muted-foreground">
+            <p>© {currentYear} Noah Al-Samawi. {t('footer.rights')}</p>
             <p className="mt-2 flex items-center justify-center gap-1 text-xs">
               Built with <Heart className="h-3 w-3 text-destructive fill-destructive" /> using React & TypeScript
             </p>

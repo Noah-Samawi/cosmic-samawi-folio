@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ArrowDown, Download, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AnimatedGridBackground from './AnimatedGridBackground';
@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Agency Badge */}
+          {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -44,41 +44,41 @@ const HeroSection: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
               </span>
               <span className="text-sm font-medium text-primary">
-                {t('hero.badge')}
+                {t('hero.status')}
               </span>
             </div>
           </motion.div>
 
-          {/* Agency Name */}
+          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight"
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 tracking-tight"
           >
-            <span className="gradient-text glow-text">Tech-Noah</span>
+            <span className="text-foreground">{t('hero.greeting')}</span>
             <br />
-            <span className="text-foreground">Solutions</span>
+            <span className="gradient-text glow-text">{t('hero.name')}</span>
           </motion.h1>
 
-          {/* Tagline */}
+          {/* Title */}
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="font-display text-xl md:text-2xl lg:text-3xl text-foreground/90 mb-6 font-semibold"
+            className="font-display text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 font-medium"
           >
-            {t('hero.tagline')}
+            {t('hero.title')}
           </motion.h2>
 
-          {/* Description */}
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            {t('hero.description')}
+            {t('hero.subtitle')}
           </motion.p>
 
           {/* CTAs */}
@@ -89,13 +89,16 @@ const HeroSection: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="#contact" className="gap-2">
-                {t('hero.cta.consult')}
-                <ArrowRight className="h-5 w-5" />
+              <a href="/noah-al-samawi-cv.pdf" download className="gap-2">
+                <Download className="h-5 w-5" />
+                {t('hero.cta.download')}
               </a>
             </Button>
             <Button variant="glass" size="xl" asChild>
-              <a href="#case-studies">{t('hero.cta.casestudies')}</a>
+              <a href="#contact" className="gap-2">
+                <MessageSquare className="h-5 w-5" />
+                {t('hero.cta.contact')}
+              </a>
             </Button>
           </motion.div>
         </div>
@@ -109,7 +112,7 @@ const HeroSection: React.FC = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.a
-          href="#services"
+          href="#about"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"

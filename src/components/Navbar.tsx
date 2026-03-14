@@ -16,7 +16,7 @@ import {
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isHomePage = location.pathname === '/home';
+  const isHomePage = location.pathname === '/' || location.pathname === '/home';
   const { language, setLanguage, t, direction } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,7 +29,6 @@ const Navbar: React.FC = () => {
     ar: 'AR',
   };
 
-  // Handle smooth scrolling after navigation from sub-pages
   useEffect(() => {
     if (location.hash && isHomePage) {
       const sectionId = location.hash.replace('#', '');
@@ -46,7 +45,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = ['home', 'services', 'case-studies', 'about', 'contact'];
+      const sections = ['home', 'about', 'skills', 'case-studies', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -67,11 +66,11 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { key: 'nav.home', href: '#home', path: '/home' },
-    { key: 'nav.services', href: '#services', path: '/home#services' },
-    { key: 'nav.casestudies', href: '#case-studies', path: '/home#case-studies' },
-    { key: 'nav.about', href: '#about', path: '/home#about' },
-    { key: 'nav.contact', href: '#contact', path: '/home#contact' },
+    { key: 'nav.home', href: '#home', path: '/#home' },
+    { key: 'nav.about', href: '#about', path: '/#about' },
+    { key: 'nav.skills', href: '#skills', path: '/#skills' },
+    { key: 'nav.casestudies', href: '#case-studies', path: '/#case-studies' },
+    { key: 'nav.contact', href: '#contact', path: '/#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -81,19 +80,12 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const cycleLanguage = () => {
-    const languages: Array<'en' | 'de' | 'ar'> = ['en', 'de', 'ar'];
-    const currentIndex = languages.indexOf(language);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    setLanguage(languages[nextIndex]);
-  };
-
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-8 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'glass-card border-b border-border/50 backdrop-blur-xl'
           : 'bg-transparent'
@@ -108,7 +100,7 @@ const Navbar: React.FC = () => {
             className="font-display text-xl md:text-2xl font-bold gradient-text"
             whileHover={{ scale: 1.02 }}
           >
-            Tech-Noah<span className="text-foreground"> Solutions</span>
+            Noah<span className="text-foreground"> Al-Samawi</span>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -133,7 +125,7 @@ const Navbar: React.FC = () => {
                   {isActive && isHomePage && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_rgba(124,58,237,0.6)]"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_hsl(var(--primary)/0.6)]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -142,38 +134,24 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Consult Now CTA, Theme Toggle, Language Toggle, Command Palette & Mobile Menu */}
+          {/* Right side controls */}
           <div className="flex items-center gap-2">
-            {/* Consult Now CTA - Desktop */}
             <Button variant="default" size="sm" asChild className="hidden md:inline-flex">
-              <a href="#contact">{t('nav.consult')}</a>
+              <a href="#contact">{t('hero.cta.contact')}</a>
             </Button>
-            {/* Command Palette */}
             <CommandPalette />
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="relative"
-              data-theme-toggle
-            >
+            <Button variant="ghost" size="icon" onClick={toggleTheme} data-theme-toggle>
               <motion.div
                 key={theme}
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </motion.div>
             </Button>
             
-            {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative">
@@ -184,22 +162,13 @@ const Navbar: React.FC = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-[100px]">
-                <DropdownMenuItem 
-                  onClick={() => setLanguage('en')}
-                  className={language === 'en' ? 'bg-primary/10 text-primary' : ''}
-                >
+                <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'bg-primary/10 text-primary' : ''}>
                   🇬🇧 English
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={() => setLanguage('de')}
-                  className={language === 'de' ? 'bg-primary/10 text-primary' : ''}
-                >
+                <DropdownMenuItem onClick={() => setLanguage('de')} className={language === 'de' ? 'bg-primary/10 text-primary' : ''}>
                   🇩🇪 Deutsch
                 </DropdownMenuItem>
-                <DropdownMenuItem 
-                  onClick={() => setLanguage('ar')}
-                  className={language === 'ar' ? 'bg-primary/10 text-primary' : ''}
-                >
+                <DropdownMenuItem onClick={() => setLanguage('ar')} className={language === 'ar' ? 'bg-primary/10 text-primary' : ''}>
                   🇸🇦 العربية
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -231,24 +200,24 @@ const Navbar: React.FC = () => {
                 const sectionId = item.href.replace('#', '');
                 const isActive = activeSection === sectionId;
                 
-                  return (
-                    <a
-                      key={item.key}
-                      href={isHomePage ? item.href : item.path}
-                      className={`px-4 py-3 transition-colors rounded-lg ${
-                        isActive && isHomePage
-                          ? 'text-primary bg-primary/10 font-medium' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                      onClick={(e) => {
-                        setIsMobileMenuOpen(false);
-                        handleNavClick(e, item);
-                      }}
-                    >
-                      {t(item.key)}
-                    </a>
-                  );
-                })}
+                return (
+                  <a
+                    key={item.key}
+                    href={isHomePage ? item.href : item.path}
+                    className={`px-4 py-3 transition-colors rounded-lg ${
+                      isActive && isHomePage
+                        ? 'text-primary bg-primary/10 font-medium' 
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    }`}
+                    onClick={(e) => {
+                      setIsMobileMenuOpen(false);
+                      handleNavClick(e, item);
+                    }}
+                  >
+                    {t(item.key)}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         )}

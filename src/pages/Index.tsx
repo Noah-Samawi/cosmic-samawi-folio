@@ -1,15 +1,11 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import SystemStatusTicker from '@/components/SystemStatusTicker';
-import BentoServicesSection from '@/components/BentoServicesSection';
+import TerminalAbout from '@/components/TerminalAbout';
+import BentoSkillsGrid from '@/components/BentoSkillsGrid';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
-import ROICalculator from '@/components/ROICalculator';
 import TechStackGrid from '@/components/TechStackGrid';
-import AboutSection from '@/components/AboutSection';
-import SkillsSection from '@/components/SkillsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
@@ -19,8 +15,6 @@ import SectionSkeleton from '@/components/SectionSkeleton';
 import DesignGallery from '@/components/DesignGallery';
 import ContactSection from '@/components/ContactSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const MultiStepInquiry = lazy(() => import('@/components/MultiStepInquiry'));
 
 // Section wrapper with scroll-triggered animations
 const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
@@ -53,37 +47,24 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background" dir={direction}>
-      <TopBar />
       <ScrollProgress />
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
-        <SystemStatusTicker />
         <AnimatedSection>
-          <BentoServicesSection />
+          <TerminalAbout />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <BentoSkillsGrid />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <CaseStudiesSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <ROICalculator />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
           <TechStackGrid />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <AboutSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <SkillsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
           <TestimonialsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <Suspense fallback={<SectionSkeleton type="contact" />}>
-            <MultiStepInquiry />
-          </Suspense>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <ContactSection />
