@@ -89,7 +89,7 @@ const AboutSection: React.FC = () => {
             <div className="relative" style={{ perspective: '1000px' }}>
               {/* Main avatar card - 3D Perspective Tilt effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer transition-shadow duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
                 style={{ 
                   y: imageY, 
                   scale: imageScale,
@@ -102,17 +102,16 @@ const AboutSection: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Image container - transparent PNG, positioned bottom-center */}
-                <div ref={imageRef} className="w-full h-full relative flex items-end justify-center">
+               {/* Image container - face fills frame */}
+                <div ref={imageRef} className="w-full h-full relative overflow-hidden">
                   {isImageVisible && (
                     <img 
                       src={noahProfile} 
                       alt="Noah Al-Samawi" 
                       loading="lazy"
-                      className="w-full h-auto object-contain object-bottom transition-transform duration-500"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       style={{ 
-                        transform: isHovering ? 'scale(1.02)' : 'scale(1)',
-                        maxHeight: '100%',
+                        transform: isHovering ? 'scale(1.05)' : 'scale(1)',
                       }}
                     />
                   )}
