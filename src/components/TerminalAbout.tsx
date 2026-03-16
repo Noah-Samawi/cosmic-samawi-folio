@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal } from 'lucide-react';
+import { Terminal, FileDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const COMMANDS = [
   { prompt: '> node noah.js', delay: 800 },

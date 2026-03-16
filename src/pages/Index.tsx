@@ -66,9 +66,7 @@ const Index: React.FC = () => {
         <AnimatedSection delay={0.1}>
           <ProjectsSection />
         </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <ExperienceSection />
-        </AnimatedSection>
+        <AIRadar />
         <AnimatedSection delay={0.1}>
           <CaseStudiesSection />
         </AnimatedSection>
