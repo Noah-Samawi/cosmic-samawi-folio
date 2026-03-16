@@ -59,6 +59,8 @@ const Index: React.FC = () => {
           <BentoSkillsGrid />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
+          <AIInsightsSection />
+        <AnimatedSection delay={0.1}>
           <CaseStudiesSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
