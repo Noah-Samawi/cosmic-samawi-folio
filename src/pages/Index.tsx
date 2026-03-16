@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection';
 import TerminalAbout from '@/components/TerminalAbout';
 import BentoSkillsGrid from '@/components/BentoSkillsGrid';
 import AIInsightsSection from '@/components/AIInsightsSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import TechStackGrid from '@/components/TechStackGrid';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -60,6 +61,9 @@ const Index: React.FC = () => {
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <AIInsightsSection />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <ProjectsSection />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <CaseStudiesSection />

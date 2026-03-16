@@ -1,35 +1,194 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Code, Server, Award, Shield, Globe, Zap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useLazyLoad } from '@/hooks/useLazyLoad';
-import noahProfile from '@/assets/noah-profile.png';
+
+const codeLines = [
+  { text: 'const', color: 'text-purple-400' },
+  { text: ' developer', color: 'text-blue-300' },
+  { text: ' = {', color: 'text-foreground' },
+  { text: '  name', color: 'text-sky-300' },
+  { text: ': ', color: 'text-foreground' },
+  { text: '"Noah Al-Samawi"', color: 'text-emerald-400' },
+  { text: ',', color: 'text-foreground' },
+  { text: '  role', color: 'text-sky-300' },
+  { text: ': ', color: 'text-foreground' },
+  { text: '"Full-Stack Software Engineer"', color: 'text-emerald-400' },
+  { text: ',', color: 'text-foreground' },
+  { text: '  location', color: 'text-sky-300' },
+  { text: ': ', color: 'text-foreground' },
+  { text: '"Frankfurt, Germany 🇩🇪"', color: 'text-emerald-400' },
+  { text: ',', color: 'text-foreground' },
+  { text: '  skills', color: 'text-sky-300' },
+  { text: ': [', color: 'text-foreground' },
+  { text: '"React"', color: 'text-amber-300' },
+  { text: ', ', color: 'text-foreground' },
+  { text: '"Python"', color: 'text-amber-300' },
+  { text: ', ', color: 'text-foreground' },
+  { text: '"Supabase"', color: 'text-amber-300' },
+  { text: ', ', color: 'text-foreground' },
+  { text: '"AI Integrations"', color: 'text-amber-300' },
+  { text: '],', color: 'text-foreground' },
+  { text: '  status', color: 'text-sky-300' },
+  { text: ': ', color: 'text-foreground' },
+  { text: '"Available for new opportunities"', color: 'text-emerald-400' },
+  { text: ',', color: 'text-foreground' },
+  { text: '  contact', color: 'text-sky-300' },
+  { text: ': ', color: 'text-foreground' },
+  { text: '"kontakt@noahsamawi.de"', color: 'text-emerald-400' },
+  { text: '};', color: 'text-foreground' },
+];
+
+const formattedCode = [
+  [0, 1, 2],       // const developer = {
+  [3, 4, 5, 6],    //   name: "Noah Al-Samawi",
+  [7, 8, 9, 10],   //   role: "Full-Stack Software Engineer",
+  [11, 12, 13, 14],//   location: "Frankfurt, Germany 🇩🇪",
+  [15, 16, 17, 18, 19, 20, 21, 22, 23, 24], //   skills: [...],
+  [25, 26, 27, 28],//   status: "Available for new opportunities",
+  [29, 30, 31, 32],//   contact: "kontakt@noahsamawi.de"
+];
+
+const CodeBox: React.FC = () => {
+  const [visibleChars, setVisibleChars] = useState(0);
+  const totalChars = codeLines.reduce((sum, l) => sum + l.text.length, 0);
+
+  useEffect(() => {
+    if (visibleChars < totalChars) {
+      const timer = setTimeout(() => setVisibleChars(v => v + 1), 25);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleChars, totalChars]);
+
+  // Build visible text
+  let charCount = 0;
+  const getVisibleText = (lineIdx: number) => {
+    return formattedCode[lineIdx].map(tokenIdx => {
+      const token = codeLines[tokenIdx];
+      const chars = token.text.split('');
+      return chars.map((char, ci) => {
+        charCount++;
+        if (charCount > visibleChars) return null;
+        return (
+          <span key={`${tokenIdx}-${ci}`} className={token.color}>
+            {char}
+          </span>
+        );
+      });
+    });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="w-full max-w-lg rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 transition-shadow duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
+      style={{ background: 'hsl(222 47% 6%)' }}
+    >
+      {/* macOS Title Bar */}
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-border/30" style={{ background: 'hsl(222 47% 8%)' }}>
+        <span className="w-3 h-3 rounded-full bg-red-500/80" />
+        <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+        <span className="w-3 h-3 rounded-full bg-green-500/80" />
+        <span className="ml-3 text-xs text-muted-foreground font-mono">developer.js</span>
+      </div>
+
+      {/* Code Content */}
+      <div className="p-5 md:p-6 font-mono text-xs md:text-sm leading-relaxed overflow-x-auto">
+        {formattedCode.map((_, lineIdx) => {
+          // We need a fresh charCount per render, so we use a ref trick
+          return (
+            <div key={lineIdx} className="whitespace-pre">
+              <span className="text-muted-foreground/40 select-none mr-4 inline-block w-4 text-right">{lineIdx + 1}</span>
+              {lineIdx > 0 && lineIdx < formattedCode.length - 1 && <span className="text-foreground/30">  </span>}
+            </div>
+          );
+        })}
+        {/* Blinking cursor */}
+        {visibleChars >= totalChars && (
+          <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-1" />
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+// Proper rendering with char counting
+const CodeBoxProper: React.FC = () => {
+  const [visibleChars, setVisibleChars] = useState(0);
+  const totalChars = codeLines.reduce((sum, l) => sum + l.text.length, 0);
+
+  useEffect(() => {
+    if (visibleChars < totalChars) {
+      const timer = setTimeout(() => setVisibleChars(v => v + 1), 22);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleChars, totalChars]);
+
+  let globalCharIndex = 0;
+
+  const renderLine = (tokenIndices: number[], lineNum: number) => {
+    const indent = lineNum > 0 && lineNum < formattedCode.length - 1 ? '  ' : '';
+    const elements: React.ReactNode[] = [];
+
+    for (const tokenIdx of tokenIndices) {
+      const token = codeLines[tokenIdx];
+      for (let ci = 0; ci < token.text.length; ci++) {
+        globalCharIndex++;
+        if (globalCharIndex <= visibleChars) {
+          elements.push(
+            <span key={`${tokenIdx}-${ci}`} className={token.color}>
+              {token.text[ci]}
+            </span>
+          );
+        }
+      }
+    }
+
+    return (
+      <div key={lineNum} className="whitespace-pre">
+        <span className="text-muted-foreground/40 select-none mr-4 inline-block w-5 text-right text-[11px]">
+          {lineNum + 1}
+        </span>
+        {indent && <span>{indent}</span>}
+        {elements}
+      </div>
+    );
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="w-full max-w-lg rounded-2xl overflow-hidden border border-primary/20 shadow-2xl shadow-primary/10 transition-shadow duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
+      style={{ background: 'hsl(222 47% 6%)' }}
+    >
+      {/* macOS Title Bar */}
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-border/30" style={{ background: 'hsl(222 47% 8%)' }}>
+        <span className="w-3 h-3 rounded-full bg-red-500/80" />
+        <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+        <span className="w-3 h-3 rounded-full bg-green-500/80" />
+        <span className="ml-3 text-xs text-muted-foreground font-mono">developer.js</span>
+      </div>
+
+      {/* Code Content */}
+      <div className="p-5 md:p-6 font-mono text-xs md:text-sm leading-relaxed">
+        {formattedCode.map((tokenIndices, lineIdx) => renderLine(tokenIndices, lineIdx))}
+        {/* Blinking cursor */}
+        {visibleChars >= totalChars && (
+          <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-1 align-middle" />
+        )}
+      </div>
+    </motion.div>
+  );
+};
 
 const AboutSection: React.FC = () => {
   const { t } = useLanguage();
-  const [isHovering, setIsHovering] = useState(false);
-  const [imageRef, isImageVisible] = useLazyLoad<HTMLDivElement>();
-
-  // 3D Tilt effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), { stiffness: 300, damping: 30 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    mouseX.set(0);
-    mouseY.set(0);
-  };
 
   const highlights = [
     { icon: Server, key: 'about.highlight1' },
@@ -46,13 +205,6 @@ const AboutSection: React.FC = () => {
   ];
 
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.02, 0.98]);
 
   return (
     <section id="about" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
@@ -78,7 +230,7 @@ const AboutSection: React.FC = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Profile Card */}
+          {/* Code Box replaces portrait */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -86,78 +238,7 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="flex justify-center"
           >
-            <div className="relative" style={{ perspective: '1000px' }}>
-              {/* Main avatar card - 3D Perspective Tilt effect */}
-              <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer transition-shadow duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
-                style={{ 
-                  y: imageY, 
-                  scale: imageScale,
-                  rotateX: isHovering ? rotateX : 0,
-                  rotateY: isHovering ? rotateY : 0,
-                  transformStyle: 'preserve-3d',
-                }}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={handleMouseLeave}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-               {/* Image container - face fills frame */}
-                <div ref={imageRef} className="w-full h-full relative overflow-hidden">
-                  {isImageVisible && (
-                    <img 
-                      src={noahProfile} 
-                      alt="Noah Al-Samawi" 
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
-                      style={{ 
-                        transform: isHovering ? 'scale(1.05)' : 'scale(1)',
-                      }}
-                    />
-                  )}
-                </div>
-                
-                {/* Shine effect on hover */}
-                <motion.div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: isHovering 
-                      ? 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 55%, transparent 60%)'
-                      : 'transparent',
-                    opacity: isHovering ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                  }}
-                />
-                
-                {/* Security badge overlay */}
-                <div className="absolute top-4 right-4 p-2 rounded-xl bg-primary/20 backdrop-blur-sm" style={{ transform: 'translateZ(20px)' }}>
-                  <Shield className="w-5 h-5 text-primary" />
-                </div>
-              </motion.div>
-              
-              {/* Experience badge */}
-              <motion.div 
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, type: "spring" }}
-                className="absolute -bottom-4 -right-4 w-28 h-28 rounded-2xl glass-card flex flex-col items-center justify-center pulse-glow"
-              >
-                <span className="text-3xl font-bold gradient-text">6+</span>
-                <span className="text-xs text-muted-foreground text-center">{t('about.years')}</span>
-              </motion.div>
-
-              {/* Globe badge */}
-              <motion.div 
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, type: "spring" }}
-                className="absolute -top-4 -left-4 w-16 h-16 rounded-2xl glass-card flex items-center justify-center"
-              >
-                <Globe className="w-6 h-6 text-primary" />
-              </motion.div>
-            </div>
+            <CodeBoxProper />
           </motion.div>
 
           {/* Content */}
