@@ -6,26 +6,24 @@ const COMMANDS = [
   { prompt: '> node noah.js', delay: 800 },
   {
     prompt: '',
-    output: `{
-  role: 'Computer Engineer',
+    output: `const noah = {
+  role: 'Founder & Software Engineer',
   location: 'Frankfurt, DE',
-  experience: '6+ years Enterprise IT',
-  passion: 'Building efficient IT infrastructure & sleek UIs',
-  education: 'B.Sc. Computer Science · Full-Stack Diploma (Code Institute)',
-  stack: ['React', 'TypeScript', 'Python', 'Django', 'Node.js', 'SQL'],
-  status: 'Open to opportunities 🚀'
-}`,
+  education: 'B.Sc. Computer Science · Full-Stack Diploma',
+  stack: ['React', 'Python', 'Supabase', 'OpenAI', 'Node.js', 'SQL'],
+  focus: 'Automating business logic & building scalable AI systems',
+};`,
     delay: 600,
   },
   { prompt: '> noah.getHighlights()', delay: 1200 },
   {
     prompt: '',
-    output: `[
-  '✓ 2nd Level IT Support @ CBRE for DXC/Dell (2017-2023)',
-  '✓ Full-Stack Web Development Diploma — Code Institute',
-  '✓ 5+ Hackathons — Rapid prototyping & innovation',
-  '✓ Security-first approach — Burp Suite, Home Labs',
-  '✓ 10+ Projects delivered end-to-end'
+    output: `// Output: [
+  '✓ B.Sc. Computer Science & Full-Stack Web Development',
+  '✓ Experienced Hackathon Participant — Rapid prototyping',
+  '✓ Security-first approach — Burp Suite, Secure Architecture',
+  '✓ Delivering end-to-end Enterprise web & AI solutions',
+  '✓ Strong Enterprise IT background (CBRE / DXC / Dell)'
 ]`,
     delay: 600,
   },

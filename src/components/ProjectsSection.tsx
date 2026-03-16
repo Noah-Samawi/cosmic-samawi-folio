@@ -106,12 +106,14 @@ const ProjectCard: React.FC<{ project: typeof portfolioData.projects[0]; index: 
               </a>
             </Button>
           )}
-          <Button variant="neon" size="sm" asChild className="flex-1 text-xs">
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-              Live Demo
-            </a>
-          </Button>
+          {project.liveUrl && (
+            <Button variant="neon" size="sm" asChild className="flex-1 text-xs">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
+                Live Demo
+              </a>
+            </Button>
+          )}
         </div>
       </div>
     </SpotlightCard>
