@@ -164,6 +164,22 @@ const TerminalAbout: React.FC = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* CV Download */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex justify-center mt-8"
+          >
+            <Button variant="neon" size="lg" asChild>
+              <a href="/noah-alsamawi-cv.pdf" target="_blank" rel="noopener noreferrer">
+                <FileDown className="w-4 h-4 mr-2" />
+                Download Full Resume
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </div>
     </section>
