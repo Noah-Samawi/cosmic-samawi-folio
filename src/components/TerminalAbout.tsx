@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Minus, Square, X } from 'lucide-react';
-import noahProfile from '@/assets/noah-profile.png';
+import { Terminal } from 'lucide-react';
 
 const COMMANDS = [
   { prompt: '> node noah.js', delay: 800 },
