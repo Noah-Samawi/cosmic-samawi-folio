@@ -89,7 +89,7 @@ const HeroSection: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="/noah-al-samawi-cv.pdf" download className="gap-2">
+              <a href="/noah-al-samawi-cv.pdf" download target="_blank" rel="noopener noreferrer" className="gap-2">
                 <Download className="h-5 w-5" />
                 {t('hero.cta.download')}
               </a>
