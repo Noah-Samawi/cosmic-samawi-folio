@@ -21,7 +21,7 @@ const quickActions = [
 const responses: Record<string, string> = {
   cv: `📄 **Lebenslauf herunterladen**
 
-Sie können meinen vollständigen Lebenslauf direkt hier herunterladen:
+Sie können meinen vollständigen Lebenslauf direkt hier öffnen:
 
 👉 [**CV als PDF öffnen**](/noah-al-samawi-cv.pdf)
 
