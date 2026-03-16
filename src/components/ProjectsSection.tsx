@@ -53,6 +53,8 @@ const ProjectCard: React.FC<{ project: typeof portfolioData.projects[0]; index: 
           <img
             src={projectImages[project.id]}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
         ) : (

@@ -3,21 +3,25 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import TerminalAbout from '@/components/TerminalAbout';
-import BentoSkillsGrid from '@/components/BentoSkillsGrid';
-import AIInsightsSection from '@/components/AIInsightsSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import AIRadar from '@/components/AIRadar';
-import CaseStudiesSection from '@/components/CaseStudiesSection';
-import TechStackGrid from '@/components/TechStackGrid';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import Footer from '@/components/Footer';
-import ChatWidget from '@/components/ChatWidget';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
-import DesignGallery from '@/components/DesignGallery';
-import ContactSection from '@/components/ContactSection';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+// Lazy-load all below-fold components
+const BentoSkillsGrid = lazy(() => import('@/components/BentoSkillsGrid'));
+const AIInsightsSection = lazy(() => import('@/components/AIInsightsSection'));
+const ProjectsSection = lazy(() => import('@/components/ProjectsSection'));
+const AIRadar = lazy(() => import('@/components/AIRadar'));
+const CaseStudiesSection = lazy(() => import('@/components/CaseStudiesSection'));
+const TechStackGrid = lazy(() => import('@/components/TechStackGrid'));
+const TestimonialsSection = lazy(() => import('@/components/TestimonialsSection'));
+const ContactSection = lazy(() => import('@/components/ContactSection'));
+const Footer = lazy(() => import('@/components/Footer'));
+const DesignGallery = lazy(() => import('@/components/DesignGallery'));
+
+// Deferred ChatWidget - loads after main content
+const ChatWidget = lazy(() => import('@/components/ChatWidget'));
 
 // Section wrapper with scroll-triggered animations
 const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
@@ -41,11 +45,18 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> =
 const Index: React.FC = () => {
   const { direction } = useLanguage();
   const [isDesignGalleryOpen, setIsDesignGalleryOpen] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     const handleOpenDesignGallery = () => setIsDesignGalleryOpen(true);
     window.addEventListener('openDesignGallery', handleOpenDesignGallery);
     return () => window.removeEventListener('openDesignGallery', handleOpenDesignGallery);
+  }, []);
+
+  // Defer ChatWidget mount until after initial paint
+  useEffect(() => {
+    const timer = setTimeout(() => setShowChat(true), 2500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -57,36 +68,60 @@ const Index: React.FC = () => {
         <AnimatedSection>
           <TerminalAbout />
         </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <BentoSkillsGrid />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <AIInsightsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <ProjectsSection />
-        </AnimatedSection>
-        <AIRadar />
-        <AnimatedSection delay={0.1}>
-          <CaseStudiesSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <TechStackGrid />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <TestimonialsSection />
-        </AnimatedSection>
-        <AnimatedSection delay={0.1}>
-          <ContactSection />
-        </AnimatedSection>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <BentoSkillsGrid />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <AIInsightsSection />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <ProjectsSection />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={null}>
+          <AIRadar />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <CaseStudiesSection />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <TechStackGrid />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <TestimonialsSection />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <ContactSection />
+          </AnimatedSection>
+        </Suspense>
       </main>
-      <Footer />
-      <ChatWidget />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
+      {showChat && (
+        <Suspense fallback={null}>
+          <ChatWidget />
+        </Suspense>
+      )}
       <BackToTop />
-      <DesignGallery 
-        isOpen={isDesignGalleryOpen} 
-        onClose={() => setIsDesignGalleryOpen(false)} 
-      />
+      <Suspense fallback={null}>
+        <DesignGallery 
+          isOpen={isDesignGalleryOpen} 
+          onClose={() => setIsDesignGalleryOpen(false)} 
+        />
+      </Suspense>
     </div>
   );
 };
