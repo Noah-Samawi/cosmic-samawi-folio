@@ -6,6 +6,7 @@ import TerminalAbout from '@/components/TerminalAbout';
 import BentoSkillsGrid from '@/components/BentoSkillsGrid';
 import AIInsightsSection from '@/components/AIInsightsSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import ExperienceSection from '@/components/ExperienceSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import TechStackGrid from '@/components/TechStackGrid';
 import TestimonialsSection from '@/components/TestimonialsSection';
