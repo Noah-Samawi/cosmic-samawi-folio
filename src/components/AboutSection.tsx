@@ -102,17 +102,16 @@ const AboutSection: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Image container - transparent PNG, positioned bottom-center */}
-                <div ref={imageRef} className="w-full h-full relative flex items-end justify-center">
+               {/* Image container - face fills frame */}
+                <div ref={imageRef} className="w-full h-full relative overflow-hidden">
                   {isImageVisible && (
                     <img 
                       src={noahProfile} 
                       alt="Noah Al-Samawi" 
                       loading="lazy"
-                      className="w-full h-auto object-contain object-bottom transition-transform duration-500"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       style={{ 
-                        transform: isHovering ? 'scale(1.02)' : 'scale(1)',
-                        maxHeight: '100%',
+                        transform: isHovering ? 'scale(1.05)' : 'scale(1)',
                       }}
                     />
                   )}
