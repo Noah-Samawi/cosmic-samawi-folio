@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Minus, Square, X } from 'lucide-react';
-import noahProfile from '@/assets/noah-profile.png';
+import { Terminal } from 'lucide-react';
 
 const COMMANDS = [
   { prompt: '> node noah.js', delay: 800 },
@@ -118,42 +117,16 @@ const TerminalAbout: React.FC = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get to know me — the developer way.</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-10 items-center max-w-6xl mx-auto">
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2 flex justify-center"
-          >
-            <div className="relative">
-              <div className="w-56 h-72 md:w-64 md:h-80 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/20 overflow-hidden bg-[hsl(var(--avatar-bg))]">
-                <img src={noahProfile} alt="Noah Al-Samawi" className="w-full h-full object-contain object-bottom" loading="lazy" />
-              </div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, type: 'spring' }}
-                className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl glass-card flex flex-col items-center justify-center pulse-glow"
-              >
-                <span className="text-2xl font-bold gradient-text">6+</span>
-                <span className="text-[10px] text-muted-foreground text-center">Years Exp.</span>
-              </motion.div>
-            </div>
-          </motion.div>
-
+        <div className="max-w-4xl mx-auto">
           {/* Terminal */}
           <motion.div
             ref={terminalRef}
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-3"
           >
-            <div className="rounded-xl border border-border/50 overflow-hidden shadow-2xl bg-[hsl(222,20%,8%)]">
+            <div className="rounded-xl border border-border/50 overflow-hidden shadow-2xl bg-[hsl(222,20%,8%)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] transition-shadow duration-500">
               {/* Title bar */}
               <div className="flex items-center gap-2 px-4 py-3 bg-[hsl(222,20%,12%)] border-b border-border/30">
                 <div className="flex gap-2">
@@ -180,7 +153,6 @@ const TerminalAbout: React.FC = () => {
                     )}
                   </div>
                 ))}
-                {/* Blinking cursor */}
                 {currentCommand < COMMANDS.length && (
                   <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-0.5" />
                 )}
