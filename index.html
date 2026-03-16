@@ -108,6 +108,20 @@
         }
       }
     </script>
+    <!-- Preload critical fonts for faster FCP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    
+    <!-- Font display swap for system font fallback -->
+    <style>
+      @font-face {
+        font-family: 'Plus Jakarta Sans';
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Sora';
+        font-display: swap;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
