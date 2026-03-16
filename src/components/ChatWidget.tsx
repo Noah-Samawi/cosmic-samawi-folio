@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Sparkles, User, Rocket, Shield, Mail, HelpCircle, Calendar } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, User, Mail, Calendar, FileText, Code2, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -10,6 +10,84 @@ interface Message {
   content: string;
 }
 
+const quickActions = [
+  { icon: FileText, label: '📄 CV Herunterladen', action: 'cv' },
+  { icon: Code2, label: '💻 Tech-Stack', action: 'techstack' },
+  { icon: Bot, label: '🤖 KI & Automatisierung', action: 'ai' },
+  { icon: Calendar, label: '📅 Call buchen', action: 'book' },
+  { icon: Mail, label: '✉️ Kontakt', action: 'contact' },
+];
+
+const responses: Record<string, string> = {
+  cv: `📄 **Lebenslauf herunterladen**
+
+Sie können meinen vollständigen Lebenslauf direkt hier herunterladen:
+
+👉 [**CV als PDF öffnen**](/noah-al-samawi-cv.pdf)
+
+Alternativ finden Sie den Download-Button auch im Hero-Bereich ganz oben auf der Seite.`,
+
+  techstack: `💻 **Mein Tech-Stack**
+
+Meine Kerntechnologien — darunter **React, Node.js, Python, Supabase und OpenAI** — finden Sie übersichtlich im interaktiven **Terminal-Fenster** direkt oben auf der Startseite.
+
+Dort sehen Sie auch meine Schwerpunkte: skalierbare KI-Systeme und die Automatisierung von Geschäftslogik.
+
+Suchen Sie nach einer bestimmten Technologie? Fragen Sie gerne!`,
+
+  ai: `🤖 **KI & Automatisierung**
+
+Ich bin spezialisiert auf die Automatisierung von Geschäftsprozessen mit modernster KI. Werfen Sie gerne einen Blick auf die Sektion **„Live AI & Tech Radar"** weiter unten, um zu sehen, wie ich Tools wie **OpenAI, LangChain und moderne Datenbanken** verknüpfe.
+
+Mein Ansatz:
+**1. Analyse** → Verstehen Ihrer Prozesse & Engpässe
+**2. Strategie** → Auswahl der richtigen KI-Tools
+**3. Entwicklung** → Agile Umsetzung mit Live-Previews
+**4. Launch** → Deployment & kontinuierliche Optimierung
+
+Möchten Sie mehr über ein konkretes Automatisierungsprojekt erfahren?`,
+
+  book: `📅 **Termin vereinbaren**
+
+Lassen Sie uns in einem 30-minütigen Erstgespräch Ihre Anforderungen besprechen — selbstverständlich kostenlos.
+
+📧 Schreiben Sie mir direkt: **kontakt@noahsamawi.de**
+
+Antwortzeit: **< 4 Stunden** ⚡`,
+
+  contact: `✉️ **Kontaktdaten**
+
+📧 E-Mail: **kontakt@noahsamawi.de**
+🌐 Website: **noahsamawi.de**
+💼 LinkedIn: Noah Al-Samawi
+📍 Frankfurt am Main, Deutschland
+
+Antwortzeit: **< 4 Stunden** ⚡`,
+};
+
+const getKeywordResponse = (query: string): string | null => {
+  const q = query.toLowerCase();
+  if (q.includes('tech') || q.includes('stack') || q.includes('skill') || q.includes('sprach') || q.includes('react') || q.includes('python') || q.includes('programm')) {
+    return responses.techstack;
+  }
+  if (q.includes('ki') || q.includes('ai') || q.includes('automat') || q.includes('openai') || q.includes('gpt') || q.includes('prozess') || q.includes('workflow')) {
+    return responses.ai;
+  }
+  if (q.includes('cv') || q.includes('lebenslauf') || q.includes('resume') || q.includes('download')) {
+    return responses.cv;
+  }
+  if (q.includes('preis') || q.includes('kosten') || q.includes('budget') || q.includes('price') || q.includes('cost')) {
+    return `💰 **Preisgestaltung**\n\nMeine Preise richten sich nach der Komplexität des Projekts. Jedes Projekt beginnt mit einem **kostenlosen Erstgespräch**.\n\nNutzen Sie den **„Call buchen"**-Button, um einen Termin zu vereinbaren!`;
+  }
+  if (q.includes('projekt') || q.includes('portfolio') || q.includes('arbeit') || q.includes('referenz')) {
+    return `🚀 **Projekte**\n\nScrollen Sie zur Sektion **„Featured Projects"** weiter unten, um meine aktuellen Arbeiten zu sehen — darunter KI-gestützte Customer Intelligence Suites, SaaS-Dashboards und Workflow-Automatisierungen.\n\nJede Karte zeigt den verwendeten Tech-Stack und Links zu GitHub.`;
+  }
+  if (q.includes('kontakt') || q.includes('email') || q.includes('contact') || q.includes('reach') || q.includes('mail')) {
+    return responses.contact;
+  }
+  return null;
+};
+
 const ChatWidget: React.FC = () => {
   const { direction } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -17,30 +95,21 @@ const ChatWidget: React.FC = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
-  const [showCalendly, setShowCalendly] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const quickActions = [
-    { icon: HelpCircle, label: 'Preise?', action: 'pricing' },
-    { icon: Rocket, label: 'Wie arbeiten wir?', action: 'how' },
-    { icon: Calendar, label: 'Call buchen', action: 'book' },
-    { icon: Shield, label: 'Projekte', action: 'projects' },
-    { icon: Mail, label: 'Kontakt', action: 'contact' },
-  ];
-
-  const getWelcomeMessage = () => {
-    return `👋 **Willkommen! Ich bin Noahs KI-Assistent.**
-
-Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — Computer Engineer & Full-Stack Developer aus Frankfurt.
-
-💡 Fragen Sie mich zu Projekten, meinem Arbeitsprozess oder vereinbaren Sie direkt einen Call.
-
-**Wie kann ich Ihnen weiterhelfen?**`;
-  };
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      setMessages([{ id: 'welcome', role: 'assistant', content: getWelcomeMessage() }]);
+      setMessages([{
+        id: 'welcome',
+        role: 'assistant',
+        content: `👋 **Willkommen! Ich bin Noahs KI-Assistent.**
+
+Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc. Computer Science, Full-Stack Engineer & KI-Spezialist aus Frankfurt.
+
+💡 Nutzen Sie die Schnellaktionen unten oder stellen Sie mir direkt eine Frage!
+
+**Wie kann ich Ihnen weiterhelfen?**`
+      }]);
     }
   }, [isOpen]);
 
@@ -52,86 +121,38 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — Compu
     const userMsg: Message = { id: Date.now().toString(), role: 'user', content: userLabel };
     setMessages(prev => [...prev, userMsg]);
     setIsLoading(true);
+    setShowQuickActions(false);
     setTimeout(() => {
       setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: response }]);
       setIsLoading(false);
+      setShowQuickActions(true);
     }, 800);
   };
 
   const handleQuickAction = (action: string) => {
-    setShowQuickActions(false);
-
-    const responses: Record<string, string> = {
-      pricing: `💰 **Preisgestaltung**
-
-Meine Preise richten sich nach der Komplexität des Projekts. Egal ob MVP oder Enterprise-System – lassen Sie uns Ihre Anforderungen in einem kurzen Call besprechen.
-
-Jedes Projekt beginnt mit einem **kostenlosen Erstgespräch**, in dem wir den Umfang und das Budget gemeinsam definieren.
-
-📧 Kontakt: **kontakt@noahsamawi.de**`,
-      how: `⚙️ **So arbeite ich:**
-
-**1. Discovery Call (Analyse)** → Verstehen Ihrer Ziele & Herausforderungen.
-**2. Architektur & Strategie** → Detaillierter Scope, Zeitplan und Technologieauswahl.
-**3. Agile Entwicklung** → Wöchentliche Sprints mit Live-Previews und transparenter Kommunikation.
-**4. Launch & Skalierung** → Deployment, Dokumentation und laufende Optimierung.
-
-⏱ Durchschnittliche Lieferzeit: **2–8 Wochen** je nach Umfang.
-🔒 Der gesamte Code gehört Ihnen. Vollständiger IP-Transfer nach Abschluss.`,
-      book: `📅 **Termin vereinbaren**
-
-Klicken Sie unten, um ein 30-minütiges Erstgespräch mit Noah zu vereinbaren.`,
-      projects: `🚀 **Ausgewählte Projekte:**
-
-• **KI Customer Intelligence Suite** — GPT-4o, Node.js, WhatsApp API → 85% schnellere Antwortzeit.
-• **Smart SaaS Finanz-Dashboard** — Next.js, Supabase, Recharts → 10+ Std./Woche eingespart.
-• **Zero-Touch Workflow-Automatisierung** — n8n, Make.com, Python → 0% menschliche Fehler.
-
-Scrollen Sie zu den **Fallstudien** für weitere Details!`,
-      contact: `✉️ **Kontakt:**
-
-📧 E-Mail: **kontakt@noahsamawi.de**
-🌐 Website: **noahsamawi.de**
-💼 LinkedIn: Noah Al-Samawi
-📍 Frankfurt am Main, Deutschland
-
-Antwortzeit: **< 4 Stunden** ⚡`,
-    };
-
-    const label = quickActions.find(a => a.action === action)?.label || action;
-    
-    if (action === 'book') {
-      addResponse(label, responses[action]);
-      setTimeout(() => setShowCalendly(true), 1200);
-    } else {
-      addResponse(label, responses[action]);
+    if (action === 'cv') {
+      window.open('/noah-al-samawi-cv.pdf', '_blank');
+      addResponse('📄 CV Herunterladen', responses.cv);
+      return;
     }
-
-    setTimeout(() => setShowQuickActions(true), 1500);
+    const label = quickActions.find(a => a.action === action)?.label || action;
+    addResponse(label, responses[action]);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    setShowQuickActions(false);
     const userMessage: Message = { id: Date.now().toString(), role: 'user', content: input.trim() };
     setMessages(prev => [...prev, userMessage]);
-    const query = input.toLowerCase();
+    const query = input;
     setInput('');
     setIsLoading(true);
+    setShowQuickActions(false);
 
     setTimeout(() => {
-      let response = '';
-      if (query.includes('preis') || query.includes('kosten') || query.includes('budget') || query.includes('price') || query.includes('cost')) {
-        response = `Meine Preise richten sich nach der Komplexität des Projekts. Lassen Sie uns Ihre Anforderungen in einem kurzen Call besprechen.\n\nNutzen Sie den **„Call buchen"**-Button!`;
-      } else if (query.includes('projekt') || query.includes('arbeit') || query.includes('portfolio') || query.includes('project') || query.includes('work')) {
-        response = `Ich habe KI-gestützte Customer Intelligence Suites, SaaS-Dashboards und Zero-Touch-Automatisierungssysteme entwickelt. Schauen Sie sich die **Fallstudien**-Sektion an!`;
-      } else if (query.includes('kontakt') || query.includes('email') || query.includes('contact') || query.includes('reach')) {
-        response = `📧 **kontakt@noahsamawi.de**\n📍 Frankfurt am Main, Deutschland\n💼 LinkedIn: Noah Al-Samawi\n\nAntwortzeit: < 4 Stunden ⚡`;
-      } else {
-        response = `Vielen Dank für Ihre Frage! Ich kann Ihnen weiterhelfen bei:\n\n• **Preise** — Projektbasierte Kalkulation\n• **Prozess** — Mein Arbeitsprozess\n• **Termin** — Discovery Call buchen\n\nNutzen Sie die Schnellaktionen unten oder stellen Sie Ihre Frage! 🚀`;
-      }
+      const response = getKeywordResponse(query) ||
+        `Vielen Dank für Ihre Frage! Ich kann Ihnen weiterhelfen bei:\n\n• **💻 Tech-Stack** — Meine Technologien im Terminal-Fenster\n• **🤖 KI & Automatisierung** — Mein Arbeitsprozess\n• **📄 CV** — Lebenslauf herunterladen\n• **📅 Termin** — Discovery Call buchen\n\nNutzen Sie die Schnellaktionen unten oder formulieren Sie Ihre Frage um! 🚀`;
       setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: response }]);
       setIsLoading(false);
       setShowQuickActions(true);
@@ -190,25 +211,6 @@ Antwortzeit: **< 4 Stunden** ⚡`,
                 </motion.div>
               ))}
 
-              {/* Calendly / Book a Call */}
-              {showCalendly && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-4 rounded-xl border border-primary/30">
-                  <div className="text-center space-y-3">
-                    <Calendar className="w-8 h-8 text-primary mx-auto" />
-                    <p className="text-sm font-semibold text-foreground">Discovery Call vereinbaren</p>
-                    <p className="text-xs text-muted-foreground">30 Minuten mit Noah Al-Samawi</p>
-                    <a
-                      href="mailto:kontakt@noahsamawi.de?subject=Terminanfrage%3A%20Tech-Consulting"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-                    >
-                      <Mail className="w-4 h-4" />
-                      Termin anfragen
-                    </a>
-                    <p className="text-[10px] text-muted-foreground">Calendly-Integration in Kürze verfügbar</p>
-                  </div>
-                </motion.div>
-              )}
-
               {isLoading && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3">
                   <div className="p-2 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20">
@@ -238,7 +240,6 @@ Antwortzeit: **< 4 Stunden** ⚡`,
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Icon className="h-3.5 w-3.5" />
                       {label}
                     </motion.button>
                   ))}
@@ -253,7 +254,7 @@ Antwortzeit: **< 4 Stunden** ⚡`,
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Fragen Sie mich zu Projekten, Prozessen oder Terminen..."
+                  placeholder="Fragen Sie mich zu Tech-Stack, KI oder Projekten..."
                   className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm border border-border/50"
                   disabled={isLoading}
                 />
@@ -268,7 +269,7 @@ Antwortzeit: **< 4 Stunden** ⚡`,
 
       {/* Toggle Button */}
       <motion.button
-        onClick={() => { setIsOpen(!isOpen); setShowCalendly(false); }}
+        onClick={() => setIsOpen(!isOpen)}
         className="p-4 rounded-2xl bg-gradient-to-r from-primary to-accent shadow-lg hover:shadow-xl transition-all"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
