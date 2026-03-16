@@ -89,7 +89,7 @@ const AboutSection: React.FC = () => {
             <div className="relative" style={{ perspective: '1000px' }}>
               {/* Main avatar card - 3D Perspective Tilt effect */}
               <motion.div 
-                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer"
+                className="w-64 h-80 md:w-80 md:h-96 rounded-2xl ring-4 ring-primary/30 shadow-2xl shadow-primary/25 overflow-hidden relative cursor-pointer transition-shadow duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
                 style={{ 
                   y: imageY, 
                   scale: imageScale,
