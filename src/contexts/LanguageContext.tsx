@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Language = "en" | "de" | "ar";
-type Direction = "ltr" | "rtl";
+type Language = "en" | "de";
+type Direction = "ltr";
 
 interface LanguageContextType {
   language: Language;
@@ -22,91 +22,69 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.skills": "Skills",
     "nav.education": "Education",
     "nav.contact": "Contact",
-    "nav.consult": "Consult Now",
+    "nav.consult": "Get a Quote",
 
-    // Hero - Agency
-    "hero.badge": "AI-Powered Software Agency",
-    "hero.tagline": "Automating the Future with AI-Powered Solutions",
-    "hero.description": "We design, build, and automate intelligent software systems that help businesses scale faster. From custom web apps to AI integration and workflow automation.",
-    "hero.cta.consult": "Start a Project",
-    "hero.cta.casestudies": "View Case Studies",
-    "hero.greeting": "Hello, I'm",
-    "hero.name": "Noah Al-Samawi",
-    "hero.title": "Security-Minded Full-Stack Developer",
-    "hero.subtitle": "Building modern web applications with a Security-First approach",
+    // Hero
+    "hero.badge": "IT · Web · Design — All from One Source",
+    "hero.greeting": "Holistic IT, Web &",
+    "hero.name": "Design Solutions",
+    "hero.title": "Everything from a single source for startups & local businesses in Frankfurt and remote.",
+    "hero.subtitle": "Custom Websites, AI Integration, Branding, Print Design & Full IT Support — tailored for your success.",
     "hero.cta.contact": "Get in Touch",
     "hero.cta.projects": "View Projects",
     "hero.cta.download": "Download CV",
     "hero.location": "Frankfurt, Germany",
-    "hero.status": "Open to Opportunities",
+    "hero.status": "Available for Projects",
 
-    // About - Founder
-    "about.agencyTitle": "Founder & Lead Engineer",
-    "about.agencySubtitle": "The mind behind Tech-Noah Solutions",
-    "about.title": "About Me",
-    "about.subtitle": "Get to know me better",
-    "about.years": "Years Experience",
-    "about.valueProposition": "Passionate about bridging the gap between robust software engineering and defensive security.",
-    "about.description1": 'I don\'t just build apps; I secure them. With a hands-on "breaker" mindset, I utilize tools like Burp Suite and Python scripting to identify vulnerabilities before they become threats.',
-    "about.description2": "My background involves building Home Labs for attack simulation and automating security workflows. Combined with 6+ years of enterprise IT and full-stack development, I deliver solutions that are both functional and fortified.",
-    "about.highlight1": "6+ years enterprise IT experience at Fortune 500 companies",
-    "about.highlight2": "Full-Stack development with React, Django & TypeScript",
-    "about.highlight3": "Code Institute Diploma in Full-Stack Web Development (2024)",
-    "about.highlight4": "Rapid Prototyping & Innovation through multiple Hackathons",
-    "about.highlight5": "Custom Tailored Solutions for freelance clients",
-    "about.stat1": "Years IT Experience",
-    "about.stat2": "Hackathons Joined",
-    "about.stat3": "Projects Delivered",
-
-    // Hire Me Section
-    "hire.title": "Turn Ideas Into Reality",
-    "hire.subtitle": "Do you need a website, a custom app, or a security audit? I don't just write code; I build businesses.",
-    "hire.webdesign.title": "Web Design",
-    "hire.webdesign.desc": "Beautiful, responsive websites that convert visitors into customers.",
-    "hire.apps.title": "Custom Apps",
-    "hire.apps.desc": "Tailored web applications built for your specific business needs.",
-    "hire.security.title": "Cyber Security",
-    "hire.security.desc": "Protect your digital assets with professional security audits.",
-    "hire.cta": "Let's Work Together",
-
-    // Agency Services (Bento Grid)
-    "agency.services.title": "Our Services",
-    "agency.services.subtitle": "End-to-end technology solutions to power your business growth",
-    "agency.services.webdev.title": "Custom Web & App Development",
-    "agency.services.webdev.desc": "Full-stack applications built with modern frameworks. From MVPs to enterprise platforms, we deliver scalable, secure, and performant solutions.",
-    "agency.services.ai.title": "AI Systems & Integration",
-    "agency.services.ai.desc": "Leverage the power of AI to supercharge your business. We build custom GPT integrations, ML pipelines, and intelligent automation that drives real results.",
-    "agency.services.automation.title": "Business Automation",
-    "agency.services.automation.desc": "Streamline your operations with smart workflow automation. CRM integrations, data pipelines, and process optimization.",
-    "agency.services.consulting.title": "Strategic Consulting",
-    "agency.services.consulting.desc": "Expert guidance on architecture decisions, security audits, and technology strategy to future-proof your business.",
-
-    // Services (legacy)
+    // Services - 3 Pillars
     "services.title": "Services",
-    "services.subtitle": "How I can help bring your ideas to life",
-    "services.webdev.title": "Web Development",
-    "services.webdev.desc": "Building responsive, modern web applications with cutting-edge technologies.",
-    "services.webdev.f1": "React & TypeScript frontends",
-    "services.webdev.f2": "Django & REST API backends",
-    "services.webdev.f3": "Database design & optimization",
-    "services.security.title": "Cybersecurity",
-    "services.security.desc": "Protecting your digital assets with enterprise-grade security practices.",
-    "services.security.f1": "Security audits & assessments",
-    "services.security.f2": "Network security configuration",
-    "services.security.f3": "Active Directory management",
-    "services.support.title": "Tech Support",
-    "services.support.desc": "Professional IT support with enterprise-level troubleshooting expertise.",
-    "services.support.f1": "Windows Server administration",
-    "services.support.f2": "IT infrastructure management",
-    "services.support.f3": "ServiceNow ticketing & escalation",
+    "services.subtitle": "Three pillars for your digital and physical business presence",
     "services.learnMore": "Learn more",
-    "services.webdev.details": "I build complete web applications from concept to deployment.",
-    "services.security.details": "Leveraging 6+ years of enterprise IT experience, I help secure your digital infrastructure.",
-    "services.support.details": "Professional IT support with enterprise-level expertise.",
+    "services.web.title": "Web & Software",
+    "services.web.desc": "Custom websites, AI-powered web apps, and modern software solutions — from concept to deployment.",
+    "services.web.f1": "Custom Landing Pages & Websites",
+    "services.web.f2": "AI Integration (GPT, Automation)",
+    "services.web.f3": "Full-Stack Web Applications",
+    "services.design.title": "Branding & Print Design",
+    "services.design.desc": "Professional visual identity for your business — from business cards to social media assets.",
+    "services.design.f1": "Business Cards (Visitenkarten)",
+    "services.design.f2": "Flyers & Social Media Graphics",
+    "services.design.f3": "Corporate Identity & Branding",
+    "services.it.title": "IT & Tech Support",
+    "services.it.desc": "Reliable 1st & 2nd level IT support for individuals and offices — hardware, networks, and troubleshooting.",
+    "services.it.f1": "1st & 2nd Level IT Support",
+    "services.it.f2": "Hardware Setup (Printers, Phones, Networks)",
+    "services.it.f3": "Troubleshooting & Remote Support",
+    "services.web.details": "I build complete web applications from concept to deployment, with AI integration capabilities.",
+    "services.design.details": "Professional print and digital design to establish your brand identity.",
+    "services.it.details": "Comprehensive IT support with enterprise-level expertise for individuals and offices.",
     "services.modal.techStack": "Technology Stack",
     "services.modal.keyFeatures": "Key Features",
-    "services.modal.cta": "Discuss Your Project",
+    "services.modal.cta": "Request a Quote",
     "services.modal.downloadCV": "Download CV",
+
+    // Starter Kit
+    "starterkit.badge": "Most Popular",
+    "starterkit.title": "Startup Starter-Kit",
+    "starterkit.subtitle": "Launch your business fast — everything you need in one package.",
+    "starterkit.item1": "Custom Landing Page",
+    "starterkit.item2": "Business Card Design",
+    "starterkit.item3": "Social Media Flyer",
+    "starterkit.item4": "Basic IT Setup & Consultation",
+    "starterkit.cta": "Request Quote",
+    "starterkit.note": "Individual pricing based on your needs",
+
+    // Agency Services (Bento Grid) - updated
+    "agency.services.title": "Our Services",
+    "agency.services.subtitle": "Three pillars for your digital and physical business presence",
+    "agency.services.webdev.title": "Web & Software",
+    "agency.services.webdev.desc": "Custom websites, AI-powered web apps, and modern software solutions — from concept to deployment.",
+    "agency.services.ai.title": "Branding & Print Design",
+    "agency.services.ai.desc": "Professional visual identity for your business — from business cards to social media assets and corporate identity.",
+    "agency.services.automation.title": "IT & Tech Support",
+    "agency.services.automation.desc": "Reliable 1st & 2nd level IT support for individuals and offices — hardware, networks, and troubleshooting.",
+    "agency.services.consulting.title": "Strategic Consulting",
+    "agency.services.consulting.desc": "Expert guidance on architecture decisions, security audits, and technology strategy.",
 
     // Case Studies
     "casestudies.title": "Case Studies",
@@ -136,10 +114,10 @@ const translations: Record<Language, Record<string, string>> = {
     "inquiry.step2.subtitle": "Help us understand your project scope",
     "inquiry.step3.title": "Your Details",
     "inquiry.step3.subtitle": "How can we reach you?",
-    "inquiry.type.webdev": "Web / App Development",
-    "inquiry.type.ai": "AI Integration & Automation",
-    "inquiry.type.automation": "Business Process Automation",
-    "inquiry.type.consulting": "Strategic Tech Consulting",
+    "inquiry.type.webdev": "Web & Software",
+    "inquiry.type.ai": "Branding & Print Design",
+    "inquiry.type.automation": "IT & Tech Support",
+    "inquiry.type.consulting": "Strategic Consulting",
     "inquiry.industry": "Your Industry (optional)",
     "inquiry.budget": "Estimated Budget",
     "inquiry.timelineLabel": "Project Timeline",
@@ -158,6 +136,35 @@ const translations: Record<Language, Record<string, string>> = {
     "inquiry.successMessage": "Thank you! We'll get back to you within 24 hours.",
     "inquiry.error": "Error",
     "inquiry.errorMessage": "Failed to submit. Please try again.",
+
+    // About
+    "about.title": "About Me",
+    "about.subtitle": "Get to know me better",
+    "about.agencyTitle": "Founder & Lead Engineer",
+    "about.agencySubtitle": "The mind behind Tech-Noah Solutions",
+    "about.years": "Years Experience",
+    "about.valueProposition": "Passionate about bridging the gap between robust software engineering and defensive security.",
+    "about.description1": 'I don\'t just build apps; I secure them.',
+    "about.description2": "With 6+ years of enterprise IT, full-stack development, and a passion for design — I deliver holistic digital solutions for startups, local businesses, and individuals.",
+    "about.highlight1": "6+ years enterprise IT experience at Fortune 500 companies",
+    "about.highlight2": "Full-Stack development with React, Django & TypeScript",
+    "about.highlight3": "Code Institute Diploma in Full-Stack Web Development (2024)",
+    "about.highlight4": "Rapid Prototyping & Innovation through multiple Hackathons",
+    "about.highlight5": "Custom Tailored Solutions for freelance clients",
+    "about.stat1": "Years IT Experience",
+    "about.stat2": "Hackathons Joined",
+    "about.stat3": "Projects Delivered",
+
+    // Hire Me Section
+    "hire.title": "Turn Ideas Into Reality",
+    "hire.subtitle": "Do you need a website, a custom app, or a security audit? I don't just write code; I build businesses.",
+    "hire.webdesign.title": "Web Design",
+    "hire.webdesign.desc": "Beautiful, responsive websites that convert visitors into customers.",
+    "hire.apps.title": "Custom Apps",
+    "hire.apps.desc": "Tailored web applications built for your specific business needs.",
+    "hire.security.title": "Cyber Security",
+    "hire.security.desc": "Protect your digital assets with professional security audits.",
+    "hire.cta": "Let's Work Together",
 
     // Experience
     "experience.title": "Experience",
@@ -185,6 +192,8 @@ const translations: Record<Language, Record<string, string>> = {
     "skills.frameworks": "Frameworks",
     "skills.systems": "Systems & Tools",
     "skills.security": "Cybersecurity & Pen-Testing",
+    "skills.all": "All Technologies",
+    "skills.active": "Active",
 
     // Education
     "education.title": "Education",
@@ -198,25 +207,25 @@ const translations: Record<Language, Record<string, string>> = {
     // Chat
     "chat.title": "AI Assistant",
     "chat.placeholder": "Ask us anything...",
-    "chat.welcome": "Hello! I'm the Tech-Noah Solutions assistant. Ask me about our services, case studies, or how we can help your business!",
+    "chat.welcome": "Hello! I'm Noah's AI assistant. Ask me about our services or how we can help your business!",
     "chat.send": "Send",
 
     // Testimonials
     "testimonials.title": "Client Testimonials",
-    "testimonials.subtitle": "What our clients say about working with Tech-Noah Solutions",
+    "testimonials.subtitle": "What our clients say about working with us",
     "testimonials.writeReview": "Write a Review",
     "testimonials.1.name": "Michael Schmidt",
     "testimonials.1.role": "IT Manager",
     "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote": "Tech-Noah's Full-Stack expertise and deep understanding of IT infrastructure made them invaluable. They delivered a robust web application while seamlessly integrating with our enterprise systems.",
+    "testimonials.1.quote": "Noah's Full-Stack expertise and deep understanding of IT infrastructure made him invaluable. He delivered a robust web application while seamlessly integrating with our enterprise systems.",
     "testimonials.2.name": "Sarah Weber",
     "testimonials.2.role": "Lead Developer",
     "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote": "Exceptional problem-solving skills and reliable delivery. The team consistently exceeded expectations, tackling complex challenges with both creativity and technical precision.",
+    "testimonials.2.quote": "Exceptional problem-solving skills and reliable delivery. Noah consistently exceeded expectations, tackling complex challenges with both creativity and technical precision.",
     "testimonials.3.name": "Thomas Müller",
     "testimonials.3.role": "CTO",
     "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote": "Their hackathon mentality combined with enterprise experience is rare. They built our MVP in record time without sacrificing code quality or security best practices.",
+    "testimonials.3.quote": "His hackathon mentality combined with enterprise experience is rare. He built our MVP in record time without sacrificing code quality or security best practices.",
 
     // Review Modal
     "review.title": "Write a Review",
@@ -250,6 +259,7 @@ const translations: Record<Language, Record<string, string>> = {
     "command.select": "Select",
     "command.close": "Close",
     "command.noResults": "No results found.",
+    "command.back": "Back",
 
     // Design Gallery
     "gallery.title": "Design Gallery",
@@ -270,6 +280,7 @@ const translations: Record<Language, Record<string, string>> = {
     "styles.title": "Choose Your Style",
     "styles.subtitle": "Select a design aesthetic that matches your brand vision",
     "styles.colorPalette": "Color Palette",
+    "styles.inquiryDesc": "Send us a project inquiry for:",
 
     // Cookie Banner
     "cookie.message": "We use cookies to improve your experience.",
@@ -292,14 +303,6 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.errorMessage": "Failed to send message. Please try again.",
     "contact.fillAll": "Please fill in all required fields.",
 
-    // Styles Inquiry
-    "styles.inquiryDesc": "Send us a project inquiry for:",
-    "command.back": "Back",
-
-    // Skills Filter
-    "skills.all": "All Technologies",
-    "skills.active": "Active",
-
     // Common
     "common.loading": "Loading...",
     "common.error": "An error occurred",
@@ -307,7 +310,7 @@ const translations: Record<Language, Record<string, string>> = {
   de: {
     // Navigation
     "nav.home": "Startseite",
-    "nav.about": "Über uns",
+    "nav.about": "Über mich",
     "nav.services": "Leistungen",
     "nav.casestudies": "Fallstudien",
     "nav.experience": "Erfahrung",
@@ -315,33 +318,79 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.skills": "Fähigkeiten",
     "nav.education": "Ausbildung",
     "nav.contact": "Kontakt",
-    "nav.consult": "Beratung starten",
+    "nav.consult": "Angebot anfordern",
 
-    // Hero - Agency
-    "hero.badge": "KI-gestützte Software-Agentur",
-    "hero.tagline": "Die Zukunft mit KI-gestützten Lösungen automatisieren",
-    "hero.description": "Wir entwerfen, entwickeln und automatisieren intelligente Softwaresysteme, die Unternehmen schneller skalieren lassen. Von maßgeschneiderten Web-Apps bis hin zu KI-Integration und Workflow-Automatisierung.",
-    "hero.cta.consult": "Projekt starten",
-    "hero.cta.casestudies": "Fallstudien ansehen",
-    "hero.greeting": "Hallo, ich bin",
-    "hero.name": "Noah Al-Samawi",
-    "hero.title": "Full-Stack Entwickler mit Fokus auf IT-Sicherheit",
-    "hero.subtitle": "Moderne Webanwendungen mit Security-First-Ansatz",
+    // Hero
+    "hero.badge": "IT · Web · Design — Alles aus einer Hand",
+    "hero.greeting": "Ganzheitliche IT, Web &",
+    "hero.name": "Design Lösungen",
+    "hero.title": "Alles aus einer Hand für Startups & lokale Unternehmen in Frankfurt und remote.",
+    "hero.subtitle": "Individuelle Websites, KI-Integration, Branding, Druckdesign & Full IT-Support — maßgeschneidert für Ihren Erfolg.",
     "hero.cta.contact": "Kontakt aufnehmen",
     "hero.cta.projects": "Projekte ansehen",
     "hero.cta.download": "Lebenslauf herunterladen",
     "hero.location": "Frankfurt, Deutschland",
-    "hero.status": "Offen für Projekte",
+    "hero.status": "Verfügbar für Projekte",
 
-    // About - Founder
-    "about.agencyTitle": "Gründer & Lead Engineer",
-    "about.agencySubtitle": "Der Kopf hinter Tech-Noah Solutions",
+    // Services - 3 Pillars
+    "services.title": "Leistungen",
+    "services.subtitle": "Drei Säulen für Ihre digitale und physische Geschäftspräsenz",
+    "services.learnMore": "Mehr erfahren",
+    "services.web.title": "Web & Software",
+    "services.web.desc": "Individuelle Websites, KI-gestützte Web-Apps und moderne Softwarelösungen — vom Konzept bis zum Launch.",
+    "services.web.f1": "Individuelle Landing Pages & Websites",
+    "services.web.f2": "KI-Integration (GPT, Automatisierung)",
+    "services.web.f3": "Full-Stack Webanwendungen",
+    "services.design.title": "Branding & Druckdesign",
+    "services.design.desc": "Professionelle visuelle Identität für Ihr Unternehmen — von Visitenkarten bis Social-Media-Grafiken.",
+    "services.design.f1": "Visitenkarten-Design",
+    "services.design.f2": "Flyer & Social-Media-Grafiken",
+    "services.design.f3": "Corporate Identity & Branding",
+    "services.it.title": "IT & Tech-Support",
+    "services.it.desc": "Zuverlässiger 1st & 2nd Level IT-Support für Privatpersonen und Büros — Hardware, Netzwerke und Fehlerbehebung.",
+    "services.it.f1": "1st & 2nd Level IT-Support",
+    "services.it.f2": "Hardware-Einrichtung (Drucker, Telefone, Netzwerke)",
+    "services.it.f3": "Fehlerbehebung & Remote-Support",
+    "services.web.details": "Ich baue komplette Webanwendungen vom Konzept bis zum Deployment, mit KI-Integration.",
+    "services.design.details": "Professionelles Print- und Digital-Design für Ihre Markenidentität.",
+    "services.it.details": "Umfassender IT-Support mit Enterprise-Level-Expertise für Privatpersonen und Büros.",
+    "services.modal.techStack": "Technologie-Stack",
+    "services.modal.keyFeatures": "Hauptfunktionen",
+    "services.modal.cta": "Angebot anfordern",
+    "services.modal.downloadCV": "Lebenslauf herunterladen",
+
+    // Starter Kit
+    "starterkit.badge": "Am beliebtesten",
+    "starterkit.title": "Startup Starter-Kit",
+    "starterkit.subtitle": "Starten Sie Ihr Business schnell — alles was Sie brauchen in einem Paket.",
+    "starterkit.item1": "Individuelle Landing Page",
+    "starterkit.item2": "Visitenkarten-Design",
+    "starterkit.item3": "Social-Media-Flyer",
+    "starterkit.item4": "Basis IT-Setup & Beratung",
+    "starterkit.cta": "Angebot anfordern",
+    "starterkit.note": "Individuelle Preisgestaltung nach Ihren Bedürfnissen",
+
+    // Agency Services (Bento Grid) - updated
+    "agency.services.title": "Unsere Leistungen",
+    "agency.services.subtitle": "Drei Säulen für Ihre digitale und physische Geschäftspräsenz",
+    "agency.services.webdev.title": "Web & Software",
+    "agency.services.webdev.desc": "Individuelle Websites, KI-gestützte Web-Apps und moderne Softwarelösungen — vom Konzept bis zum Launch.",
+    "agency.services.ai.title": "Branding & Druckdesign",
+    "agency.services.ai.desc": "Professionelle visuelle Identität für Ihr Unternehmen — von Visitenkarten bis Social-Media-Grafiken und Corporate Identity.",
+    "agency.services.automation.title": "IT & Tech-Support",
+    "agency.services.automation.desc": "Zuverlässiger 1st & 2nd Level IT-Support für Privatpersonen und Büros — Hardware, Netzwerke und Fehlerbehebung.",
+    "agency.services.consulting.title": "Strategische Beratung",
+    "agency.services.consulting.desc": "Expertenberatung zu Architektur, Sicherheitsaudits und Technologiestrategie.",
+
+    // About
     "about.title": "Über mich",
     "about.subtitle": "Lernen Sie mich kennen",
+    "about.agencyTitle": "Gründer & Lead Engineer",
+    "about.agencySubtitle": "Der Kopf hinter den Lösungen",
     "about.years": "Jahre Erfahrung",
     "about.valueProposition": "Leidenschaftlich daran, robuste Softwareentwicklung mit defensiver Security zu verbinden.",
     "about.description1": 'Ich baue nicht nur Apps; ich sichere sie ab.',
-    "about.description2": "Mein Hintergrund umfasst den Aufbau von Home Labs für Angriffssimulationen und die Automatisierung von Security-Workflows. Kombiniert mit 6+ Jahren Enterprise-IT und Full-Stack-Entwicklung liefere ich Lösungen, die funktional und sicher sind.",
+    "about.description2": "Mit 6+ Jahren Enterprise-IT, Full-Stack-Entwicklung und einer Leidenschaft für Design liefere ich ganzheitliche digitale Lösungen für Startups, lokale Unternehmen und Privatpersonen.",
     "about.highlight1": "6+ Jahre Enterprise-IT bei Fortune-500-Unternehmen",
     "about.highlight2": "Full-Stack-Entwicklung mit React, Django & TypeScript",
     "about.highlight3": "Code Institute Diplom in Full-Stack Webentwicklung (2024)",
@@ -361,45 +410,6 @@ const translations: Record<Language, Record<string, string>> = {
     "hire.security.title": "Cybersicherheit",
     "hire.security.desc": "Schützen Sie Ihre digitalen Assets mit professionellen Sicherheitsaudits.",
     "hire.cta": "Lass uns zusammenarbeiten",
-
-    // Agency Services
-    "agency.services.title": "Unsere Leistungen",
-    "agency.services.subtitle": "End-to-End-Technologielösungen für Ihr Unternehmenswachstum",
-    "agency.services.webdev.title": "Web- & App-Entwicklung",
-    "agency.services.webdev.desc": "Full-Stack-Anwendungen mit modernen Frameworks. Von MVPs bis zu Enterprise-Plattformen – skalierbar, sicher und performant.",
-    "agency.services.ai.title": "KI-Systeme & Integration",
-    "agency.services.ai.desc": "Nutzen Sie die Kraft der KI für Ihr Unternehmen. Wir entwickeln GPT-Integrationen, ML-Pipelines und intelligente Automatisierung.",
-    "agency.services.automation.title": "Geschäftsautomatisierung",
-    "agency.services.automation.desc": "Optimieren Sie Ihre Abläufe mit intelligenter Workflow-Automatisierung. CRM-Integrationen, Datenpipelines und Prozessoptimierung.",
-    "agency.services.consulting.title": "Strategische Beratung",
-    "agency.services.consulting.desc": "Expertenberatung zu Architektur, Sicherheitsaudits und Technologiestrategie für die Zukunftssicherheit Ihres Unternehmens.",
-
-    // Services (legacy)
-    "services.title": "Leistungen",
-    "services.subtitle": "Wie ich Ihnen helfen kann",
-    "services.learnMore": "Mehr erfahren",
-    "services.webdev.title": "Webentwicklung",
-    "services.webdev.desc": "Moderne, responsive Webanwendungen.",
-    "services.webdev.f1": "React & TypeScript Frontends",
-    "services.webdev.f2": "Django & REST API Backends",
-    "services.webdev.f3": "Datenbankdesign & Optimierung",
-    "services.security.title": "Cybersicherheit",
-    "services.security.desc": "Schutz digitaler Assets.",
-    "services.security.f1": "Sicherheitsaudits & Bewertungen",
-    "services.security.f2": "Netzwerksicherheitskonfiguration",
-    "services.security.f3": "Active Directory Management",
-    "services.support.title": "Tech-Support",
-    "services.support.desc": "Professioneller IT-Support.",
-    "services.support.f1": "Windows Server Administration",
-    "services.support.f2": "IT-Infrastruktur-Management",
-    "services.support.f3": "ServiceNow Ticketing & Eskalation",
-    "services.webdev.details": "Komplette Webanwendungen vom Konzept bis zum Deployment.",
-    "services.security.details": "Sicherung Ihrer digitalen Infrastruktur.",
-    "services.support.details": "Professioneller IT-Support mit Enterprise-Level-Expertise.",
-    "services.modal.techStack": "Technologie-Stack",
-    "services.modal.keyFeatures": "Hauptfunktionen",
-    "services.modal.cta": "Projekt besprechen",
-    "services.modal.downloadCV": "Lebenslauf herunterladen",
 
     // Case Studies
     "casestudies.title": "Fallstudien",
@@ -429,10 +439,10 @@ const translations: Record<Language, Record<string, string>> = {
     "inquiry.step2.subtitle": "Helfen Sie uns, den Umfang zu verstehen",
     "inquiry.step3.title": "Ihre Daten",
     "inquiry.step3.subtitle": "Wie können wir Sie erreichen?",
-    "inquiry.type.webdev": "Web- / App-Entwicklung",
-    "inquiry.type.ai": "KI-Integration & Automatisierung",
-    "inquiry.type.automation": "Geschäftsprozess-Automatisierung",
-    "inquiry.type.consulting": "Strategische Tech-Beratung",
+    "inquiry.type.webdev": "Web & Software",
+    "inquiry.type.ai": "Branding & Druckdesign",
+    "inquiry.type.automation": "IT & Tech-Support",
+    "inquiry.type.consulting": "Strategische Beratung",
     "inquiry.industry": "Ihre Branche (optional)",
     "inquiry.budget": "Geschätztes Budget",
     "inquiry.timelineLabel": "Projektzeitplan",
@@ -478,6 +488,8 @@ const translations: Record<Language, Record<string, string>> = {
     "skills.frameworks": "Frameworks",
     "skills.systems": "Systeme & Tools",
     "skills.security": "Cybersecurity & Pen-Testing",
+    "skills.all": "Alle Technologien",
+    "skills.active": "Aktiv",
 
     // Education
     "education.title": "Ausbildung",
@@ -491,25 +503,25 @@ const translations: Record<Language, Record<string, string>> = {
     // Chat
     "chat.title": "KI-Assistent",
     "chat.placeholder": "Fragen Sie uns...",
-    "chat.welcome": "Hallo! Ich bin der Tech-Noah Solutions Assistent. Fragen Sie mich zu unseren Leistungen oder Fallstudien!",
+    "chat.welcome": "Hallo! Ich bin Noahs KI-Assistent. Fragen Sie mich zu unseren Leistungen!",
     "chat.send": "Senden",
 
     // Testimonials
     "testimonials.title": "Kundenstimmen",
-    "testimonials.subtitle": "Was unsere Kunden über die Zusammenarbeit mit Tech-Noah Solutions sagen",
+    "testimonials.subtitle": "Was unsere Kunden über die Zusammenarbeit sagen",
     "testimonials.writeReview": "Bewertung schreiben",
     "testimonials.1.name": "Michael Schmidt",
     "testimonials.1.role": "IT-Manager",
     "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote": "Tech-Noahs Full-Stack-Expertise und tiefes Verständnis der IT-Infrastruktur machten sie unverzichtbar.",
+    "testimonials.1.quote": "Noahs Full-Stack-Expertise und tiefes Verständnis der IT-Infrastruktur machten ihn unverzichtbar.",
     "testimonials.2.name": "Sarah Weber",
     "testimonials.2.role": "Lead Developer",
     "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote": "Außergewöhnliche Problemlösungsfähigkeiten und zuverlässige Lieferung. Das Team übertraf konstant die Erwartungen.",
+    "testimonials.2.quote": "Außergewöhnliche Problemlösungsfähigkeiten und zuverlässige Lieferung. Noah übertraf konstant die Erwartungen.",
     "testimonials.3.name": "Thomas Müller",
     "testimonials.3.role": "CTO",
     "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote": "Ihre Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Sie bauten unser MVP in Rekordzeit.",
+    "testimonials.3.quote": "Seine Hackathon-Mentalität kombiniert mit Enterprise-Erfahrung ist selten. Er baute unser MVP in Rekordzeit.",
 
     // Review Modal
     "review.title": "Bewertung schreiben",
@@ -543,6 +555,7 @@ const translations: Record<Language, Record<string, string>> = {
     "command.select": "Auswählen",
     "command.close": "Schließen",
     "command.noResults": "Keine Ergebnisse gefunden.",
+    "command.back": "Zurück",
 
     // Design Gallery
     "gallery.title": "Design-Galerie",
@@ -563,6 +576,7 @@ const translations: Record<Language, Record<string, string>> = {
     "styles.title": "Wählen Sie Ihren Stil",
     "styles.subtitle": "Wählen Sie eine Designästhetik, die zu Ihrer Markenvision passt",
     "styles.colorPalette": "Farbpalette",
+    "styles.inquiryDesc": "Senden Sie mir eine Projektanfrage für:",
 
     // Cookie Banner
     "cookie.message": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern.",
@@ -585,320 +599,18 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.errorMessage": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
     "contact.fillAll": "Bitte füllen Sie alle erforderlichen Felder aus.",
 
-    // Styles Inquiry
-    "styles.inquiryDesc": "Senden Sie mir eine Projektanfrage für:",
-    "command.back": "Zurück",
-
-    // Skills Filter
-    "skills.all": "Alle Technologien",
-    "skills.active": "Aktiv",
-
     // Common
     "common.loading": "Lädt...",
     "common.error": "Ein Fehler ist aufgetreten",
-  },
-  ar: {
-    // Navigation
-    "nav.home": "الرئيسية",
-    "nav.about": "عنا",
-    "nav.services": "الخدمات",
-    "nav.casestudies": "دراسات الحالة",
-    "nav.experience": "الخبرة",
-    "nav.projects": "المشاريع",
-    "nav.skills": "المهارات",
-    "nav.education": "التعليم",
-    "nav.contact": "تواصل معنا",
-    "nav.consult": "ابدأ مشروعك",
-
-    // Hero - Agency
-    "hero.badge": "وكالة برمجيات مدعومة بالذكاء الاصطناعي",
-    "hero.tagline": "أتمتة المستقبل بحلول مدعومة بالذكاء الاصطناعي",
-    "hero.description": "نصمم ونبني ونؤتمت أنظمة برمجية ذكية تساعد الشركات على التوسع بشكل أسرع. من تطبيقات الويب المخصصة إلى تكامل الذكاء الاصطناعي وأتمتة سير العمل.",
-    "hero.cta.consult": "ابدأ مشروعاً",
-    "hero.cta.casestudies": "عرض دراسات الحالة",
-    "hero.greeting": "مرحباً، أنا",
-    "hero.name": "نوح السماوي",
-    "hero.title": "مطور Full-Stack مع التركيز على الأمن",
-    "hero.subtitle": "بناء تطبيقات ويب حديثة بنهج الأمان أولاً",
-    "hero.cta.contact": "تواصل معنا",
-    "hero.cta.projects": "عرض المشاريع",
-    "hero.cta.download": "تحميل السيرة الذاتية",
-    "hero.location": "فرانكفورت، ألمانيا",
-    "hero.status": "متاح للفرص",
-
-    // About - Founder
-    "about.agencyTitle": "المؤسس والمهندس الرئيسي",
-    "about.agencySubtitle": "العقل المدبر وراء Tech-Noah Solutions",
-    "about.title": "عنا",
-    "about.subtitle": "تعرف علينا أكثر",
-    "about.years": "سنوات الخبرة",
-    "about.valueProposition": "شغوف بربط هندسة البرمجيات المتينة بالأمان الدفاعي.",
-    "about.description1": 'لا نبني التطبيقات فحسب؛ بل نؤمّنها.',
-    "about.description2": "تشمل خلفيتنا بناء مختبرات منزلية لمحاكاة الهجمات وأتمتة سير عمل الأمان. مع أكثر من 6 سنوات من تقنية المعلومات للشركات وتطوير Full-Stack.",
-    "about.highlight1": "أكثر من 6 سنوات خبرة في شركات Fortune 500",
-    "about.highlight2": "تطوير Full-Stack مع React وDjango وTypeScript",
-    "about.highlight3": "دبلوم تطوير الويب Full-Stack من Code Institute (2024)",
-    "about.highlight4": "النماذج الأولية السريعة والابتكار من خلال الهاكاثونات",
-    "about.highlight5": "حلول مخصصة للعملاء المستقلين",
-    "about.stat1": "سنوات خبرة IT",
-    "about.stat2": "هاكاثونات",
-    "about.stat3": "مشاريع منجزة",
-
-    // Hire Me Section
-    "hire.title": "حوّل الأفكار إلى واقع",
-    "hire.subtitle": "هل تحتاج موقع ويب، تطبيق مخصص، أو تدقيق أمني؟",
-    "hire.webdesign.title": "تصميم الويب",
-    "hire.webdesign.desc": "مواقع جميلة ومتجاوبة تحول الزوار إلى عملاء.",
-    "hire.apps.title": "تطبيقات مخصصة",
-    "hire.apps.desc": "تطبيقات ويب مصممة لاحتياجات عملك الخاصة.",
-    "hire.security.title": "الأمن السيبراني",
-    "hire.security.desc": "احمِ أصولك الرقمية بتدقيقات أمنية احترافية.",
-    "hire.cta": "لنعمل معاً",
-
-    // Agency Services
-    "agency.services.title": "خدماتنا",
-    "agency.services.subtitle": "حلول تقنية شاملة لنمو أعمالك",
-    "agency.services.webdev.title": "تطوير الويب والتطبيقات",
-    "agency.services.webdev.desc": "تطبيقات Full-Stack بأطر عمل حديثة. من MVPs إلى منصات المؤسسات – قابلة للتوسع وآمنة وعالية الأداء.",
-    "agency.services.ai.title": "أنظمة الذكاء الاصطناعي والتكامل",
-    "agency.services.ai.desc": "استفد من قوة الذكاء الاصطناعي لتعزيز أعمالك. نبني تكاملات GPT المخصصة وخطوط ML والأتمتة الذكية.",
-    "agency.services.automation.title": "أتمتة الأعمال",
-    "agency.services.automation.desc": "بسّط عملياتك بأتمتة سير العمل الذكية. تكاملات CRM وخطوط البيانات وتحسين العمليات.",
-    "agency.services.consulting.title": "الاستشارات الاستراتيجية",
-    "agency.services.consulting.desc": "إرشاد خبير في قرارات الهندسة وتدقيقات الأمان واستراتيجية التكنولوجيا.",
-
-    // Services (legacy)
-    "services.title": "الخدمات",
-    "services.subtitle": "كيف يمكننا مساعدتك",
-    "services.learnMore": "اعرف المزيد",
-    "services.webdev.title": "تطوير الويب",
-    "services.webdev.desc": "بناء تطبيقات ويب حديثة ومتجاوبة.",
-    "services.webdev.f1": "واجهات React وTypeScript",
-    "services.webdev.f2": "خلفيات Django وREST API",
-    "services.webdev.f3": "تصميم وتحسين قواعد البيانات",
-    "services.security.title": "الأمن السيبراني",
-    "services.security.desc": "حماية أصولك الرقمية.",
-    "services.security.f1": "تدقيقات وتقييمات أمنية",
-    "services.security.f2": "تكوين أمان الشبكة",
-    "services.security.f3": "إدارة Active Directory",
-    "services.support.title": "الدعم التقني",
-    "services.support.desc": "دعم IT احترافي.",
-    "services.support.f1": "إدارة Windows Server",
-    "services.support.f2": "إدارة البنية التحتية لـ IT",
-    "services.support.f3": "تذاكر ServiceNow والتصعيد",
-    "services.webdev.details": "أبني تطبيقات ويب كاملة من الفكرة إلى النشر.",
-    "services.security.details": "تأمين بنيتك التحتية الرقمية.",
-    "services.support.details": "دعم IT احترافي بخبرة مؤسسية.",
-    "services.modal.techStack": "التقنيات المستخدمة",
-    "services.modal.keyFeatures": "الميزات الرئيسية",
-    "services.modal.cta": "ناقش مشروعك",
-    "services.modal.downloadCV": "تحميل السيرة الذاتية",
-
-    // Case Studies
-    "casestudies.title": "دراسات الحالة",
-    "casestudies.subtitle": "حلول حقيقية بنيناها لشركات حقيقية",
-    "casestudies.viewProject": "عرض المشروع",
-    "casestudies.livePreview": "معاينة مباشرة (قريباً)",
-    "casestudies.1.title": "مجموعة ذكاء العملاء بالذكاء الاصطناعي",
-    "casestudies.1.desc": "منصة ذكاء عملاء مدعومة بالذكاء الاصطناعي تدمج GPT-4o مع واجهة WhatsApp Business API للتفاعلات الآلية والسياقية.",
-    "casestudies.1.result": "85% أسرع في الاستجابة — تحليل المشاعر في الوقت الحقيقي مع التوجيه الذكي",
-    "casestudies.2.title": "لوحة تحكم مالية SaaS ذكية",
-    "casestudies.2.desc": "لوحة تحكم شاملة للتحليلات المالية لشركات SaaS مع تتبع الإيرادات في الوقت الحقيقي والتقارير الآلية.",
-    "casestudies.2.result": "توفير 10+ ساعات/أسبوع — رؤى مالية آلية وتوقعات الاتجاهات",
-    "casestudies.3.title": "أتمتة سير العمل بدون تدخل",
-    "casestudies.3.desc": "أتمتة شاملة لعمليات الأعمال باستخدام n8n وMake.com وPython للقضاء على الإدخال اليدوي للبيانات.",
-    "casestudies.3.result": "0% أخطاء بشرية — تدفقات بيانات مؤتمتة بالكامل عبر المنصات",
-
-    // Top Bar
-    "topbar.clientLogin": "تسجيل دخول العميل",
-    "topbar.quickBrowse": "تصفح سريع",
-
-    // Multi-step Inquiry
-    "inquiry.title": "ابدأ مشروعك",
-    "inquiry.subtitle": "أخبرنا عن مشروعك وسنرد عليك خلال 24 ساعة.",
-    "inquiry.step1.title": "ماذا تحتاج؟",
-    "inquiry.step1.subtitle": "اختر نوع الخدمة التي تبحث عنها",
-    "inquiry.step2.title": "الميزانية والجدول الزمني",
-    "inquiry.step2.subtitle": "ساعدنا في فهم نطاق مشروعك",
-    "inquiry.step3.title": "بياناتك",
-    "inquiry.step3.subtitle": "كيف يمكننا الوصول إليك؟",
-    "inquiry.type.webdev": "تطوير الويب / التطبيقات",
-    "inquiry.type.ai": "تكامل الذكاء الاصطناعي والأتمتة",
-    "inquiry.type.automation": "أتمتة العمليات التجارية",
-    "inquiry.type.consulting": "استشارات تقنية استراتيجية",
-    "inquiry.industry": "مجال عملك (اختياري)",
-    "inquiry.budget": "الميزانية المقدرة",
-    "inquiry.timelineLabel": "الجدول الزمني للمشروع",
-    "inquiry.timeline.asap": "في أقرب وقت",
-    "inquiry.timeline.1to3": "1–3 أشهر",
-    "inquiry.timeline.3to6": "3–6 أشهر",
-    "inquiry.timeline.flexible": "مرن",
-    "inquiry.name": "اسمك",
-    "inquiry.email": "بريدك الإلكتروني",
-    "inquiry.details": "أخبرنا المزيد عن مشروعك...",
-    "inquiry.back": "رجوع",
-    "inquiry.next": "التالي",
-    "inquiry.submit": "إرسال الاستفسار",
-    "inquiry.submitting": "جارٍ الإرسال...",
-    "inquiry.success": "تم إرسال الاستفسار!",
-    "inquiry.successMessage": "شكراً! سنرد عليك خلال 24 ساعة.",
-    "inquiry.error": "خطأ",
-    "inquiry.errorMessage": "فشل الإرسال. يرجى المحاولة مرة أخرى.",
-
-    // Experience
-    "experience.title": "الخبرة",
-    "experience.subtitle": "المسيرة المهنية",
-    "experience.cbre.title": "أخصائي دعم IT - المستوى الثاني",
-    "experience.cbre.company": "CBRE لـ DXC/Dell",
-    "experience.cbre.period": "2017 - 2023",
-    "experience.cbre.description": "دعم تقني على مستوى المؤسسات.",
-    "experience.cbre.task1": "إدارة مستخدمي ومجموعات Active Directory",
-    "experience.cbre.task2": "حل حوادث ServiceNow والتصعيد",
-    "experience.cbre.task3": "دعم تقني المستوى الثاني واستكشاف الأخطاء",
-    "experience.cbre.task4": "إدارة Windows Server",
-    "experience.cbre.task5": "تكوين الشبكة وإدارة VPN",
-
-    // Projects
-    "projects.title": "المشاريع",
-    "projects.subtitle": "تطبيقات Full-Stack",
-    "projects.viewLive": "عرض مباشر",
-    "projects.viewCode": "عرض الكود",
-
-    // Skills
-    "skills.title": "التقنيات",
-    "skills.subtitle": "التقنيات التي نعمل بها",
-    "skills.languages": "اللغات",
-    "skills.frameworks": "أطر العمل",
-    "skills.systems": "الأنظمة والأدوات",
-    "skills.security": "الأمن السيبراني واختبار الاختراق",
-
-    // Education
-    "education.title": "التعليم",
-    "education.subtitle": "الخلفية الأكاديمية",
-    "education.bsc.degree": "بكالوريوس علوم الحاسوب",
-    "education.bsc.school": "جامعة صنعاء",
-    "education.diploma.degree": "دبلوم تطوير الويب Full-Stack",
-    "education.diploma.school": "Code Institute، دبلن",
-    "education.diploma.year": "2024",
-
-    // Chat
-    "chat.title": "المساعد الذكي",
-    "chat.placeholder": "اسألنا أي شيء...",
-    "chat.welcome": "مرحباً! أنا مساعد Tech-Noah Solutions الذكي. اسألني عن خدماتنا أو دراسات الحالة!",
-    "chat.send": "إرسال",
-
-    // Testimonials
-    "testimonials.title": "آراء العملاء",
-    "testimonials.subtitle": "ما يقوله عملاؤنا عن العمل مع Tech-Noah Solutions",
-    "testimonials.writeReview": "اكتب تقييماً",
-    "testimonials.1.name": "ميخائيل شميت",
-    "testimonials.1.role": "مدير IT",
-    "testimonials.1.company": "TechCorp GmbH",
-    "testimonials.1.quote": "خبرة Tech-Noah في Full-Stack وفهمهم العميق للبنية التحتية جعلهم لا غنى عنهم.",
-    "testimonials.2.name": "سارة ويبر",
-    "testimonials.2.role": "مطور رئيسي",
-    "testimonials.2.company": "Digital Solutions AG",
-    "testimonials.2.quote": "مهارات استثنائية في حل المشاكل وتسليم موثوق. الفريق تجاوز التوقعات باستمرار.",
-    "testimonials.3.name": "توماس مولر",
-    "testimonials.3.role": "CTO",
-    "testimonials.3.company": "StartupHub Berlin",
-    "testimonials.3.quote": "عقليتهم في الهاكاثون مع خبرتهم المؤسسية نادرة. بنوا MVP في وقت قياسي.",
-
-    // Review Modal
-    "review.title": "اكتب تقييماً",
-    "review.name": "اسمك",
-    "review.role": "منصبك (اختياري)",
-    "review.company": "الشركة (اختياري)",
-    "review.message": "تقييمك",
-    "review.rating": "التقييم",
-    "review.submit": "إرسال التقييم",
-    "review.submitting": "جارٍ الإرسال...",
-    "review.success": "تم إرسال التقييم!",
-    "review.successMessage": "شكراً! سيظهر تقييمك بعد الموافقة.",
-    "review.error": "خطأ",
-    "review.errorMessage": "فشل إرسال التقييم. يرجى المحاولة مرة أخرى.",
-
-    // Footer
-    "footer.rights": "جميع الحقوق محفوظة.",
-    "footer.visitors": "الزوار",
-
-    // Command Palette
-    "command.search": "بحث...",
-    "command.placeholder": "اكتب أمراً أو ابحث...",
-    "command.navigation": "التنقل",
-    "command.actions": "الإجراءات",
-    "command.downloadCV": "تحميل السيرة الذاتية",
-    "command.copyEmail": "نسخ البريد الإلكتروني",
-    "command.emailCopied": "تم نسخ البريد الإلكتروني!",
-    "command.lightMode": "التبديل للوضع الفاتح",
-    "command.darkMode": "التبديل للوضع الداكن",
-    "command.navigate": "تنقل",
-    "command.select": "اختيار",
-    "command.close": "إغلاق",
-    "command.noResults": "لا توجد نتائج.",
-
-    // Design Gallery
-    "gallery.title": "معرض التصاميم",
-    "gallery.subtitle": "اختر أسلوباً يناسب رؤيتك",
-    "gallery.select": "أريد هذا الأسلوب",
-    "gallery.minimalist": "بسيط",
-    "gallery.minimalist.desc": "تصميم نظيف وبسيط وأنيق.",
-    "gallery.cosmic": "كوني / داكن",
-    "gallery.cosmic.desc": "ثيم داكن حديث مع لمسات نيون.",
-    "gallery.corporate": "مؤسسي",
-    "gallery.corporate.desc": "تصميم احترافي وموثوق للأعمال.",
-    "gallery.ecommerce": "تجارة إلكترونية",
-    "gallery.ecommerce.desc": "تصميم موجه للتحويل.",
-    "gallery.creative": "إبداعي",
-    "gallery.creative.desc": "تصاميم جريئة وفنية تبرز.",
-
-    // Style Gallery Section
-    "styles.title": "اختر أسلوبك",
-    "styles.subtitle": "اختر جمالية تصميم تناسب رؤية علامتك التجارية",
-    "styles.colorPalette": "لوحة الألوان",
-
-    // Cookie Banner
-    "cookie.message": "نستخدم ملفات تعريف الارتباط لتحسين تجربتك.",
-    "cookie.accept": "قبول",
-    "cookie.decline": "رفض",
-
-    // Contact
-    "contact.title": "تواصل معنا",
-    "contact.subtitle": "هل لديك مشروع في ذهنك؟ لنناقش كيف يمكننا العمل معاً.",
-    "contact.location": "فرانكفورت، ألمانيا",
-    "contact.mapAlt": "خريطة الموقع",
-    "contact.name": "اسمك",
-    "contact.email": "بريدك الإلكتروني",
-    "contact.message": "رسالتك",
-    "contact.send": "إرسال الرسالة",
-    "contact.sending": "جارٍ الإرسال...",
-    "contact.success": "تم إرسال الرسالة!",
-    "contact.successMessage": "شكراً لتواصلك. سنرد عليك قريباً.",
-    "contact.error": "خطأ",
-    "contact.errorMessage": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
-    "contact.fillAll": "يرجى ملء جميع الحقول المطلوبة.",
-
-    // Styles Inquiry
-    "styles.inquiryDesc": "أرسل لنا استفسار مشروع لـ:",
-    "command.back": "رجوع",
-
-    // Skills Filter
-    "skills.all": "جميع التقنيات",
-    "skills.active": "نشط",
-
-    // Common
-    "common.loading": "جارٍ التحميل...",
-    "common.error": "حدث خطأ",
   },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("de");
 
-  // Arabic is RTL, English and German are LTR
-  const direction: Direction = language === "ar" ? "rtl" : "ltr";
+  const direction: Direction = "ltr";
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -916,7 +628,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   useEffect(() => {
     const saved = localStorage.getItem("portfolio-language") as Language | null;
-    if (saved && (saved === "en" || saved === "de" || saved === "ar")) {
+    if (saved && (saved === "en" || saved === "de")) {
       setLanguageState(saved);
     }
   }, []);

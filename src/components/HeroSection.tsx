@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Name */}
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
             <span className="gradient-text glow-text">{t('hero.name')}</span>
           </motion.h1>
 
-          {/* Title */}
+          {/* Sub-headline */}
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
