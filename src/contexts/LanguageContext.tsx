@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Language = "en" | "de";
-type Direction = "ltr";
+type Direction = "ltr" | "rtl";
 
 interface LanguageContextType {
   language: Language;
