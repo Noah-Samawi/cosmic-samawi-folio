@@ -26,7 +26,6 @@ const Navbar: React.FC = () => {
   const languageLabels: Record<string, string> = {
     en: 'EN',
     de: 'DE',
-    ar: 'AR',
   };
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      const sections = ['home', 'about', 'skills', 'case-studies', 'contact'];
+      const sections = ['home', 'about', 'services', 'skills', 'case-studies', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -68,8 +67,8 @@ const Navbar: React.FC = () => {
   const navItems = [
     { key: 'nav.home', href: '#home', path: '/#home' },
     { key: 'nav.about', href: '#about', path: '/#about' },
+    { key: 'nav.services', href: '#services', path: '/#services' },
     { key: 'nav.skills', href: '#skills', path: '/#skills' },
-    { key: 'nav.casestudies', href: '#case-studies', path: '/#case-studies' },
     { key: 'nav.contact', href: '#contact', path: '/#contact' },
   ];
 
@@ -162,14 +161,11 @@ const Navbar: React.FC = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-[100px]">
-                <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'bg-primary/10 text-primary' : ''}>
-                  🇬🇧 English
-                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setLanguage('de')} className={language === 'de' ? 'bg-primary/10 text-primary' : ''}>
                   🇩🇪 Deutsch
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage('ar')} className={language === 'ar' ? 'bg-primary/10 text-primary' : ''}>
-                  🇸🇦 العربية
+                <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'bg-primary/10 text-primary' : ''}>
+                  🇬🇧 English
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

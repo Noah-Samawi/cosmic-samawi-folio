@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Sparkles, User, Mail, Calendar, FileText, Code2, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, User, Mail, Calendar, FileText, Globe, Palette, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -12,8 +12,9 @@ interface Message {
 
 const quickActions = [
   { icon: FileText, label: '📄 CV Herunterladen', action: 'cv' },
-  { icon: Code2, label: '💻 Tech-Stack', action: 'techstack' },
-  { icon: Bot, label: '🤖 KI & Automatisierung', action: 'ai' },
+  { icon: Globe, label: '🌐 Web & Software', action: 'web' },
+  { icon: Palette, label: '🎨 Branding & Design', action: 'design' },
+  { icon: Wrench, label: '🛠️ IT-Support', action: 'it' },
   { icon: Calendar, label: '📅 Call buchen', action: 'book' },
   { icon: Mail, label: '✉️ Kontakt', action: 'contact' },
 ];
@@ -27,25 +28,40 @@ Sie können meinen vollständigen Lebenslauf direkt hier öffnen:
 
 Alternativ finden Sie den Download-Button auch im Hero-Bereich ganz oben auf der Seite.`,
 
-  techstack: `💻 **Mein Tech-Stack**
+  web: `🌐 **Web & Software**
 
-Meine Kerntechnologien — darunter **React, Node.js, Python, Supabase und OpenAI** — finden Sie übersichtlich im interaktiven **Terminal-Fenster** direkt oben auf der Startseite.
+Ich entwickle individuelle Websites, KI-gestützte Web-Apps und moderne Softwarelösungen — maßgeschneidert für Startups und lokale Unternehmen.
 
-Dort sehen Sie auch meine Schwerpunkte: skalierbare KI-Systeme und die Automatisierung von Geschäftslogik.
+**Leistungen:**
+• Individuelle Landing Pages & Websites
+• KI-Integration (GPT, Automatisierung)
+• Full-Stack Webanwendungen (React, Python, Supabase)
 
-Suchen Sie nach einer bestimmten Technologie? Fragen Sie gerne!`,
+Meine Kerntechnologien finden Sie übersichtlich im interaktiven **Terminal-Fenster** im About-Bereich der Startseite.
 
-  ai: `🤖 **KI & Automatisierung**
+Möchten Sie ein kostenloses Erstgespräch vereinbaren?`,
 
-Ich bin spezialisiert auf die Automatisierung von Geschäftsprozessen mit modernster KI. Werfen Sie gerne einen Blick auf die Sektion **„Live AI & Tech Radar"** weiter unten, um zu sehen, wie ich Tools wie **OpenAI, LangChain und moderne Datenbanken** verknüpfe.
+  design: `🎨 **Branding & Print Design**
 
-Mein Ansatz:
-**1. Analyse** → Verstehen Ihrer Prozesse & Engpässe
-**2. Strategie** → Auswahl der richtigen KI-Tools
-**3. Entwicklung** → Agile Umsetzung mit Live-Previews
-**4. Launch** → Deployment & kontinuierliche Optimierung
+Ich gestalte professionelle visuelle Identitäten für Ihr Unternehmen — digital und gedruckt.
 
-Möchten Sie mehr über ein konkretes Automatisierungsprojekt erfahren?`,
+**Leistungen:**
+• Visitenkarten-Design
+• Flyer & Social-Media-Grafiken
+• Corporate Identity & Branding
+
+💡 **Tipp:** Schauen Sie sich unser **Startup Starter-Kit** an — Landing Page + Visitenkarten + Social-Media-Flyer in einem Paket!`,
+
+  it: `🛠️ **IT & Tech-Support**
+
+Zuverlässiger 1st & 2nd Level IT-Support für Privatpersonen und Büros.
+
+**Leistungen:**
+• 1st & 2nd Level IT-Support
+• Hardware-Einrichtung (Drucker, Telefone, Netzwerke)
+• Fehlerbehebung & Remote-Support
+
+Ich bringe 6+ Jahre Enterprise-IT-Erfahrung (CBRE / DXC / Dell) mit und biete schnelle, professionelle Hilfe.`,
 
   book: `📅 **Termin vereinbaren**
 
@@ -67,20 +83,23 @@ Antwortzeit: **< 4 Stunden** ⚡`,
 
 const getKeywordResponse = (query: string): string | null => {
   const q = query.toLowerCase();
-  if (q.includes('tech') || q.includes('stack') || q.includes('skill') || q.includes('sprach') || q.includes('react') || q.includes('python') || q.includes('programm')) {
-    return responses.techstack;
+  if (q.includes('web') || q.includes('software') || q.includes('website') || q.includes('app') || q.includes('react') || q.includes('programm') || q.includes('tech') || q.includes('stack') || q.includes('skill') || q.includes('python')) {
+    return responses.web;
   }
-  if (q.includes('ki') || q.includes('ai') || q.includes('automat') || q.includes('openai') || q.includes('gpt') || q.includes('prozess') || q.includes('workflow')) {
-    return responses.ai;
+  if (q.includes('design') || q.includes('brand') || q.includes('visitenkarte') || q.includes('flyer') || q.includes('logo') || q.includes('print') || q.includes('grafik')) {
+    return responses.design;
+  }
+  if (q.includes('it') || q.includes('support') || q.includes('hardware') || q.includes('drucker') || q.includes('netzwerk') || q.includes('troubleshoot') || q.includes('computer') || q.includes('reparatur')) {
+    return responses.it;
+  }
+  if (q.includes('ki') || q.includes('ai') || q.includes('automat') || q.includes('openai') || q.includes('gpt') || q.includes('workflow')) {
+    return responses.web;
   }
   if (q.includes('cv') || q.includes('lebenslauf') || q.includes('resume') || q.includes('download')) {
     return responses.cv;
   }
-  if (q.includes('preis') || q.includes('kosten') || q.includes('budget') || q.includes('price') || q.includes('cost')) {
-    return `💰 **Preisgestaltung**\n\nMeine Preise richten sich nach der Komplexität des Projekts. Jedes Projekt beginnt mit einem **kostenlosen Erstgespräch**.\n\nNutzen Sie den **„Call buchen"**-Button, um einen Termin zu vereinbaren!`;
-  }
-  if (q.includes('projekt') || q.includes('portfolio') || q.includes('arbeit') || q.includes('referenz')) {
-    return `🚀 **Projekte**\n\nScrollen Sie zur Sektion **„Featured Projects"** weiter unten, um meine aktuellen Arbeiten zu sehen — darunter KI-gestützte Customer Intelligence Suites, SaaS-Dashboards und Workflow-Automatisierungen.\n\nJede Karte zeigt den verwendeten Tech-Stack und Links zu GitHub.`;
+  if (q.includes('preis') || q.includes('kosten') || q.includes('budget') || q.includes('price') || q.includes('cost') || q.includes('starter')) {
+    return `💰 **Preise & Pakete**\n\nMeine Preise richten sich nach der Komplexität des Projekts. Schauen Sie sich gerne das **Startup Starter-Kit** an — Landing Page + Visitenkarten + Flyer + IT-Setup in einem Paket!\n\nJedes Projekt beginnt mit einem **kostenlosen Erstgespräch**. Nutzen Sie den **„Call buchen"**-Button!`;
   }
   if (q.includes('kontakt') || q.includes('email') || q.includes('contact') || q.includes('reach') || q.includes('mail')) {
     return responses.contact;
@@ -104,9 +123,9 @@ const ChatWidget: React.FC = () => {
         role: 'assistant',
         content: `👋 **Willkommen! Ich bin Noahs KI-Assistent.**
 
-Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc. Computer Science, Full-Stack Engineer & KI-Spezialist aus Frankfurt.
+Ich helfe Ihnen gerne dabei, den richtigen Service zu finden — ob **Website, Branding oder IT-Support**.
 
-💡 Nutzen Sie die Schnellaktionen unten oder stellen Sie mir direkt eine Frage!
+🚀 Schauen Sie sich auch unser **Startup Starter-Kit** an!
 
 **Wie kann ich Ihnen weiterhelfen?**`
       }]);
@@ -152,7 +171,7 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc.
 
     setTimeout(() => {
       const response = getKeywordResponse(query) ||
-        `Vielen Dank für Ihre Frage! Ich kann Ihnen weiterhelfen bei:\n\n• **💻 Tech-Stack** — Meine Technologien im Terminal-Fenster\n• **🤖 KI & Automatisierung** — Mein Arbeitsprozess\n• **📄 CV** — Lebenslauf herunterladen\n• **📅 Termin** — Discovery Call buchen\n\nNutzen Sie die Schnellaktionen unten oder formulieren Sie Ihre Frage um! 🚀`;
+        `Vielen Dank für Ihre Frage! Ich kann Ihnen weiterhelfen bei:\n\n• **🌐 Web & Software** — Websites, Apps & KI\n• **🎨 Branding & Design** — Visitenkarten, Flyer, CI\n• **🛠️ IT-Support** — Hardware, Netzwerke, Troubleshooting\n• **📄 CV** — Lebenslauf herunterladen\n\nNutzen Sie die Schnellaktionen unten oder formulieren Sie Ihre Frage um! 🚀`;
       setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: response }]);
       setIsLoading(false);
       setShowQuickActions(true);
@@ -169,7 +188,7 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc.
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="absolute bottom-20 right-0 w-[350px] sm:w-[400px] rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-card"
-            style={{ [direction === 'rtl' ? 'left' : 'right']: 0 }}
+            style={{ right: 0 }}
           >
             {/* Header */}
             <div className="p-4 bg-gradient-to-r from-primary to-accent relative overflow-hidden">
@@ -180,7 +199,7 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc.
                     <Sparkles className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-primary-foreground text-lg">Noah's KI-Assistent</h3>
+                    <h3 className="font-display font-bold text-primary-foreground text-lg">Noah's Assistent</h3>
                     <p className="text-xs text-primary-foreground/80 flex items-center gap-1">
                       <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                       Online • Frankfurt, DE
@@ -232,7 +251,7 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc.
             {showQuickActions && !isLoading && (
               <div className="px-4 py-3 border-t border-border/50 bg-muted/30">
                 <div className="flex flex-wrap gap-2">
-                  {quickActions.map(({ icon: Icon, label, action }) => (
+                  {quickActions.map(({ label, action }) => (
                     <motion.button
                       key={action}
                       onClick={() => handleQuickAction(action)}
@@ -254,7 +273,7 @@ Ich helfe Ihnen gerne dabei, mehr über **Noah Al-Samawi** zu erfahren — B.Sc.
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Fragen Sie mich zu Tech-Stack, KI oder Projekten..."
+                  placeholder="Fragen Sie mich zu Web, Design oder IT..."
                   className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm border border-border/50"
                   disabled={isLoading}
                 />

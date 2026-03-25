@@ -9,6 +9,8 @@ import SectionSkeleton from '@/components/SectionSkeleton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // Lazy-load all below-fold components
+const ServicesSection = lazy(() => import('@/components/ServicesSection'));
+const StartupStarterKit = lazy(() => import('@/components/StartupStarterKit'));
 const BentoSkillsGrid = lazy(() => import('@/components/BentoSkillsGrid'));
 const AIInsightsSection = lazy(() => import('@/components/AIInsightsSection'));
 const ProjectsSection = lazy(() => import('@/components/ProjectsSection'));
@@ -20,10 +22,9 @@ const ContactSection = lazy(() => import('@/components/ContactSection'));
 const Footer = lazy(() => import('@/components/Footer'));
 const DesignGallery = lazy(() => import('@/components/DesignGallery'));
 
-// Deferred ChatWidget - loads after main content
+// Deferred ChatWidget
 const ChatWidget = lazy(() => import('@/components/ChatWidget'));
 
-// Section wrapper with scroll-triggered animations
 const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
   children, 
   delay = 0 
@@ -53,7 +54,6 @@ const Index: React.FC = () => {
     return () => window.removeEventListener('openDesignGallery', handleOpenDesignGallery);
   }, []);
 
-  // Defer ChatWidget mount until after initial paint
   useEffect(() => {
     const timer = setTimeout(() => setShowChat(true), 2500);
     return () => clearTimeout(timer);
@@ -68,6 +68,14 @@ const Index: React.FC = () => {
         <AnimatedSection>
           <TerminalAbout />
         </AnimatedSection>
+        <Suspense fallback={<SectionSkeleton />}>
+          <AnimatedSection delay={0.1}>
+            <ServicesSection />
+          </AnimatedSection>
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <StartupStarterKit />
+        </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <AnimatedSection delay={0.1}>
             <BentoSkillsGrid />
