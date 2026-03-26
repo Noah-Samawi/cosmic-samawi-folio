@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Sparkles, User, Mail, Calendar, FileText, Globe, Palette, Wrench } from 'lucide-react';
+import { MessageCircle, X, Send, Sparkles, User, Mail, Calendar, Globe, Palette, Wrench, FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -11,7 +11,7 @@ interface Message {
 }
 
 const quickActions = [
-  { icon: FileText, label: '📄 CV Herunterladen', action: 'cv' },
+  { icon: FolderOpen, label: '📁 Firmenprofil ansehen', action: 'profile' },
   { icon: Globe, label: '🌐 Web & Software', action: 'web' },
   { icon: Palette, label: '🎨 Branding & Design', action: 'design' },
   { icon: Wrench, label: '🛠️ IT-Support', action: 'it' },
@@ -20,30 +20,30 @@ const quickActions = [
 ];
 
 const responses: Record<string, string> = {
-  cv: `📄 **Lebenslauf herunterladen**
+  profile: `📁 **Firmenprofil**
 
-Sie können meinen vollständigen Lebenslauf direkt hier öffnen:
+Unser vollständiges Firmenprofil mit Referenzen und Leistungsübersicht können Sie hier einsehen:
 
-👉 [**CV als PDF öffnen**](/noah-al-samawi-cv.pdf)
+👉 [**Firmenprofil öffnen**](/noah-al-samawi-cv.pdf)
 
-Alternativ finden Sie den Download-Button auch im Hero-Bereich ganz oben auf der Seite.`,
+Alternativ finden Sie den Button auch im Hero-Bereich ganz oben auf der Seite.`,
 
   web: `🌐 **Web & Software**
 
-Ich entwickle individuelle Websites, KI-gestützte Web-Apps und moderne Softwarelösungen — maßgeschneidert für Startups und lokale Unternehmen.
+Wir entwickeln individuelle Websites, KI-gestützte Web-Apps und moderne Softwarelösungen — maßgeschneidert für Startups und lokale Unternehmen.
 
 **Leistungen:**
 • Individuelle Landing Pages & Websites
 • KI-Integration (GPT, Automatisierung)
 • Full-Stack Webanwendungen (React, Python, Supabase)
 
-Meine Kerntechnologien finden Sie übersichtlich im interaktiven **Terminal-Fenster** im About-Bereich der Startseite.
+Unsere Kerntechnologien finden Sie übersichtlich im interaktiven **Terminal-Fenster** im About-Bereich der Startseite.
 
 Möchten Sie ein kostenloses Erstgespräch vereinbaren?`,
 
   design: `🎨 **Branding & Print Design**
 
-Ich gestalte professionelle visuelle Identitäten für Ihr Unternehmen — digital und gedruckt.
+Wir gestalten professionelle visuelle Identitäten für Ihr Unternehmen — digital und gedruckt.
 
 **Leistungen:**
 • Visitenkarten-Design
@@ -61,13 +61,15 @@ Zuverlässiger 1st & 2nd Level IT-Support für Privatpersonen und Büros.
 • Hardware-Einrichtung (Drucker, Telefone, Netzwerke)
 • Fehlerbehebung & Remote-Support
 
-Ich bringe 6+ Jahre Enterprise-IT-Erfahrung (CBRE / DXC / Dell) mit und biete schnelle, professionelle Hilfe.`,
+Wir bringen 6+ Jahre Enterprise-IT-Erfahrung (CBRE / DXC / Dell) mit und bieten schnelle, professionelle Hilfe.
+
+Sollen wir ein unverbindliches Erstgespräch vereinbaren?`,
 
   book: `📅 **Termin vereinbaren**
 
 Lassen Sie uns in einem 30-minütigen Erstgespräch Ihre Anforderungen besprechen — selbstverständlich kostenlos.
 
-📧 Schreiben Sie mir direkt: **kontakt@noahsamawi.de**
+📧 Schreiben Sie uns direkt: **kontakt@noahsamawi.de**
 
 Antwortzeit: **< 4 Stunden** ⚡`,
 
@@ -89,17 +91,17 @@ const getKeywordResponse = (query: string): string | null => {
   if (q.includes('design') || q.includes('brand') || q.includes('visitenkarte') || q.includes('flyer') || q.includes('logo') || q.includes('print') || q.includes('grafik')) {
     return responses.design;
   }
-  if (q.includes('it') || q.includes('support') || q.includes('hardware') || q.includes('drucker') || q.includes('netzwerk') || q.includes('troubleshoot') || q.includes('computer') || q.includes('reparatur')) {
+  if (q.includes('support') || q.includes('hardware') || q.includes('drucker') || q.includes('netzwerk') || q.includes('troubleshoot') || q.includes('computer') || q.includes('reparatur')) {
     return responses.it;
   }
   if (q.includes('ki') || q.includes('ai') || q.includes('automat') || q.includes('openai') || q.includes('gpt') || q.includes('workflow')) {
     return responses.web;
   }
-  if (q.includes('cv') || q.includes('lebenslauf') || q.includes('resume') || q.includes('download')) {
-    return responses.cv;
+  if (q.includes('profil') || q.includes('portfolio') || q.includes('firma') || q.includes('unternehmen') || q.includes('referenz')) {
+    return responses.profile;
   }
   if (q.includes('preis') || q.includes('kosten') || q.includes('budget') || q.includes('price') || q.includes('cost') || q.includes('starter')) {
-    return `💰 **Preise & Pakete**\n\nMeine Preise richten sich nach der Komplexität des Projekts. Schauen Sie sich gerne das **Startup Starter-Kit** an — Landing Page + Visitenkarten + Flyer + IT-Setup in einem Paket!\n\nJedes Projekt beginnt mit einem **kostenlosen Erstgespräch**. Nutzen Sie den **„Call buchen"**-Button!`;
+    return `💰 **Preise & Pakete**\n\nUnsere Preise richten sich nach der Komplexität des Projekts. Schauen Sie sich gerne das **Startup Starter-Kit** an — Landing Page + Visitenkarten + Flyer + IT-Setup in einem Paket!\n\nJedes Projekt beginnt mit einem **kostenlosen Erstgespräch**. Nutzen Sie den **„Call buchen"**-Button!`;
   }
   if (q.includes('kontakt') || q.includes('email') || q.includes('contact') || q.includes('reach') || q.includes('mail')) {
     return responses.contact;
@@ -149,9 +151,9 @@ Ich helfe Ihnen gerne dabei, den richtigen Service zu finden — ob **Website, B
   };
 
   const handleQuickAction = (action: string) => {
-    if (action === 'cv') {
+    if (action === 'profile') {
       window.open('/noah-al-samawi-cv.pdf', '_blank');
-      addResponse('📄 CV Herunterladen', responses.cv);
+      addResponse('📁 Firmenprofil ansehen', responses.profile);
       return;
     }
     const label = quickActions.find(a => a.action === action)?.label || action;
@@ -171,7 +173,7 @@ Ich helfe Ihnen gerne dabei, den richtigen Service zu finden — ob **Website, B
 
     setTimeout(() => {
       const response = getKeywordResponse(query) ||
-        `Vielen Dank für Ihre Frage! Ich kann Ihnen weiterhelfen bei:\n\n• **🌐 Web & Software** — Websites, Apps & KI\n• **🎨 Branding & Design** — Visitenkarten, Flyer, CI\n• **🛠️ IT-Support** — Hardware, Netzwerke, Troubleshooting\n• **📄 CV** — Lebenslauf herunterladen\n\nNutzen Sie die Schnellaktionen unten oder formulieren Sie Ihre Frage um! 🚀`;
+        `Vielen Dank für Ihre Frage! Wir können Ihnen weiterhelfen bei:\n\n• **🌐 Web & Software** — Websites, Apps & KI\n• **🎨 Branding & Design** — Visitenkarten, Flyer, CI\n• **🛠️ IT-Support** — Hardware, Netzwerke, Troubleshooting\n• **📁 Firmenprofil** — Unsere Referenzen & Leistungen\n\nNutzen Sie die Schnellaktionen unten oder formulieren Sie Ihre Frage um! 🚀`;
       setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: response }]);
       setIsLoading(false);
       setShowQuickActions(true);
@@ -273,7 +275,7 @@ Ich helfe Ihnen gerne dabei, den richtigen Service zu finden — ob **Website, B
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Fragen Sie mich zu Web, Design oder IT..."
+                  placeholder="Fragen Sie uns zu Web, Design oder IT..."
                   className="flex-1 px-4 py-2.5 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm border border-border/50"
                   disabled={isLoading}
                 />
