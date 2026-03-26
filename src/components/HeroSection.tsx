@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { ArrowDown, Download, MessageSquare } from 'lucide-react';
+import { ArrowDown, Briefcase, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AnimatedGridBackground from './AnimatedGridBackground';
@@ -89,9 +89,9 @@ const HeroSection: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="/noah-al-samawi-cv.pdf" download="Noah_Al-Samawi_CV.pdf" className="gap-2">
-                <Download className="h-5 w-5" />
-                {t('hero.cta.download')}
+              <a href="/noah-al-samawi-cv.pdf" target="_blank" rel="noopener noreferrer" className="gap-2">
+                <Briefcase className="h-5 w-5" />
+                {t('hero.cta.profile')}
               </a>
             </Button>
             <Button variant="glass" size="xl" asChild>
