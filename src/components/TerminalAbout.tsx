@@ -167,7 +167,7 @@ const TerminalAbout: React.FC = () => {
             <Button variant="neon" size="lg" asChild>
               <a href="/noah-al-samawi-cv.pdf" target="_blank" rel="noopener noreferrer">
                 <FileDown className="w-4 h-4 mr-2" />
-                {t('hero.cta.download')}
+                {t('hero.cta.profile')}
               </a>
             </Button>
           </motion.div>

@@ -32,7 +32,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Custom Websites, AI Integration, Branding, Print Design & Full IT Support — tailored for your success.",
     "hero.cta.contact": "Get in Touch",
     "hero.cta.projects": "View Projects",
-    "hero.cta.download": "Download CV",
+    "hero.cta.download": "View Company Profile",
+    "hero.cta.profile": "View Company Profile",
     "hero.location": "Frankfurt, Germany",
     "hero.status": "Available for Projects",
 
@@ -328,7 +329,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Individuelle Websites, KI-Integration, Branding, Druckdesign & Full IT-Support — maßgeschneidert für Ihren Erfolg.",
     "hero.cta.contact": "Kontakt aufnehmen",
     "hero.cta.projects": "Projekte ansehen",
-    "hero.cta.download": "Lebenslauf herunterladen",
+    "hero.cta.download": "Firmenprofil ansehen",
+    "hero.cta.profile": "Firmenprofil ansehen",
     "hero.location": "Frankfurt, Deutschland",
     "hero.status": "Verfügbar für Projekte",
 
