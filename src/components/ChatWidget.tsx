@@ -24,7 +24,7 @@ const responses: Record<string, string> = {
 
 Unser vollständiges Firmenprofil mit Referenzen und Leistungsübersicht können Sie hier einsehen:
 
-👉 [**Firmenprofil öffnen**](/noah-al-samawi-cv.pdf)
+👉 [**Firmenprofil öffnen**](/Firmenprofil.pdf)
 
 Alternativ finden Sie den Button auch im Hero-Bereich ganz oben auf der Seite.`,
 
