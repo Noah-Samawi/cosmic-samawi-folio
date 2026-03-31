@@ -152,7 +152,7 @@ Ich helfe Ihnen gerne dabei, den richtigen Service zu finden — ob **Website, B
 
   const handleQuickAction = (action: string) => {
     if (action === 'profile') {
-      window.open('/noah-al-samawi-cv.pdf', '_blank');
+      window.open('/Firmenprofil.pdf', '_blank');
       addResponse('📁 Firmenprofil ansehen', responses.profile);
       return;
     }

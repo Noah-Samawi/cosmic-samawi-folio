@@ -165,7 +165,7 @@ const TerminalAbout: React.FC = () => {
             className="flex justify-center mt-8"
           >
             <Button variant="neon" size="lg" asChild>
-              <a href="/noah-al-samawi-cv.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/Firmenprofil.pdf" target="_blank" rel="noopener noreferrer">
                 <FileDown className="w-4 h-4 mr-2" />
                 {t('hero.cta.profile')}
               </a>
