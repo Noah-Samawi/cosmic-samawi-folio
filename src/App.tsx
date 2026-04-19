@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import AGB from "./pages/AGB";
 import Presse from "./pages/Presse";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -45,6 +46,7 @@ const App = () => {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
+                  <Route path="/agb" element={<AGB />} />
                   <Route path="/presse" element={<Presse />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
