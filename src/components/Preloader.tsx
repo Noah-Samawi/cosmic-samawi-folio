@@ -78,16 +78,16 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             >
               <motion.div
                 className="text-5xl font-display font-bold gradient-text"
-                animate={{ 
+                animate={{
                   textShadow: [
-                    '0 0 20px rgba(124, 58, 237, 0.5)',
-                    '0 0 40px rgba(124, 58, 237, 0.8)',
-                    '0 0 20px rgba(124, 58, 237, 0.5)',
+                    '0 0 20px rgba(34, 211, 238, 0.4)',
+                    '0 0 40px rgba(34, 211, 238, 0.7)',
+                    '0 0 20px rgba(34, 211, 238, 0.4)',
                   ]
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                NA
+                N
               </motion.div>
             </motion.div>
 

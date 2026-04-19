@@ -81,18 +81,18 @@ const ProjectCard: React.FC<{ project: typeof portfolioData.projects[0]; index: 
           {project.description}
         </p>
 
-        {/* Tech Tags */}
+        {/* Tech Tags - cyan pills */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.technologies.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="px-2 py-0.5 text-[11px] font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
+              className="px-2.5 py-0.5 text-[11px] font-medium rounded-full border border-cyan-500/30 text-cyan-300 bg-cyan-500/5"
             >
               {tech}
             </span>
           ))}
           {project.technologies.length > 4 && (
-            <span className="px-2 py-0.5 text-[11px] font-medium rounded-full bg-muted text-muted-foreground">
+            <span className="px-2.5 py-0.5 text-[11px] font-medium rounded-full border border-slate-700 text-slate-500">
               +{project.technologies.length - 4}
             </span>
           )}
@@ -129,23 +129,21 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-radial from-primary/10 via-transparent to-transparent" />
-      </div>
-
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-14"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">{t('projects.title')}</span>
+          <p className="text-xs uppercase tracking-[0.25em] text-cyan-400 font-medium mb-3">
+            PORTFOLIO
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground text-balance mb-4">
+            {t('projects.title')}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t('projects.subtitle')}</p>
+          <p className="text-lg text-slate-400 leading-relaxed">{t('projects.subtitle')}</p>
         </motion.div>
 
         {/* Featured Projects Marquee */}
