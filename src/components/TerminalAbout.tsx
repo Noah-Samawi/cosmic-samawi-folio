@@ -23,7 +23,7 @@ const COMMANDS = [
     prompt: '',
     output: `// Output: [
   '✓ B.Sc. Computer Science & Full-Stack Web Development',
-  '✓ 6+ Years Enterprise IT (CBRE / DXC / Dell)',
+  '✓ 10+ Years Enterprise IT (CBRE / DXC / Dell)',
   '✓ Custom Websites, AI Integration & Web Apps',
   '✓ Branding, Business Cards, Flyers & Social Media',
   '✓ 1st & 2nd Level IT Support — Hardware & Networks'
