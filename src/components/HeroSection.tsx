@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, ArrowRight, Briefcase, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ShieldCheck, Calendar, FileText, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
-  // Smooth scroll for hash anchors
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -17,16 +15,19 @@ const HeroSection: React.FC = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16"
     >
-      {/* Backdrop layer 1: ambient orb */}
+      {/* Backdrop layer 1: ambient cyan orb */}
       <div
         aria-hidden="true"
         className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 h-[640px] w-[640px] rounded-full bg-cyan-500/20 blur-3xl"
       />
-      {/* Backdrop layer 2: circuit grid */}
+      {/* Backdrop layer 2: circuit grid (pure CSS, 48x48) */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 circuit-grid"
+        className="absolute inset-0 -z-10"
         style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(34,211,238,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(34,211,238,0.06) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
           maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
           WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
         }}
@@ -34,11 +35,29 @@ const HeroSection: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Eyebrow pill */}
+          {/* Availability pill */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="flex justify-center mb-5"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              <span className="text-xs font-medium text-emerald-300">
+                {t('hero.status')}
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Eyebrow pill */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-sm">
@@ -59,7 +78,7 @@ const HeroSection: React.FC = () => {
             {t('hero.headline.before')}{' '}
             <span className="bg-gradient-to-r from-cyan-300 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
               {t('hero.headline.accent')}
-            </span>{' '}
+            </span>
             {t('hero.headline.after')}
           </motion.h1>
 
@@ -78,39 +97,24 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
           >
             <button
               onClick={() => scrollTo('contact')}
               className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-cyan-500 text-slate-950 font-semibold text-base transition-all duration-150 hover:bg-cyan-400 shadow-[0_0_40px_-10px_rgba(34,211,238,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
+              <Calendar className="h-4 w-4" aria-hidden="true" />
               {t('hero.cta.primary')}
-              <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true" />
             </button>
 
-            <button
-              onClick={() => scrollTo('services')}
-              className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 font-medium text-base transition-all duration-150 hover:border-cyan-400/60 hover:text-cyan-300 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
-              {t('hero.cta.secondary')}
-            </button>
-          </motion.div>
-
-          {/* Tertiary: Firmenprofil PDF */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            className="flex justify-center mb-8"
-          >
             <a
               href="/Firmenprofil.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-cyan-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded px-2 py-1"
+              className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 font-medium text-base transition-all duration-150 hover:border-cyan-400/60 hover:text-cyan-300 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              <Briefcase className="h-3.5 w-3.5" aria-hidden="true" />
-              {t('hero.cta.profile')} (PDF)
+              <FileText className="h-4 w-4" aria-hidden="true" />
+              {t('hero.cta.secondary')}
             </a>
           </motion.div>
 
