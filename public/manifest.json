@@ -1,13 +1,19 @@
 {
-  "name": "Tech-Noah Solutions",
-  "short_name": "Tech-Noah",
-  "description": "Tech-Noah Solutions - AI-Powered Software & Automation Agency based in Frankfurt, Germany",
+  "name": "Noavio IT Solutions",
+  "short_name": "Noavio",
+  "description": "Noavio IT Solutions — Ihr IT-Partner in Frankfurt am Main. Custom Software, IT-Support & DSGVO-Beratung für KMU.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "background_color": "#020617",
+  "theme_color": "#020617",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
     {
       "src": "/favicon.png",
       "sizes": "192x192",
@@ -21,10 +27,9 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["portfolio", "technology", "developer"],
-  "lang": "en",
+  "categories": ["business", "productivity", "developer"],
+  "lang": "de",
   "dir": "ltr",
-  "prefer_related_applications": false,
   "scope": "/",
-  "id": "tech-noah-solutions"
+  "id": "noavio-it-solutions"
 }
