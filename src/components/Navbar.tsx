@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
-import CommandPalette from './CommandPalette';
+import NoavioLogo from './NoavioLogo';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,203 +15,188 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/' || location.pathname === '/home';
-  const { language, setLanguage, t, direction } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  const languageLabels: Record<string, string> = {
-    en: 'EN',
-    de: 'DE',
-  };
-
   useEffect(() => {
     if (location.hash && isHomePage) {
-      const sectionId = location.hash.replace('#', '');
+      const id = location.hash.replace('#', '');
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 80);
     }
   }, [location.hash, isHomePage]);
 
   useEffect(() => {
+    const sections = ['home', 'services', 'approach', 'projects', 'contact'];
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const sections = ['home', 'about', 'services', 'skills', 'case-studies', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+      const y = window.scrollY + 120;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && y >= el.offsetTop && y < el.offsetTop + el.offsetHeight) {
+          setActiveSection(id);
+          break;
         }
       }
     };
-    
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { key: 'nav.home', href: '#home', path: '/#home' },
-    { key: 'nav.about', href: '#about', path: '/#about' },
-    { key: 'nav.services', href: '#services', path: '/#services' },
-    { key: 'nav.skills', href: '#skills', path: '/#skills' },
-    { key: 'nav.contact', href: '#contact', path: '/#contact' },
+    { key: 'nav.services', href: '#services' },
+    { key: 'nav.approach', href: '#approach' },
+    { key: 'nav.portfolio', href: '#projects' },
+    { key: 'nav.contact', href: '#contact' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isHomePage) {
       e.preventDefault();
-      navigate(item.path);
+      navigate(`/${href}`);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'glass-card border-b border-border/50 backdrop-blur-xl'
-          : 'bg-transparent'
-      }`}
-      dir={direction}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-lg border-b border-cyan-500/10"
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            className="font-display text-xl md:text-2xl font-bold gradient-text"
-            whileHover={{ scale: 1.02 }}
+          <a
+            href={isHomePage ? '#home' : '/'}
+            onClick={(e) => isHomePage && handleNavClick(e, '#home')}
+            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-md"
+            aria-label="Noavio IT Solutions — Home"
           >
-            Noah<span className="text-foreground"> Al-Samawi</span>
-          </motion.a>
+            <NoavioLogo />
+          </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
-              const sectionId = item.href.replace('#', '');
-              const isActive = activeSection === sectionId;
-              
+              const id = item.href.replace('#', '');
+              const isActive = activeSection === id && isHomePage;
               return (
-                <motion.a
+                <a
                   key={item.key}
-                  href={isHomePage ? item.href : item.path}
-                  onClick={(e) => handleNavClick(e, item)}
-                  className={`relative px-4 py-2 text-sm transition-colors rounded-lg ${
-                    isActive && isHomePage
-                      ? 'text-primary font-medium' 
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  href={isHomePage ? item.href : `/${item.href}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-150 ${
+                    isActive
+                      ? 'text-cyan-300'
+                      : 'text-slate-400 hover:text-slate-100'
                   }`}
-                  whileHover={{ scale: 1.02 }}
                 >
                   {t(item.key)}
-                  {isActive && isHomePage && (
-                    <motion.div
-                      layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_2px_hsl(var(--primary)/0.6)]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  {isActive && (
+                    <motion.span
+                      layoutId="navActive"
+                      aria-hidden="true"
+                      className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 w-6 bg-cyan-400 rounded-full"
                     />
                   )}
-                </motion.a>
+                </a>
               );
             })}
           </div>
 
-          {/* Right side controls */}
+          {/* Right controls */}
           <div className="flex items-center gap-2">
-            <Button variant="default" size="sm" asChild className="hidden md:inline-flex">
-              <a href="#contact">{t('hero.cta.contact')}</a>
-            </Button>
-            <CommandPalette />
-            
-            <Button variant="ghost" size="icon" onClick={toggleTheme} data-theme-toggle>
-              <motion.div
-                key={theme}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </motion.div>
-            </Button>
-            
+            {/* Book a Call CTA */}
+            <a
+              href={isHomePage ? '#contact' : '/#contact'}
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="hidden md:inline-flex items-center justify-center h-10 px-5 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold transition-all duration-150 hover:bg-cyan-400 shadow-[0_0_24px_-8px_rgba(34,211,238,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              {t('nav.book')}
+            </a>
+
+            {/* Language */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
+                <button
+                  className="relative p-2 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                  aria-label="Change language"
+                >
                   <Globe className="h-5 w-5" />
-                  <span className="absolute -bottom-1 -right-1 text-[10px] font-bold bg-primary text-primary-foreground rounded px-1">
-                    {languageLabels[language]}
+                  <span className="absolute -bottom-0.5 -right-0.5 text-[9px] font-bold bg-cyan-500 text-slate-950 rounded px-1 leading-tight">
+                    {language.toUpperCase()}
                   </span>
-                </Button>
+                </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[100px]">
-                <DropdownMenuItem onClick={() => setLanguage('de')} className={language === 'de' ? 'bg-primary/10 text-primary' : ''}>
+              <DropdownMenuContent align="end" className="min-w-[120px] bg-slate-900 border-slate-800">
+                <DropdownMenuItem
+                  onClick={() => setLanguage('de')}
+                  className={language === 'de' ? 'text-cyan-300' : 'text-slate-300'}
+                >
                   🇩🇪 Deutsch
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'bg-primary/10 text-primary' : ''}>
+                <DropdownMenuItem
+                  onClick={() => setLanguage('en')}
+                  className={language === 'en' ? 'text-cyan-300' : 'text-slate-300'}
+                >
                   🇬🇧 English
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
+            {/* Mobile menu */}
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-300 hover:text-cyan-300 hover:bg-slate-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu sheet */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card border-t border-border/50"
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-cyan-500/10 bg-slate-950/95 backdrop-blur-xl overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
+            <div className="px-6 py-4 flex flex-col gap-1">
               {navItems.map((item) => {
-                const sectionId = item.href.replace('#', '');
-                const isActive = activeSection === sectionId;
-                
+                const id = item.href.replace('#', '');
+                const isActive = activeSection === id && isHomePage;
                 return (
                   <a
                     key={item.key}
-                    href={isHomePage ? item.href : item.path}
-                    className={`px-4 py-3 transition-colors rounded-lg ${
-                      isActive && isHomePage
-                        ? 'text-primary bg-primary/10 font-medium' 
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    href={isHomePage ? item.href : `/${item.href}`}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'text-cyan-300 bg-cyan-500/10'
+                        : 'text-slate-300 hover:text-slate-100 hover:bg-slate-900/60'
                     }`}
-                    onClick={(e) => {
-                      setIsMobileMenuOpen(false);
-                      handleNavClick(e, item);
-                    }}
                   >
                     {t(item.key)}
                   </a>
                 );
               })}
+              <a
+                href={isHomePage ? '#contact' : '/#contact'}
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="mt-2 inline-flex items-center justify-center h-11 px-5 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold hover:bg-cyan-400 transition-colors"
+              >
+                {t('nav.book')}
+              </a>
             </div>
           </motion.div>
         )}
