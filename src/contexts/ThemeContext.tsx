@@ -10,25 +10,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  // Noavio is dark-mode only — light mode infrastructure intentionally disabled.
+  const [theme] = useState<Theme>('dark');
 
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme') as Theme | null;
-    if (saved && (saved === 'light' || saved === 'dark')) {
-      setTheme(saved);
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      setTheme('light');
-    }
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('portfolio-theme', 'dark');
   }, []);
 
-  useEffect(() => {
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
-
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    // No-op: dark mode is locked.
   };
 
   return (
