@@ -9,12 +9,12 @@ const COMMANDS = [
   {
     prompt: '',
     output: `const noah = {
-  role: 'IT-Allrounder & Digital Partner',
+  role: 'IT-Engineer & Digital Partner',
   location: 'Frankfurt am Main, DE',
   education: 'B.Sc. Computer Science · Full-Stack Diploma',
   stack: ['React', 'Python', 'Supabase', 'OpenAI', 'Node.js', 'SQL'],
   services: ['Web & Software', 'Branding & Print', 'IT Support'],
-  focus: 'Holistic digital solutions for startups & local businesses',
+  focus: 'DSGVO-compliant software for SMEs in the Rhein-Main region',
 };`,
     delay: 600,
   },

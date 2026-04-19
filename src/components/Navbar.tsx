@@ -46,8 +46,9 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
+    { key: 'nav.home', href: '#home' },
+    { key: 'nav.about', href: '#about' },
     { key: 'nav.services', href: '#services' },
-    { key: 'nav.approach', href: '#approach' },
     { key: 'nav.portfolio', href: '#projects' },
     { key: 'nav.contact', href: '#contact' },
   ];
