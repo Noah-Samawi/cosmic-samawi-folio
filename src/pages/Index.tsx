@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import TrustStrip from '@/components/TrustStrip';
@@ -9,20 +9,14 @@ import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const TerminalAbout = lazy(() => import('@/components/TerminalAbout'));
 const ProjectsSection = lazy(() => import('@/components/ProjectsSection'));
 const TestimonialsSection = lazy(() => import('@/components/TestimonialsSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
 const Footer = lazy(() => import('@/components/Footer'));
-const ChatWidget = lazy(() => import('@/components/ChatWidget'));
 
 const Index: React.FC = () => {
   const { direction } = useLanguage();
-  const [showChat, setShowChat] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setShowChat(true), 2500);
-    return () => clearTimeout(t);
-  }, []);
 
   return (
     <div className="min-h-screen bg-background" dir={direction}>
@@ -31,6 +25,9 @@ const Index: React.FC = () => {
       <main id="main-content" role="main">
         <HeroSection />
         <TrustStrip />
+        <Suspense fallback={<SectionSkeleton />}>
+          <TerminalAbout />
+        </Suspense>
         <ServicesSection />
         <ApproachSection />
         <Suspense fallback={<SectionSkeleton />}>
@@ -46,11 +43,6 @@ const Index: React.FC = () => {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
-      {showChat && (
-        <Suspense fallback={null}>
-          <ChatWidget />
-        </Suspense>
-      )}
       <BackToTop />
     </div>
   );
