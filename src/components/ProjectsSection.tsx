@@ -1,132 +1,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, FolderGit2, Radio, Shield, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { portfolioData } from '@/data/portfolio';
-import SpotlightCard from '@/components/SpotlightCard';
-import { Marquee } from '@/components/ui/marquee';
-import mustaphaImage from '@/assets/project-mustapha.png';
-import nakaaImage from '@/assets/project-nakaa.png';
+import { Bot, Lock, Gauge } from 'lucide-react';
+import casestudyAi from '@/assets/casestudy-ai-intelligence.jpg';
+import casestudyDashboard from '@/assets/casestudy-financial-dashboard.jpg';
+import casestudyWorkflow from '@/assets/casestudy-workflow-automation.jpg';
 
-const projectImages: Record<string, string> = {
-  'mustapha-lamjahdi': mustaphaImage,
-  'nakaa': nakaaImage,
-};
+interface ReferenceCard {
+  title: string;
+  result: string;
+  stack: string[];
+  image: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
 
-const ProjectCard: React.FC<{ project: typeof portfolioData.projects[0]; index: number }> = ({ project, index }) => (
-  <motion.div
-    whileHover={{ y: -8 }}
-    className="w-[340px] md:w-[400px] shrink-0 group"
-  >
-    <SpotlightCard
-      className={`glass-card h-full overflow-hidden flex flex-col relative ${
-        project.isSecurityProject ? 'ring-2 ring-primary/30' : ''
-      }`}
-      spotlightColor={project.isSecurityProject ? 'rgba(59, 130, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}
-    >
-      {/* Badges */}
-      <div className="absolute top-4 right-4 z-20 flex gap-2">
-        {(project as any).isLive && (
-          <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 border border-green-500/30 animate-pulse">
-            <Radio className="h-3 w-3" />
-            Live
-          </span>
-        )}
-        {project.isSecurityProject && (
-          <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">
-            <Shield className="h-3 w-3" />
-            Security
-          </span>
-        )}
-        {project.featured && !(project as any).isLive && !project.isSecurityProject && (
-          <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">
-            <Star className="h-3 w-3" />
-            Featured
-          </span>
-        )}
-      </div>
-
-      {/* Project Image / Number */}
-      <div className="relative h-44 overflow-hidden">
-        {projectImages[project.id] ? (
-          <img
-            src={projectImages[project.id]}
-            alt={project.title}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-top"
-          />
-        ) : (
-          <>
-            <div className={`absolute inset-0 ${
-              project.isSecurityProject
-                ? 'bg-gradient-to-br from-primary/30 to-accent/20'
-                : 'bg-gradient-to-br from-primary/20 to-secondary/20'
-            }`} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <FolderGit2 className="h-12 w-12 text-primary/20 group-hover:text-primary/40 transition-colors" />
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
-          {project.title}
-        </h3>
-
-        <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed line-clamp-2">
-          {project.description}
-        </p>
-
-        {/* Tech Tags - cyan pills */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.technologies.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-0.5 text-[11px] font-medium rounded-full border border-cyan-500/30 text-cyan-300 bg-cyan-500/5"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="px-2.5 py-0.5 text-[11px] font-medium rounded-full border border-slate-700 text-slate-500">
-              +{project.technologies.length - 4}
-            </span>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-2 mt-auto">
-          {project.codeUrl && (
-            <Button variant="outline" size="sm" asChild className="flex-1 text-xs">
-              <a href={project.codeUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="h-3.5 w-3.5 mr-1.5" />
-                GitHub
-              </a>
-            </Button>
-          )}
-          {project.liveUrl && (
-            <Button variant="neon" size="sm" asChild className="flex-1 text-xs">
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-                Live Demo
-              </a>
-            </Button>
-          )}
-        </div>
-      </div>
-    </SpotlightCard>
-  </motion.div>
-);
+const cards: ReferenceCard[] = [
+  {
+    title: 'KI-gestützter Buchungsservice',
+    result: 'KI-Chatbot für lokalen Dienstleister — 70 % weniger manuelle Anfragen.',
+    stack: ['Next.js', 'Django', 'OpenAI', 'Vercel'],
+    image: casestudyAi,
+    icon: Bot,
+  },
+  {
+    title: 'Unternehmensportal mit Authentifizierung',
+    result:
+      'Rollenbasiertes Mitarbeiterportal mit OAuth2 und verschlüsselter Datenhaltung. DSGVO-konform, cloud-deployed.',
+    stack: ['React', 'Django', 'PostgreSQL', 'JWT'],
+    image: casestudyDashboard,
+    icon: Lock,
+  },
+  {
+    title: 'Corporate Website & SEO-Relaunch',
+    result: 'Vollständiger Relaunch — Google PageSpeed Score 97/100.',
+    stack: ['React', 'TypeScript', 'Vercel', 'SEO'],
+    image: casestudyWorkflow,
+    icon: Gauge,
+  },
+];
 
 const ProjectsSection: React.FC = () => {
-  const { t, direction } = useLanguage();
-  const featuredProjects = portfolioData.projects.filter(p => p.featured);
-  const otherProjects = portfolioData.projects.filter(p => !p.featured);
-
   return (
     <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -138,54 +50,65 @@ const ProjectsSection: React.FC = () => {
           className="max-w-3xl mb-14"
         >
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-400 font-medium mb-3">
-            PORTFOLIO
+            REFERENZEN
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground text-balance mb-4">
-            {t('projects.title')}
+            Ergebnisse, die wir liefern.
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">{t('projects.subtitle')}</p>
+          <p className="text-lg text-slate-400 leading-relaxed">
+            Drei ausgewählte Arbeiten — vom KI-Chatbot bis zum Enterprise-Portal.
+          </p>
         </motion.div>
 
-        {/* Featured Projects Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          <Marquee speed="slow" pauseOnHover reverse={direction === 'rtl'} className="py-4">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </Marquee>
-        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {cards.map((card, i) => {
+            const Icon = card.icon;
+            return (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden hover:border-cyan-400/50 hover:bg-slate-900/80 transition-all duration-200"
+              >
+                {/* 16:10 image with cyan top hairline */}
+                <div className="relative aspect-[16/10] overflow-hidden border-t border-cyan-500/30">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute top-3 left-3 w-9 h-9 rounded-lg bg-slate-950/70 border border-cyan-500/30 backdrop-blur-sm flex items-center justify-center">
+                    <Icon className="h-4 w-4 text-cyan-300" />
+                  </div>
+                </div>
 
-        {/* Other Projects - Reverse */}
-        {otherProjects.length > 0 && (
-          <>
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-xl font-display font-semibold text-center mb-8 text-muted-foreground"
-            >
-              More Projects
-            </motion.h3>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <Marquee speed="normal" pauseOnHover reverse className="py-4">
-                {otherProjects.map((project, index) => (
-                  <ProjectCard key={project.id} project={project} index={index} />
-                ))}
-              </Marquee>
-            </motion.div>
-          </>
-        )}
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-slate-100 mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                    {card.result}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {card.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-0.5 text-[11px] font-medium rounded-full border border-cyan-500/30 text-cyan-300 bg-cyan-500/5"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
