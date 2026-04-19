@@ -8,8 +8,9 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const navLinks = [
+    { key: 'nav.home', href: '#home' },
+    { key: 'nav.about', href: '#about' },
     { key: 'nav.services', href: '#services' },
-    { key: 'nav.approach', href: '#approach' },
     { key: 'nav.portfolio', href: '#projects' },
     { key: 'nav.contact', href: '#contact' },
   ];
@@ -33,7 +34,7 @@ const Footer: React.FC = () => {
           >
             <NoavioLogo />
             <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-xs">
-              {t('footer.tagline')}
+              Noavio IT Solutions · {t('footer.tagline')}
             </p>
             <p className="mt-6 text-xs text-slate-500">
               © {currentYear} Noavio IT Solutions.

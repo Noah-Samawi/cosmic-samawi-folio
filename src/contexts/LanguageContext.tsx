@@ -13,14 +13,14 @@ interface LanguageContextType {
 const translations: Record<Language, Record<string, string>> = {
   de: {
     // Navigation
-    "nav.home": "Start",
-    "nav.about": "Über uns",
-    "nav.services": "Leistungen",
+    "nav.home": "Startseite",
+    "nav.about": "Über Noavio",
+    "nav.services": "Lösungen",
     "nav.approach": "Vorgehen",
-    "nav.portfolio": "Portfolio",
-    "nav.projects": "Portfolio",
+    "nav.portfolio": "Referenzen",
+    "nav.projects": "Referenzen",
     "nav.skills": "Stack",
-    "nav.casestudies": "Fallstudien",
+    "nav.casestudies": "Referenzen",
     "nav.experience": "Erfahrung",
     "nav.education": "Ausbildung",
     "nav.contact": "Kontakt",
@@ -28,16 +28,16 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.book": "Erstgespräch buchen",
 
     // Hero
-    "hero.headline.before": "Empowering Your Business with",
-    "hero.headline.accent": "Cleveren, anpassbaren",
-    "hero.headline.after": "IT-Lösungen.",
+    "hero.headline.before": "Ganzheitliche IT — ",
+    "hero.headline.accent": "clever, anpassungsfähig",
+    "hero.headline.after": ", DSGVO-konform.",
     "hero.subhead":
-      "Hi, ich bin Noah Al-Samawi — IT-Engineer und Gründer von Noavio IT Solutions. Wir entwickeln sichere, skalierbare Custom-Software und bieten Premium IT-Support für kleine und mittlere Unternehmen in Frankfurt. Language-agnostic by design: der richtige Stack für Ihr Problem, nicht für unseres.",
-    "hero.cta.primary": "Mit Noavio starten",
-    "hero.cta.secondary": "Leistungen entdecken",
+      "Hi, ich bin Noah Al-Samawi, Gründer von Noavio IT Solutions. Wir bauen sichere, skalierbare Individualsoftware und liefern Premium-IT-Support für Startups und den Mittelstand in Frankfurt und deutschlandweit — language-agnostic, aus einer Hand.",
+    "hero.cta.primary": "Kostenloses 15-Min-Gespräch buchen",
+    "hero.cta.secondary": "Firmenprofil ansehen",
     "hero.cta.profile": "Firmenprofil",
     "hero.cta.contact": "Kontakt aufnehmen",
-    "hero.status": "Verfügbar für neue Projekte",
+    "hero.status": "Verfügbar für Projekte",
 
     // Trust strip
     "trust.exp": "10+ Jahre IT-Erfahrung",
@@ -142,11 +142,11 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.about": "About",
-    "nav.services": "Services",
+    "nav.about": "About Noavio",
+    "nav.services": "Solutions",
     "nav.approach": "Approach",
-    "nav.portfolio": "Portfolio",
-    "nav.projects": "Portfolio",
+    "nav.portfolio": "Case Studies",
+    "nav.projects": "Case Studies",
     "nav.skills": "Stack",
     "nav.casestudies": "Case Studies",
     "nav.experience": "Experience",
@@ -156,16 +156,16 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.book": "Book a Call",
 
     // Hero
-    "hero.headline.before": "Empowering Your Business with",
-    "hero.headline.accent": "Clever, Adaptable",
-    "hero.headline.after": "IT Solutions.",
+    "hero.headline.before": "Holistic IT — ",
+    "hero.headline.accent": "clever, adaptable",
+    "hero.headline.after": ", GDPR-compliant.",
     "hero.subhead":
-      "Hi, I'm Noah Al-Samawi — IT-Engineer and founder of Noavio IT Solutions. We build secure, scalable custom software and deliver premium IT-Support for small and mid-sized companies in Frankfurt. Language-agnostic by design: the right stack for your problem, not ours.",
-    "hero.cta.primary": "Partner with Noavio",
-    "hero.cta.secondary": "Explore Services",
+      "Hi, I'm Noah Al-Samawi, founder of Noavio IT Solutions. We build secure, scalable custom software and deliver premium IT-Support for startups and the German Mittelstand in Frankfurt and nationwide — language-agnostic, from a single source.",
+    "hero.cta.primary": "Book a Free 15-min Call",
+    "hero.cta.secondary": "View Company Profile",
     "hero.cta.profile": "Company Profile",
     "hero.cta.contact": "Get in Touch",
-    "hero.status": "Available for new projects",
+    "hero.status": "Available for projects",
 
     // Trust strip
     "trust.exp": "10+ Years IT Experience",
