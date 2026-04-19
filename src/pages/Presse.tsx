@@ -8,8 +8,8 @@ const Presse = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Presse | Tech-Noah Solutions</title>
-        <meta name="description" content="Presseinformationen und Medienressourcen von Tech-Noah Solutions." />
+        <title>Presse | Noavio IT Solutions</title>
+        <meta name="description" content="Presseinformationen und Medienressourcen von Noavio IT Solutions." />
       </Helmet>
       <Navbar />
       <main className="container mx-auto px-4 py-32">
@@ -23,9 +23,9 @@ const Presse = () => {
             <p>Telefon: +49 152 1515 8667</p>
           </section>
           <section>
-            <h2 className="text-2xl font-semibold mb-4">Über Tech-Noah Solutions</h2>
+            <h2 className="text-2xl font-semibold mb-4">Über Noavio IT Solutions</h2>
             <p>
-              Tech-Noah Solutions ist eine KI-gestützte Software- und Automatisierungsagentur mit Sitz in Frankfurt am Main. 
+              Noavio IT Solutions ist eine KI-gestützte Software- und Automatisierungsagentur mit Sitz in Frankfurt am Main. 
               Wir entwickeln maßgeschneiderte Webanwendungen, KI-Integrationen und Automatisierungslösungen für Unternehmen weltweit.
             </p>
           </section>

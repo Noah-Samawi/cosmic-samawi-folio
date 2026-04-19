@@ -1,132 +1,108 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Palette, Wrench, ArrowRight } from 'lucide-react';
+import { Code2, ServerCog, ShieldCheck, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ServiceDetailModal from './ServiceDetailModal';
 
-interface ServiceData {
-  icon: React.ElementType;
+interface ServiceCard {
+  icon: LucideIcon;
   titleKey: string;
-  descKey: string;
-  detailsKey: string;
-  techStack: string[];
-  features: string[];
-  gradient: string;
+  leadKey: string;
+  bullets: string[];
 }
 
 const ServicesSection: React.FC = () => {
   const { t } = useLanguage();
-  const [selectedService, setSelectedService] = useState<ServiceData | null>(null);
 
-  const services: ServiceData[] = [
+  const services: ServiceCard[] = [
     {
-      icon: Globe,
-      titleKey: 'services.web.title',
-      descKey: 'services.web.desc',
-      detailsKey: 'services.web.details',
-      techStack: ['React', 'TypeScript', 'Python', 'Supabase', 'OpenAI', 'Tailwind CSS'],
-      features: ['services.web.f1', 'services.web.f2', 'services.web.f3'],
-      gradient: 'from-[hsl(189,100%,50%)] to-[hsl(220,100%,55%)]',
+      icon: Code2,
+      titleKey: 'svc.web.title',
+      leadKey: 'svc.web.lead',
+      bullets: ['svc.web.b1', 'svc.web.b2', 'svc.web.b3'],
     },
     {
-      icon: Palette,
-      titleKey: 'services.design.title',
-      descKey: 'services.design.desc',
-      detailsKey: 'services.design.details',
-      techStack: ['Figma', 'Adobe Suite', 'Canva Pro', 'Print Design', 'Brand Strategy'],
-      features: ['services.design.f1', 'services.design.f2', 'services.design.f3'],
-      gradient: 'from-[hsl(280,80%,60%)] to-[hsl(320,80%,55%)]',
+      icon: ServerCog,
+      titleKey: 'svc.it.title',
+      leadKey: 'svc.it.lead',
+      bullets: ['svc.it.b1', 'svc.it.b2', 'svc.it.b3'],
     },
     {
-      icon: Wrench,
-      titleKey: 'services.it.title',
-      descKey: 'services.it.desc',
-      detailsKey: 'services.it.details',
-      techStack: ['Windows Server', 'Active Directory', 'Networking', 'Office 365', 'Hardware'],
-      features: ['services.it.f1', 'services.it.f2', 'services.it.f3'],
-      gradient: 'from-[hsl(150,80%,45%)] to-[hsl(170,80%,45%)]',
+      icon: ShieldCheck,
+      titleKey: 'svc.sec.title',
+      leadKey: 'svc.sec.lead',
+      bullets: ['svc.sec.b1', 'svc.sec.b2', 'svc.sec.b3'],
     },
   ];
 
   return (
-    <section id="services" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Section Header */}
+    <section id="services" className="py-24 md:py-32 relative">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-14"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">{t('services.title')}</span>
+          <p className="text-xs uppercase tracking-[0.25em] text-cyan-400 font-medium mb-3">
+            {t('svc.eyebrow')}
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground text-balance mb-4">
+            {t('svc.title')}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t('services.subtitle')}
+          <p className="text-lg text-slate-400 leading-relaxed text-balance">
+            {t('svc.sub')}
           </p>
         </motion.div>
 
-        {/* 3-Column Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {services.map((service, index) => {
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, idx) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <motion.article
                 key={service.titleKey}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                whileHover={{ y: -8 }}
-                className="group cursor-pointer"
-                onClick={() => setSelectedService(service)}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="group relative rounded-2xl border border-slate-800 bg-slate-900/60 p-8 transition-all duration-150 hover:border-cyan-400/50 hover:bg-slate-900/80"
               >
-                <div className="glass-card h-full p-8 flex flex-col relative overflow-hidden hover:border-primary/40 transition-all duration-500">
-                  {/* Gradient glow */}
-                  <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-br ${service.gradient} opacity-10 group-hover:opacity-25 blur-3xl transition-all duration-700`} />
+                {/* Halo on hover */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-32 rounded-t-2xl bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
 
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {t(service.titleKey)}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    {t(service.descKey)}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-3 flex-1 mb-6">
-                    {service.features.map((featureKey) => (
-                      <li key={featureKey} className="flex items-start gap-2 text-sm text-foreground/80">
-                        <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        {t(featureKey)}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Learn more hint */}
-                  <div className="text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 font-medium pt-4 border-t border-border/30">
-                    {t('services.learnMore')} <ArrowRight className="w-3 h-3" />
-                  </div>
+                {/* Icon tile */}
+                <div className="relative w-12 h-12 rounded-xl border border-cyan-500/30 bg-cyan-500/10 flex items-center justify-center mb-6">
+                  <Icon className="h-5 w-5 text-cyan-300" aria-hidden="true" />
                 </div>
-              </motion.div>
+
+                <h3 className="relative text-xl font-semibold text-foreground mb-3 tracking-tight">
+                  {t(service.titleKey)}
+                </h3>
+
+                <p className="relative text-slate-400 leading-relaxed mb-6 text-[15px]">
+                  {t(service.leadKey)}
+                </p>
+
+                <ul className="relative space-y-3">
+                  {service.bullets.map((bk) => (
+                    <li key={bk} className="flex items-start gap-3 text-slate-300 text-sm leading-relaxed">
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0"
+                      />
+                      <span>{t(bk)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
             );
           })}
         </div>
-
-        {/* Service Detail Modal */}
-        <ServiceDetailModal
-          isOpen={!!selectedService}
-          onClose={() => setSelectedService(null)}
-          service={selectedService}
-        />
       </div>
     </section>
   );

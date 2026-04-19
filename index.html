@@ -1,126 +1,100 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="de" dir="ltr" class="dark">
   <head>
     <meta charset="UTF-8" />
-    
-    <!-- Favicon - Multiple sizes for cache busting -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=4" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=4" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=4" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=4" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=4" />
-    <link rel="apple-touch-icon" href="/favicon.png?v=4" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=4" />
-    <link rel="shortcut icon" href="/favicon.png?v=4" />
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=5" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=5" />
+    <link rel="apple-touch-icon" href="/favicon.png?v=5" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    
+
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="AK0cn_JhKOSd9xc6EP5gXpZKBtoi5FQbvCyJ24VDcEk" />
-    
-    <!-- SEO Meta Tags -->
-    <title>Tech-Noah Solutions | AI Automation Agency</title>
-    <meta name="description" content="Tech-Noah Solutions - Automating the future with AI-powered software solutions. Custom web development, AI integration, business automation, and strategic consulting based in Frankfurt, Germany." />
-    <meta name="keywords" content="Tech-Noah Solutions, AI Agency, Software Development, Business Automation, AI Integration, React, TypeScript, Frankfurt, Germany, Web Development, Consulting" />
+
+    <!-- SEO -->
+    <title>Noavio IT Solutions | Ihr IT-Partner in Frankfurt am Main</title>
+    <meta name="description" content="Noavio IT Solutions — Language-agnostic IT-Engineering aus Frankfurt. Sichere, skalierbare Custom-Software und Premium IT-Support für deutsche KMU. DSGVO-ready, security-first." />
+    <meta name="keywords" content="Noavio IT Solutions, IT-Partner Frankfurt, Custom Software KMU, IT-Support Mittelstand, DSGVO Beratung, React, Django, AWS, Full-Stack, Frankfurt am Main" />
     <meta name="author" content="Noah Al-Samawi" />
-    
-    <!-- Open Graph / Social -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tech-Noah Solutions | AI-Powered Software & Automation" />
-    <meta property="og:description" content="Automating the future with AI-powered solutions. Custom web development, AI systems integration, and business automation." />
+    <meta property="og:title" content="Noavio IT Solutions | Ihr IT-Partner in Frankfurt am Main" />
+    <meta property="og:description" content="Language-agnostic IT-Engineering. Sichere, skalierbare Custom-Software und Premium IT-Support für KMU." />
     <meta property="og:url" content="https://noahsamawi.de" />
     <meta property="og:image" content="https://noahsamawi.de/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tech-Noah Solutions - AI-Powered Software Agency" />
-    <meta property="og:site_name" content="Tech-Noah Solutions" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="de_DE" />
-    <meta property="og:locale:alternate" content="ar_SA" />
-    
+    <meta property="og:image:alt" content="Noavio IT Solutions — Ihr IT-Partner in Frankfurt am Main" />
+    <meta property="og:site_name" content="Noavio IT Solutions" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale:alternate" content="en_US" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tech-Noah Solutions | AI-Powered Software Agency" />
-    <meta name="twitter:description" content="Automating the future with AI-powered solutions. Custom web development, AI systems, and business automation." />
+    <meta name="twitter:title" content="Noavio IT Solutions | IT-Partner Frankfurt" />
+    <meta name="twitter:description" content="Custom Software · IT-Support · DSGVO-Beratung für deutsche KMU." />
     <meta name="twitter:image" content="https://noahsamawi.de/og-image.png" />
-    <meta name="twitter:creator" content="@NoahAlSamawi" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#0b1120" />
-    <meta name="msapplication-TileColor" content="#0b1120" />
-    <meta name="msapplication-TileImage" content="/favicon.png?v=3" />
-    
+
+    <!-- Theme Color (matches slate-950) -->
+    <meta name="theme-color" content="#020617" />
+    <meta name="msapplication-TileColor" content="#020617" />
+
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Tech-Noah Solutions" />
-    
+    <meta name="apple-mobile-web-app-title" content="Noavio IT Solutions" />
+
     <!-- Canonical -->
     <link rel="canonical" href="https://noahsamawi.de" />
-    
+
     <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href="https://noahsamawi.de" />
     <link rel="alternate" hreflang="de" href="https://noahsamawi.de" />
-    <link rel="alternate" hreflang="ar" href="https://noahsamawi.de" />
+    <link rel="alternate" hreflang="en" href="https://noahsamawi.de" />
     <link rel="alternate" hreflang="x-default" href="https://noahsamawi.de" />
-    
-    <!-- JSON-LD Structured Data -->
+
+    <!-- JSON-LD: Organization + LocalBusiness -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Tech-Noah Solutions",
-        "description": "AI-Powered Software & Automation Agency. Custom web development, AI integration, business automation, and strategic consulting.",
+        "@type": ["Organization", "ProfessionalService"],
+        "name": "Noavio IT Solutions",
+        "alternateName": "Noavio",
+        "description": "Language-agnostic IT-Engineering. Secure, scalable custom software and premium IT-Support for German SMEs.",
         "url": "https://noahsamawi.de",
         "image": "https://noahsamawi.de/og-image.png",
-        "email": "mailto:kontakt@noahsamawi.de",
+        "email": "kontakt@noahsamawi.de",
+        "telephone": "+49 152 1515 8667",
         "founder": {
           "@type": "Person",
           "name": "Noah Al-Samawi",
-          "jobTitle": "Founder & Lead Engineer"
+          "jobTitle": "IT-Engineer · Founder",
+          "knowsLanguage": ["de", "en", "ar"]
         },
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Frankfurt",
-          "addressCountry": "Germany"
+          "addressLocality": "Frankfurt am Main",
+          "addressCountry": "DE"
         },
         "sameAs": [
           "https://github.com/Noah-Samawi",
           "https://www.linkedin.com/in/noah-al-samawi-058583197/"
         ],
-        "knowsAbout": ["AI Integration", "Web Development", "Business Automation", "React", "TypeScript", "Django"],
-        "areaServed": "Worldwide"
+        "knowsAbout": ["Custom Web Software", "IT-Support", "Cloud Infrastructure", "DSGVO", "GDPR", "Security Consulting", "React", "TypeScript", "Django", "AWS", "Docker"],
+        "areaServed": { "@type": "Country", "name": "Germany" },
+        "slogan": "Ihr IT-Partner in Frankfurt am Main"
       }
     </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Tech-Noah Solutions",
-        "url": "https://noahsamawi.de",
-        "description": "AI-Powered Software & Automation Agency based in Frankfurt, Germany",
-        "inLanguage": ["en", "de", "ar"],
-        "publisher": {
-          "@type": "Organization",
-          "name": "Tech-Noah Solutions"
-        }
-      }
-    </script>
-    <!-- Preload critical fonts for faster FCP -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    
-    <!-- Font display swap for system font fallback -->
+
+    <!-- Font display swap -->
     <style>
-      @font-face {
-        font-family: 'Plus Jakarta Sans';
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'Sora';
-        font-display: swap;
-      }
+      @font-face { font-family: 'Inter'; font-display: swap; }
     </style>
   </head>
   <body>

@@ -41,7 +41,7 @@ const WelcomeGate: React.FC = () => {
               <span className="text-sm text-primary font-medium">AI-Powered Solutions</span>
             </div>
             <h1 className="font-display text-5xl md:text-7xl font-bold mb-4">
-              <span className="gradient-text">Tech-Noah</span>
+              <span className="gradient-text">Noavio</span>
               <span className="text-foreground"> Solutions</span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl max-w-lg mx-auto">

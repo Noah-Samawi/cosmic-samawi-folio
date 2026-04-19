@@ -103,13 +103,13 @@ const Login: React.FC = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-primary" />
-              <span className="font-display text-sm text-primary font-medium">Tech-Noah Solutions</span>
+              <span className="font-display text-sm text-primary font-medium">Noavio IT Solutions</span>
             </div>
             <h1 className="font-display text-2xl font-bold text-foreground mb-2">
               {mode === 'login' ? 'Client Login' : mode === 'signup' ? 'Create Account' : 'Magic Link'}
             </h1>
             <p className="text-muted-foreground text-sm">
-              {mode === 'magic' ? 'Sign in with a link sent to your email' : mode === 'login' ? 'Access your project dashboard' : 'Join Tech-Noah Solutions'}
+              {mode === 'magic' ? 'Sign in with a link sent to your email' : mode === 'login' ? 'Access your project dashboard' : 'Join Noavio IT Solutions'}
             </p>
           </div>
 

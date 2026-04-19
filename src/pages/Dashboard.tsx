@@ -187,7 +187,7 @@ const Dashboard: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center font-display text-sm font-bold text-primary-foreground shadow-[0_0_15px_hsl(var(--primary)/0.4)]">
               NS
             </div>
-            <span className="font-display text-lg font-bold gradient-text">Tech-Noah</span>
+            <span className="font-display text-lg font-bold gradient-text">Noavio</span>
           </a>
         </div>
 
