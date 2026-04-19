@@ -1,62 +1,27 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import TerminalAbout from '@/components/TerminalAbout';
+import TrustStrip from '@/components/TrustStrip';
+import ServicesSection from '@/components/ServicesSection';
+import ApproachSection from '@/components/ApproachSection';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// Lazy-load all below-fold components
-const ServicesSection = lazy(() => import('@/components/ServicesSection'));
-const StartupStarterKit = lazy(() => import('@/components/StartupStarterKit'));
-const BentoSkillsGrid = lazy(() => import('@/components/BentoSkillsGrid'));
-const AIInsightsSection = lazy(() => import('@/components/AIInsightsSection'));
 const ProjectsSection = lazy(() => import('@/components/ProjectsSection'));
-const AIRadar = lazy(() => import('@/components/AIRadar'));
-const CaseStudiesSection = lazy(() => import('@/components/CaseStudiesSection'));
-const TechStackGrid = lazy(() => import('@/components/TechStackGrid'));
 const TestimonialsSection = lazy(() => import('@/components/TestimonialsSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
 const Footer = lazy(() => import('@/components/Footer'));
-const DesignGallery = lazy(() => import('@/components/DesignGallery'));
-
-// Deferred ChatWidget
 const ChatWidget = lazy(() => import('@/components/ChatWidget'));
-
-const AnimatedSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ 
-  children, 
-  delay = 0 
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ 
-      duration: 0.6, 
-      delay,
-      ease: [0.22, 1, 0.36, 1] 
-    }}
-  >
-    {children}
-  </motion.div>
-);
 
 const Index: React.FC = () => {
   const { direction } = useLanguage();
-  const [isDesignGalleryOpen, setIsDesignGalleryOpen] = useState(false);
   const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
-    const handleOpenDesignGallery = () => setIsDesignGalleryOpen(true);
-    window.addEventListener('openDesignGallery', handleOpenDesignGallery);
-    return () => window.removeEventListener('openDesignGallery', handleOpenDesignGallery);
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowChat(true), 2500);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setShowChat(true), 2500);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -65,54 +30,17 @@ const Index: React.FC = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
-        <AnimatedSection>
-          <TerminalAbout />
-        </AnimatedSection>
+        <TrustStrip />
+        <ServicesSection />
+        <ApproachSection />
         <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <ServicesSection />
-          </AnimatedSection>
+          <ProjectsSection />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
-          <StartupStarterKit />
+          <TestimonialsSection />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <BentoSkillsGrid />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <AIInsightsSection />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <ProjectsSection />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={null}>
-          <AIRadar />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <CaseStudiesSection />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <TechStackGrid />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <TestimonialsSection />
-          </AnimatedSection>
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <AnimatedSection delay={0.1}>
-            <ContactSection />
-          </AnimatedSection>
+          <ContactSection />
         </Suspense>
       </main>
       <Suspense fallback={null}>
@@ -124,12 +52,6 @@ const Index: React.FC = () => {
         </Suspense>
       )}
       <BackToTop />
-      <Suspense fallback={null}>
-        <DesignGallery 
-          isOpen={isDesignGalleryOpen} 
-          onClose={() => setIsDesignGalleryOpen(false)} 
-        />
-      </Suspense>
     </div>
   );
 };
