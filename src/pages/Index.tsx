@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import AiNativeStatement from '@/components/AiNativeStatement';
 import TrustStrip from '@/components/TrustStrip';
 import ServicesSection from '@/components/ServicesSection';
 import ApproachSection from '@/components/ApproachSection';
@@ -24,6 +25,7 @@ const Index: React.FC = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
+        <AiNativeStatement />
         <TrustStrip />
         <Suspense fallback={<SectionSkeleton />}>
           <TerminalAbout />

@@ -9,7 +9,7 @@ const COMMANDS = [
   {
     prompt: '',
     output: `const noah = {
-  role: 'IT-Engineer & Digital Partner',
+  role: 'AI-native Web-Engineer & Gründer',
   location: 'Frankfurt am Main, DE',
   education: 'B.Sc. Computer Science · Full-Stack Diploma',
   stack: ['React', 'Python', 'Supabase', 'OpenAI', 'Node.js', 'SQL'],
