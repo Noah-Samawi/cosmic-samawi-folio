@@ -89,7 +89,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
           >
-            {t('hero.subhead')}
+            {t('hero.subhead.p1')}
+            <span className="text-cyan-400 font-medium">{t('hero.subhead.accent')}</span>
+            {t('hero.subhead.p2')}
           </motion.p>
 
           {/* CTAs */}
