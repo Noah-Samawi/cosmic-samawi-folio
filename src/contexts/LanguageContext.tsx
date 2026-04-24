@@ -49,7 +49,42 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta.secondary": "Firmenprofil ansehen",
     "hero.cta.profile": "Firmenprofil",
     "hero.cta.contact": "Kontakt aufnehmen",
-    "hero.status": "Verfügbar für Projekte",
+    "hero.status": "2 Projektplätze Q3 2026 frei",
+    "hero.cta.caption": "Keine Verpflichtung · Video oder Telefon · Antwort < 24 h",
+
+    // Metrics bar
+    "metrics.projects": "Kundenprojekte",
+    "metrics.automation": "Weniger manuelle Arbeit",
+    "metrics.pagespeed": "Google PageSpeed",
+    "metrics.dsgvo": "DSGVO-konform",
+
+    // Process timeline
+    "process.eyebrow": "DER WEG ZUM PROJEKT",
+    "process.headline": "So arbeiten wir zusammen.",
+    "process.s1.title": "Erstgespräch",
+    "process.s1.body": "15 Minuten kostenlos. Wir klären, ob wir zusammenpassen und was Sie eigentlich brauchen.",
+    "process.s2.title": "Konzept & Angebot",
+    "process.s2.body": "Innerhalb 48 Stunden erhalten Sie einen klaren Projektplan, konkrete Kalkulation und Zeitschiene.",
+    "process.s3.title": "Umsetzung",
+    "process.s3.body": "Agile Entwicklung mit wöchentlichen Zwischenständen. Sie sehen jederzeit, wo wir stehen.",
+    "process.s4.title": "Launch & Betreuung",
+    "process.s4.body": "Go-Live, Übergabe, und auf Wunsch laufender Support-Retainer für langfristige Weiterentwicklung.",
+
+    // FAQ
+    "faq.eyebrow": "HÄUFIG GEFRAGT",
+    "faq.headline": "Was Sie wahrscheinlich wissen wollen.",
+    "faq.q1": "Ist die Entwicklung wirklich DSGVO-konform?",
+    "faq.a1": "Ja. Ich entwickle nach dem Prinzip „DSGVO by Design": minimale Datenerhebung, verschlüsselte Speicherung, Hosting in der EU (Frankfurt oder Nürnberg), vollständige Datenschutz-Dokumentation für jedes Projekt. Auf Wunsch stelle ich Ihnen die Auftragsverarbeitungsvereinbarung (AVV) direkt zum Projektstart bereit.",
+    "faq.q2": "Was kostet ein typisches Projekt?",
+    "faq.a2": "Projekte starten bei etwa €4.500 für eine professionelle Landingpage mit CI-Paket. Individuelle Web-Apps mit API- und KI-Integration liegen meist zwischen €12.000 und €35.000. Laufende IT-Support-Retainer beginnen bei €1.200/Monat. Alle Preise sind projektspezifisch — eine präzise Kalkulation bekommen Sie innerhalb 48 Stunden nach dem Erstgespräch.",
+    "faq.q3": "Arbeiten Sie alleine oder mit einem Team?",
+    "faq.a3": "Als Ansprechpartner haben Sie mich direkt — keine Account-Manager, keine Weiterleitung. Für größere Projekte ziehe ich bei Bedarf ein kuratiertes Netzwerk aus vertrauten Spezialisten (Design, DevOps, Security) hinzu. Sie kommunizieren immer nur mit mir.",
+    "faq.q4": "Wie schnell können wir starten?",
+    "faq.a4": "Standard-Vorlauf vom Erstgespräch bis zum Projektstart sind ein bis zwei Wochen. Für dringende Fälle (Website-Ausfall, DSGVO-Dringlichkeit, akuter IT-Support) ist auch Start innerhalb 48 Stunden möglich.",
+    "faq.q5": "Was passiert, wenn ich nach dem Launch Änderungen brauche?",
+    "faq.a5": "Jedes Projekt enthält einen Support-Zeitraum nach dem Go-Live (zwei Wochen bis ein Monat, je nach Paket). Für laufende Weiterentwicklung gibt es flexible Retainer-Modelle — stundenbasiert oder mit festem Kontingent pro Monat.",
+    "faq.q6": "Binden Sie mich an einen bestimmten Tech-Stack?",
+    "faq.a6": "Nein. Ich arbeite stack-agnostisch — das heißt, ich wähle für jedes Projekt die passende Technologie, nicht die, die mir gerade gefällt. Typisch sind React, Next.js, Django, Python und Node — aber die Entscheidung fällt nach Ihrem Bedarf, nicht nach meinem Portfolio.",
 
     // Trust strip
     "trust.exp": "10+ Jahre IT-Erfahrung",
@@ -189,7 +224,42 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta.secondary": "View Company Profile",
     "hero.cta.profile": "Company Profile",
     "hero.cta.contact": "Get in Touch",
-    "hero.status": "Available for projects",
+    "hero.status": "2 project slots open Q3 2026",
+    "hero.cta.caption": "No commitment · Video or phone · Reply < 24 h",
+
+    // Metrics bar
+    "metrics.projects": "Client projects",
+    "metrics.automation": "Less manual work",
+    "metrics.pagespeed": "Google PageSpeed",
+    "metrics.dsgvo": "GDPR-compliant",
+
+    // Process timeline
+    "process.eyebrow": "THE PATH TO YOUR PROJECT",
+    "process.headline": "How we work together.",
+    "process.s1.title": "Intro call",
+    "process.s1.body": "15 minutes, free. We figure out if we're a fit and what you actually need.",
+    "process.s2.title": "Concept & proposal",
+    "process.s2.body": "Within 48 hours you get a clear project plan, concrete budget and timeline.",
+    "process.s3.title": "Build",
+    "process.s3.body": "Agile delivery with weekly check-ins. You always know exactly where we stand.",
+    "process.s4.title": "Launch & support",
+    "process.s4.body": "Go-live, handover, and an optional ongoing support retainer for long-term work.",
+
+    // FAQ
+    "faq.eyebrow": "FREQUENTLY ASKED",
+    "faq.headline": "What you're probably wondering.",
+    "faq.q1": "Is development really GDPR-compliant?",
+    "faq.a1": "Yes. I build with \"GDPR by Design\": minimal data collection, encrypted storage, EU hosting (Frankfurt or Nuremberg), and full data-protection documentation per project. A data-processing agreement (DPA / AVV) is available at project start.",
+    "faq.q2": "What does a typical project cost?",
+    "faq.a2": "Projects start around €4,500 for a professional landing page with brand package. Custom web apps with API and AI integration usually land between €12,000 and €35,000. Ongoing IT support retainers start at €1,200/month. A precise quote follows within 48 hours of the intro call.",
+    "faq.q3": "Do you work alone or with a team?",
+    "faq.a3": "You talk to me directly — no account managers, no handoffs. For larger projects I bring in a curated network of trusted specialists (design, DevOps, security). You always communicate with me.",
+    "faq.q4": "How fast can we start?",
+    "faq.a4": "Standard lead time from intro call to kickoff is one to two weeks. For urgent cases (site outage, GDPR urgency, acute IT support) we can start within 48 hours.",
+    "faq.q5": "What happens if I need changes after launch?",
+    "faq.a5": "Every project includes a post-launch support window (two weeks to one month depending on package). For ongoing work there are flexible retainer models — hourly or fixed monthly allotment.",
+    "faq.q6": "Will you lock me into a specific tech stack?",
+    "faq.a6": "No. I work stack-agnostic — I pick the right technology for each project, not the one I happen to like. Typical stacks are React, Next.js, Django, Python and Node — but the choice follows your needs, not my portfolio.",
 
     // Trust strip
     "trust.exp": "10+ Years IT Experience",
