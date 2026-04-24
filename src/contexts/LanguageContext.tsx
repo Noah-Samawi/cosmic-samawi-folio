@@ -172,7 +172,19 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.headline.accent": "clever, adaptable",
     "hero.headline.after": ", GDPR-compliant.",
     "hero.subhead":
-      "Hi, I'm Noah Al-Samawi, founder of Noavio IT Solutions. We build secure, scalable custom software and deliver premium IT-Support for startups and the German Mittelstand in Frankfurt and nationwide — language-agnostic, from a single source.",
+      "Hi, I'm Noah Al-Samawi — AI-native web engineer and founder of Noavio IT Solutions. We build custom software that saves time and cost through AI automation — GDPR-compliant, stack-agnostic, from a single source. For startups and the German Mittelstand in Frankfurt and nationwide.",
+    "hero.subhead.p1": "Hi, I'm Noah Al-Samawi — ",
+    "hero.subhead.accent": "AI-native web engineer",
+    "hero.subhead.p2":
+      " and founder of Noavio IT Solutions. We build custom software that saves time and cost through AI automation — GDPR-compliant, stack-agnostic, from a single source. For startups and the German Mittelstand in Frankfurt and nationwide.",
+
+    // AI-native statement
+    "ai.eyebrow": "THE NEXT WAVE",
+    "ai.headline.p1": "20 years ago every company needed a website. Today every company needs an ",
+    "ai.headline.accent": "AI-native developer",
+    "ai.headline.p2": ".",
+    "ai.support":
+      "Noavio builds AI-native custom software that frees your team, automates processes and measurably saves time and cost — GDPR-compliant, stack-agnostic, from Frankfurt.",
     "hero.cta.primary": "Book a Free 15-min Call",
     "hero.cta.secondary": "View Company Profile",
     "hero.cta.profile": "Company Profile",
