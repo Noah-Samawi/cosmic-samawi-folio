@@ -42,12 +42,12 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="flex justify-center mb-5"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-300/30 bg-amber-300/5 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-300" />
               </span>
-              <span className="text-xs font-medium text-emerald-300">
+              <span className="text-xs font-medium text-amber-200">
                 {t('hero.status')}
               </span>
             </div>
@@ -101,13 +101,18 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
           >
-            <button
-              onClick={() => scrollTo('contact')}
-              className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-cyan-500 text-slate-950 font-semibold text-base transition-all duration-150 hover:bg-cyan-400 shadow-[0_0_40px_-10px_rgba(34,211,238,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              {t('hero.cta.primary')}
-            </button>
+            <div className="flex flex-col items-center">
+              <button
+                onClick={() => scrollTo('contact')}
+                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-cyan-500 text-slate-950 font-semibold text-base transition-all duration-150 hover:bg-cyan-400 shadow-[0_0_40px_-10px_rgba(34,211,238,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                {t('hero.cta.primary')}
+              </button>
+              <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                {t('hero.cta.caption')}
+              </p>
+            </div>
 
             <a
               href="/Firmenprofil.pdf"
