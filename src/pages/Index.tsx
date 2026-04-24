@@ -25,6 +25,7 @@ const Index: React.FC = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
+        <AiNativeStatement />
         <TrustStrip />
         <Suspense fallback={<SectionSkeleton />}>
           <TerminalAbout />
