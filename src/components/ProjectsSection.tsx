@@ -16,7 +16,7 @@ interface ReferenceCard {
 const cards: ReferenceCard[] = [
   {
     title: 'KI-gestützter Buchungsservice',
-    result: 'KI-Chatbot für lokalen Dienstleister — 70 % weniger manuelle Anfragen.',
+    result: 'KI-Chatbot für eine Werkstatt in Sachsenhausen — 70 % weniger manuelle Anfragen.',
     stack: ['Next.js', 'Django', 'OpenAI', 'Vercel'],
     image: casestudyAi,
     icon: Bot,
