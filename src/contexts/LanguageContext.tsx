@@ -32,7 +32,19 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.headline.accent": "clever, anpassungsfähig",
     "hero.headline.after": ", DSGVO-konform.",
     "hero.subhead":
-      "Hi, ich bin Noah Al-Samawi, Gründer von Noavio IT Solutions. Wir bauen sichere, skalierbare Individualsoftware und liefern Premium-IT-Support für Startups und den Mittelstand in Frankfurt und deutschlandweit — language-agnostic, aus einer Hand.",
+      "Hi, ich bin Noah Al-Samawi — KI-nativer Web-Engineer und Gründer von Noavio IT Solutions. Wir bauen Individualsoftware, die durch KI-Automatisierung Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus einer Hand. Für Startups und den Mittelstand in Frankfurt und deutschlandweit.",
+    "hero.subhead.p1": "Hi, ich bin Noah Al-Samawi — ",
+    "hero.subhead.accent": "KI-nativer Web-Engineer",
+    "hero.subhead.p2":
+      " und Gründer von Noavio IT Solutions. Wir bauen Individualsoftware, die durch KI-Automatisierung Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus einer Hand. Für Startups und den Mittelstand in Frankfurt und deutschlandweit.",
+
+    // AI-native statement
+    "ai.eyebrow": "DIE NÄCHSTE WELLE",
+    "ai.headline.p1": "Vor 20 Jahren brauchte jedes Unternehmen eine Website. Heute braucht jedes Unternehmen einen ",
+    "ai.headline.accent": "KI-nativen Entwickler",
+    "ai.headline.p2": ".",
+    "ai.support":
+      "Noavio baut KI-native Individualsoftware, die Ihr Team entlastet, Prozesse automatisiert und messbar Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus Frankfurt.",
     "hero.cta.primary": "Kostenloses 30-Min-Gespräch buchen",
     "hero.cta.secondary": "Firmenprofil ansehen",
     "hero.cta.profile": "Firmenprofil",
