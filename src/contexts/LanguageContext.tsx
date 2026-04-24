@@ -74,7 +74,7 @@ const translations: Record<Language, Record<string, string>> = {
     "faq.eyebrow": "HÄUFIG GEFRAGT",
     "faq.headline": "Was Sie wahrscheinlich wissen wollen.",
     "faq.q1": "Ist die Entwicklung wirklich DSGVO-konform?",
-    "faq.a1": "Ja. Ich entwickle nach dem Prinzip „DSGVO by Design": minimale Datenerhebung, verschlüsselte Speicherung, Hosting in der EU (Frankfurt oder Nürnberg), vollständige Datenschutz-Dokumentation für jedes Projekt. Auf Wunsch stelle ich Ihnen die Auftragsverarbeitungsvereinbarung (AVV) direkt zum Projektstart bereit.",
+    "faq.a1": "Ja. Ich entwickle nach dem Prinzip \"DSGVO by Design\": minimale Datenerhebung, verschlüsselte Speicherung, Hosting in der EU (Frankfurt oder Nürnberg), vollständige Datenschutz-Dokumentation für jedes Projekt. Auf Wunsch stelle ich Ihnen die Auftragsverarbeitungsvereinbarung (AVV) direkt zum Projektstart bereit.",
     "faq.q2": "Was kostet ein typisches Projekt?",
     "faq.a2": "Projekte starten bei etwa €4.500 für eine professionelle Landingpage mit CI-Paket. Individuelle Web-Apps mit API- und KI-Integration liegen meist zwischen €12.000 und €35.000. Laufende IT-Support-Retainer beginnen bei €1.200/Monat. Alle Preise sind projektspezifisch — eine präzise Kalkulation bekommen Sie innerhalb 48 Stunden nach dem Erstgespräch.",
     "faq.q3": "Arbeiten Sie alleine oder mit einem Team?",
