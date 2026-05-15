@@ -8,7 +8,7 @@ export const portfolioData = {
     email: 'noah.al-samawi@gmx.de',
     linkedin: 'https://www.linkedin.com/in/noah-al-samawi-058583197/',
     github: 'https://github.com/Noah-Samawi',
-    xing: 'https://www.xing.com/profile/Noah_AlSamawi',
+    instagram: 'https://www.instagram.com/noavio_it_solutions/',
   },
   
   experience: [
@@ -221,7 +221,7 @@ export const portfolioData = {
     - Email: noah.al-samawi@gmx.de
     - LinkedIn: https://www.linkedin.com/in/noah-al-samawi-058583197/
     - GitHub: https://github.com/Noah-Samawi
-    - XING: https://www.xing.com/profile/Noah_AlSamawi
+    - Instagram: https://www.instagram.com/noavio_it_solutions/
     - Location: Frankfurt, Germany
   `,
 };

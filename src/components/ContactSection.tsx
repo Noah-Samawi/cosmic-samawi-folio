@@ -13,17 +13,11 @@ import {
   MessageSquare,
   Send,
   Loader2,
+  Instagram,
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-
-// Xing icon (lucide doesn't ship one, inline svg)
-const XingIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-    <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L21.235.756c.095-.191.097-.387.006-.535C21.151.078 20.987 0 20.775 0h-2.587zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.453c.522 0 .771-.348.95-.682l3.708-6.564-2.36-4.122c-.179-.327-.437-.706-.972-.706H3.648z"/>
-  </svg>
-);
 
 const contactItems = [
   { icon: Phone, label: '+49 152 1515 8667', href: 'tel:+4915215158667' },
@@ -44,7 +38,7 @@ const socialLinks = [
     href: 'https://www.linkedin.com/in/noah-al-samawi-058583197/',
   },
   { icon: Github, label: 'GitHub', href: 'https://github.com/Noah-Samawi' },
-  { icon: XingIcon, label: 'Xing', href: 'https://www.xing.com/profile/Noah_AlSamawi' },
+  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/noavio_it_solutions/' },
 ];
 
 const ContactSection: React.FC = () => {
