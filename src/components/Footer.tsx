@@ -1,13 +1,7 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import NoavioLogo from './NoavioLogo';
-
-const XingIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-    <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L21.235.756c.095-.191.097-.387.006-.535C21.151.078 20.987 0 20.775 0h-2.587zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.453c.522 0 .771-.348.95-.682l3.708-6.564-2.36-4.122c-.179-.327-.437-.706-.972-.706H3.648z" />
-  </svg>
-);
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -116,13 +110,13 @@ const Footer: React.FC = () => {
                 <Github className="h-4 w-4" />
               </a>
               <a
-                href="https://www.xing.com/profile/Noah_AlSamawi"
+                href="https://www.instagram.com/noavio_it_solutions/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Xing"
+                aria-label="Instagram"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/20 text-cyan-400 hover:border-cyan-400/60 hover:bg-cyan-400/5 transition-colors"
               >
-                <XingIcon className="h-4 w-4" />
+                <Instagram className="h-4 w-4" />
               </a>
             </div>
           </div>
