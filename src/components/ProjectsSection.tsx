@@ -31,8 +31,8 @@ const cards: ReferenceCard[] = [
     icon: Lock,
   },
   {
-    title: 'Dieses Portfolio',
-    result: 'Selbst entwickelt mit React und TypeScript — optimiert auf Performance, Barrierefreiheit und SEO.',
+    title: 'Website & SEO-Relaunch',
+    result: 'Meine Arbeit: vollständiger Website-Relaunch mit React und TypeScript, optimiert für Performance und SEO.',
     stack: ['React', 'TypeScript', 'Vercel', 'SEO'],
     image: casestudyWorkflow,
     icon: Gauge,
