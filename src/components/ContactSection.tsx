@@ -77,7 +77,7 @@ const ContactSection: React.FC = () => {
 
       toast({
         title: 'Nachricht gesendet',
-        description: 'Vielen Dank — wir melden uns innerhalb von 24 Stunden.',
+        description: 'Vielen Dank — ich melde mich innerhalb von 24 Stunden.',
       });
       setName('');
       setEmail('');

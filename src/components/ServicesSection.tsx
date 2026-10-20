@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, ServerCog, ShieldCheck, type LucideIcon } from 'lucide-react';
+import { Code2, ServerCog, ShieldCheck, Bot, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ServiceCard {
@@ -21,16 +21,22 @@ const ServicesSection: React.FC = () => {
       bullets: ['svc.web.b1', 'svc.web.b2', 'svc.web.b3'],
     },
     {
-      icon: ServerCog,
-      titleKey: 'svc.it.title',
-      leadKey: 'svc.it.lead',
-      bullets: ['svc.it.b1', 'svc.it.b2', 'svc.it.b3'],
-    },
-    {
       icon: ShieldCheck,
       titleKey: 'svc.sec.title',
       leadKey: 'svc.sec.lead',
       bullets: ['svc.sec.b1', 'svc.sec.b2', 'svc.sec.b3'],
+    },
+    {
+      icon: Bot,
+      titleKey: 'svc.ai.title',
+      leadKey: 'svc.ai.lead',
+      bullets: ['svc.ai.b1', 'svc.ai.b2', 'svc.ai.b3'],
+    },
+    {
+      icon: ServerCog,
+      titleKey: 'svc.it.title',
+      leadKey: 'svc.it.lead',
+      bullets: ['svc.it.b1', 'svc.it.b2', 'svc.it.b3'],
     },
   ];
 
@@ -57,7 +63,7 @@ const ServicesSection: React.FC = () => {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, idx) => {
             const Icon = service.icon;
             return (

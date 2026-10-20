@@ -75,11 +75,10 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] text-balance text-foreground mb-6"
           >
-            {t('hero.headline.before')}{' '}
+            Noah{' '}
             <span className="bg-gradient-to-r from-cyan-300 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
-              {t('hero.headline.accent')}
+              Al-Samawi
             </span>
-            {t('hero.headline.after')}
           </motion.h1>
 
           {/* Subhead */}
@@ -87,11 +86,9 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
+            className="text-xl md:text-2xl text-cyan-400 font-medium max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
           >
-            {t('hero.subhead.p1')}
-            <span className="text-cyan-400 font-medium">{t('hero.subhead.accent')}</span>
-            {t('hero.subhead.p2')}
+            {t('hero.role')}
           </motion.p>
 
           {/* CTAs */}
@@ -134,10 +131,8 @@ const HeroSection: React.FC = () => {
           >
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Frankfurt am Main
+              {t('hero.tagline')}
             </span>
-            <span className="text-slate-700" aria-hidden="true">·</span>
-            <span>IT-Engineer & Full-Stack Developer</span>
             <span className="text-slate-700" aria-hidden="true">·</span>
             <span className="font-medium text-slate-400">DE · EN · AR</span>
           </motion.div>

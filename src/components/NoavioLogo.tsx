@@ -48,10 +48,10 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
       {showText && (
         <div className="flex flex-col leading-none">
           <span className="text-foreground font-semibold text-lg tracking-tight">
-            Noavio
+            Noah Al-Samawi
           </span>
           <span className="text-[10px] uppercase tracking-[0.22em] text-cyan-400 font-medium mt-0.5">
-            IT Solutions
+            Full-Stack · IT
           </span>
         </div>
       )}

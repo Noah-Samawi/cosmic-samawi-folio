@@ -14,13 +14,13 @@ const translations: Record<Language, Record<string, string>> = {
   de: {
     // Navigation
     "nav.home": "Startseite",
-    "nav.about": "Über Noavio",
-    "nav.services": "Lösungen",
+    "nav.about": "Über mich",
+    "nav.services": "Was ich mache",
     "nav.approach": "Vorgehen",
-    "nav.portfolio": "Referenzen",
-    "nav.projects": "Referenzen",
+    "nav.portfolio": "Projekte",
+    "nav.projects": "Projekte",
     "nav.skills": "Stack",
-    "nav.casestudies": "Referenzen",
+    "nav.casestudies": "Projekte",
     "nav.experience": "Erfahrung",
     "nav.education": "Ausbildung",
     "nav.contact": "Kontakt",
@@ -28,15 +28,9 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.book": "Erstgespräch buchen",
 
     // Hero
-    "hero.headline.before": "Ganzheitliche IT — ",
-    "hero.headline.accent": "clever, anpassungsfähig",
-    "hero.headline.after": ", DSGVO-konform.",
-    "hero.subhead":
-      "Hi, ich bin Noah Al-Samawi — KI-nativer Web-Engineer und Gründer von Noavio IT Solutions. Wir bauen Individualsoftware, die durch KI-Automatisierung Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus einer Hand. Für Startups und den Mittelstand in Frankfurt und deutschlandweit.",
-    "hero.subhead.p1": "Hi, ich bin Noah Al-Samawi — ",
-    "hero.subhead.accent": "KI-nativer Web-Engineer",
-    "hero.subhead.p2":
-      " und Gründer von Noavio IT Solutions. Wir bauen Individualsoftware, die durch KI-Automatisierung Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus einer Hand. Für Startups und den Mittelstand in Frankfurt und deutschlandweit.",
+    "hero.name": "Noah Al-Samawi",
+    "hero.role": "Full-Stack Developer & IT Engineer",
+    "hero.tagline": "Frankfurt am Main · Verfügbar für Freelance-Projekte",
 
     // AI-native statement
     "ai.eyebrow": "DIE NÄCHSTE WELLE",
@@ -44,12 +38,12 @@ const translations: Record<Language, Record<string, string>> = {
     "ai.headline.accent": "KI-nativen Entwickler",
     "ai.headline.p2": ".",
     "ai.support":
-      "Noavio baut KI-native Individualsoftware, die Ihr Team entlastet, Prozesse automatisiert und messbar Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus Frankfurt.",
+      "Ich baue KI-native Software, die Teams entlastet, Prozesse automatisiert und messbar Zeit und Kosten spart — DSGVO-konform, stack-agnostisch, aus Frankfurt.",
     "hero.cta.primary": "Kostenloses 30-Min-Gespräch buchen",
-    "hero.cta.secondary": "Firmenprofil ansehen",
-    "hero.cta.profile": "Firmenprofil",
+    "hero.cta.secondary": "Profil ansehen (PDF)",
+    "hero.cta.profile": "Profil ansehen (PDF)",
     "hero.cta.contact": "Kontakt aufnehmen",
-    "hero.status": "2 Projektplätze Q3 2026 frei",
+    "hero.status": "Verfügbar für Freelance-Projekte",
     "hero.cta.caption": "Keine Verpflichtung · Video oder Telefon · Antwort < 24 h",
 
     // Metrics bar
@@ -90,28 +84,34 @@ const translations: Record<Language, Record<string, string>> = {
     "trust.exp": "10+ Jahre IT-Erfahrung",
 
     // Services
-    "svc.eyebrow": "WAS WIR LIEFERN",
-    "svc.title": "Drei Disziplinen. Ein verantwortlicher Partner.",
+    "svc.eyebrow": "WAS ICH MACHE",
+    "svc.title": "What I Do",
     "svc.sub":
-      "Ob neue Plattform, zuverlässiger Tagesbetrieb oder auditfähige Compliance — Noavio deckt den vollen Stack moderner IT-Arbeit für deutsche KMU ab.",
-    "svc.web.title": "Custom Web & Software Architektur",
+      "Vier Schwerpunkte aus über 10 Jahren IT-Praxis — von der ersten Codezeile bis zum laufenden Betrieb.",
+    "svc.web.title": "Web Development & Software Engineering",
     "svc.web.lead":
-      "Maßgeschneiderte Webanwendungen und Plattformen, designt für Skalierung, Performance und Wartbarkeit — gebaut mit dem richtigen Stack für Ihr Problem, nicht für unseres.",
+      "Ich entwickle maßgeschneiderte Webanwendungen — skalierbar, performant und wartbar, mit dem passenden Stack für das Problem.",
     "svc.web.b1": "Full-Stack Web-Apps (React, Next.js, TypeScript, Django, Node)",
     "svc.web.b2": "REST- und GraphQL-APIs, Drittanbieter-Integrationen, ERP/CRM-Brücken",
     "svc.web.b3": "Performance-first Architektur, Core Web Vitals über 90",
-    "svc.it.title": "IT-Support & Infrastruktur",
+    "svc.it.title": "IT Support & Consulting",
     "svc.it.lead":
-      "Zuverlässiger technischer Betrieb ohne festangestellte Kraft. Von Linux-Servern bis Cloud-Deployments — planbare Verfügbarkeit und schnelle, persönliche Reaktionszeiten.",
+      "Zuverlässiger technischer Betrieb und ehrliche Beratung — von Linux-Servern bis Cloud-Deployments, mit schnellen, persönlichen Reaktionszeiten.",
     "svc.it.b1": "Docker, CI/CD, Cloud-Deployments (AWS, Vercel, DigitalOcean)",
     "svc.it.b2": "Remote-IT-Support, Netzwerk-Setup, Monitoring & Backups",
-    "svc.it.b3": "Retainer-basierte Wartung mit klaren SLAs",
-    "svc.sec.title": "Security & Beratung (DSGVO-konform)",
+    "svc.it.b3": "Technische Beratung & Wartung nach Bedarf",
+    "svc.sec.title": "IT Security & DSGVO-konforme Architektur",
     "svc.sec.lead":
       "Security-by-Design und Datenschutz, der einem echten Audit standhält. Komplexe Compliance übersetze ich in pragmatische, dokumentierte Implementierungen.",
     "svc.sec.b1": "DSGVO-Beratung, Datenschutzerklärungen, Verzeichnis von Verarbeitungstätigkeiten",
     "svc.sec.b2": "OWASP-Top-10-Härtung, OAuth2/JWT, sicheres Session-Handling",
     "svc.sec.b3": "Vulnerability-Reviews, Audit-Vorbereitung, Entwickler-Schulungen",
+    "svc.ai.title": "AI Integration & Automation",
+    "svc.ai.lead":
+      "Ich verbinde Sprachmodelle mit bestehenden Systemen und automatisiere wiederkehrende Abläufe — praxisnah und datenschutzkonform.",
+    "svc.ai.b1": "LLM-Integration (OpenAI, Gemini), Chatbots & Assistenten",
+    "svc.ai.b2": "Workflow-Automatisierung und API-Anbindungen",
+    "svc.ai.b3": "RAG-Lösungen mit eigenen Dokumenten und Datenbanken",
 
     // Approach
     "app.eyebrow": "WIE WIR ARBEITEN",
@@ -126,31 +126,32 @@ const translations: Record<Language, Record<string, string>> = {
     "app.s4.desc": "Dokumentationsübergabe, retainer-basierte Wartung, kein Vendor-Lock-in.",
 
     // Projects
-    "projects.title": "Portfolio",
-    "projects.subtitle": "Ausgewählte Projekte aus unserer Werkstatt.",
+    "projects.eyebrow": "PROJEKTE",
+    "projects.title": "Selected Projects",
+    "projects.subtitle": "Eigene Arbeiten — von KI-Chatbots bis zu sicheren Web-Portalen.",
     "projects.viewLive": "Live ansehen",
     "projects.viewCode": "Code ansehen",
     "projects.coming": "Case Study folgt in Kürze.",
 
     // Contact
     "contact.eyebrow": "REDEN WIR",
-    "contact.title": "Lassen Sie uns über Ihre nächsten 90 Tage sprechen.",
-    "contact.sub": "Kostenloses 30-Minuten-Gespräch — auf Deutsch, English oder Arabisch. Ich höre zuerst zu und sage Ihnen ehrlich, ob ich helfen kann.",
+    "contact.title": "Let's work together",
+    "contact.sub": "Ich bin verfügbar für Freelance-Projekte und Teilzeit-Zusammenarbeit — auf Deutsch, Englisch oder Arabisch. Schreiben Sie mir, ich antworte innerhalb von 24 Stunden.",
     "contact.cta.primary": "Kostenloses 30-Min Gespräch buchen",
     "contact.cta.secondary": "DSGVO-QuickScan anfragen",
     "contact.direct": "Direkter Draht",
     "contact.languages": "Sprachen",
 
     // Footer
-    "footer.tagline": "Ihr IT-Partner in Frankfurt am Main.",
+    "footer.tagline": "Full-Stack Developer & IT Engineer aus Frankfurt am Main.",
     "footer.navigate": "Navigation",
     "footer.legal": "Rechtliches",
     "footer.rights": "Alle Rechte vorbehalten.",
     "footer.visitors": "Besucher",
 
     // About / Terminal
-    "about.title": "Über Noavio",
-    "about.subtitle": "Ein verantwortlicher Partner statt einer Agentur-Black-Box.",
+    "about.title": "Über mich",
+    "about.subtitle": "Über 10 Jahre IT-Erfahrung — ich entwickle, sichere und automatisiere.",
 
     // Reviews
     "testimonials.title": "Was Kunden sagen",
@@ -189,13 +190,13 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.about": "About Noavio",
-    "nav.services": "Solutions",
+    "nav.about": "About me",
+    "nav.services": "What I Do",
     "nav.approach": "Approach",
-    "nav.portfolio": "Case Studies",
-    "nav.projects": "Case Studies",
+    "nav.portfolio": "Projects",
+    "nav.projects": "Projects",
     "nav.skills": "Stack",
-    "nav.casestudies": "Case Studies",
+    "nav.casestudies": "Projects",
     "nav.experience": "Experience",
     "nav.education": "Education",
     "nav.contact": "Contact",
@@ -203,15 +204,9 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.book": "Book a Call",
 
     // Hero
-    "hero.headline.before": "Holistic IT — ",
-    "hero.headline.accent": "clever, adaptable",
-    "hero.headline.after": ", GDPR-compliant.",
-    "hero.subhead":
-      "Hi, I'm Noah Al-Samawi — AI-native web engineer and founder of Noavio IT Solutions. We build custom software that saves time and cost through AI automation — GDPR-compliant, stack-agnostic, from a single source. For startups and the German Mittelstand in Frankfurt and nationwide.",
-    "hero.subhead.p1": "Hi, I'm Noah Al-Samawi — ",
-    "hero.subhead.accent": "AI-native web engineer",
-    "hero.subhead.p2":
-      " and founder of Noavio IT Solutions. We build custom software that saves time and cost through AI automation — GDPR-compliant, stack-agnostic, from a single source. For startups and the German Mittelstand in Frankfurt and nationwide.",
+    "hero.name": "Noah Al-Samawi",
+    "hero.role": "Full-Stack Developer & IT Engineer",
+    "hero.tagline": "Frankfurt am Main · Available for Freelance Projects",
 
     // AI-native statement
     "ai.eyebrow": "THE NEXT WAVE",
@@ -219,12 +214,12 @@ const translations: Record<Language, Record<string, string>> = {
     "ai.headline.accent": "AI-native developer",
     "ai.headline.p2": ".",
     "ai.support":
-      "Noavio builds AI-native custom software that frees your team, automates processes and measurably saves time and cost — GDPR-compliant, stack-agnostic, from Frankfurt.",
-    "hero.cta.primary": "Book a Free 15-min Call",
-    "hero.cta.secondary": "View Company Profile",
-    "hero.cta.profile": "Company Profile",
+      "I build AI-native software that frees teams, automates processes and measurably saves time and cost — GDPR-compliant, stack-agnostic, from Frankfurt.",
+    "hero.cta.primary": "Book a Free 30-min Call",
+    "hero.cta.secondary": "View Profile (PDF)",
+    "hero.cta.profile": "View Profile (PDF)",
     "hero.cta.contact": "Get in Touch",
-    "hero.status": "2 project slots open Q3 2026",
+    "hero.status": "Available for freelance projects",
     "hero.cta.caption": "No commitment · Video or phone · Reply < 24 h",
 
     // Metrics bar
@@ -266,27 +261,33 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Services
     "svc.eyebrow": "WHAT I DO",
-    "svc.title": "Three disciplines. One dedicated partner.",
+    "svc.title": "What I Do",
     "svc.sub":
-      "Whether you need a new platform, reliable day-to-day IT, or a compliance-ready security posture — Noavio covers the full stack of modern IT work for German SMEs.",
-    "svc.web.title": "Custom Web & Software Architecture",
+      "Four focus areas from 10+ years of hands-on IT — from the first line of code to day-to-day operations.",
+    "svc.web.title": "Web Development & Software Engineering",
     "svc.web.lead":
-      "Bespoke web applications and platforms designed for scale, performance, and maintainability — built with the right stack for your problem, not ours.",
+      "I build bespoke web applications — scalable, fast and maintainable, with the right stack for the problem.",
     "svc.web.b1": "Full-stack web apps (React, Next.js, TypeScript, Django, Node)",
     "svc.web.b2": "REST & GraphQL APIs, third-party integrations, ERP/CRM bridges",
     "svc.web.b3": "Performance-first architecture, Core Web Vitals above 90",
-    "svc.it.title": "IT-Support & Infrastructure",
+    "svc.it.title": "IT Support & Consulting",
     "svc.it.lead":
-      "Reliable technical operations without a full-time hire. From Linux servers to cloud deployments, you get predictable uptime and fast, personal response times.",
+      "Reliable technical operations and honest advice — from Linux servers to cloud deployments, with fast, personal response times.",
     "svc.it.b1": "Docker, CI/CD, cloud deployments (AWS, Vercel, DigitalOcean)",
     "svc.it.b2": "Remote IT support, network setup, monitoring & backups",
-    "svc.it.b3": "Retainer-based maintenance with clear SLAs",
-    "svc.sec.title": "Security & Consulting (DSGVO-compliant)",
+    "svc.it.b3": "Technical consulting & maintenance on demand",
+    "svc.sec.title": "IT Security & DSGVO-compliant Architecture",
     "svc.sec.lead":
       "Security-by-design and data protection that stands up to a real audit. I translate complex compliance into pragmatic, documented implementations.",
     "svc.sec.b1": "DSGVO/GDPR consulting, privacy policies, data-processing records",
     "svc.sec.b2": "OWASP Top-10 hardening, OAuth2/JWT, secure session handling",
     "svc.sec.b3": "Vulnerability reviews, penetration-style audits, dev training",
+    "svc.ai.title": "AI Integration & Automation",
+    "svc.ai.lead":
+      "I connect language models to existing systems and automate repetitive workflows — practical and privacy-compliant.",
+    "svc.ai.b1": "LLM integration (OpenAI, Gemini), chatbots & assistants",
+    "svc.ai.b2": "Workflow automation and API integrations",
+    "svc.ai.b3": "RAG solutions with your own documents and databases",
 
     // Approach
     "app.eyebrow": "HOW I WORK",
@@ -301,31 +302,32 @@ const translations: Record<Language, Record<string, string>> = {
     "app.s4.desc": "Documentation handover, retainer-based maintenance, no vendor lock-in.",
 
     // Projects
-    "projects.title": "Portfolio",
-    "projects.subtitle": "Selected work from our shop.",
+    "projects.eyebrow": "PROJECTS",
+    "projects.title": "Selected Projects",
+    "projects.subtitle": "Personal work — from AI chatbots to secure web portals.",
     "projects.viewLive": "View Live",
     "projects.viewCode": "View Code",
     "projects.coming": "Case study coming soon.",
 
     // Contact
     "contact.eyebrow": "LET'S TALK",
-    "contact.title": "Let's talk about your next 90 days.",
-    "contact.sub": "Free 30-minute call — in Deutsch, English, oder Arabisch. I'll listen first and tell you honestly whether I can help.",
-    "contact.cta.primary": "Book a Free 15-min Call",
+    "contact.title": "Let's work together",
+    "contact.sub": "I'm available for freelance projects and part-time collaborations — in German, English or Arabic. Drop me a message, I reply within 24 hours.",
+    "contact.cta.primary": "Book a Free 30-min Call",
     "contact.cta.secondary": "Request a DSGVO QuickScan",
     "contact.direct": "Direct line",
     "contact.languages": "Languages",
 
     // Footer
-    "footer.tagline": "Your IT partner in Frankfurt am Main.",
+    "footer.tagline": "Full-Stack Developer & IT Engineer from Frankfurt am Main.",
     "footer.navigate": "Navigate",
     "footer.legal": "Legal",
     "footer.rights": "All rights reserved.",
     "footer.visitors": "Visitors",
 
     // About
-    "about.title": "About Noavio",
-    "about.subtitle": "A dedicated partner instead of an agency black box.",
+    "about.title": "About me",
+    "about.subtitle": "10+ years in IT — I build, secure and automate.",
 
     // Reviews
     "testimonials.title": "What clients say",

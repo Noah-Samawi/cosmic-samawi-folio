@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Lock, Gauge } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import casestudyAi from '@/assets/casestudy-ai-intelligence.jpg';
 import casestudyDashboard from '@/assets/casestudy-financial-dashboard.jpg';
 import casestudyWorkflow from '@/assets/casestudy-workflow-automation.jpg';
@@ -15,23 +16,23 @@ interface ReferenceCard {
 
 const cards: ReferenceCard[] = [
   {
-    title: 'KI-gestützter Buchungsservice',
-    result: 'KI-Chatbot für eine Werkstatt in Sachsenhausen — 70 % weniger manuelle Anfragen.',
+    title: 'KI-Buchungsassistent',
+    result: 'Eigenes Projekt: KI-Chatbot, der Terminanfragen versteht und automatisch in einen Kalender bucht.',
     stack: ['Next.js', 'Django', 'OpenAI', 'Vercel'],
     image: casestudyAi,
     icon: Bot,
   },
   {
-    title: 'Unternehmensportal mit Authentifizierung',
+    title: 'Sicheres Web-Portal',
     result:
-      'Rollenbasiertes Mitarbeiterportal mit OAuth2 und verschlüsselter Datenhaltung. DSGVO-konform, cloud-deployed.',
+      'Eigenes Projekt: rollenbasiertes Portal mit OAuth2, JWT und verschlüsselter Datenhaltung — DSGVO-konform aufgebaut.',
     stack: ['React', 'Django', 'PostgreSQL', 'JWT'],
     image: casestudyDashboard,
     icon: Lock,
   },
   {
-    title: 'Corporate Website & SEO-Relaunch',
-    result: 'Vollständiger Relaunch — Google PageSpeed Score 97/100.',
+    title: 'Dieses Portfolio',
+    result: 'Selbst entwickelt mit React und TypeScript — optimiert auf Performance, Barrierefreiheit und SEO.',
     stack: ['React', 'TypeScript', 'Vercel', 'SEO'],
     image: casestudyWorkflow,
     icon: Gauge,
@@ -39,6 +40,7 @@ const cards: ReferenceCard[] = [
 ];
 
 const ProjectsSection: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -50,13 +52,13 @@ const ProjectsSection: React.FC = () => {
           className="max-w-3xl mb-14"
         >
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-400 font-medium mb-3">
-            REFERENZEN
+            {t('projects.eyebrow')}
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground text-balance mb-4">
-            Ergebnisse, die wir liefern.
+            {t('projects.title')}
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed">
-            Drei ausgewählte Arbeiten — vom KI-Chatbot bis zum Enterprise-Portal.
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
