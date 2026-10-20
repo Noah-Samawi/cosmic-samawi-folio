@@ -7,10 +7,10 @@ interface Metric {
 }
 
 const metrics: Metric[] = [
-  { value: '12+', labelKey: 'metrics.projects' },
-  { value: '70 %', labelKey: 'metrics.automation' },
+  { value: '10+', labelKey: 'metrics.experience' },
+  { value: '4', labelKey: 'metrics.languages' },
   { value: '97/100', labelKey: 'metrics.pagespeed' },
-  { value: '100 %', labelKey: 'metrics.dsgvo' },
+  { value: '100%', labelKey: 'metrics.dsgvo' },
 ];
 
 const MetricsBar: React.FC = () => {

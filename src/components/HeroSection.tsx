@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Calendar, FileText, MapPin } from 'lucide-react';
+import { ShieldCheck, Calendar, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
@@ -110,16 +110,6 @@ const HeroSection: React.FC = () => {
                 {t('hero.cta.caption')}
               </p>
             </div>
-
-            <a
-              href="/Firmenprofil.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 font-medium text-base transition-all duration-150 hover:border-cyan-400/60 hover:text-cyan-300 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
-              <FileText className="h-4 w-4" aria-hidden="true" />
-              {t('hero.cta.secondary')}
-            </a>
           </motion.div>
 
           {/* Meta row */}
