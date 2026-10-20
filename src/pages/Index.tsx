@@ -15,7 +15,6 @@ const TerminalAbout = lazy(() => import('@/components/TerminalAbout'));
 const ProjectsSection = lazy(() => import('@/components/ProjectsSection'));
 const ProcessTimeline = lazy(() => import('@/components/ProcessTimeline'));
 const FAQSection = lazy(() => import('@/components/FAQSection'));
-const TestimonialsSection = lazy(() => import('@/components/TestimonialsSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
 const Footer = lazy(() => import('@/components/Footer'));
 
@@ -41,9 +40,6 @@ const Index: React.FC = () => {
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <TerminalAbout />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <TestimonialsSection />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <FAQSection />

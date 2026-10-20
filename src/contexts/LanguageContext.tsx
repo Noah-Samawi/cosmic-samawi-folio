@@ -47,8 +47,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta.caption": "Keine Verpflichtung · Video oder Telefon · Antwort < 24 h",
 
     // Metrics bar
-    "metrics.projects": "Kundenprojekte",
-    "metrics.automation": "Weniger manuelle Arbeit",
+    "metrics.experience": "Jahre IT-Erfahrung",
+    "metrics.languages": "Sprachen gesprochen",
     "metrics.pagespeed": "Google PageSpeed",
     "metrics.dsgvo": "DSGVO-konform",
 
@@ -69,8 +69,8 @@ const translations: Record<Language, Record<string, string>> = {
     "faq.headline": "Was Sie wahrscheinlich wissen wollen.",
     "faq.q1": "Ist die Entwicklung wirklich DSGVO-konform?",
     "faq.a1": "Ja. Ich entwickle nach dem Prinzip \"DSGVO by Design\": minimale Datenerhebung, verschlüsselte Speicherung, Hosting in der EU (Frankfurt oder Nürnberg), vollständige Datenschutz-Dokumentation für jedes Projekt. Auf Wunsch stelle ich Ihnen die Auftragsverarbeitungsvereinbarung (AVV) direkt zum Projektstart bereit.",
-    "faq.q2": "Was kostet ein typisches Projekt?",
-    "faq.a2": "Projekte starten bei etwa €4.500 für eine professionelle Landingpage mit CI-Paket. Individuelle Web-Apps mit API- und KI-Integration liegen meist zwischen €12.000 und €35.000. Laufende IT-Support-Retainer beginnen bei €1.200/Monat. Alle Preise sind projektspezifisch — eine präzise Kalkulation bekommen Sie innerhalb 48 Stunden nach dem Erstgespräch.",
+    "faq.q2": "Was kostet ein Projekt?",
+    "faq.a2": "Jedes Projekt ist individuell. Schreiben Sie mir — ich antworte innerhalb von 24 Stunden mit einer ersten Einschätzung.",
     "faq.q3": "Arbeiten Sie alleine oder mit einem Team?",
     "faq.a3": "Als Ansprechpartner haben Sie mich direkt — keine Account-Manager, keine Weiterleitung. Für größere Projekte ziehe ich bei Bedarf ein kuratiertes Netzwerk aus vertrauten Spezialisten (Design, DevOps, Security) hinzu. Sie kommunizieren immer nur mit mir.",
     "faq.q4": "Wie schnell können wir starten?",
@@ -127,8 +127,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     "projects.eyebrow": "PROJEKTE",
-    "projects.title": "Selected Projects",
-    "projects.subtitle": "Eigene Arbeiten — von KI-Chatbots bis zu sicheren Web-Portalen.",
+    "projects.title": "Projekte",
+    "projects.subtitle": "Aktuelle Arbeiten sind auf GitHub dokumentiert.",
+    "projects.github": "GitHub ansehen",
     "projects.viewLive": "Live ansehen",
     "projects.viewCode": "Code ansehen",
     "projects.coming": "Case Study folgt in Kürze.",
@@ -223,8 +224,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.cta.caption": "No commitment · Video or phone · Reply < 24 h",
 
     // Metrics bar
-    "metrics.projects": "Client projects",
-    "metrics.automation": "Less manual work",
+    "metrics.experience": "Years of IT experience",
+    "metrics.languages": "Languages spoken",
     "metrics.pagespeed": "Google PageSpeed",
     "metrics.dsgvo": "GDPR-compliant",
 
@@ -245,8 +246,8 @@ const translations: Record<Language, Record<string, string>> = {
     "faq.headline": "What you're probably wondering.",
     "faq.q1": "Is development really GDPR-compliant?",
     "faq.a1": "Yes. I build with \"GDPR by Design\": minimal data collection, encrypted storage, EU hosting (Frankfurt or Nuremberg), and full data-protection documentation per project. A data-processing agreement (DPA / AVV) is available at project start.",
-    "faq.q2": "What does a typical project cost?",
-    "faq.a2": "Projects start around €4,500 for a professional landing page with brand package. Custom web apps with API and AI integration usually land between €12,000 and €35,000. Ongoing IT support retainers start at €1,200/month. A precise quote follows within 48 hours of the intro call.",
+    "faq.q2": "How much does a project cost?",
+    "faq.a2": "Every project is individual. Write to me — I reply within 24 hours with a first assessment.",
     "faq.q3": "Do you work alone or with a team?",
     "faq.a3": "You talk to me directly — no account managers, no handoffs. For larger projects I bring in a curated network of trusted specialists (design, DevOps, security). You always communicate with me.",
     "faq.q4": "How fast can we start?",
@@ -303,8 +304,9 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     "projects.eyebrow": "PROJECTS",
-    "projects.title": "Selected Projects",
-    "projects.subtitle": "Personal work — from AI chatbots to secure web portals.",
+    "projects.title": "Projects",
+    "projects.subtitle": "Current work is documented on GitHub.",
+    "projects.github": "View GitHub",
     "projects.viewLive": "View Live",
     "projects.viewCode": "View Code",
     "projects.coming": "Case study coming soon.",
