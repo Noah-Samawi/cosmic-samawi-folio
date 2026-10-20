@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
             href={isHomePage ? '#home' : '/'}
             onClick={(e) => isHomePage && handleNavClick(e, '#home')}
             className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-md"
-            aria-label="Noavio IT Solutions — Home"
+            aria-label="Noah Al-Samawi — Home"
           >
             <NoavioLogo />
           </a>

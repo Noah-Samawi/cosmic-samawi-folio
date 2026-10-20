@@ -9,12 +9,14 @@ const COMMANDS = [
   {
     prompt: '',
     output: `const noah = {
-  role: 'AI-native Web-Engineer & Gründer',
+  role: 'Freelance Full-Stack Developer & IT Engineer',
   location: 'Frankfurt am Main, DE',
   education: 'B.Sc. Computer Science · Full-Stack Diploma',
-  stack: ['React', 'Python', 'Supabase', 'OpenAI', 'Node.js', 'SQL'],
-  services: ['Web & Software', 'Branding & Print', 'IT Support'],
-  focus: 'DSGVO-compliant software for SMEs in the Rhein-Main region',
+  experience: '10+ years in IT (CBRE / DXC / Dell)',
+  stack: ['React', 'Django', 'TypeScript', 'Python', 'SQL'],
+  focus: ['IT Security', 'DSGVO-compliant Architecture', 'AI Integration'],
+  languages: ['German', 'English', 'Arabic'],
+  availability: 'Freelance projects & part-time collaborations',
 };`,
     delay: 600,
   },
@@ -24,9 +26,10 @@ const COMMANDS = [
     output: `// Output: [
   '✓ B.Sc. Computer Science & Full-Stack Web Development',
   '✓ 10+ Years Enterprise IT (CBRE / DXC / Dell)',
-  '✓ Custom Websites, AI Integration & Web Apps',
-  '✓ Branding, Business Cards, Flyers & Social Media',
-  '✓ 1st & 2nd Level IT Support — Hardware & Networks'
+  '✓ I build full-stack web apps with React, Django & TypeScript',
+  '✓ I design secure, DSGVO-compliant architectures',
+  '✓ I integrate AI and automate workflows',
+  '✓ I provide IT support & technical consulting'
 ]`,
     delay: 600,
   },
@@ -75,8 +78,9 @@ const TerminalAbout: React.FC = () => {
         setCurrentCommand(currentCommand + 1);
       }
     } else if (cmd.output) {
+      const output = cmd.output;
       const timer = setTimeout(() => {
-        setLines(prev => [...prev, { text: cmd.output!, type: 'output' }]);
+        setLines(prev => [...prev, { text: output, type: 'output' }]);
         setCurrentCommand(currentCommand + 1);
       }, cmd.delay);
       return () => clearTimeout(timer);

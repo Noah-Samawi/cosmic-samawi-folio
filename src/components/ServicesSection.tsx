@@ -8,6 +8,8 @@ interface ServiceCard {
   titleKey: string;
   leadKey: string;
   bullets: string[];
+  secondaryTitleKey?: string;
+  secondaryLeadKey?: string;
 }
 
 const ServicesSection: React.FC = () => {
@@ -19,18 +21,20 @@ const ServicesSection: React.FC = () => {
       titleKey: 'svc.web.title',
       leadKey: 'svc.web.lead',
       bullets: ['svc.web.b1', 'svc.web.b2', 'svc.web.b3'],
-    },
-    {
-      icon: ServerCog,
-      titleKey: 'svc.it.title',
-      leadKey: 'svc.it.lead',
-      bullets: ['svc.it.b1', 'svc.it.b2', 'svc.it.b3'],
+      secondaryTitleKey: 'svc.ai.title',
+      secondaryLeadKey: 'svc.ai.lead',
     },
     {
       icon: ShieldCheck,
       titleKey: 'svc.sec.title',
       leadKey: 'svc.sec.lead',
       bullets: ['svc.sec.b1', 'svc.sec.b2', 'svc.sec.b3'],
+    },
+    {
+      icon: ServerCog,
+      titleKey: 'svc.it.title',
+      leadKey: 'svc.it.lead',
+      bullets: ['svc.it.b1', 'svc.it.b2', 'svc.it.b3'],
     },
   ];
 
@@ -99,6 +103,16 @@ const ServicesSection: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+                {service.secondaryTitleKey && service.secondaryLeadKey && (
+                  <div className="relative mt-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3 tracking-tight">
+                      {t(service.secondaryTitleKey)}
+                    </h3>
+                    <p className="text-slate-400 leading-relaxed text-[15px]">
+                      {t(service.secondaryLeadKey)}
+                    </p>
+                  </div>
+                )}
               </motion.article>
             );
           })}
