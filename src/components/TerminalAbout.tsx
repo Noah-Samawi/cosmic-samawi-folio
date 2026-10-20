@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, FileDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Terminal } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const COMMANDS = [
@@ -16,7 +15,7 @@ const COMMANDS = [
   stack: ['React', 'Django', 'TypeScript', 'Python', 'SQL'],
   focus: ['IT Security', 'DSGVO-compliant Architecture', 'AI Integration'],
   languages: ['German', 'English', 'Arabic'],
-  availability: 'Freelance projects & part-time collaborations',
+  availability: 'Open to freelance projects — kontakt@noahsamawi.de',
 };`,
     delay: 600,
   },
@@ -159,21 +158,6 @@ const TerminalAbout: React.FC = () => {
                 )}
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center mt-8"
-          >
-            <Button variant="neon" size="lg" asChild>
-              <a href="/Firmenprofil.pdf" target="_blank" rel="noopener noreferrer">
-                <FileDown className="w-4 h-4 mr-2" />
-                {t('hero.cta.profile')}
-              </a>
-            </Button>
           </motion.div>
         </div>
       </div>
