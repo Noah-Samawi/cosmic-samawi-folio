@@ -18,6 +18,7 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
 
 const contactItems = [
   { icon: Phone, label: '+49 152 1515 8667', href: 'tel:+4915215158667' },
@@ -222,10 +223,10 @@ const ContactSection: React.FC = () => {
               </div>
 
               {/* Submit */}
-              <button
+              <Button
                 type="submit"
                 disabled={submitting}
-                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-cyan-500 text-slate-950 font-semibold text-base transition-all duration-150 hover:bg-cyan-400 disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_0_40px_-10px_rgba(34,211,238,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-lg bg-primary text-primary-foreground font-semibold text-base transition-all duration-150 hover:bg-primary disabled:opacity-60 disabled:cursor-not-allowed shadow-[var(--shadow-glow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {submitting ? (
                   <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -233,7 +234,7 @@ const ContactSection: React.FC = () => {
                   <Send className="h-4 w-4" aria-hidden="true" />
                 )}
                 {submitting ? 'Wird gesendet…' : 'Nachricht senden'}
-              </button>
+              </Button>
             </form>
           </motion.div>
 

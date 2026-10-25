@@ -4,6 +4,7 @@ import { Menu, X, Globe } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import NoavioLogo from './NoavioLogo';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -111,13 +112,15 @@ const Navbar: React.FC = () => {
           {/* Right controls */}
           <div className="flex items-center gap-2">
             {/* Book a Call CTA */}
+            <Button asChild variant="neon" className="hidden md:inline-flex h-10 px-5 rounded-lg border text-primary hover:bg-primary/10">
             <a
               href={isHomePage ? '#contact' : '/#contact'}
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden md:inline-flex items-center justify-center h-10 px-5 rounded-lg border border-cyan-400 text-cyan-400 text-sm font-semibold transition-all duration-150 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="text-sm font-semibold"
             >
               {t('nav.request')}
             </a>
+            </Button>
 
             {/* Language */}
             <DropdownMenu>
@@ -190,13 +193,15 @@ const Navbar: React.FC = () => {
                   </a>
                 );
               })}
+              <Button asChild className="mt-2 h-11 px-5 rounded-lg bg-primary text-primary-foreground hover:bg-primary">
               <a
                 href={isHomePage ? '#contact' : '/#contact'}
                 onClick={(e) => handleNavClick(e, '#contact')}
-                className="mt-2 inline-flex items-center justify-center h-11 px-5 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold hover:bg-cyan-400 transition-colors"
+                className="text-sm font-semibold"
               >
                 {t('nav.request')}
               </a>
+              </Button>
             </div>
           </motion.div>
         )}
