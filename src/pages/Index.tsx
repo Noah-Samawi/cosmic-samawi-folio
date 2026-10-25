@@ -5,6 +5,7 @@ import AiNativeStatement from '@/components/AiNativeStatement';
 import MetricsBar from '@/components/MetricsBar';
 import TrustStrip from '@/components/TrustStrip';
 import ServicesSection from '@/components/ServicesSection';
+import WhyNoavioSection from '@/components/WhyNoavioSection';
 import ApproachSection from '@/components/ApproachSection';
 import ToolsSection from '@/components/ToolsSection';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -32,6 +33,7 @@ const Index: React.FC = () => {
         <MetricsBar />
         <TrustStrip />
         <ServicesSection />
+        <WhyNoavioSection />
         <ToolsSection />
         <ApproachSection />
         <Suspense fallback={<SectionSkeleton />}>

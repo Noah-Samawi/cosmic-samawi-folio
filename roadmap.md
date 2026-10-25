@@ -11,3 +11,10 @@
 - [x] Replace site-wide accent tokens and legacy color aliases while preserving dark surfaces.
 - [x] Update CTA colors, rounding, and logo accents.
 - [x] Verify the green accents and contact navigation in the preview.
+
+# Services and complete solution update
+
+- [x] Replace services with six cards and DE/EN copy.
+- [x] Add Warum Noavio immediately after services.
+- [x] Update toolbox tools and subtitle.
+- [x] Verify both languages and mobile/desktop layout; preserve green accents.
