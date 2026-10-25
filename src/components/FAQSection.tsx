@@ -45,7 +45,7 @@ const FAQSection: React.FC = () => {
               value={`item-${i}`}
               className="border border-cyan-400/15 rounded-xl bg-slate-900/40 px-5 data-[state=open]:border-cyan-400/40 transition-colors"
             >
-              <AccordionTrigger className="text-left text-base md:text-lg font-medium text-white hover:no-underline [&>svg]:text-cyan-400">
+              <AccordionTrigger className="text-start gap-3 text-base md:text-lg font-medium text-white hover:no-underline [&>svg]:text-cyan-400">
                 {t(item.q)}
               </AccordionTrigger>
               <AccordionContent className="text-base text-slate-300 leading-relaxed">

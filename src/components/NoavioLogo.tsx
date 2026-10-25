@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface NoavioLogoProps {
   className?: string;
@@ -12,6 +13,7 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
   size = 'md',
 }) => {
   const hexSize = size === 'sm' ? 28 : size === 'lg' ? 44 : 36;
+  const { t } = useLanguage();
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
@@ -48,7 +50,7 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
       {showText && (
         <div className="flex flex-col leading-none">
           <span className="text-foreground font-semibold text-lg tracking-tight">
-            Noah Al-Samawi
+            {t('hero.name')}
           </span>
           <span className="text-[10px] uppercase tracking-[0.22em] text-cyan-400 font-medium mt-0.5">
             NOAVIO IT
