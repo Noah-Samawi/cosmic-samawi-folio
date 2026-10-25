@@ -2,15 +2,16 @@ import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Github, Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import NoavioLogo from './NoavioLogo';
+import { Button } from '@/components/ui/button';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const legalLinks = [
-    { label: 'Impressum', href: '/impressum' },
-    { label: 'Datenschutzerklärung', href: '/datenschutz' },
-    { label: 'AGB', href: '/agb' },
+    { label: t('legal.imprint'), href: '/impressum' },
+    { label: t('legal.privacy'), href: '/datenschutz' },
+    { label: t('legal.terms'), href: '/agb' },
   ];
 
   const handleCookieSettings = () => {
@@ -50,12 +51,13 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li>
-                <button
+                <Button
+                  variant="link"
                   onClick={handleCookieSettings}
-                  className="text-sm text-slate-300 hover:text-cyan-400 transition-colors text-left"
+                  className="text-sm text-slate-300 hover:text-cyan-400 transition-colors text-start h-auto p-0 whitespace-normal"
                 >
-                  Cookies-Einstellungen
-                </button>
+                  {t('footer.cookies')}
+                </Button>
               </li>
             </ul>
           </div>
@@ -63,7 +65,7 @@ const Footer: React.FC = () => {
           {/* Contact */}
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-cyan-400 font-medium mb-4">
-              Kontakt
+              {t('nav.contact')}
             </h3>
             <ul className="space-y-2.5">
               <li>
@@ -72,7 +74,7 @@ const Footer: React.FC = () => {
                   className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-cyan-400 transition-colors"
                 >
                   <Mail className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-                  kontakt@noahsamawi.de
+                  <bdi dir="ltr">kontakt@noahsamawi.de</bdi>
                 </a>
               </li>
               <li>
@@ -81,12 +83,12 @@ const Footer: React.FC = () => {
                   className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-cyan-400 transition-colors"
                 >
                   <Phone className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-                  +49 1521 515 8667
+                  <bdi dir="ltr">+49 1521 515 8667</bdi>
                 </a>
               </li>
               <li className="inline-flex items-center gap-2 text-sm text-slate-300">
                 <MapPin className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-                Frankfurt am Main
+                {t('why.local.title')}
               </li>
             </ul>
 
@@ -124,7 +126,7 @@ const Footer: React.FC = () => {
 
         <div className="mt-10 pt-6 border-t border-cyan-400/10 text-center">
           <p className="text-xs text-slate-500">
-            Entwickelt mit Sorgfalt in Frankfurt am Main.
+            {t('footer.credit')}
           </p>
         </div>
       </div>

@@ -49,7 +49,7 @@ const ProcessTimeline: React.FC = () => {
               </div>
               {i < steps.length - 1 && (
                 <div className="flex items-center" aria-hidden="true">
-                  <ArrowRight className="h-5 w-5 text-cyan-400/40" />
+                  <ArrowRight className="h-5 w-5 text-cyan-400/40 rtl:rotate-180" />
                 </div>
               )}
             </React.Fragment>
@@ -60,13 +60,13 @@ const ProcessTimeline: React.FC = () => {
         <div className="md:hidden relative">
           <div
             aria-hidden="true"
-            className="absolute left-4 top-2 bottom-2 border-l-2 border-dotted border-cyan-400/40"
+            className="absolute start-4 top-2 bottom-2 border-s-2 border-dotted border-cyan-400/40"
           />
           <div className="space-y-4">
             {steps.map((s) => (
               <div
                 key={s.num}
-                className="ml-10 rounded-xl border border-cyan-400/20 bg-slate-900 p-6"
+                className="ms-10 rounded-xl border border-cyan-400/20 bg-slate-900 p-6"
               >
                 <div className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/40 text-cyan-400 text-xs font-semibold tabular-nums mb-3">
                   {s.num}

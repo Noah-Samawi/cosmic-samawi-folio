@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.02] text-foreground mb-4"
           >
-            Noah Al-Samawi
+            {t('hero.name')}
           </motion.h1>
 
           <motion.h2
@@ -85,7 +85,7 @@ const HeroSection: React.FC = () => {
               className="inline-flex items-center gap-2 h-12 px-7 rounded-lg bg-primary text-primary-foreground font-semibold text-base transition-colors hover:bg-primary"
             >
               {t('hero.cta.request').replace(' →', '')}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
             </Button>
           </motion.div>
 
@@ -94,10 +94,10 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 max-w-3xl border-t border-slate-800 pt-6"
-            aria-label="Tech stack"
+            aria-label={t('skills.title')}
           >
             {stack.map((s) => (
-              <li key={s} className="text-base md:text-lg font-semibold tracking-tight text-foreground opacity-60">
+              <li key={s} dir="ltr" className="text-base md:text-lg font-semibold tracking-tight text-foreground opacity-60">
                 {s}
               </li>
             ))}

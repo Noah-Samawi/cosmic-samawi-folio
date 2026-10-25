@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/' || location.pathname === '/home';
-  const { language, setLanguage, t } = useLanguage();
+  const { language, direction, setLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
             href={isHomePage ? '#home' : '/'}
             onClick={(e) => isHomePage && handleNavClick(e, '#home')}
             className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-md"
-            aria-label="Noah Al-Samawi — Home"
+            aria-label={`${t('hero.name')} — ${t('nav.home')}`}
           >
             <NoavioLogo />
           </a>
@@ -123,17 +123,19 @@ const Navbar: React.FC = () => {
             </Button>
 
             {/* Language */}
-            <DropdownMenu>
+            <DropdownMenu dir={direction}>
               <DropdownMenuTrigger asChild>
-                <button
-                  className="relative p-2 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                  aria-label="Change language"
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="relative text-muted-foreground hover:text-primary"
+                  aria-label={t('nav.language')}
                 >
                   <Globe className="h-5 w-5" />
-                  <span className="absolute -bottom-0.5 -right-0.5 text-[9px] font-bold bg-cyan-500 text-slate-950 rounded px-1 leading-tight">
+                  <span className="absolute -bottom-0.5 -end-0.5 text-[9px] font-bold bg-primary text-primary-foreground rounded px-1 leading-tight" dir="ltr">
                     {language.toUpperCase()}
                   </span>
-                </button>
+                </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-[120px] bg-slate-900 border-slate-800">
                 <DropdownMenuItem
@@ -148,18 +150,27 @@ const Navbar: React.FC = () => {
                 >
                   🇬🇧 English
                 </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setLanguage('ar')}
+                  className={language === 'ar' ? 'text-primary' : 'text-muted-foreground'}
+                  lang="ar"
+                >
+                  العربية
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Mobile menu */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 rounded-lg text-slate-300 hover:text-cyan-300 hover:bg-slate-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-              aria-label="Toggle menu"
+              aria-label={t('nav.menu')}
               aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

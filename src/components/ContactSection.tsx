@@ -77,8 +77,8 @@ const ContactSection: React.FC = () => {
       if (error) throw error;
 
       toast({
-        title: 'Nachricht gesendet',
-        description: 'Vielen Dank — ich melde mich innerhalb von 24 Stunden.',
+        title: t('contact.success'),
+        description: t('contact.successBody'),
       });
       setName('');
       setEmail('');
@@ -87,8 +87,8 @@ const ContactSection: React.FC = () => {
       setConsent(false);
     } catch (err) {
       toast({
-        title: 'Fehler',
-        description: 'Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+        title: t('common.error'),
+        description: t('contact.errorBody'),
         variant: 'destructive',
       });
     } finally {
@@ -122,7 +122,7 @@ const ContactSection: React.FC = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* Honeypot — visually hidden */}
-              <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+              <div aria-hidden="true" className="sr-only">
                 <label htmlFor="website">Website</label>
                 <input
                   id="website"
@@ -137,56 +137,56 @@ const ContactSection: React.FC = () => {
 
               {/* Name */}
               <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
+                <User className="absolute start-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
                 <input
                   type="text"
                   required
-                  placeholder="Ihr Name"
+                  placeholder={t('contact.name')} aria-label={t('contact.name')} dir="auto"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   maxLength={100}
-                  className="w-full h-12 pl-11 pr-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
+                  className="w-full h-12 ps-11 pe-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
                 />
               </div>
 
               {/* Email */}
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
+                <Mail className="absolute start-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
                 <input
                   type="email"
                   required
-                  placeholder="Ihre E-Mail"
+                  placeholder={t('contact.email')} aria-label={t('contact.email')} dir="ltr"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   maxLength={255}
-                  className="w-full h-12 pl-11 pr-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
+                  className="w-full h-12 ps-11 pe-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
                 />
               </div>
 
               {/* Subject */}
               <div className="relative">
-                <Tag className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
+                <Tag className="absolute start-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
                 <input
                   type="text"
-                  placeholder="Betreff (Optional)"
+                  placeholder={t('contact.subject')} aria-label={t('contact.subject')} dir="auto"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   maxLength={150}
-                  className="w-full h-12 pl-11 pr-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
+                  className="w-full h-12 ps-11 pe-4 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors"
                 />
               </div>
 
               {/* Message */}
               <div className="relative">
-                <MessageSquare className="absolute left-3.5 top-4 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
+                <MessageSquare className="absolute start-3.5 top-4 h-4 w-4 text-slate-500 pointer-events-none" aria-hidden="true" />
                 <textarea
                   required
                   rows={5}
-                  placeholder="Ihre Nachricht"
+                  placeholder={t('contact.message')} aria-label={t('contact.message')} dir="auto"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   maxLength={2000}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors resize-none"
+                  className="w-full ps-11 pe-4 py-3 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-colors resize-none"
                 />
               </div>
 
@@ -203,21 +203,21 @@ const ContactSection: React.FC = () => {
                     className="mt-0.5 h-4 w-4 rounded border-slate-600 bg-slate-900 text-cyan-500 focus:ring-cyan-400/40 focus:ring-offset-0 cursor-pointer accent-cyan-500"
                   />
                   <span className="text-xs text-slate-400 leading-relaxed">
-                    Ich habe die{' '}
+                    {t('contact.consentBefore')}
                     <a
                       href="/datenschutz"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-cyan-300 hover:text-cyan-200 underline underline-offset-2"
                     >
-                      Datenschutzerklärung
-                    </a>{' '}
-                    zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zu diesem Zweck zu.
+                      {t('legal.privacy')}
+                    </a>
+                    {t('contact.consentAfter')}
                   </span>
                 </label>
                 {consentError && (
                   <p className="mt-2 text-xs text-red-400" role="alert">
-                    Bitte bestätigen Sie die Datenschutzerklärung, um fortzufahren.
+                    {t('contact.consentError')}
                   </p>
                 )}
               </div>
@@ -233,7 +233,7 @@ const ContactSection: React.FC = () => {
                 ) : (
                   <Send className="h-4 w-4" aria-hidden="true" />
                 )}
-                {submitting ? 'Wird gesendet…' : 'Nachricht senden'}
+                {submitting ? t('contact.sending') : t('contact.send')}
               </Button>
             </form>
           </motion.div>
@@ -257,7 +257,7 @@ const ContactSection: React.FC = () => {
                     <span className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0 group-hover:border-cyan-400/50 transition-colors">
                       <Icon className="h-4 w-4 text-cyan-300" aria-hidden="true" />
                     </span>
-                    <span className="text-[15px] break-all">{item.label}</span>
+                    <bdi className="text-[15px] break-all" dir={item.href ? "ltr" : undefined}>{item.href ? item.label : t("contact.location")}</bdi>
                   </span>
                 );
                 return (
@@ -282,7 +282,7 @@ const ContactSection: React.FC = () => {
             {/* Social row */}
             <div className="mt-7 pt-6 border-t border-slate-800">
               <p className="text-xs uppercase tracking-[0.2em] text-cyan-400 font-medium mb-4">
-                Social
+                {t('contact.social')}
               </p>
               <div className="flex items-center gap-3">
                 {socialLinks.map((social) => {

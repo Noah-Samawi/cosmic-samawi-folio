@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface PreloaderProps {
   onComplete: () => void;
 }
 
 const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -125,7 +127,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              Loading...
+              {t('common.loading')}
             </motion.span>
           </motion.p>
         </motion.div>

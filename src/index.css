@@ -131,6 +131,21 @@
     background-color: hsl(var(--background));
   }
 
+  html[lang="ar"] body,
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3,
+  html[lang="ar"] h4,
+  html[lang="ar"] h5,
+  html[lang="ar"] h6 {
+    font-family: Tahoma, Arial, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  html[lang="ar"] :not(pre):not(code) {
+    letter-spacing: 0;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: "Inter", system-ui, sans-serif;
     @apply text-foreground font-bold tracking-tight;

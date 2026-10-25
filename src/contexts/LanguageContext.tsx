@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Language = "en" | "de";
-type Direction = "ltr" | "rtl";
+import { getDirection, resolveLanguage, type Language, type Direction } from "@/lib/locale";
+import { arabicTranslations } from "./arabicTranslations";
 
 interface LanguageContextType {
   language: Language;
@@ -12,6 +12,51 @@ interface LanguageContextType {
 
 const translations: Record<Language, Record<string, string>> = {
   de: {
+    "nav.language": "Sprache ändern",
+    "nav.menu": "Menü umschalten",
+    "contact.name": "Ihr Name",
+    "contact.email": "Ihre E-Mail",
+    "contact.subject": "Betreff (Optional)",
+    "contact.message": "Ihre Nachricht",
+    "contact.send": "Nachricht senden",
+    "contact.sending": "Wird gesendet…",
+    "contact.success": "Nachricht gesendet",
+    "contact.successBody": "Vielen Dank — ich melde mich innerhalb von 24 Stunden.",
+    "contact.errorBody": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "contact.consentBefore": "Ich habe die ",
+    "contact.consentAfter": " zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zu diesem Zweck zu.",
+    "contact.consentError": "Bitte bestätigen Sie die Datenschutzerklärung, um fortzufahren.",
+    "contact.social": "Social",
+    "contact.location": "Frankfurt am Main, Deutschland",
+    "footer.cookies": "Cookies-Einstellungen",
+    "footer.credit": "Entwickelt mit Sorgfalt in Frankfurt am Main.",
+    "common.top": "Zurück nach oben",
+    "common.skip": "Zum Hauptinhalt springen",
+    "legal.imprint": "Impressum",
+    "legal.privacy": "Datenschutzerklärung",
+    "legal.terms": "Allgemeine Geschäftsbedingungen",
+    "legal.soon": "Wird in Kürze ergänzt.",
+    "legal.provider": "Angaben gemäß § 5 TMG",
+    "legal.country": "Deutschland",
+    "legal.phone": "Telefon",
+    "legal.email": "E-Mail",
+    "legal.responsible": "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+    "privacy.overview": "1. Datenschutz auf einen Blick",
+    "privacy.overviewBody": "Allgemeine Hinweise: Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.",
+    "privacy.collectionBody": "Datenerfassung auf dieser Website: Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Die Kontaktdaten können Sie dem Impressum dieser Website entnehmen.",
+    "privacy.hosting": "2. Hosting (Vercel)",
+    "privacy.hostingBody": "Wir hosten unsere Website bei Vercel Inc. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.",
+    "privacy.general": "3. Allgemeine Hinweise und Pflichtinformationen",
+    "privacy.controller": "Verantwortliche Stelle:",
+    "privacy.data": "4. Datenerfassung auf dieser Website",
+    "privacy.formBody": "Kontaktformular: Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular zwecks Bearbeitung der Anfrage bei uns gespeichert.",
+    "privacy.cookiesBody": "Cookies: Unsere Website verwendet Cookies zur Verbesserung der Nutzererfahrung.",
+    "notfound.title": "Houston, wir haben ein Problem…",
+    "notfound.message": "Diese Seite scheint im Weltraum verloren zu sein!",
+    "notfound.detail": "Die gesuchte Seite existiert nicht oder ist in ein schwarzes Loch abgedriftet.",
+    "notfound.home": "Zurück zur Erde",
+    "notfound.coordinates": "Letzte bekannte Koordinaten",
+    "notfound.signal": "Signal verloren um",
     // Navigation
     "nav.home": "Startseite",
     "nav.about": "Über mich",
@@ -241,6 +286,51 @@ const translations: Record<Language, Record<string, string>> = {
     "services.it.f3": "Retainer mit SLAs",
   },
   en: {
+    "nav.language": "Change language",
+    "nav.menu": "Toggle menu",
+    "contact.name": "Your name",
+    "contact.email": "Your email",
+    "contact.subject": "Subject (optional)",
+    "contact.message": "Your message",
+    "contact.send": "Send message",
+    "contact.sending": "Sending…",
+    "contact.success": "Message sent",
+    "contact.successBody": "Thank you — I will reply within 24 hours.",
+    "contact.errorBody": "Your message could not be sent. Please try again.",
+    "contact.consentBefore": "I have read the ",
+    "contact.consentAfter": " and consent to the processing of my data for this purpose.",
+    "contact.consentError": "Please confirm the privacy policy to continue.",
+    "contact.social": "Social",
+    "contact.location": "Frankfurt am Main, Germany",
+    "footer.cookies": "Cookie settings",
+    "footer.credit": "Built with care in Frankfurt am Main.",
+    "common.top": "Back to top",
+    "common.skip": "Skip to main content",
+    "legal.imprint": "Legal notice",
+    "legal.privacy": "Privacy policy",
+    "legal.terms": "Terms and conditions",
+    "legal.soon": "Coming soon.",
+    "legal.provider": "Information pursuant to Section 5 TMG",
+    "legal.country": "Germany",
+    "legal.phone": "Phone",
+    "legal.email": "Email",
+    "legal.responsible": "Responsible for content pursuant to Section 55(2) RStV",
+    "privacy.overview": "1. Data protection at a glance",
+    "privacy.overviewBody": "General information: The following notes provide a brief overview of what happens to your personal data when you visit this website.",
+    "privacy.collectionBody": "Data collection on this website: Data is processed by the website operator. Contact details are available in the legal notice.",
+    "privacy.hosting": "2. Hosting (Vercel)",
+    "privacy.hostingBody": "We host our website with Vercel Inc. Personal data collected on this website is stored on the hosting provider’s servers.",
+    "privacy.general": "3. General and mandatory information",
+    "privacy.controller": "Data controller:",
+    "privacy.data": "4. Data collection on this website",
+    "privacy.formBody": "Contact form: If you send an inquiry using our contact form, we store the information you provide to process your inquiry.",
+    "privacy.cookiesBody": "Cookies: Our website uses cookies to improve the user experience.",
+    "notfound.title": "Houston, we have a problem...",
+    "notfound.message": "This page seems to be lost in space!",
+    "notfound.detail": "The page you're looking for doesn't exist or has drifted into a black hole.",
+    "notfound.home": "Return to Earth",
+    "notfound.coordinates": "Last known coordinates",
+    "notfound.signal": "Signal lost at",
     // Navigation
     "nav.home": "Home",
     "nav.about": "About me",
@@ -469,13 +559,17 @@ const translations: Record<Language, Record<string, string>> = {
     "services.it.f2": "Network & Hardware",
     "services.it.f3": "Retainer with SLAs",
   },
+  ar: arabicTranslations,
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>("de");
-  const direction: Direction = "ltr";
+  const [language, setLanguageState] = useState<Language>(() => {
+    try { return resolveLanguage(localStorage.getItem("portfolio-language")); }
+    catch { return "de"; }
+  });
+  const direction: Direction = getDirection(language);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -484,19 +578,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("portfolio-language", lang);
+    try { localStorage.setItem("portfolio-language", lang); } catch { /* Storage may be unavailable. */ }
   };
 
   const t = (key: string): string => {
-    return translations[language][key] || key;
+    return translations[language][key] ?? translations.en[key] ?? key;
   };
 
-  useEffect(() => {
-    const saved = localStorage.getItem("portfolio-language") as Language | null;
-    if (saved && (saved === "en" || saved === "de")) {
-      setLanguageState(saved);
-    }
-  }, []);
 
   return (
     <LanguageContext.Provider value={{ language, direction, setLanguage, t }}>
