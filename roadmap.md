@@ -18,3 +18,9 @@
 - [x] Add Warum Noavio immediately after services.
 - [x] Update toolbox tools and subtitle.
 - [x] Verify both languages and mobile/desktop layout; preserve green accents.
+
+# Arabic language and RTL
+
+- [ ] Add Arabic translations and persistent three-language selector.
+- [ ] Localize shared portfolio controls and contact form; adapt directional layout.
+- [ ] Verify language switching, persistence, Arabic FAQ/contact and desktop/mobile RTL.
