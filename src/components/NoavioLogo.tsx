@@ -37,7 +37,7 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
           textAnchor="middle"
           fontSize="18"
           fontWeight="800"
-          fill="hsl(210, 40%, 98%)"
+          fill="hsl(var(--foreground))"
           fontFamily="Inter, system-ui, sans-serif"
           letterSpacing="-0.5"
         >

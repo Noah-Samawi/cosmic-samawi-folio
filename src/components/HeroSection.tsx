@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroImg from '@/assets/hero-code.jpg';
+import { Button } from '@/components/ui/button';
 
 const stack = ['React', 'TypeScript', 'Python', 'Django', 'Docker', 'AWS'];
 
@@ -25,7 +26,7 @@ const HeroSection: React.FC = () => {
         width={1920}
         height={1088}
         fetchPriority="high"
-        className="absolute inset-0 -z-0 h-full w-full object-cover opacity-50"
+        className="hero-media-accent absolute inset-0 -z-0 h-full w-full object-cover opacity-50"
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950" />
 
@@ -79,13 +80,13 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-16"
           >
-            <button
+            <Button
               onClick={() => scrollTo('contact')}
-              className="inline-flex items-center gap-2 h-12 px-7 rounded-lg bg-cyan-400 text-slate-950 font-semibold text-base transition-colors hover:bg-cyan-300"
+              className="inline-flex items-center gap-2 h-12 px-7 rounded-lg bg-primary text-primary-foreground font-semibold text-base transition-colors hover:bg-primary"
             >
               {t('hero.cta.request').replace(' →', '')}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </button>
+            </Button>
           </motion.div>
 
           <motion.ul

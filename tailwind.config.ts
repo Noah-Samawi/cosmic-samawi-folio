@@ -20,7 +20,8 @@ export default {
       },
       colors: {
         slate: { 50:"#F0F6FC",100:"#E6EDF3",200:"#C9D1D9",300:"#B1BAC4",400:"#8B949E",500:"#6E7681",600:"#484F58",700:"#30363D",800:"#30363D",900:"#161B22",950:"#0D1117" },
-        cyan: { 200:"#9CEFF8",300:"#4FDDEC",400:"#00C8E0",500:"#00C8E0",600:"#00A3B8" },
+        cyan: { 200:"hsl(var(--primary))",300:"hsl(var(--primary))",400:"hsl(var(--primary))",500:"hsl(var(--primary))",600:"hsl(var(--primary))" },
+        blue: { 50:"hsl(var(--primary))",100:"hsl(var(--primary))",200:"hsl(var(--primary))",300:"hsl(var(--primary))",400:"hsl(var(--primary))",500:"hsl(var(--primary))",600:"hsl(var(--primary))",700:"hsl(var(--primary))",800:"hsl(var(--primary))",900:"hsl(var(--primary))",950:"hsl(var(--primary))" },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -86,8 +87,8 @@ export default {
         "gradient-x": { "0%, 100%": { backgroundPosition: "0% 50%" }, "50%": { backgroundPosition: "100% 50%" } },
         float: { "0%, 100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-20px)" } },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 24px -8px hsl(187 95% 53% / 0.5)" },
-          "50%":      { boxShadow: "0 0 48px -8px hsl(187 95% 53% / 0.85)" },
+          "0%, 100%": { boxShadow: "0 0 24px -8px hsl(var(--primary) / 0.5)" },
+          "50%":      { boxShadow: "0 0 48px -8px hsl(var(--primary) / 0.85)" },
         },
       },
       animation: {
