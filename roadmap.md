@@ -8,6 +8,6 @@
 
 # Website accent update
 
-- [ ] Replace site-wide accent tokens and legacy color aliases while preserving dark surfaces.
-- [ ] Update CTA colors, rounding, and logo accents.
-- [ ] Verify the green accents and contact navigation in the preview.
+- [x] Replace site-wide accent tokens and legacy color aliases while preserving dark surfaces.
+- [x] Update CTA colors, rounding, and logo accents.
+- [x] Verify the green accents and contact navigation in the preview.
