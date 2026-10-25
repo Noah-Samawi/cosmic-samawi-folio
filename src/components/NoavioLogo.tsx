@@ -27,9 +27,9 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
       >
         <path
           d="M20 2L34.6 10.5V27.5L20 36L5.4 27.5V10.5L20 2Z"
-          stroke="hsl(187, 95%, 53%)"
+          stroke="hsl(var(--primary))"
           strokeWidth="2"
-          fill="hsl(187, 95%, 53% / 0.06)"
+          fill="hsl(var(--primary) / 0.06)"
         />
         <text
           x="20"
@@ -51,7 +51,7 @@ const NoavioLogo: React.FC<NoavioLogoProps> = ({
             Noah Al-Samawi
           </span>
           <span className="text-[10px] uppercase tracking-[0.22em] text-cyan-400 font-medium mt-0.5">
-            Full-Stack · IT
+            NOAVIO IT
           </span>
         </div>
       )}
