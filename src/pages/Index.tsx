@@ -6,6 +6,7 @@ import MetricsBar from '@/components/MetricsBar';
 import TrustStrip from '@/components/TrustStrip';
 import ServicesSection from '@/components/ServicesSection';
 import ApproachSection from '@/components/ApproachSection';
+import ToolsSection from '@/components/ToolsSection';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
 import SectionSkeleton from '@/components/SectionSkeleton';
@@ -31,6 +32,7 @@ const Index: React.FC = () => {
         <MetricsBar />
         <TrustStrip />
         <ServicesSection />
+        <ToolsSection />
         <ApproachSection />
         <Suspense fallback={<SectionSkeleton />}>
           <ProjectsSection />
