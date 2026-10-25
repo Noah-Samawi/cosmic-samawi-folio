@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Bug, Cloud, Container, Code2, GitBranch, Shield, Database, type LucideIcon } from 'lucide-react';
+import { Terminal, Figma, Cloud, Container, Code2, GitBranch, FileCode2, Database, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const tools: { name: string; icon: LucideIcon }[] = [
-  { name: 'Kali Linux', icon: Terminal },
-  { name: 'Metasploit', icon: Shield },
-  { name: 'Burp Suite', icon: Bug },
+  { name: 'VS Code', icon: Terminal },
+  { name: 'Next.js', icon: FileCode2 },
+  { name: 'Figma', icon: Figma },
   { name: 'Azure', icon: Cloud },
   { name: 'Docker', icon: Container },
   { name: 'Python', icon: Code2 },
