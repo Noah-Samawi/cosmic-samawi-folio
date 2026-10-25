@@ -14,7 +14,7 @@
 
 # Services and complete solution update
 
-- [ ] Replace services with six cards and DE/EN copy.
-- [ ] Add Warum Noavio immediately after services.
-- [ ] Update toolbox tools and subtitle.
-- [ ] Verify both languages and mobile/desktop layout; preserve green accents.
+- [x] Replace services with six cards and DE/EN copy.
+- [x] Add Warum Noavio immediately after services.
+- [x] Update toolbox tools and subtitle.
+- [x] Verify both languages and mobile/desktop layout; preserve green accents.
