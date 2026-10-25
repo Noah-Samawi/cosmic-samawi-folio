@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
               {t('footer.tagline')}
             </p>
             <p className="mt-4 text-xs text-slate-500">
-              © {currentYear} Noah Al-Samawi · Frankfurt am Main
+              © {currentYear} Noavio IT Solutions · Noah Al-Samawi
             </p>
           </div>
 

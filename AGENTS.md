@@ -1,4 +1,4 @@
 # Project conventions
 
-- Keep the four service disciplines in three existing service cards; the web card includes an optional AI subsection to preserve the requested layout.
+- Services render as four equal cards (one per discipline) in ServicesSection; card copy lives under svc4.* keys.
 - Keep personal homepage copy in the existing DE/EN language context; spoken-language listings do not add interface languages.

@@ -19,6 +19,8 @@ export default {
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        slate: { 50:"#F0F6FC",100:"#E6EDF3",200:"#C9D1D9",300:"#B1BAC4",400:"#8B949E",500:"#6E7681",600:"#484F58",700:"#30363D",800:"#30363D",900:"#161B22",950:"#0D1117" },
+        cyan: { 200:"#9CEFF8",300:"#4FDDEC",400:"#00C8E0",500:"#00C8E0",600:"#00A3B8" },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

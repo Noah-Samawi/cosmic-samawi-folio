@@ -46,9 +46,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { key: 'nav.home', href: '#home' },
     { key: 'nav.about', href: '#about' },
-    { key: 'nav.services', href: '#services' },
+    { key: 'nav.leistungen', href: '#services' },
     { key: 'nav.portfolio', href: '#projects' },
     { key: 'nav.contact', href: '#contact' },
   ];
@@ -66,7 +65,7 @@ const Navbar: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-lg border-b border-cyan-500/10"
+      className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -115,9 +114,9 @@ const Navbar: React.FC = () => {
             <a
               href={isHomePage ? '#contact' : '/#contact'}
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden md:inline-flex items-center justify-center h-10 px-5 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold transition-all duration-150 hover:bg-cyan-400 shadow-[0_0_24px_-8px_rgba(34,211,238,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="hidden md:inline-flex items-center justify-center h-10 px-5 rounded-lg border border-cyan-400 text-cyan-400 text-sm font-semibold transition-all duration-150 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              {t('nav.book')}
+              {t('nav.request')}
             </a>
 
             {/* Language */}
@@ -196,7 +195,7 @@ const Navbar: React.FC = () => {
                 onClick={(e) => handleNavClick(e, '#contact')}
                 className="mt-2 inline-flex items-center justify-center h-11 px-5 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold hover:bg-cyan-400 transition-colors"
               >
-                {t('nav.book')}
+                {t('nav.request')}
               </a>
             </div>
           </motion.div>
