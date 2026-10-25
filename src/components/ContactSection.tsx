@@ -122,7 +122,7 @@ const ContactSection: React.FC = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* Honeypot — visually hidden */}
-              <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+              <div aria-hidden="true" className="sr-only">
                 <label htmlFor="website">Website</label>
                 <input
                   id="website"
