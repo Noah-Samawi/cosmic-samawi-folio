@@ -1,3 +1,4 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   const location = useLocation();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -83,13 +85,13 @@ const NotFound = () => {
           transition={{ delay: 0.4 }}
         >
           <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
-            Houston, we have a problem...
+            {t('notfound.title')}
           </h2>
           <p className="text-lg text-muted-foreground mb-2">
-            🌌 This page seems to be lost in space!
+            {t('notfound.message')}
           </p>
           <p className="text-sm text-muted-foreground/70 mb-8">
-            The page you're looking for doesn't exist or has drifted into a black hole.
+            {t('notfound.detail')}
           </p>
         </motion.div>
 
@@ -103,7 +105,7 @@ const NotFound = () => {
           <Link to="/">
             <Button size="lg" className="gap-2 group">
               <Home className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Return to Earth
+              {t('notfound.home')}
             </Button>
           </Link>
         </motion.div>
@@ -115,7 +117,7 @@ const NotFound = () => {
           transition={{ delay: 0.8 }}
           className="mt-12 text-xs text-muted-foreground/50 font-mono"
         >
-          Last known coordinates: {location.pathname} • Signal lost at {new Date().toLocaleTimeString()}
+          {t('notfound.coordinates')}: <bdi dir="ltr">{location.pathname}</bdi> • {t('notfound.signal')} {new Date().toLocaleTimeString(language)}
         </motion.p>
       </div>
     </div>

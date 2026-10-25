@@ -1,3 +1,4 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
@@ -10,18 +11,22 @@ interface BreadcrumbItem {
 
 const Breadcrumbs: React.FC = () => {
   const location = useLocation();
+  const { t } = useLanguage();
 
   const getBreadcrumbs = (): BreadcrumbItem[] => {
     const breadcrumbs: BreadcrumbItem[] = [
-      { label: 'Home', path: '/' },
+      { label: t('nav.home'), path: '/' },
     ];
 
     switch (location.pathname) {
       case '/impressum':
-        breadcrumbs.push({ label: 'Impressum' });
+        breadcrumbs.push({ label: t('legal.imprint') });
         break;
       case '/datenschutz':
-        breadcrumbs.push({ label: 'Datenschutz' });
+        breadcrumbs.push({ label: t('legal.privacy') });
+        break;
+      case '/agb':
+        breadcrumbs.push({ label: t('legal.terms') });
         break;
       case '/presse':
         breadcrumbs.push({ label: 'Presse' });
@@ -42,7 +47,7 @@ const Breadcrumbs: React.FC = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      aria-label="Breadcrumb"
+      aria-label={t('footer.navigate')}
       className="mb-6"
     >
       <ol className="flex items-center gap-2 text-sm">
@@ -52,7 +57,7 @@ const Breadcrumbs: React.FC = () => {
           return (
             <li key={item.label} className="flex items-center gap-2">
               {index > 0 && (
-                <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground rtl:rotate-180" />
               )}
               
               {isLast ? (
