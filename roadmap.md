@@ -21,6 +21,6 @@
 
 # Arabic language and RTL
 
-- [ ] Add Arabic translations and persistent three-language selector.
-- [ ] Localize shared portfolio controls and contact form; adapt directional layout.
-- [ ] Verify language switching, persistence, Arabic FAQ/contact and desktop/mobile RTL.
+- [x] Add Arabic translations and persistent three-language selector.
+- [x] Localize shared portfolio controls and contact form; adapt directional layout.
+- [x] Verify language switching, persistence, Arabic FAQ/contact and desktop/mobile RTL.
