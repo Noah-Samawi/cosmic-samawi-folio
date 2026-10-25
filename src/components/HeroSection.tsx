@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
         width={1920}
         height={1088}
         fetchPriority="high"
-        className="absolute inset-0 -z-0 h-full w-full object-cover opacity-50"
+        className="hero-media-accent absolute inset-0 -z-0 h-full w-full object-cover opacity-50"
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950" />
 

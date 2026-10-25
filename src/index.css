@@ -147,6 +147,10 @@
 }
 
 @layer components {
+  .hero-media-accent {
+    filter: hue-rotate(-45deg);
+  }
+
   .glass-card {
     @apply relative overflow-hidden rounded-2xl;
     background: hsl(222 47% 8% / 0.6);
