@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -35,12 +35,23 @@ const COMMANDS = [
 ];
 
 const TerminalAbout: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const commands = useMemo(() => COMMANDS.map((command, index) => ({
+    ...command,
+    output: language === 'ar' && index === 1 ? t('terminal.profile')
+      : language === 'ar' && index === 3 ? t('terminal.highlights') : command.output,
+  })), [language]);
   const [lines, setLines] = useState<Array<{ text: string; type: 'prompt' | 'output' }>>([]);
   const [currentCommand, setCurrentCommand] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [started, setStarted] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setLines([]);
+    setCurrentCommand(0);
+    setCharIndex(0);
+  }, [language]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,9 +63,9 @@ const TerminalAbout: React.FC = () => {
   }, [started]);
 
   useEffect(() => {
-    if (!started || currentCommand >= COMMANDS.length) return;
+    if (!started || currentCommand >= commands.length) return;
 
-    const cmd = COMMANDS[currentCommand];
+    const cmd = commands[currentCommand];
 
     if (cmd.prompt) {
       if (charIndex < cmd.prompt.length) {
@@ -84,7 +95,7 @@ const TerminalAbout: React.FC = () => {
       }, cmd.delay);
       return () => clearTimeout(timer);
     }
-  }, [started, currentCommand, charIndex]);
+  }, [started, currentCommand, charIndex, commands]);
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -122,7 +133,7 @@ const TerminalAbout: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="rounded-xl border border-border/50 overflow-hidden shadow-2xl bg-[hsl(222,20%,8%)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] transition-shadow duration-500">
+            <div dir="ltr" className="rounded-xl border border-border/50 overflow-hidden shadow-2xl bg-[hsl(222,20%,8%)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] transition-shadow duration-500">
               <div className="flex items-center gap-2 px-4 py-3 bg-[hsl(222,20%,12%)] border-b border-border/30">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-destructive/80" />
